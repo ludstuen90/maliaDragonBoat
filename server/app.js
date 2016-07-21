@@ -12,7 +12,7 @@ var pg = require('pg');
 var connectionString = '**';
 
 app.listen(3000, function(req, res){
-  console.log("Server is up and listening on port 30000");
+  console.log("Server is up and listening on port 3000");
 });
 
 app.get('/', function(req, res){

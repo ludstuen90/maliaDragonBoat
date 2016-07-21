@@ -1,0 +1,37 @@
+{
+  "name": "maliadragonboat",
+  "version": "1.0.0",
+  "description": "an app to keep track of hotel reservations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ludstuen90/maliaDragonBoat.git"
+  },
+  "keywords": [
+    "hotel",
+    "reservation",
+    "tracker",
+    "travel",
+    "trips"
+  ],
+  "author": "@LukasUdstuen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ludstuen90/maliaDragonBoat/issues"
+  },
+  "homepage": "https://github.com/ludstuen90/maliaDragonBoat#readme",
+  "dependencies": {
+    "bcrypt": "^0.8.7",
+    "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.6",
+    "express": "^4.14.0",
+    "express-session": "^1.14.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "pg": "^6.0.3"
+  }
+}

@@ -11,9 +11,11 @@ app.use(bodyParser.urlencoded({extended:false}));
 var pg = require('pg');
 var connectionString = '**';
 
-app.listen(3000, function(req, res){
-  console.log("Server is up and listening on port 3000");
+app.set('port', process.env.PORT || 3000);
+app.listen(app.get('port'), function() {
+    console.log('Server is up and listening on', app.get('port'));
 });
+
 
 app.get('/', function(req, res){
   res.sendFile(path.resolve('views/index.html'));

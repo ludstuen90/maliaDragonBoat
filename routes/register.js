@@ -48,7 +48,7 @@ function isAuthenticated(req, res, next) {
     // CHECK THE USER STORED IN SESSION FOR A CUSTOM VARIABLE
     // you can do this however you want with whatever variables you set up
     if (req.user.username === null){
-        res.redirect('/360');
+        res.redirect('/index');
     }
 
     if (req.user.username !== undefined)

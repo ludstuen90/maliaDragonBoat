@@ -12,7 +12,30 @@
 
   <body ng-controller="index">
 
-      {{hello}}
+    <!-- Navigation -->
+        <nav>
+          <div class="container">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="/index">BRIMSTONE</a>
+            </div>
+        <!-- Navigation List -->
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><i class="fa fa-home"></i> UPCOMING EVENTS</a></li>
+              <li><a href="#archivedEvents"><i class="fa fa-plus-circle"></i> ARCHIVED EVENTS</a></li>
+            </ul>
+          </div>
+        </nav>
+        <!-- End Navigation -->
 
+        <!-- Main View -->
+        <div id="main">
+          <div class='main' ng-view></div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center">
+          <p></p>
+        </footer>
   </body>
+
 </html>

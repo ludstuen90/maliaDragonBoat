@@ -17,6 +17,10 @@ var connectionString = '**';
 
 //base url
 app.get( '/', function (req, res){
+  res.sendFile( path.resolve( 'views/login.html') );
+});
+
+app.get( '/index', function (req, res){
   res.sendFile( path.resolve( 'views/index.html') );
 });
 

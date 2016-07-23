@@ -1,0 +1,17 @@
+
+<div class="login">
+
+  <h2 class="login-header">Log in</h2>
+  <h1 class="lead alert alert-danger" role="alert" ng-if="message != ''">{{message}}</h2>
+
+  <form ng-submit="login()" class="login-container">
+
+    <h1 class="formLogo">BRIMSTONE LOGIN</h1>
+
+    <p><input type="username" placeholder="USERNAME" ng-model="user.username"></p>
+    <p><input type="password" placeholder="PASSWORD" ng-model="user.password"></p>
+    <p><input type="submit" value="LOG IN"></p>
+
+    <p><a type="submit" class="reg" href="#register">REGISTER</a></p>
+
+  </form>

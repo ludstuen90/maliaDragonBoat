@@ -1,78 +1,76 @@
-var DRGNBT = angular.module('DRGNBT', []);
+var DRGNBT = angular.module('DRGNBT', ['ngRoute']);
 
-DRGNBT.controller('index', ['$scope', '$http', function($scope, $http){
-  $scope.hello= "it's me";
+// Configure routes
 
+DRGNBT.config(['$routeProvider', function($routeProvider) {
 
+  $routeProvider
+    .when('/login', {
+      templateUrl: '/views/login.html',
+      controller: "loginController"
+    })
+    .when('/register', {
+      templateUrl: '/views/register.html',
+      controller: "loginController"
+    })
+    .when('/home', {
+      templateUrl: '/views/home.html',
+      controller: " "
+    })
+    // Route for the adminSurvey page
+    .when('/adminSurvey', {
+      templateUrl : 'views/adminSurvey.html',
+      controller  : ''
+    })
+    // Route for the creatEvent page
+    .when('/createEvent', {
+      templateUrl : 'views/createEvent.html',
+      controller  : ''
+    })
+    // Route for the hotelBlockBuilder page
+    .when('/hotelBlockBuilder', {
+      templateUrl : 'views/hotelBlockBuilder.html',
+      controller  : ''
+    })
+    // Route for the hotelSelect page
+    .when('/hotelSelect', {
+      templateUrl : 'views/hotelSelect.html',
+      controller  : ''
+    })
+    // Route for the noHotel page
+    .when('/noHotel', {
+      templateUrl : 'views/noHotel.html',
+      controller  : ''
+    })
+    // Route for the roomAssignment page
+    .when('/roomAssignment', {
+      templateUrl : 'views/roomAssignment.html',
+      controller  : ''
+    })
+    // Route for the surveyStep1 page
+    .when('/surveyStep1', {
+      templateUrl : 'views/surveyStep1.html',
+      controller  : ''
+    })
+    // Route for the surveyStep2 page
+    .when('/surveyStep2', {
+      templateUrl : 'views/surveyStep2.html',
+      controller  : ''
+    })  // Route for the surveyStep3 page
+      .when('/surveyStep3', {
+        templateUrl : 'views/surveyStep3.html',
+        controller  : ''
+      })
+      // Route for the thanksResponse page
+      .when('/thanksResponse', {
+        templateUrl : 'views/thanksResponse.html',
+        controller  : ''
+      })
+    .when('/other', {
+      templateUrl: '/views/other.html',
+      controller: "OtherController"
+    })
+    .otherwise({
+      redirectTo: 'login'
+    });
 }]);
-
-CRMLJA.controller('LoginController', ['$scope', '$http', '$window', '$location', function($scope, $http, $window, $location) {
-  console.log('log in controller loaded');
-    $scope.user = {
-      username: '',
-      password: ''
-    };
-    $scope.message = '';
-
-    $scope.login = function() {
-      console.log('login function clicked');
-      if($scope.user.username ==='' || $scope.user.password === '') {
-        console.log("this is username: ");
-        console.log($scope.user.username);
-        $scope.message = "Enter your username and password!";
-      } else {
-        console.log('sending to server...', $scope.user);
-        $http.post('/', $scope.user).then(function(response) {
-          if(response.data.username) {
-            console.log('success: ', response.data);
-            // location works with SPA (ng-route)
-            $window.location.href = '/landing';
-          } else {
-            console.log('Log in attempt was a failure: ', response);
-            $scope.message = "Incorrect User Credentials";
-          }
-        });
-      }
-    };
-
-    $scope.registerUser = function() {
-      if($scope.user.username === '' || $scope.user.password === '') {
-        $scope.message = "Choose a username and password!";
-      } else {
-        console.log('sending to server...', $scope.user);
-        $http.post('/register', $scope.user).then(function(response) {
-          console.log('success');
-          $location.path('/home');
-        },
-        function(response) {
-          console.log('error');
-          $scope.message = "Please try again.";
-        });
-      }
-    };
-
-  }]);
-    
-
-
-DRGNBT.controller('login', ['$scope', '$http', function($scope, $http){
-
-
-  $scope.user = {
-    username: $scope.username,
-    password: $scope.password
-  };
-
-
-
-
-$scope.login = function(){
-  console.log('login clicked');
-  console.log($scope.user);
-};
-
-
-
-}]);
-
-console.log('hello!');

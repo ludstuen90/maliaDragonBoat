@@ -17,7 +17,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-  //TO DO SQL query
+//TODO SQL query
   console.log('called deserializeUser');
   pg.connect(connection, function (err, client, complete) {
 
@@ -26,7 +26,7 @@ passport.deserializeUser(function(id, done) {
       var query = client.query("SELECT * FROM users WHERE id = $1", [id]);
 
       query.on('row', function (row) {
-        console.log('User row', row);
+        console.log('User row', row.username);
         user = row;
         done(null, user);
       });
@@ -51,23 +51,11 @@ passport.use('local', new localStrategy({
 	    pg.connect(connection, function (err, client) {
 	    	console.log('called local - pg');
 	    	var user = {};
-
-        //QUERY BELOW DOES NOT REUTRN IF NOT IN DATABSE
         var query = client.query("SELECT * FROM users WHERE username = $1", [username]);
-        console.log('the user is ', username);
-        console.log('query is' , query);
 
-        // Handle Errors
-        if (err) {
-            console.log(err);
-        }
         query.on('row', function (row) {
         	console.log('User obj', row);
         	user = row;
-
-          console.log('user is now ', user);
-          console.log('user.password is ', user.password);
-          console.log('password is ', password);
 
           // Hash and compare
           if(encryptLib.comparePassword(password, user.password)) {
@@ -86,7 +74,10 @@ passport.use('local', new localStrategy({
             client.end();
         });
 
-
+        // Handle Errors
+        if (err) {
+            console.log(err);
+        }
 	    });
     }
 ));

@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/ludstuen90/maliaDragonBoat#readme",
   "dependencies": {
+    "angular-route": "^1.5.8",
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.6",

@@ -1,22 +1,19 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
-// var Users = require('../models/user');
 var path = require('path');
 
 // module with bcrypt functions
 var encryptLib = require('../modules/encryption');
 var connection = require('../modules/connection');
 var pg = require('pg');
+var connectionString = 'postgres://localhost:5432/boat_users';
 
+console.log('this register.js ran');
 // Handles request for HTML file
-router.get('/', function(req, res, next) {
-    res.sendFile(path.resolve(__dirname, '../views/register.html'));
-});
 
 // Handles POST request with new user data
-router.post('/', isAuthenticated,   function(req, res, next) {
-  console.log("the password is ", req.body.password);
+router.post('/', function(req, res, next) {
 
   var saveUser = {
     username: req.body.username,
@@ -41,20 +38,5 @@ router.post('/', isAuthenticated,   function(req, res, next) {
 
 });
 
-function isAuthenticated(req, res, next) {
-
-    // do any checks you want to in here
-
-    // CHECK THE USER STORED IN SESSION FOR A CUSTOM VARIABLE
-    // you can do this however you want with whatever variables you set up
-    if (req.user.username === null){
-        res.redirect('/index');
-    }
-
-    if (req.user.username !== undefined)
-        return next();
-    // IF A USER ISN'T LOGGED IN, THEN REDIRECT THEM SOMEWHERE
-    res.redirect('/');
-}
 
 module.exports = router;

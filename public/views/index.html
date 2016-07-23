@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="DRGNBT">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Home Page</title>
+
+    <link rel="stylesheet" href="/vendors/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="/assets/sheetrock.css"></link>
+
+    <script type="text/javascript" src="/vendors/angular.min.js"></script>
+    <script src="/vendors/angular-route.js" charset="utf-8"></script>
+    <script type="text/javascript" src="scripts/clientApp.js"></script>
+
+    <script type="text/javascript" src="/scripts/controllers/loginController.js"></script>
+
+  </head>
+
+  <body ng-app="DRGNBT">
+
+    <nav>
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">BRIMSTONE</a>
+        </div>
+    <!-- Navigation List -->
+        <ul class="nav navbar-nav navbar-right">
+
+          <li><a href="#home"><i class="fa fa-home"></i> Home</a></li>
+          <li><a href="#adminSurvey"><i class="fa fa-plus-circle"></i> Admin Survey</a></li>
+          <li><a href="#createEvent"><i class="fa fa-plus-circle"></i> Create Event</a></li>
+          <li><a href="#hotelBlockBuilder"><i class="fa fa-plus-circle"></i> Hotel Block Builder</a></li>
+          <li><a href="#hotelSelect"><i class="fa fa-plus-circle"></i> Hotel Select</a></li>
+          <li><a href="#noHotel"><i class="fa fa-plus-circle"></i> No Hotel</a></li>
+          <li><a href="#roomAssignment"><i class="fa fa-plus-circle"></i> Room Assignment</a></li>
+          <li><a href="#surveyStep1"><i class="fa fa-eye"></i> 1</a></li>
+          <li><a href="#surveyStep2"><i class="fa fa-eye"></i> 2</a></li>
+          <li><a href="#surveyStep3"><i class="fa fa-eye"></i> 3</a></li>
+          <li><a href="#thanksResponse"><i class="fa fa-eye"></i> Thanks</a></li>
+
+        </ul>
+      </div>
+    </nav>
+
+    <main ng-view></main>
+
+    <!-- <footer ng-include="'/views/templates/footer.html'"></footer> -->
+
+  </body>
+
+</html>

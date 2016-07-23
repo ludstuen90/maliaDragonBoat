@@ -5,16 +5,18 @@ var path = require('path');
 
 // Handles login form POST from index.html
 router.post('/',
+
     passport.authenticate('local', {
-        successRedirect: '/user',
-        failureRedirect: '/user'
+        successRedirect: '/router',
+        failureRedirect: '/'
     })
 );
 
 // Handle index file separately
 // Also catches any other request not explicitly matched elsewhere
-router.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, '../views/index.html'));
+router.get('/', function ( req,res ){
+  res.sendFile(path.resolve('public/views/index.html'));
+
 });
 
 module.exports = router;

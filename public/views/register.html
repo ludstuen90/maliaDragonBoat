@@ -1,0 +1,22 @@
+
+<div class="login">
+
+  <h2 class="login-header">Register User</h2>
+  <h1 class="lead alert alert-danger" role="alert" ng-if="message != ''">{{message}}</h2>
+
+  <form ng-submit="registerUser()" class="login-container">
+
+    <h1 class="formLogo">PRO<strong>SMASH</strong></h1>
+
+    <p><input type="text" placeholder="FIRST NAME"></p>
+    <p><input type="text" placeholder="LAST NAME"></p>
+    <p><input type="username" placeholder="USERNAME" ng-model="user.username"></p>
+    <p><input type="password" placeholder="PASSWORD" ng-model="user.password"></p>
+    <p><input type="text" placeholder="EMAIL"></p>
+
+    <p><input type="submit" value="COMPLETE REGISTRATION"></p>
+
+    <p><a type="submit" class="reg" href="#login">CANCEL</a></p>
+
+  </form>
+</div>

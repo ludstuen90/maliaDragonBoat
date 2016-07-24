@@ -7,7 +7,7 @@ var path = require('path');
 var encryptLib = require('../modules/encryption');
 var connection = require('../modules/connection');
 var pg = require('pg');
-var connectionString = 'postgres://localhost:5432/boat_users';
+var connectionString = 'postgres://localhost:5432/maliaDB';
 
 console.log('this register.js ran');
 // Handles request for HTML file

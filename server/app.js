@@ -14,6 +14,7 @@ var session = require('express-session');
 var login = require('./routes/login');
 var register = require('./routes/register');
 var router = require('./routes/router');
+var createEvent = require('./routes/createEvent');
 
 app.use(bodyParser.json());
 
@@ -34,6 +35,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
+app.use('/', createEvent);
 app.use('/register', register);
 app.use('/router', router);
 app.use('/login', login);

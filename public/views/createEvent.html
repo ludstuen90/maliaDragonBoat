@@ -1,25 +1,17 @@
 <!DOCTYPE html>
-<html ng-app = 'myApp'>
-  <head>
-    <meta charset="utf-8">
-    <title>Create An Event</title>
-    <script type="text/javascript" src="vendors/angular.min.js"></script>
-    <script type="text/javascript" src="scripts/clientApp.js"></script>
-    <script type="text/javascript" src="/scripts/controllers/adminController.js"></script>
-    <link rel="stylesheet" href="vendors/bootstrap.min.css"></link>
-    <link rel="stylesheet" href="assets/sheetrock.css"></link>
-  </head>
+<head>
+  <title>Create An Event</title>
+</head>
+<html>
   <body>
-   <div ng-include="'partials/nav.html'"></div>
-   <div ng-controller = 'adminController'>
    <div class="container">
      <h3>Create a New Event</h3>
      <input type= "text" ng-model= "eventName" value= "" placeholder="event name" required>
      <input type= "text" ng-model= "addressOne" value= "" placeholder="street address">
      <input type= "text" ng-model= "addressTwo" value= "" placeholder="address">
-     <input type= "text" ng-model= "city" value= "" placeholder="city">
-     <input type= "text" ng-model= "state_province" value= "" placeholder="state/province">
-     <input type= "text" ng-model= "url" value= "" placeholder="web site">
+     <input type= "text" ng-model= "event_city" value= "" placeholder="city">
+     <input type= "text" ng-model= "event_state_province" value= "" placeholder="state/province">
+     <input type= "text" ng-model= "event_url" value= "" placeholder="web site">
      <input type= "text" ng-model= "company" value= "" placeholder="company">
      <input type= "text" ng-model= "results_url" value= "" placeholder="results web address">
      <input type= "text" ng-model= "schedule_url" value= "" placeholder="schedule web address">
@@ -27,9 +19,9 @@
      <input type= "date" ng-model= "begin_date" ui-date="{dateFormat: 'yyyy-mm-dd'}">
      <label for="end_date">End Date:</label>
      <input type= "date" ng-model= "end_date" ui-date="{dateFormat: 'yyyy-mm-dd'}">
+     <input type= "text" ng-model= "notes_events" value= "" placeholder="notes">
 
      <button type="button" name="submitEventButton" ng-click= "createEvent()" >Create Event</button>
-     <p> </p>
-
+   </div>
   </body>
 </html>

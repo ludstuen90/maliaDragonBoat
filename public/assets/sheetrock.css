@@ -7,3 +7,93 @@ footer {
   text-align:center;
   padding:25px;
 }
+
+/*LOGIN STYLING*/
+
+.login {
+  width: 600px ;
+  margin: 16px auto;
+  font-size: 16px;
+	padding: 60px;
+	font-weight: lighter;
+}
+
+.login-header,
+.login  {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.login-header {
+  background: #324452;
+  padding: 20px;
+  font-size: 1em;
+  font-weight: lighter;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+}
+
+.login-container {
+	background: #ecf0f1;
+  padding: 25px;
+}
+
+/* Every row inside .login-container is defined with p tags */
+.login p {
+  padding: 12px;
+}
+
+.login input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border-width: 0px;
+  border-style: solid;
+  padding: 16px;
+  outline: 0;
+  font-family: inherit;
+  font-size: 0.95em;
+	font-weight: lighter;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.reg{
+	color: #324452;
+	text-align: center;
+	cursor: pointer;
+}
+
+.login input[type="password"] {
+  background: #fff;
+	/*border-color: #BF3604;*/
+  /*color: #555;*/
+}
+
+.login input[type="submit"] {
+  background: #97BDBF;
+  border-color: transparent;
+  color: #324452;
+  cursor: pointer;
+}
+
+.login input[type="submit"]:hover {
+  background: #83A4A6;
+}
+
+/* Buttons' focus effect */
+.login input[type="submit"]:focus {
+  /*border-color: #05a;*/
+}
+
+.formLogo {
+	color: #324452;
+	font-family: “Helvetica Neue”, Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	font-size: 35px;
+	letter-spacing: 1px;
+	text-align: center;
+}

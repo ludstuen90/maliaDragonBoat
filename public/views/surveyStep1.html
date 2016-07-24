@@ -1,8 +1,31 @@
-<h1>HELLO</h1>
-<form class="step1Form" action="" method="post">
 
-  <input type="radio" name="yes" value="true">
-  <input type="radio" name="no" value="false">
-  <input type="radio" name="maybe" value="">
+<h1>STEP 1</h1>
+
+<form name="myForm" ng-controller="surveyController">
+
+  <label>
+    First Name
+    <input type="text" ng-model="firstName" value=" ">
+  </label><br/>
+
+  <label>
+    Last Name
+    <input type="text" ng-model="lastName" value=" ">
+  </label><br/>
+
+  <label>
+    <input type="button" ng-click="responseYes()" value="yes">
+    I believe I will attend this event
+  </label><br/>
+
+  <label>
+    <input type="button" ng-model="attending" value="maybe">
+    I may attend this event
+  </label><br/>
+
+  <label>
+    <input type="button" ng-click="responseNo()" value="no">
+    I don't believe I will attend this event
+  </label><br/>
 
 </form>

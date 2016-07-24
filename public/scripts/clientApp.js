@@ -2,7 +2,7 @@ var DRGNBT = angular.module('DRGNBT', ['ngRoute']);
 
 // Configure routes
 
-DRGNBT.config(['$routeProvider', function($routeProvider) {
+DRGNBT.config(['$routeProvider', function($routeProvider, $locationProvider) {
 
   $routeProvider
     .when('/login', {
@@ -50,12 +50,12 @@ DRGNBT.config(['$routeProvider', function($routeProvider) {
     // Route for the surveyStep1 page
     .when('/surveyStep1', {
       templateUrl : 'views/surveyStep1.html',
-      controller  : ''
+      controller  : 'surveyController'
     })
     // Route for the surveyStep2 page
     .when('/surveyStep2', {
       templateUrl : 'views/surveyStep2.html',
-      controller  : ''
+      controller  : 'surveyController'
     })  // Route for the surveyStep3 page
       .when('/surveyStep3', {
         templateUrl : 'views/surveyStep3.html',
@@ -73,4 +73,4 @@ DRGNBT.config(['$routeProvider', function($routeProvider) {
     .otherwise({
       redirectTo: 'login'
     });
-}]);
+}]); // End of Routes

@@ -20,12 +20,12 @@ DRGNBT.config(['$routeProvider', function($routeProvider) {
     // Route for the adminSurvey page
     .when('/adminSurvey', {
       templateUrl : 'views/adminSurvey.html',
-      controller  : ''
+      controller  : 'adminController'
     })
     // Route for the creatEvent page
     .when('/createEvent', {
       templateUrl : 'views/createEvent.html',
-      controller  : ''
+      controller  : 'adminController'
     })
     // Route for the hotelBlockBuilder page
     .when('/hotelBlockBuilder', {
@@ -35,7 +35,7 @@ DRGNBT.config(['$routeProvider', function($routeProvider) {
     // Route for the hotelSelect page
     .when('/hotelSelect', {
       templateUrl : 'views/hotelSelect.html',
-      controller  : ''
+      controller  : 'adminController'
     })
     // Route for the noHotel page
     .when('/noHotel', {

@@ -28,4 +28,64 @@ console.log('in adminController');
          }); // end http
        }; //end createEvent function
 
+    $scope.eventAndSurveyRequest = function() {  //runs both eventRequest and surveyRequest queries to display event and survey results on adminSurvey.html
+      eventRequest();
+      surveyRequest();
+    };
+
+    var eventList=[];
+
+     $scope.eventRequest = function() { // gets info for current event to display on for Admin survey page
+       console.log("in eventRequest function in adminController");
+       event.preventDefault();
+       $http({   // gets recordset via GET
+         method: 'GET',
+         url: '/eventRequest',
+       }).then( function(response){  // success call - runs function with response parameter
+       // console.log(response.data);
+         eventList = response.data;  // pulls the data from server and sets to global var eventList
+         console.log($scope.eventList);
+       }, function myError(response){
+         console.log(response.statusText);
+       }// end error function
+       ); // end then response
+     }; // end eventRequest function
+
+     var surveyList=[];
+
+     $scope.surveyRequest = function() { // gets survey results for current event for Admin survey page
+       console.log("in surveyRequest function in adminController");
+       event.preventDefault();
+       $http({   // gets recordset via GET
+         method: 'GET',
+         url: '/surveyRequest',
+       }).then( function(response){  // success call - runs function with response parameter
+       // console.log(response.data);
+         surveyList = response.data;  // pulls the data from server and sets to global var surveyList
+         console.log($scope.surveyList);
+       }, function myError(response){
+         console.log(response.statusText);
+       }// end error function
+       ); // end then response
+     }; // end surveyRequest function
+
+     var hotelList=[];
+
+     $scope.hotelRequest = function() { // gets hotel list for Admin survey page
+       console.log("in hotelRequest function in adminController");
+       event.preventDefault();
+       $http({   // gets recordset via GET
+         method: 'GET',
+         url: '/hotelRequest',
+       }).then( function(response){  // success call - runs function with response parameter
+       // console.log(response.data);
+         surveyList = response.data;  // pulls the data from server and sets to global var surveyList
+         console.log($scope.hotelList);
+       }, function myError(response){
+         console.log(response.statusText);
+       }// end error function
+       ); // end then response
+     }; // end hotelRequest function
+
+
      }]); // end adminController

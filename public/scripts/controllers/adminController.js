@@ -88,4 +88,12 @@ console.log('in adminController');
      }; // end hotelRequest function
 
 
+//below added to see persistent data - L Udstuen
+
+$scope.showEvent = function(){
+  console.log(sessionStorage.getItem("dog"));
+};
+
+//
+
      }]); // end adminController

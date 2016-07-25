@@ -1,5 +1,5 @@
-DRGNBT.controller('homeController', [ '$scope', '$http', function ( $scope, $http ) {
-
+DRGNBT.controller('viewEvent', [ '$scope', '$http', function ( $scope, $http ) {
+console.log('in view event');
 
   $scope.assignEvent = function(dog){
       console.log(dog);

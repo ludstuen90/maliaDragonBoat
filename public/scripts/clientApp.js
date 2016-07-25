@@ -70,6 +70,10 @@ DRGNBT.config(['$routeProvider', function($routeProvider, $locationProvider) {
       templateUrl: '/views/other.html',
       controller: "OtherController"
     })
+    .when('/viewEvent', {
+      templateUrl : 'views/viewEvent.html',
+      controller : 'viewEvent'
+    })
     .otherwise({
       redirectTo: 'login'
     });

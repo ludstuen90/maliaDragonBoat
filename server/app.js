@@ -14,7 +14,7 @@ var session = require('express-session');
 var login = require('./routes/login');
 var register = require('./routes/register');
 var router = require('./routes/router');
-var createEvent = require('./routes/createEvent');
+var createEvent = require('./routes/event');
 
 app.use(bodyParser.json());
 

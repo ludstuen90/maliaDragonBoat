@@ -17,4 +17,19 @@ router.post('/createEvent', function (req, res){
   });
 });
 
+router.get('/eventRequest', function (req, res){
+  console.log('in eventRequest');
+  var eventDisplay = [];
+  pg.connect(connectionString, function(err, client, done){
+    var queriedEvent = client.query("SELECT * FROM events ORDER BY id DESC;");
+    queriedEvent.on('row', function(row){
+      eventDisplay.push(row);
+    });
+    queriedEvent.on('end', function(){
+      return res.json(eventDisplay);
+    });
+    done();
+    });
+  });
+
 module.exports = router;

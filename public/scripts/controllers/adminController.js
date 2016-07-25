@@ -16,7 +16,7 @@ console.log('in adminController');
            schedule_url : $scope.schedule_url,
            begin_date : $scope.begin_date,
            end_date : $scope.end_date,
-           notes_events : $scope.events_notes
+           notes_events : $scope.notes_events
            }; // end object
            console.log("in adminApp createEvents");
            console.log(objectToSend.begin_date);

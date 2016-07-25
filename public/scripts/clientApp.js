@@ -73,3 +73,20 @@ DRGNBT.config(['$routeProvider', function($routeProvider, $locationProvider) {
       redirectTo: 'login'
     });
 }]); // End of Routes
+
+DRGNBT.controller('login', ['$scope', '$http', function($scope, $http, myService)  {
+
+}]);
+
+DRGNBT.controller('home', ['$scope', '$http', function($scope, $http, myService)  {
+$scope.setMe = function(){
+    sessionStorage.setItem("aesop", "Corgi");
+  $scope.mango = sessionStorage.getItem("aesop");
+  console.log("We have saved mango as ", $scope.mango);
+};
+
+$scope.getMe = function(){
+  console.log('if this works, below we will see corgi: ');
+  console.log(sessionStorage.getItem("aesop"));
+};
+}]);

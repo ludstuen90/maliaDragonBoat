@@ -1,5 +1,6 @@
 DRGNBT.controller('adminController', ['$scope', '$http', function($scope, $http){
 console.log('in adminController');
+
     var objectToSend={}; // creates global object to send
 
      $scope.createEvent = function() { // pulls event info and sends to database

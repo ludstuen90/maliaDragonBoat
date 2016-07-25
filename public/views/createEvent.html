@@ -3,11 +3,105 @@
   <title>Create An Event</title>
 </head>
 <html>
+
   <body>
-   <div class="container">
-     <h3>Create a New Event</h3>
-     <input type= "text" ng-model= "eventName" value= "" placeholder="event name" required>
-     <input type= "text" ng-model= "addressOne" value= "" placeholder="street address">
+   <div class="panel panel-default createEventContainer">
+      <div class="panel-heading">
+       <h1 class="panel-title">Create New Event</h1>
+      </div>
+      <div class="panel-body">
+
+<!-- First Row -->
+        <div class="form-group">
+        <label class="control-label">Event Name</label>
+          <input class="form-control" type= "text" ng-model= "eventName" value= "" placeholder="event name" required>
+        </div>
+<!-- Second Row -->
+        <div class="form-group">
+        <label class="control-label">Street Address</label>
+          <input class="form-control" type= "text" ng-model= "addressOne" value= "" placeholder="street address">
+        </div>
+<!-- Third Row -->
+          <div class="row">
+             <div class="col-sm-4">
+               <div class="form-group">
+                 <label class="control-label">Address</label>
+                 <input class="form-control" type= "text" ng-model= "addressTwo" value= "" placeholder="address">
+               </div>
+             </div><!-- Col -->
+
+             <div class="col-sm-4">
+               <div class="form-group">
+                 <label class="control-label">City</label>
+                 <input class="form-control" type= "text" ng-model= "event_city" value= "" placeholder="city">
+               </div>
+             </div><!-- Col -->
+
+             <div class="col-sm-4">
+               <div class="form-group">
+                 <label class="control-label">State/Province</label>
+                 <input class="form-control" type= "text" ng-model= "event_state_province" value= "" placeholder="state/province">
+               </div>
+             </div><!-- Col -->
+           </div><!-- Row -->
+<!-- Fourth Row -->
+           <div class="row">
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="control-label">Event URL</label>
+                  <input class="form-control" type= "text" ng-model= "event_url" value= "" placeholder="web site">
+                </div>
+              </div><!-- Col -->
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="control-label">Company</label>
+                  <input class="form-control" type= "text" ng-model= "company" value= "" placeholder="company">
+                </div>
+              </div><!-- Col -->
+            </div><!-- Row -->
+<!-- Fifth Row -->
+           <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="control-label">Results URL</label>
+                  <input class="form-control" type= "text" ng-model= "results_url" value= "" placeholder="results web address">
+                </div>
+              </div><!-- Col -->
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="control-label">Schedule URL</label>
+                  <input class="form-control" type= "text" ng-model= "schedule_url" value= "" placeholder="schedule web address">
+                </div>
+              </div><!-- Col -->
+            </div><!-- Row -->
+<!-- Sixth Row -->
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label class="control-label">Begin Date:</label>
+                  <input class="form-control" type= "date" ng-model= "begin_date" ui-date="{dateFormat: 'yyyy-mm-dd'}">
+                </div>
+              </div><!-- Col -->
+
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label class="control-label">End Date:</label>
+                  <input class="form-control" type= "date" ng-model= "end_date" ui-date="{dateFormat: 'yyyy-mm-dd'}">
+                </div>
+              </div><!-- Col -->
+            </div><!-- Row -->
+<!-- Seventh Row -->
+            <div class="form-group">
+                <label class="control-label"></label>
+                <textarea class="form-control" type= "text" ng-model= "notes_events" value= "" placeholder="notes" rows="8"></textarea>
+            </div>
+
+            <button class="btn btn-primary btn-lg btn-block" type="button" name="submitEventButton" ng-click= "createEvent()" >Create Event</button>
+
+<!--
      <input type= "text" ng-model= "addressTwo" value= "" placeholder="address">
      <input type= "text" ng-model= "event_city" value= "" placeholder="city">
      <input type= "text" ng-model= "event_state_province" value= "" placeholder="state/province">
@@ -19,9 +113,9 @@
      <input type= "date" ng-model= "begin_date" ui-date="{dateFormat: 'yyyy-mm-dd'}">
      <label for="end_date">End Date:</label>
      <input type= "date" ng-model= "end_date" ui-date="{dateFormat: 'yyyy-mm-dd'}">
-     <input type= "text" ng-model= "notes_events" value= "" placeholder="notes">
+     <input type= "text" ng-model= "notes_events" value= "" placeholder="notes"> -->
 
-     <button type="button" name="submitEventButton" ng-click= "createEvent()" >Create Event</button>
-   </div>
+    </div>
   </body>
+
 </html>

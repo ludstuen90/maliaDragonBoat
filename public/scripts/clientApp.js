@@ -15,6 +15,7 @@ DRGNBT.config(['$routeProvider', function($routeProvider, $locationProvider) {
     })
     .when('/home', {
       templateUrl: '/views/home.html',
+      controller: "homeController"
     })
     // Route for the adminSurvey page
     .when('/adminSurvey', {
@@ -68,6 +69,10 @@ DRGNBT.config(['$routeProvider', function($routeProvider, $locationProvider) {
     .when('/other', {
       templateUrl: '/views/other.html',
       controller: "OtherController"
+    })
+    .when('/viewEvent', {
+      templateUrl : 'views/viewEvent.html',
+      controller : 'viewEvent'
     })
     .otherwise({
       redirectTo: 'login'

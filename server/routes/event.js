@@ -4,7 +4,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var router = express.Router();
 var pg = require('pg');
-var connectionString = 'postgres://localhost:5432/maliaDB';
+var connectionString = 'postgres://localhost:5432/groupDB';
 
 router.post('/createEvent', function (req, res){
   var events = req.body;

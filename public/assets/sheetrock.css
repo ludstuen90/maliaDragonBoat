@@ -1,3 +1,50 @@
+
+/*ADMIN TABS STYLING*/
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tabLi {
+    width: 300px;
+    border: 1px solid #000;
+    /*border-bottom-width: 0;*/
+    margin-bottom: 10px;
+    padding: 10px 20px 10px 20px;
+    background-color: #CCC;
+    color: #696969;
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.tabLi:hover {
+  cursor: pointer;
+}
+
+#tabs {
+  margin-top: 50px;
+}
+
+#mainView {
+  /*border: 1px solid black;*/
+	clear: both;
+	padding: 0 1em;
+  width: 1000px;
+  float: none;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.active {
+  background-color: #FFF;
+  color: #000;
+}
+
+/*FOOTER & NAVIGATION STYLING*/
 footer {
   background-color: #677077;
   height: 100px;
@@ -52,6 +99,28 @@ nav {
   white-space:no-wrap;
   overflow:hidden;
   text-align:center;
+}
+
+.upcomingEvents {
+  -webkit-justify-content: center;
+  justify-content: center;
+  display: flex;
+  /*background-color: black;*/
+}
+
+.homeEvent {
+ /*display: inline-flex;*/
+ /*background-color: #ff9900;*/
+ background-color: lightgray;
+ width: 400px;
+ /*border: 25px solid green;*/
+ padding: 60px 30px 60px 30px;
+ margin: 25px;
+ text-align: center;
+}
+
+.eventHeader {
+  font-weight: 200;
 }
 
 /*CREATE EVENT STYLING*/

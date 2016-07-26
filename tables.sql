@@ -36,11 +36,6 @@ CREATE TABLE events (
  hotel_id int references hotels(id)
  );
 
- --events and hotel JOIN
-SELECT events.id, event_name, address_one, address_two, event_state_province, company, begin_date, end_date, notes_events, results_url, schedule_url, hotel_name, event_city, event_url
-FROM events
-JOIN hotels ON events.hotel_id = hotels.id;
-
 CREATE TABLE survey (
  id SERIAL PRIMARY KEY,
 attend_status TEXT,
@@ -69,12 +64,6 @@ check_out DATE,
 price TEXT
 );
 
---occupant_room and users JOIN 
-SELECT occupant_room.id, first_name, last_name, guest_name, room_type, capacity, room_number, check_in, check_out, price
-FROM occupant_room
-JOIN users ON occupant_room.users_id = users.id
-JOIN rooms ON occupant_room.rooms_id = rooms.id;
-
 
 CREATE TABLE occupant_room (
 id SERIAL PRIMARY KEY,
@@ -82,3 +71,26 @@ users_id INT references users(id),
 guest_name TEXT,
 rooms_id INT references rooms(id)
 );
+
+--events and hotel JOIN
+SELECT events.id, event_name, address_one, address_two, event_state_province, company, begin_date, end_date, notes_events, results_url, schedule_url, hotel_name, event_city, event_url
+FROM events
+JOIN hotels ON events.hotel_id = hotels.id;
+
+--occupant_room and users JOIN
+SELECT occupant_room.id, first_name, last_name, guest_name, room_type, capacity, room_number, check_in, check_out, price
+FROM occupant_room
+JOIN users ON occupant_room.users_id = users.id
+JOIN rooms ON occupant_room.rooms_id = rooms.id;
+
+--survey and users JOIN
+SELECT attend_status, hotel_status, notes_other_accommodation, just_me, me_and_non_paddlers, num_non_paddlers, me_and_one_paddler, me_and_paddlers, notes_survey_room, room_preference, first_name, last_name, event_name
+FROM survey
+JOIN users ON survey.user_id = users.id
+JOIN events ON survey.events_id = events.id;
+
+--events and rooms and hotels
+SELECT event_name, room_type, capacity, room_number, check_in, check_out, price, hotel_name
+FROM rooms
+JOIN events ON rooms.events_id = events.id
+JOIN hotels ON rooms.hotels_id = hotels.id;

@@ -26,8 +26,21 @@ console.log('in adminController');
            url: '/createEvent',
            data: objectToSend
          }); // end http
-       }; //end createEvent function
 
+  //clears event fields
+       $scope.eventName = '';
+       $scope.addressOne = '';
+       $scope.addressTwo = '';
+       $scope.event_city = '';
+       $scope.event_state_province = '';
+       $scope.event_url = '';
+       $scope.company = '';
+       $scope.results_url = '';
+       $scope.schedule_url = '';
+       $scope.begin_date = '';
+       $scope.end_date = '';
+       $scope.notes_events = '';
+}; //end createEvent function
     $scope.eventAndSurveyRequest = function() {  //runs both eventRequest and surveyRequest queries to display event and survey results on adminSurvey.html
       eventRequest();
       surveyRequest();

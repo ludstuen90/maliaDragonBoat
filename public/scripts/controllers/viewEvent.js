@@ -1,6 +1,10 @@
 DRGNBT.controller('viewEvent', [ '$scope', '$http', function ( $scope, $http ) {
 console.log('in view event');
 
+
+
+
+
   $scope.assignEvent = function(eventId){
       console.log(eventId);
       sessionStorage.setItem("eventId", eventId);

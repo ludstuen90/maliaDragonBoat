@@ -1,6 +1,18 @@
-DRGNBT.controller('adminController', ['$scope', '$http', function($scope, $http){
+DRGNBT.controller('adminController', ['$scope', '$http', '$window', function($scope, $http, $window){
 console.log('in adminController');
     var objectToSend={}; // creates global object to send
+
+
+
+    $scope.assignEvent = function(eventId){
+        console.log(eventId);
+        sessionStorage.setItem("eventId", eventId);
+      $scope.mango = sessionStorage.getItem("eventId");
+      // console.log("We have saved mango as ", $scope.mango);
+    };
+
+
+
 
      $scope.createEvent = function() { // pulls event info and sends to database
          event.preventDefault();
@@ -25,7 +37,16 @@ console.log('in adminController');
            method: 'POST',
            url: '/createEvent',
            data: objectToSend
-         }); // end http
+         }).then(function(){
+          // get the most recently created case, and assign to window
+
+         }).then(function(){
+
+
+         }).then(function(){
+           $window.location.href= '/#viewEvent';
+         }); // end http -- the $window tells the browser to redirect to the
+         // events page when ther request has completed
 
   //clears event fields
        $scope.eventName = '';
@@ -124,7 +145,7 @@ console.log('in adminController');
      };
 
      $scope.showEvent = function(){
-       console.log(sessionStorage.getItem("dog"));
+       console.log(sessionStorage.getItem("eventId"));
      };
 
 }]); // end adminController

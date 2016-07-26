@@ -33,20 +33,23 @@ console.log('in adminController');
            console.log("in adminApp createEvents");
            console.log(objectToSend.begin_date);
            console.log(objectToSend.end_date);
-         $http({  // sends object via POST to create event in database
-           method: 'POST',
-           url: '/createEvent',
-           data: objectToSend
-         }).then(function(){
-          // get the most recently created case, and assign to window
-
-         }).then(function(){
 
 
-         }).then(function(){
-           $window.location.href= '/#viewEvent';
-         }); // end http -- the $window tells the browser to redirect to the
-         // events page when ther request has completed
+           $http({  // sends object via POST to create event in database
+             method: 'POST',
+             url: '/createEvent',
+             data: objectToSend
+           }).then(function(){
+             $http({
+               method:'GET',
+               url: '/lastEvent'
+             }).then(function(response){
+               console.log(response.data[0].id);
+               sessionStorage.setItem("eventId", response.data[0].id);
+             }).then(function(){
+               $window.location.href = '/#/viewEvent';
+             });
+           });
 
   //clears event fields
        $scope.eventName = '';

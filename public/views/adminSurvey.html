@@ -81,7 +81,41 @@
                 <button type="button" name="createHotelButton" ng-click= "newHotel()" >Add Hotel</button>
 
               </div><!-- end hotel information -->
-             <div >
+
+              <div> <!-- hotel block creation code -->
+                <h4>Add A Room</h4>
+                <input type= "text" ng-model= "room_type" value= "" placeholder="room type" required>
+                <input type= "text" ng-model= "quantity" value= "" placeholder="quantity">
+                <input type= "text" ng-model= "capacity" value= "" placeholder="capacity">
+                <input type= "text" ng-model= "price" value= "" placeholder="price">
+
+                <button type="button" name="createRoomButton" ng-click= "createRoom()" >Add Room</button>
+
+              </div>  <!-- end hotel block creation code -->
+
+              <div> <!-- admin to set details for each hotel room -->
+              <div class="row">
+                <div class="hotelRoom col-md-4" ng-repeat='record in hotelRooms'>
+                  <b>Room Number: {{ record.room_number }}</b><br />
+                  <p>{{record.room_type}}  Capacity:{{record.capacity}}</p>
+                  <p>Price:{{record.price}}</p>
+                  <p>check_in_date, check_out_date, notes_hotel_room</p>
+                  <div class="beds" ng-repeat='record in roomBeds'>
+                        <input type= "text" ng-model= "occupant" value= "" placeholder="occupant">
+                  </div>
+                  <input type= "text" ng-model= "quantity" value= "" placeholder="quantity">
+                  <input type= "text" ng-model= "quantity" value= "" placeholder="quantity">
+                  <input type= "text" ng-model= "quantity" value= "" placeholder="quantity">
+                  <input type= "text" ng-model= "quantity" value= "" placeholder="quantity">
+                  <input type= "text" ng-model= "quantity" value= "" placeholder="quantity">
+
+                  <p>Room Notes: {{record.notes_hotel_room}}</p>
+                  <button type="button" name="setRoomButton" ng-click="setRoom($index)">Set Room</button>
+                  <button type="button" name="delRoomButton" ng-click="deleteRoom($index)">Delete Room</button>
+                  <p> </p>
+                </div>
+              </div>
+
 
       </div><!--end container-->
     </div><!--end controller-->

@@ -87,5 +87,10 @@ console.log('in adminController');
        ); // end then response
      }; // end hotelRequest function
 
+     var hotelRooms=[];
+
+     var roomBeds=[];
+
+
 
      }]); // end adminController

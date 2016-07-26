@@ -88,12 +88,30 @@ console.log('in adminController');
      }; // end hotelRequest function
 
 
-//below added to see persistent data - L Udstuen
+// TAB FUNCTIONALITY ----------------------------------
+     $scope.tabs = [{
+             title: 'One',
+             url: 'one.tpl.html'
+         }, {
+             title: 'Two',
+             url: 'two.tpl.html'
+         }, {
+             title: 'Three',
+             url: 'three.tpl.html'
+     }];
 
-$scope.showEvent = function(){
-  console.log(sessionStorage.getItem("dog"));
-};
+     $scope.currentTab = 'one.tpl.html';
 
-//
+     $scope.onClickTab = function (tab) {
+         $scope.currentTab = tab.url;
+     };
 
-     }]); // end adminController
+     $scope.isActiveTab = function(tabUrl) {
+         return tabUrl == $scope.currentTab;
+     };
+
+     $scope.showEvent = function(){
+       console.log(sessionStorage.getItem("dog"));
+     };
+
+}]); // end adminController

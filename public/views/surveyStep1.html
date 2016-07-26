@@ -1,21 +1,18 @@
 
-<h1>STEP 1</h1>
+<div class="survey">
+  <form name="myForm" ng-controller="surveyController" class="surveyContainer">
 
-<form name="myForm" ng-controller="surveyController">
+    <label>
+      <input class="btn btn-primary btn-lg btn-block" type="button" ng-click="responseYes()" value="I believe I will attend this event">
+    </label><br/>
 
-  <label>
-    <input type="button" ng-click="responseYes()" value="yes">
-    I believe I will attend this event
-  </label><br/>
+    <label>
+      <input class="btn btn-primary btn-lg btn-block" type="button" ng-model="attending" value="I may attend this event">
+    </label><br/>
 
-  <label>
-    <input type="button" ng-model="attending" value="maybe">
-    I may attend this event
-  </label><br/>
+    <label>
+      <input class="btn btn-primary btn-lg btn-block" type="button" ng-click="responseNo()" value="I don't believe I will attend this event">
+    </label><br/>
 
-  <label>
-    <input type="button" ng-click="responseNo()" value="no">
-    I don't believe I will attend this event
-  </label><br/>
-
-</form>
+  </form>
+</div>

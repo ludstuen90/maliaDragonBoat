@@ -1,34 +1,36 @@
-<h1>STEP 3</h1>
-<form name="myForm" ng-controller="surveyController">
 
-  <label>
-    <input type="checkbox" ng-model="" value="justMe">
-    I would like a room for just me
-  </label><br/>
+<div class="survey">
+  <form name="myForm" ng-controller="surveyController" class="surveyContainer">
 
-  <label>
-    <input type="checkbox" ng-model="" value="meAndNonPaddlers">
-    I would like a room for me and non-paddlers
-  </label><br/>
+    <label>
+      <input type="checkbox" ng-model="" value="justMe">
+      I would like a room for just me
+    </label><br/>
 
-  <label>Number of non-paddlers:
-  <input type="number" name="input" ng-model="numNonPaddlers"
-         min="0" max="20" required>
-  </label><br/>
+    <label>
+      <input type="checkbox" ng-model="" value="meAndNonPaddlers">
+      I would like a room for me and non-paddlers
+    </label><br/>
 
-  <label>
-    <input type="checkbox" ng-model="" value="meAndOnePaddler">
-    I would like to share a room with one paddler
-  </label><br/>
+    <label>Number of non-paddlers:
+    <input type="number" name="input" ng-model="numNonPaddlers"
+           min="0" max="20" required>
+    </label><br/>
 
-  <label>
-    <input type="checkbox" ng-model="" value="meAndPaddlers">
-    I would like to share a room with as many paddlers as possible
-  </label><br/>
+    <label>
+      <input type="checkbox" ng-model="" value="meAndOnePaddler">
+      I would like to share a room with one paddler
+    </label><br/>
 
-  <div class="form-group">
-    <label class="control-label"></label>
-    <textarea class="form-control" type= "text" ng-model= "notes_survey_room" value= "" placeholder="notes" rows="8"></textarea>
-  </div>
+    <label>
+      <input type="checkbox" ng-model="" value="meAndPaddlers">
+      I would like to share a room with as many paddlers as possible
+    </label><br/>
 
- </form>
+    <div class="form-group">
+      <label class="control-label"></label>
+      <textarea class="form-control" type= "text" ng-model= "notes_survey_room" value= "" placeholder="notes" rows="8"></textarea>
+    </div>
+
+   </form>
+</div>

@@ -110,4 +110,8 @@ console.log('in adminController');
          return tabUrl == $scope.currentTab;
      };
 
+     $scope.showEvent = function(){
+       console.log(sessionStorage.getItem("dog"));
+     };
+
 }]); // end adminController

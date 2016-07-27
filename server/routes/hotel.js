@@ -17,6 +17,7 @@ router.post('/newHotel', function(req, res){
   });
 });
 
+
 router.get( '/hotelBlock', function( req, res ) {
   console.log( 'In /hotelBlock.' );
   var hotelBlockDisplay = [];
@@ -34,7 +35,7 @@ router.get( '/hotelBlock', function( req, res ) {
       });
       done();
     }
-  });
+  });  
 });
 
 module.exports = router;

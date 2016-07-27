@@ -1,6 +1,18 @@
-DRGNBT.controller('adminController', ['$scope', '$http', function($scope, $http){
+DRGNBT.controller('adminController', ['$scope', '$http', '$window', function($scope, $http, $window){
 console.log('in adminController');
     var objectToSend={}; // creates global object to send
+
+
+
+    $scope.assignEvent = function(eventId){
+        console.log(eventId);
+        sessionStorage.setItem("eventId", eventId);
+      $scope.mango = sessionStorage.getItem("eventId");
+      // console.log("We have saved mango as ", $scope.mango);
+    };
+
+
+
 
      $scope.createEvent = function() { // pulls event info and sends to database
          event.preventDefault();
@@ -21,6 +33,7 @@ console.log('in adminController');
            console.log("in adminApp createEvents");
            console.log(objectToSend.begin_date);
            console.log(objectToSend.end_date);
+<<<<<<< HEAD
          $http({  // sends object via POST to create event in database
            method: 'POST',
            url: '/createEvent',
@@ -41,6 +54,25 @@ console.log('in adminController');
        $scope.end_date = '';
        $scope.notes_events = '';
 }; //end createEvent function
+=======
+
+
+           $http({  // sends object via POST to create event in database
+             method: 'POST',
+             url: '/createEvent',
+             data: objectToSend
+           }).then(function(){
+             $http({
+               method:'GET',
+               url: '/lastEvent'
+             }).then(function(response){
+               console.log(response.data[0].id);
+               sessionStorage.setItem("eventId", response.data[0].id);
+             }).then(function(){
+               $window.location.href = '/#/viewEvent';
+             });
+           });
+>>>>>>> dd58f6e1921688d2a56ff318849693a5795d8da7
 
     $scope.eventAndSurveyRequest = function() {  //runs both eventRequest and surveyRequest queries to display event and survey results on adminSurvey.html
       eventRequest();
@@ -151,7 +183,7 @@ console.log('in adminController');
      };
 
      $scope.showEvent = function(){
-       console.log(sessionStorage.getItem("dog"));
+       console.log(sessionStorage.getItem("eventId"));
      };
 
 }]); // end adminController

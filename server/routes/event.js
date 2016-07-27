@@ -32,4 +32,24 @@ router.get('/eventRequest', function (req, res){
     });
   });
 
+  router.get( '/eventWhotel', function( req, res ) {
+    console.log( 'In /eventWhotel.' );
+    var eventDisplay = [];
+    pg.connect( connectionString, function( err, client, done ) {
+      var queriedEvent = client.query( "SELECT events.id, event_name, address_one, address_two, event_state_province, company, begin_date, end_date, notes_events, results_url, schedule_url, hotel_name, event_city, event_url FROM events JOIN hotels ON events.hotel_id = hotels.id;" );
+      queriedEvent.on( 'row', function( row ) {
+        eventDisplay.push( row );
+        console.log( '/eventWhotel returned with ' + eventDisplay + ' which contains ' + eventDisplay.event_name + '.' );
+      });
+      if( err ) {
+        console.log( 'Unable to retrieve event data.' );
+      } else {
+      queriedEvent.on( 'end', function() {
+        return res.json( eventDisplay );
+      });
+      done();
+    }
+    });
+  });
+
 module.exports = router;

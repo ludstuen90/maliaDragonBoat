@@ -72,24 +72,24 @@ CREATE TABLE occupant_room (
   rooms_id INT references rooms(id)
 );
 
---events and hotel JOIN
+--events and hotel JOIN  XX
 SELECT events.id, event_name, address_one, address_two, event_state_province, company, begin_date, end_date, notes_events, results_url, schedule_url, hotel_name, event_city, event_url
 FROM events
 JOIN hotels ON events.hotel_id = hotels.id;
 
---occupant_room and users JOIN
+--occupant_room and users JOIN  XX
 SELECT occupant_room.id, first_name, last_name, guest_name, room_type, capacity, room_number, check_in, check_out, price
 FROM occupant_room
 JOIN users ON occupant_room.users_id = users.id
 JOIN rooms ON occupant_room.rooms_id = rooms.id;
 
---survey and users JOIN
+--survey and users JOIN XX
 SELECT attend_status, hotel_status, notes_other_accommodation, just_me, me_and_non_paddlers, num_non_paddlers, me_and_one_paddler, me_and_paddlers, notes_survey_room, room_preference, first_name, last_name, event_name
 FROM survey
 JOIN users ON survey.user_id = users.id
 JOIN events ON survey.events_id = events.id;
 
---events and rooms and hotels
+--events and rooms and hotels  ////Is this route necessary?  --Nick////
 SELECT event_name, room_type, capacity, room_number, check_in, check_out, price, hotel_name
 FROM rooms
 JOIN events ON rooms.events_id = events.id

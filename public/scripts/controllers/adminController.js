@@ -33,10 +33,21 @@ console.log('in adminController');
            console.log("in adminApp createEvents");
            console.log(objectToSend.begin_date);
            console.log(objectToSend.end_date);
+
          $http({  // sends object via POST to create event in database
            method: 'POST',
            url: '/createEvent',
            data: objectToSend
+         }).then(function(){
+           $http({
+             method:'GET',
+             url: '/lastEvent'
+           }).then(function(response){
+             console.log(response.data[0].id);
+             sessionStorage.setItem("eventId", response.data[0].id);
+           }).then(function(){
+             $window.location.href = '/#/viewEvent';
+           });
          }); // end http
 
   //clears event fields
@@ -52,24 +63,13 @@ console.log('in adminController');
        $scope.begin_date = '';
        $scope.end_date = '';
        $scope.notes_events = '';
+
+
+
+
 }; //end createEvent function
 
 
-           $http({  // sends object via POST to create event in database
-             method: 'POST',
-             url: '/createEvent',
-             data: objectToSend
-           }).then(function(){
-             $http({
-               method:'GET',
-               url: '/lastEvent'
-             }).then(function(response){
-               console.log(response.data[0].id);
-               sessionStorage.setItem("eventId", response.data[0].id);
-             }).then(function(){
-               $window.location.href = '/#/viewEvent';
-             });
-           });
 
 
 

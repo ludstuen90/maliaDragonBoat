@@ -17,4 +17,24 @@ router.post('/newHotel', function(req, res){
   });
 });
 
+router.get( '/hotelBlock', function( req, res ) {
+  console.log( 'In /hotelBlock.' );
+  var hotelBlockDisplay = [];
+  pg.connect( connectionString, function( err, client, done ) {
+    var hotelQuery = client.query( "SELECT occupant_room.id, first_name, last_name, guest_name, room_type, capacity, room_number, check_in, check_out, price FROM occupant_room JOIN users ON occupant_room.users_id = users.id JOIN rooms ON occupant_room.rooms_id = rooms.id;" );
+    hotelQuery.on( 'row', function( row ) {
+      hotelBlockDisplay.push( row );
+      console.log( '/hotelBlock returned with ' + hotelBlockDisplay + ' which contains ' + hotelBlockDisplay.room_type, hotelBlockDisplay.capacity + '.' );
+    });
+    if( err ) {
+      console.log( 'Unable to retrieve hotel block information.' );
+    } else {
+      hotelQuery.on( 'end', function() {
+        return res.json( hotelBlockDisplay );
+      });
+      done();
+    }
+  });
+});
+
 module.exports = router;

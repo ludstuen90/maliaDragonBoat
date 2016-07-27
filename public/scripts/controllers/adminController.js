@@ -125,6 +125,8 @@ console.log('in adminController');
          method: 'POST',
          url: '/newHotel',
          data: hotelToSend
+       }).then(function(){
+         $scope.hotelRequest();
        });
 
        // CLEARS HOTEL INPUT FIELDS
@@ -145,8 +147,7 @@ console.log('in adminController');
          method: 'GET',
          url: '/hotelRequest',
        }).then( function(response){
-         $scope.hotelList = response.data;  // pulls the data from server and sets to global var surveyList
-         console.log($scope.hotelList);
+         $scope.hotels = response.data;
        }, function myError(response){
          console.log(response.statusText);
        }// end error function

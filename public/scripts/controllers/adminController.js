@@ -33,7 +33,6 @@ console.log('in adminController');
            console.log("in adminApp createEvents");
            console.log(objectToSend.begin_date);
            console.log(objectToSend.end_date);
- <<HEAD
          $http({  // sends object via POST to create event in database
            method: 'POST',
            url: '/createEvent',
@@ -54,7 +53,6 @@ console.log('in adminController');
        $scope.end_date = '';
        $scope.notes_events = '';
 }; //end createEvent function
-=======
 
 
            $http({  // sends object via POST to create event in database
@@ -72,7 +70,6 @@ console.log('in adminController');
                $window.location.href = '/#/viewEvent';
              });
            });
->>>>>>> dd58f6e1921688d2a56ff318849693a5795d8da7
 
     $scope.eventAndSurveyRequest = function() {  //runs both eventRequest and surveyRequest queries to display event and survey results on adminSurvey.html
       eventRequest();

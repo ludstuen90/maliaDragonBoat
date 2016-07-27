@@ -4,7 +4,10 @@ function($scope, $http, $window, $location) {
 
     $scope.user = {
       username: '',
-      password: ''
+      password: '',
+      first_name: '',
+      last_name: '',
+      email: ''
     };
 
     $scope.message = '';
@@ -21,6 +24,17 @@ function($scope, $http, $window, $location) {
             // set to $scope
             $scope.userName = $window.localStorage.getItem('username');
 
+            console.log("The user is....", $scope.userName);
+
+
+            $window.localStorage.setItem('first_name', response.data.first_name);
+            // set to $scope
+            $scope.userName = $window.localStorage.getItem('first_name');
+
+            $window.localStorage.setItem('last_name', response.data.last_name);
+            // set to $scope
+            $scope.userName = $window.localStorage.getItem('last_name');
+
             // console.log('success: ', response.data);
             // location works with SPA (ng-route)
             $location.path('/home');
@@ -33,7 +47,8 @@ function($scope, $http, $window, $location) {
     };
 
     $scope.registerUser = function() {
-      if($scope.user.username === '' || $scope.user.password === '') {
+      if($scope.user.username === '' || $scope.user.password === ''
+      || $scope.user.email === '' || $scope.user.first_name === '' || $scope.user.last_name === '') {
         $scope.message = "Choose a username and password!";
       } else {
         console.log('sending to server...', $scope.user);

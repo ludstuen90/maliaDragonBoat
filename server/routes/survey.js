@@ -7,11 +7,11 @@ var pg = require('pg');
 var connectionString = 'postgres://localhost:5432/groupDB';
 
 router.post('/responseNo', function (req, res){
-  console.log("ID of current user is:", req.user.id);
+  // console.log("ID of current user is:", req.user.id);
 
   var survey = req.body;
 
-  console.log(survey);
+  // console.log(survey);
   pg.connect(connectionString, function(err, client, done){
 
     client.query("INSERT INTO survey ( attend_status, user_id ) values ( $1, $2 )",
@@ -20,5 +20,26 @@ router.post('/responseNo', function (req, res){
     done();
   });
 });
+
+router.get( '/surveyResults', function( req, res ) {
+  var surveyResults = [];
+  pg.connect( connectionString, function( err, client, done ) {
+    var surveyData = client.query( "SELECT attend_status, hotel_status, notes_other_accommodation, just_me, me_and_non_paddlers, num_non_paddlers, me_and_one_paddler, me_and_paddlers, notes_survey_room, room_preference, first_name, last_name, event_name FROM survey JOIN users ON survey.user_id = users.id JOIN events ON survey.events_id = events.id;" );
+    surveyData.on( 'row', function( row ) {
+      surveyResults.push( row );
+      console.log( "/surveyResults returned with: " + surveyResults + ',' + ' which consists of: ' + surveyResults.first_name + ', ' + surveyResults.last_name + '.' );
+    });
+    console.log( "/surveyResults returned with: " + surveyResults + '.' );
+    if( err ) {
+      console.log( 'Unable to retrieve survey data.' );
+    } else {
+    surveyData.on( 'end', function() {
+      return res.json( surveyResults );
+    });
+    done();
+    }
+  });
+});
+
 
 module.exports = router;

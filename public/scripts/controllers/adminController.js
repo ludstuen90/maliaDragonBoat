@@ -41,6 +41,7 @@ console.log('in adminController');
        $scope.end_date = '';
        $scope.notes_events = '';
 }; //end createEvent function
+
     $scope.eventAndSurveyRequest = function() {  //runs both eventRequest and surveyRequest queries to display event and survey results on adminSurvey.html
       eventRequest();
       surveyRequest();
@@ -83,6 +84,32 @@ console.log('in adminController');
      }; // end surveyRequest function
 
      var hotelList=[];
+
+//add a hotel FUNCTIONALITY
+     $scope.newHotel = function(){
+       hotelToSend = {
+         hotel_name : $scope.hotel_name,
+         hotel_address : $scope.hotel_city,
+         hotel_city : $scope.hotel_city,
+         hotel_state_province : $scope.hotel_state,
+         hotel_zip : $scope.hotel_zip,
+         hotel_phone : $scope.hotel_phone,
+         hotel_url : $scope.hotel_url,
+         hotel_notes : $scope.hotel_notes
+       };
+       $http({
+         method: 'POST',
+         url: '/newHotel',
+         data: hotelToSend
+       });
+       // CLEARS HOTEL INPUT FIELDS
+          $scope.hotel_name = '';
+          $scope.hotel_city = '';
+          $scope.hotel_state_province = '';
+          $scope.hotel_zip = '';
+          $scope.hotel_url = '';
+          $scope.hotel_notes = '';
+     };//end HOTEL creation
 
      $scope.hotelRequest = function() { // gets hotel list for Admin survey page
        console.log("in hotelRequest function in adminController");

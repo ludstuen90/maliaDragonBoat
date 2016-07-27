@@ -8,15 +8,15 @@ CREATE TABLE users (
   password VARCHAR(120) NOT NULL );
 
 CREATE TABLE hotels (
-id SERIAL PRIMARY KEY,
-hotel_name TEXT,
-hotel_address TEXT,
-hotel_city TEXT,
-hotel_state_province TEXT,
-hotel_zip INT,
-hotel_phone VARCHAR(20),
-hotel_url TEXT,
-hotel_notes TEXT
+  id SERIAL PRIMARY KEY,
+  hotel_name TEXT,
+  hotel_address TEXT,
+  hotel_city TEXT,
+  hotel_state_province TEXT,
+  hotel_zip INT,
+  hotel_phone VARCHAR(20),
+  hotel_url TEXT,
+  hotel_notes TEXT
 );
 
 CREATE TABLE events (
@@ -37,39 +37,39 @@ CREATE TABLE events (
  );
 
 CREATE TABLE survey (
- id SERIAL PRIMARY KEY,
-attend_status TEXT,
-hotel_status BOOLEAN,
-notes_other_accommodation TEXT,
-just_me TEXT,
-me_and_non_paddlers TEXT,
-num_non_paddlers TEXT,
-me_and_one_paddler TEXT,
-me_and_paddlers TEXT,
-notes_survey_room TEXT,
-room_preference TEXT,
-user_id int references users(id),
-events_id int references events(id)
+  id SERIAL PRIMARY KEY,
+  attend_status TEXT,
+  hotel_status BOOLEAN,
+  notes_other_accommodation TEXT,
+  just_me TEXT,
+  me_and_non_paddlers TEXT,
+  num_non_paddlers TEXT,
+  me_and_one_paddler TEXT,
+  me_and_paddlers TEXT,
+  notes_survey_room TEXT,
+  room_preference TEXT,
+  user_id int references users(id),
+  events_id int references events(id)
 );
 
 CREATE TABLE rooms (
-id SERIAL PRIMARY KEY,
-room_type TEXT,
-capacity INT,
-events_id INT references events(id),
-hotels_id INT references hotels(id),
-room_number TEXT,
-check_in DATE,
-check_out DATE,
-price TEXT
+  id SERIAL PRIMARY KEY,
+  room_type TEXT,
+  capacity INT,
+  events_id INT references events(id),
+  hotels_id INT references hotels(id),
+  room_number TEXT,
+  check_in DATE,
+  check_out DATE,
+  price TEXT
 );
 
 
 CREATE TABLE occupant_room (
-id SERIAL PRIMARY KEY,
-users_id INT references users(id),
-guest_name TEXT,
-rooms_id INT references rooms(id)
+  id SERIAL PRIMARY KEY,
+  users_id INT references users(id),
+  guest_name TEXT,
+  rooms_id INT references rooms(id)
 );
 
 --events and hotel JOIN

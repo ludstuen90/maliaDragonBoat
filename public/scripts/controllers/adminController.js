@@ -48,7 +48,7 @@ console.log('in adminController');
            }).then(function(){
              $window.location.href = '/#/viewEvent';
            });
-         });; // end http
+         }); // end http
 
   //clears event fields
        $scope.eventName = '';

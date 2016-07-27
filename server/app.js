@@ -18,6 +18,7 @@ var createEvent = require('./routes/event');
 var responseNo = require('./routes/survey');
 var surveyResults = require( './routes/survey' );
 var lastEvent = require('./routes/lastEvent');
+var eventDetails = require('./routes/eventDetails');
 
 app.use(bodyParser.json());
 
@@ -47,6 +48,7 @@ app.use('/', router);
 app.use('/', responseNo);
 app.use( '/', surveyResults );
 app.use('/', lastEvent);
+app.use('/', eventDetails);
 
 
 // base url

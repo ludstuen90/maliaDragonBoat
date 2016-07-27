@@ -18,8 +18,11 @@ var createEvent = require('./routes/event');
 var responseNo = require('./routes/survey');
 var surveyResults = require( './routes/survey' );
 var lastEvent = require('./routes/lastEvent');
+var hotelBlock = require( './routes/hotels' );
+var eventWhotel = require( './routes/event' );
 var eventDetails = require('./routes/eventDetails');
 var selectEvent = require('./routes/selectEvent');
+
 
 app.use(bodyParser.json());
 
@@ -49,9 +52,10 @@ app.use('/', router);
 app.use('/', responseNo);
 app.use( '/', surveyResults );
 app.use('/', lastEvent);
+app.use( '/', hotelBlock );
+app.use( '/', eventWhotel );
 app.use('/', eventDetails);
 app.use('/', selectEvent);
-
 
 // base url
 router.get( '/', function ( req, res ){

@@ -29,7 +29,7 @@ router.get( '/surveyResults', function( req, res ) {
       surveyResults.push( row );
       console.log( "/surveyResults returned with: " + surveyResults + ',' + ' which consists of: ' + surveyResults.first_name + ', ' + surveyResults.last_name + '.' );
     });
-    console.log( "/surveyResults returned with: " + surveyResults + '.' );
+    // console.log( "/surveyResults returned with: " + surveyResults + '.' );
     if( err ) {
       console.log( 'Unable to retrieve survey data.' );
     } else {

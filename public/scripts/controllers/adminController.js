@@ -33,7 +33,7 @@ console.log('in adminController');
            console.log("in adminApp createEvents");
            console.log(objectToSend.begin_date);
            console.log(objectToSend.end_date);
-<<<<<<< HEAD
+ <<HEAD
          $http({  // sends object via POST to create event in database
            method: 'POST',
            url: '/createEvent',

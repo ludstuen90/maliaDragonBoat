@@ -20,6 +20,8 @@ var surveyResults = require( './routes/survey' );
 var lastEvent = require('./routes/lastEvent');
 var hotelBlock = require( './routes/hotels' );
 var eventWhotel = require( './routes/event' );
+var eventDetails = require('./routes/eventDetails');
+
 
 app.use(bodyParser.json());
 
@@ -51,7 +53,7 @@ app.use( '/', surveyResults );
 app.use('/', lastEvent);
 app.use( '/', hotelBlock );
 app.use( '/', eventWhotel );
-
+app.use('/', eventDetails);
 
 // base url
 router.get( '/', function ( req, res ){

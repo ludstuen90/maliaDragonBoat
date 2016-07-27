@@ -17,4 +17,18 @@ router.post('/newHotel', function(req, res){
   });
 });
 
+router.get('/hotelRequest', function(req, res){
+  var hotelGet = [];
+  pg.connect(connectionString, function(err, client, done){
+    var queriedHotel = client.query("SELECT * FROM hotels;");
+    queriedHotel.on('row', function(row){
+      hotelGet.push(row);
+    });
+    queriedHotel.on('end', function(){
+      return res.json(hotelGet);
+    });
+    done();
+  });
+});
+
 module.exports = router;

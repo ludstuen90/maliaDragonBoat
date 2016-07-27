@@ -13,7 +13,7 @@ CREATE TABLE hotels (
   hotel_address TEXT,
   hotel_city TEXT,
   hotel_state_province TEXT,
-  hotel_zip INT,
+  hotel_zip VARCHAR(20),
   hotel_phone VARCHAR(20),
   hotel_url TEXT,
   hotel_notes TEXT

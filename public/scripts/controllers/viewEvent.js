@@ -13,6 +13,9 @@ $scope.eventData = [];
 
 
   $scope.showEvent = function(){
+
+  
+
     console.log(sessionStorage.getItem("eventId"));
     $scope.mango = sessionStorage.getItem("eventId");
     var objToSend = {

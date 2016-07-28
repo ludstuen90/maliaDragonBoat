@@ -115,12 +115,12 @@
     	</script>
     </div> <!-- end container-->
 <!-- THIRD TAB -->
-  <div ng-controller="adminController">
+
 
       <script type="text/ng-template" id="three.tpl.html">
-    		<div id="viewThree">
+    		<div id="viewThree"  ng-controller="adminController">
           <h4>Add Hotel Room</h4>
-          <input type= "text" ng-model= "roomnum" value= "" placeholder="Enter Room Number"><button type="button" name="getRoomButton" ng-click= "getRoom()" >Get Room</button>
+          <input type= "text" ng-model= "roomnum" value= "" placeholder="Enter Room Number"><button type="button" name="getRoomButton" ng-click= "getRoom()">Get Room</button>
           <table class="table table-bordered table-hover table-condensed">
                   <tr style="font-weight: bold">
                       <th>Room ID</th>
@@ -131,6 +131,7 @@
                       <th>Check In Date</th>
                       <th>Check Out Date</th>
                       <th>Notes</th>
+                      <!-- <th ></th> -->
                   </tr>
                   <tr ng-repeat='record in roomToShow'>
                     <td><span editable-text="record.id" e-form="rowform" e-required>{{ record.id }}</span></td>
@@ -138,12 +139,13 @@
                     <td><span editable-text="record.room_type" e-form="rowform" e-required>{{ record.room_type }}</span></td>
                     <td><span editable-text="record.capacity" e-form="rowform" e-required>{{ record.capacity }}</span></td>
                     <td><span editable-text="record.price" e-form="rowform" e-required>{{ record.price }}</span></td>
-                    <td><span editable-text="record.check_in_date" e-form="rowform" e-required>{{ record.check_in_date }}</span></td>
-                    <td><span editable-text="record.check_out_date" e-form="rowform" e-required>{{ record.check_out_date}}</span></td>
+                    <td><span editable-date="record.check_in" e-form="rowform" e-required>{{ (record.check_in | date: "MM-dd-yyyy") }}</span></td>
+                    <td><span editable-date="record.check_out" e-form="rowform" e-required>{{ (record.check_out | date: "MM-dd-yyyy")}}</span></td>
                     <td><span editable-text="record.notes" e-form="rowform" e-required>{{ record.notes }}</span></td>
+
                     <td style="white-space:nowrap">
-                      <!-- <form editable-form name="rowform" onbeforesave="makeSqlHappy($data, record.id )" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == record"> -->
-                      <form editable-form name="rowform" onaftersave="makeSqlHappy(record.room_number, record.room_type, record.capacity, record.price, record.check_in_date, record.check_out_date, record.notes, record.id )" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == record">
+                      <form editable-form name="rowform" onaftersave="makeSqlHappy(record.room_number, record.room_type, record.capacity, record.price, record.check_in, record.check_out, record.notes, record.id )" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == record">
+
                         <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
                             Save
                         </button>
@@ -152,7 +154,8 @@
                         </button>
                       </form>
                       <div class="buttons" ng-show="!rowform.$visible">
-                        <button class="btn btn-primary" ng-click="rowform.$show()">Edit</button>
+                        <button class="btn btn-primary" ng-click="rowform.$show()">
+                          Edit</button>
                       </div>
                   </tr>
                 </table>  <!-- end room -->
@@ -164,6 +167,7 @@
   </div><!--end controller-->
 
 </html>
+
 
 
 

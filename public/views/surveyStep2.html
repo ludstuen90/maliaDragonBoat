@@ -3,13 +3,12 @@
   <form name="myForm" ng-controller="surveyController" class="surveyContainer">
 
     <label>
-      <input type="checkbox" ng-model="surveyData.lamp" value="1">
-      I would like to stay in the team hotel block.
-    </label><br/>
-    <label>
-      <input type="checkbox" ng-model="surveyData.lamp" value="2">
-      I will arrange my own accommodations.
+      <input class="btn btn-primary btn-lg btn-block" type="button" ng-click="responseHotel()" value="I would like to stay in the team hotel block."></input>
     </label><br/>
 
-   </form>
+    <label>
+      <input class="btn btn-primary btn-lg btn-block" type="button" ng-click="responseOtherAccommodation()" value="I will arrange my own accommodations."></input>
+    </label><br/>
+
+  </form>
 </div>

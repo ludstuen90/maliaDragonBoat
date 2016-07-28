@@ -16,6 +16,7 @@ var register = require('./routes/register');
 var router = require('./routes/router');
 var createEvent = require('./routes/event');
 var responseNo = require('./routes/survey');
+var otherAccommodation = require('./routes/survey');
 var surveyResults = require( './routes/survey' );
 var lastEvent = require('./routes/lastEvent');
 
@@ -30,7 +31,9 @@ var eventDetails = require('./routes/eventDetails');
 var hotelBlock = require( './routes/hotels' );
 var eventWhotel = require( './routes/event' );
 var eventDetails = require('./routes/eventDetails');
-
+var selectEvent = require('./routes/selectEvent');
+var hello = require('./routes/hello');
+var surveyComplete = require('./routes/surveyComplete');
 
 var hotel = require('./routes/hotel');
 
@@ -62,6 +65,7 @@ app.use('/login', login);
 app.use('/', login);
 app.use('/', router);
 app.use('/', responseNo);
+app.use('/', otherAccommodation);
 app.use( '/', surveyResults );
 app.use('/', lastEvent);
 
@@ -75,6 +79,9 @@ app.use('/', eventDetails);
 app.use( '/', hotelBlock );
 app.use( '/', eventWhotel );
 app.use('/', eventDetails);
+app.use('/', selectEvent);
+app.use('/', hello);
+app.use('/', surveyComplete);
 
 app.use('/', hotel);
 

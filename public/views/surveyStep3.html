@@ -3,12 +3,12 @@
   <form name="myForm" ng-controller="surveyController" class="surveyContainer">
 
     <label>
-      <input type="checkbox" ng-model="" value="justMe">
+      <input type="checkbox" ng-model="justMe" value="">
       I would like a room for just me
     </label><br/>
 
     <label>
-      <input type="checkbox" ng-model="" value="meAndNonPaddlers">
+      <input type="checkbox" ng-model="meAndNonPaddlers" value="true">
       I would like a room for me and non-paddlers
     </label><br/>
 
@@ -18,12 +18,12 @@
     </label><br/>
 
     <label>
-      <input type="checkbox" ng-model="" value="meAndOnePaddler">
+      <input type="checkbox" ng-model="meAndOnePaddler" value="">
       I would like to share a room with one paddler
     </label><br/>
 
     <label>
-      <input type="checkbox" ng-model="" value="meAndPaddlers">
+      <input type="checkbox" ng-model="meAndPaddlers" value="">
       I would like to share a room with as many paddlers as possible
     </label><br/>
 
@@ -31,6 +31,8 @@
       <label class="control-label"></label>
       <textarea class="form-control" type= "text" ng-model= "notes_survey_room" value= "" placeholder="notes" rows="8"></textarea>
     </div>
+
+    <input class="btn btn-primary btn-lg btn-block" type="button" name="submitButton" id="submitButton" value="submit" ng-click="submitHotel()">
 
    </form>
 </div>

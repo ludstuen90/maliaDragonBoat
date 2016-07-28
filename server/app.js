@@ -15,7 +15,8 @@ var login = require('./routes/login');
 var register = require('./routes/register');
 var router = require('./routes/router');
 var createEvent = require('./routes/event');
-var responseNo = require('./routes/survey.js');
+var responseNo = require('./routes/survey');
+var otherAccommodation = require('./routes/survey');
 
 app.use(bodyParser.json());
 
@@ -43,6 +44,7 @@ app.use('/login', login);
 app.use('/', login);
 app.use('/', router);
 app.use('/', responseNo);
+app.use('/', otherAccommodation);
 
 // base url
 router.get( '/', function ( req, res ){

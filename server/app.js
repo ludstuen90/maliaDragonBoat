@@ -34,8 +34,9 @@ var eventDetails = require('./routes/eventDetails');
 var selectEvent = require('./routes/selectEvent');
 var hello = require('./routes/hello');
 var surveyComplete = require('./routes/surveyComplete');
-
 var hotel = require('./routes/hotel');
+var rooms = require( './routes/rooms' );
+
 
 
 
@@ -87,6 +88,7 @@ app.use('/', hotel);
 
 
 
+app.use('/', rooms);
 
 // base url
 router.get( '/', function ( req, res ){

@@ -66,7 +66,6 @@ console.log('in adminController');
 
 
 
-
            $http({  // sends object via POST to create event in database
              method: 'POST',
              url: '/createEvent',

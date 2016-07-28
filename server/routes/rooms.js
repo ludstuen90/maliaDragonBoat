@@ -71,7 +71,17 @@ router.post('/saveRoom/:id', function(req, res) {
   }); //end connection
 }); //end /saveroom function
 
-
+router.delete( '/deleteRoom/:id', function( req, res ){
+  var id = req.params.id;
+  pg.connect( connectionString, function( err, client, done ) {
+    console.log( '/deleteRoom route hit.' );
+    if( err ){
+      console.log( 'Failed to delete room from database.' );
+    } else {
+      client.query( "DELETE * FROM rooms WHERE id = $1;", [ req.params.id ] );
+    }
+  });
+});
 
 
 

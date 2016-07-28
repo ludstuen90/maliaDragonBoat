@@ -51,11 +51,7 @@ router.get( '/hotelBlock', function( req, res ) {
       });
       done();
     }
-<<<<<<< HEAD
   });
-=======
   });
->>>>>>> master
-});
 
 module.exports = router;

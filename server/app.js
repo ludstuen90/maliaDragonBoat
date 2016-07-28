@@ -6,6 +6,8 @@ var pg = require('pg');
 var bodyParser = require('body-parser');
 var app = express();
 
+app.use(bodyParser.json());
+
 //passport connection
 var passport = require('./strategies/user.js');
 var session = require('express-session');
@@ -40,7 +42,6 @@ var rooms = require( './routes/rooms' );
 
 
 
-app.use(bodyParser.json());
 
 // Setting static page
 app.use(express.static( 'public' ));

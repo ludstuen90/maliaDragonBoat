@@ -105,14 +105,13 @@ console.log('in adminController');
      ); // end then response
      }; // end surveyRequest function
 
-     $scope.eventAndSurveyRequest = function() {  //runs both eventRequest and surveyRequest queries to display event and survey results on adminSurvey.html
-       eventRequest();
-       surveyRequest();
-     };
+    //  $scope.eventAndSurveyRequest = function() {  //runs both eventRequest and surveyRequest queries to display event and survey results on adminSurvey.html
+    //    eventRequest();
+    //    surveyRequest();
+    //  };
 
      var hotelList=[];
 
-$scope.hotelRequest();
 
 //CREATE a hotel FUNCTIONALITY
      $scope.newHotel = function(){
@@ -159,7 +158,20 @@ $scope.hotelRequest();
        }// end error function
        ); // end then response
      }; // end hotelRequest function
+$scope.hotelRequest();
 
+$scope.deleteHotel = function(hotelID){
+  console.log('in delete hotel');
+  var sendID = {id: hotelID};
+  $http({
+    method: 'DELETE',
+    url: '/deleteHotel',
+    data: hotelID,
+    headers: {'Content-Type': 'application/json;charset=utf-8'}
+  }).then(function(){
+    $scope.hotelRequest();
+  });
+};
      var hotelRooms=[];
 
      var roomBeds=[];

@@ -54,6 +54,19 @@ router.get( '/hotelBlock', function( req, res ) {
    });
   });
 
+  router.delete('/deleteHotel', function (req, res){
+    console.log('in deleteHotel.js');
+    pg.connect(connectionString, function(err, client, done){
+      client.query("DELETE FROM hotels WHERE id=" + req.body.id);
+      if(err){
+        res.sendStatus(500);
+      } else {
+        res.sendStatus(200);
+      }
+      done();
+      console.log('Hotel deleted');
+    });
+  });//end DELETE
 
 
 

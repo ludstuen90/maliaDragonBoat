@@ -114,12 +114,12 @@
     	</script>
     </div> <!-- end container-->
 <!-- THIRD TAB -->
-  <div ng-controller="adminController">
+
 
       <script type="text/ng-template" id="three.tpl.html">
-    		<div id="viewThree">
+    		<div id="viewThree"  ng-controller="adminController">
           <h4>Add Hotel Room</h4>
-          <input type= "text" ng-model= "roomnum" value= "" placeholder="Enter Room Number"><button type="button" name="getRoomButton" ng-click= "getRoom()" >Get Room</button>
+          <input type= "text" ng-model= "roomnum" value= "" placeholder="Enter Room Number"><button type="button" name="getRoomButton" ng-click= "getRoom()">Get Room</button>
           <table class="table table-bordered table-hover table-condensed">
                   <tr style="font-weight: bold">
                       <th>Room ID</th>
@@ -130,6 +130,7 @@
                       <th>Check In Date</th>
                       <th>Check Out Date</th>
                       <th>Notes</th>
+                      <!-- <th ></th> -->
                   </tr>
                   <tr ng-repeat='record in roomToShow'>
                     <td><span editable-text="record.id" e-form="rowform" e-required>{{ record.id }}</span></td>
@@ -137,12 +138,13 @@
                     <td><span editable-text="record.room_type" e-form="rowform" e-required>{{ record.room_type }}</span></td>
                     <td><span editable-text="record.capacity" e-form="rowform" e-required>{{ record.capacity }}</span></td>
                     <td><span editable-text="record.price" e-form="rowform" e-required>{{ record.price }}</span></td>
-                    <td><span editable-text="record.check_in_date" e-form="rowform" e-required>{{ record.check_in_date }}</span></td>
-                    <td><span editable-text="record.check_out_date" e-form="rowform" e-required>{{ record.check_out_date}}</span></td>
+                    <td><span editable-date="record.check_in" e-form="rowform" e-required>{{ (record.check_in | date: "MM-dd-yyyy") }}</span></td>
+                    <td><span editable-date="record.check_out" e-form="rowform" e-required>{{ (record.check_out | date: "MM-dd-yyyy")}}</span></td>
                     <td><span editable-text="record.notes" e-form="rowform" e-required>{{ record.notes }}</span></td>
+
                     <td style="white-space:nowrap">
-                      <!-- <form editable-form name="rowform" onbeforesave="makeSqlHappy($data, record.id )" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == record"> -->
-                      <form editable-form name="rowform" onaftersave="makeSqlHappy(record.room_number, record.room_type, record.capacity, record.price, record.check_in_date, record.check_out_date, record.notes, record.id )" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == record">
+                      <form editable-form name="rowform" onaftersave="makeSqlHappy(record.room_number, record.room_type, record.capacity, record.price, record.check_in, record.check_out, record.notes, record.id )" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == record">
+
                         <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
                             Save
                         </button>
@@ -151,7 +153,8 @@
                         </button>
                       </form>
                       <div class="buttons" ng-show="!rowform.$visible">
-                        <button class="btn btn-primary" ng-click="rowform.$show()">Edit</button>
+                        <button class="btn btn-primary" ng-click="rowform.$show()">
+                          Edit</button>
                       </div>
                   </tr>
                 </table>  <!-- end room -->
@@ -163,97 +166,3 @@
   </div><!--end controller-->
 
 </html>
-
-
-
-
-
-
-
-
-<!-- <div class="container" ng-init='eventAndSurveyRequest()'>
-    <h3>Survey Results</h3>
-    <h4>Event:</h4>
-    <p ng-show="eventList.length==0">No event information available.</p>
-    <div class="row" ng-repeat='record in eventList'>  -->
-      <!-- Begin event info. eventList is name of array in adminController.js -->
-        <!-- <p>{{record.event}}</p>
-        <p>{{record.addressOne}}, {{record.addressTwo}}</p>
-        <p>{{record.city}}, {{record.state_province}}</p>
-        <p>Event website: {{record.event_url}}</p>
-        <p>Schedule website: {{record.event}}</p>
-        <p>{{record.begin_date}} - {{record.end_date}}</p>
-        <p>{{record.company}}</p>
-        <p>Results website: {{record.results_url}}</p>
-        <p>Notes: {{record.notes_events}}</p>
-      </div>  -->
-      <!--end row - Event Information-->
-      <!-- <div class="row">  -->
-        <!-- begin survey information -->
-        <!-- <p ng-show="surveyList.length==0">No survey results available.</p>
-        <table class="table-bordered">
-         <tr>
-           <td> <h4>Paddler Name</h4></td>
-           <td> <h4>Attend Status</h4></td>
-           <td> <h4>Want In Hotel Block?</h4></td>
-           <td> <h4>Room Preference</h4></td>
-           <td> <h4>Number of Non-Paddlers Coming</h4></td>
-           <td> <h4>Notes</h4></td>
-           </tr>
-         <tr ng-repeat='record in surveyList | orderBy:username'>   -->
-           <!-- surveyList is name of array in adminController.js -->
-           <!-- <td> <p>{{username}}</p></td>
-           <td> <p>{{attendStatus}}</p></td>
-           <td> <p>{{hotelBlock}}</p></td>
-           <td> <p>{{roomPreference}}</p></td>
-           <td> <p>{{numNonPaddlers}}</p></td>
-           <td> <p>{{notes_survey}}</p></td>
-           </tr>
-         </table>
-       </div> -->
-       <!-- end survey information -->
-       <!-- <h3>Hotels</h3> -->
-<!-- Need some kind of ng-show or ng-hide on condition that hotel is not selected yet (show), or has been selected for this event (hide).  -->
-       <!-- <div class="row">  -->
-         <!-- begin hotel information -->
-         <!-- <p ng-show="hotelList.length==0">No hotels available.</p>
-         <table class="table-bordered">
-          <tr>
-            <td> <h4>Hotel Name</h4></td>
-            <td> <h4>Address</h4></td>
-            <td> <h4>City</h4></td>
-            <td> <h4>State or Province</h4></td>
-            <td> <h4>Zip</h4></td>
-            <td> <h4>Phone</h4></td>
-            <td> <h4>Website</h4></td>
-            <td> <h4>Notes</h4></td>
-            <td> <h4>Assign to Event</td>
-            </tr>
-          <tr ng-repeat='record in hotelList | orderBy:hotel_name'>   -->
-            <!-- hotelList is name of array in adminController.js -->
-            <!-- <td> <p>{{hotel_name}}</p></td>
-            <td> <p>{{hotel_address}}</p></td>
-            <td> <p>{{hotel_city}}</p></td>
-            <td> <p>{{hotel_state}}</p></td>
-            <td> <p>{{hotel_zip}}</p></td>
-            <td> <p>{{hotel_phone}}</p></td>
-            <td> <p>{{hotel_URL}}</p></td>
-            <td> <p>{{hotel_notes}}</p></td>
-            <td> <button type="button" name="hotelButton" ng-click= "assignHotel()">Assign</button></td>
-            </tr>
-          </table>
-          <h4>Add A Hotel</h4>
-          <input type= "text" ng-model= "hotel_name" value= "" placeholder="hotel name" required>
-          <input type= "text" ng-model= "hotel_address" value= "" placeholder="street address">
-          <input type= "text" ng-model= "hotel_city" value= "" placeholder="city">
-          <input type= "text" ng-model= "hotel_state" value= "" placeholder="state/province">
-          <input type= "text" ng-model= "hotel_zip" value= "" placeholder="zip">
-          <input type= "text" ng-model= "hotel_phone" value= "" placeholder="phone">
-          <input type= "text" ng-model= "hotel_url" value= "" placeholder="hotel web address">
-          <input type= "text" ng-model= "hotel_notes" value= "" placeholder="notes">
-
-          <button type="button" name="createHotelButton" ng-click= "newHotel()" >Add Hotel</button>
-
-        </div> -->
-        <!-- end hotel information -->
->>>>>>> roombuilder

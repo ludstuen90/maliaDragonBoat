@@ -1,4 +1,9 @@
 
+
+
+
+
+
 .logo {
   float: left;
   width: 260px;
@@ -158,6 +163,7 @@
 
 .tabLi:hover {
   cursor: pointer;
+  background: #13647F;
 }
 
 #tabs {

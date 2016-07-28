@@ -166,13 +166,13 @@ console.log('in adminController');
 
 // TAB FUNCTIONALITY ----------------------------------
      $scope.tabs = [{
-             title: 'One',
+             title: 'Survey Results',
              url: 'one.tpl.html'
          }, {
-             title: 'Two',
+             title: 'Hotel List',
              url: 'two.tpl.html'
          }, {
-             title: 'Three',
+             title: 'Hotel Room Builder',
              url: 'three.tpl.html'
      }];
 

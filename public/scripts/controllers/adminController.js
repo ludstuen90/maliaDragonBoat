@@ -66,21 +66,6 @@ console.log('in adminController');
 
 
 
-           $http({  // sends object via POST to create event in database
-             method: 'POST',
-             url: '/createEvent',
-             data: objectToSend
-           }).then(function(){
-             $http({
-               method:'GET',
-               url: '/lastEvent'
-             }).then(function(response){
-               console.log(response.data[0].id);
-               sessionStorage.setItem("eventId", response.data[0].id);
-             }).then(function(){
-              //  $window.location.href = '/#/viewEvent';
-             });
-           });
 
 
 

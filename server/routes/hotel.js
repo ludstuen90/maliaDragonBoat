@@ -22,14 +22,19 @@ router.get('/hotelRequest', function(req, res){
   console.log('in hotelRequest');
   var hotelGet = [];
   pg.connect(connectionString, function(err, client, done){
-    var queriedHotel = client.query("SELECT * FROM hotels;");
-    queriedHotel.on('row', function(row){
-      hotelGet.push(row);
-    });
-    queriedHotel.on('end', function(){
-      return res.json(hotelGet);
-    });
-    done();
+    if( err ){
+      console.log( err );
+    }
+    else{
+      var queriedHotel = client.query("SELECT * FROM hotels;");
+      queriedHotel.on('row', function(row){
+        hotelGet.push(row);
+      });
+      queriedHotel.on('end', function(){
+        return res.json(hotelGet);
+      });
+      done();
+    } // end no err
   });
 });
 
@@ -54,7 +59,7 @@ router.get( '/hotelBlock', function( req, res ) {
    });
   });
 
-  router.delete('/deleteHotel', function (req, res){
+  router.post('/deleteHotel', function (req, res){
     console.log('in deleteHotel.js');
     pg.connect(connectionString, function(err, client, done){
       client.query("DELETE FROM hotels WHERE id=" + req.body.id);

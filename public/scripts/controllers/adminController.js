@@ -141,7 +141,6 @@ console.log('in adminController');
      };//end HOTEL creation
 
      $scope.hotelRequest = function() {
-       console.log("in hotelRequest function in adminController");
       //  event.preventDefault();
        $http({   // gets recordset via GET
          method: 'GET',
@@ -159,9 +158,9 @@ $scope.deleteHotel = function(hotelID){
   console.log('in delete hotel');
   var sendID = {id: hotelID};
   $http({
-    method: 'DELETE',
+    method: 'POST',
     url: '/deleteHotel',
-    data: hotelID,
+    data: sendID,
     headers: {'Content-Type': 'application/json;charset=utf-8'}
   }).then(function(){
     $scope.hotelRequest();

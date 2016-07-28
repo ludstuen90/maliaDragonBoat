@@ -59,9 +59,9 @@
     	</script>
 <!-- SECOND TAB -->
     	<script type="text/ng-template" id="two.tpl.html">
-    		<div id="viewTwo" ng-controller="adminController">
+    		<div id="viewTwo" >
 
-      <div class="row"> <!-- begin hotel information -->
+      <div class="row" ng-controller="adminController"> <!-- begin hotel information -->
         <p ng-show="hotel.length==0">No hotels available.</p>
           <table class="table-bordered">
             <tr>

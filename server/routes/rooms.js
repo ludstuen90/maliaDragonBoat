@@ -54,10 +54,10 @@ router.post('/saveRoom/:id', function(req, res) {
       'room_number = $3, ' +
       'notes = $4, ' +
       'price = $5, ' +
-      'check_in_date = $6, ' +
-      'check_out_date = $7 ' +
+      'check_in = $6, ' +
+      'check_out = $7 ' +
       'WHERE id = $8',
-       [room.room_type, room.capacity, room.room_number, room.notes, room.price, room.check_in_date, room.check_out_date, id],  // updating room info changes
+       [room.room_type, room.capacity, room.room_number, room.notes, room.price, room.check_in, room.check_out, id],
     function(err, result){
       done();
       if (err) {

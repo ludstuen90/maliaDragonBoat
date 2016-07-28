@@ -112,6 +112,7 @@ console.log('in adminController');
 
      var hotelList=[];
 
+$scope.hotelRequest();
 
 //CREATE a hotel FUNCTIONALITY
      $scope.newHotel = function(){

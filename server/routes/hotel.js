@@ -51,10 +51,10 @@ router.get( '/hotelBlock', function( req, res ) {
       });
       done();
     }
-
+   });
   });
 
-  });
+
 
 
 module.exports = router;

@@ -79,7 +79,7 @@ function ( $scope, $http ) {
         num_non_paddlers: $scope.numNonPaddlers,
         me_and_one_paddler: $scope.meAndOnePaddler,
         me_and_paddlers: $scope.meAndPaddlers,
-        notes_survey_room: $scope.notes_other_accommodation,
+        notes_survey_room: $scope.notes_survey_room,
         // room_preference:
         // events_id: sessionStorage.getItem("eventId")
       }; // end object

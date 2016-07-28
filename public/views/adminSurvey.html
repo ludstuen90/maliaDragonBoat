@@ -1,4 +1,3 @@
-<!DOCTYPE html>
   <head>
     <title>Survey Results</title>
   </head>
@@ -6,7 +5,7 @@
   <body>
 
     <div id="tabs" ng-controller="adminController">
-        <ul>
+        <ul class="adminButtons">
             <li class = "tabLi"
                 ng-repeat="tab in tabs"
                 ng-class="{active:isActiveTab(tab.url)}"
@@ -53,7 +52,7 @@
                  <td> <p>{{roomPreference}}</p></td>
                  <td> <p>{{numNonPaddlers}}</p></td>
                  <td> <p>{{notes_survey}}</p></td>
-                 </tr>
+                </tr>
                </table>
              </div><!-- end survey information -->
     	</script>
@@ -106,20 +105,18 @@
 
   </div><!-- end hotel information -->
 
-
-
-
   </div>  <!-- end Tab 2-->
 
     	</script>
-    </div> <!-- end container-->
 <!-- THIRD TAB -->
-  <div ng-controller="adminController">
+  <div>
 
       <script type="text/ng-template" id="three.tpl.html">
-    		<div id="viewThree">
+    		<div id="viewThree" ng-controller="adminController">
           <h4>Add Hotel Room</h4>
-          <input type= "text" ng-model= "roomnum" value= "" placeholder="Enter Room Number"><button type="button" name="getRoomButton" ng-click= "getRoom()" >Get Room</button>
+          <input type= "text" ng-model="roomnum" value= "100" placeholder="Enter Room Number">
+          <button type="button" name="getRoomButton" ng-click= "getRoom()">Get Room</button>
+
           <table class="table table-bordered table-hover table-condensed">
                   <tr style="font-weight: bold">
                       <th>Room ID</th>
@@ -161,8 +158,6 @@
     </div>  <!-- end tab 3 div -->
 
   </div><!--end controller-->
-
-</html>
 
 
 

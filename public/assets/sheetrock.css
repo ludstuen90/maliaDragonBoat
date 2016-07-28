@@ -118,24 +118,41 @@
 }
 
 /*ADMIN TABS STYLING*/
-ul {
+.adminButtons {
+  float: none;
+  /*display:flex;*/
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.ulButtons {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 2px;
+    float: none;
+    /*display: inline-block;*/
+    margin-left: auto;
+    margin-right: auto;
+    /*text-align: center;*/
 }
 
 .tabLi {
     width: 300px;
     border: 1px solid #000;
     /*border-bottom-width: 0;*/
-    margin-bottom: 10px;
+    margin: 0px;
+    /*margin-bottom: 10px;*/
     padding: 10px 20px 10px 20px;
-    background-color: #CCC;
-    color: #696969;
+    background-color: #3c84a2;
+    border-color: transparent;
+    color: white;
+    /*color: #696969;*/
     float: none;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    display: inline-block;
+    margin: 2px;
+    /*margin-left: auto;
+    margin-right: auto;*/
     text-align: center;
 }
 
@@ -145,6 +162,8 @@ ul {
 
 #tabs {
   margin-top: 50px;
+  display: block;
+  /*background-color: blue;*/
 }
 
 #mainView {
@@ -158,8 +177,8 @@ ul {
   margin-right: auto;
 }
 .active {
-  background-color: #FFF;
-  color: #000;
+  background-color: #13647F;
+  color: white;
 }
 
 /*FOOTER & NAVIGATION STYLING*/

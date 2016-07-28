@@ -12,8 +12,6 @@ console.log('in adminController');
     };
 
 
-
-
      $scope.createEvent = function() { // pulls event info and sends to database
          event.preventDefault();
          objectToSend ={  // package inputs into object to send
@@ -49,7 +47,6 @@ console.log('in adminController');
              $window.location.href = '/#/viewEvent';
            });
          }); // end http
-
   //clears event fields
        $scope.eventName = '';
        $scope.addressOne = '';
@@ -64,12 +61,27 @@ console.log('in adminController');
        $scope.end_date = '';
        $scope.notes_events = '';
 
-
-
-
 }; //end createEvent function
 
 
+
+
+
+           $http({  // sends object via POST to create event in database
+             method: 'POST',
+             url: '/createEvent',
+             data: objectToSend
+           }).then(function(){
+             $http({
+               method:'GET',
+               url: '/lastEvent'
+             }).then(function(response){
+               console.log(response.data[0].id);
+               sessionStorage.setItem("eventId", response.data[0].id);
+             }).then(function(){
+              //  $window.location.href = '/#/viewEvent';
+             });
+           });
 
 
 
@@ -106,7 +118,7 @@ console.log('in adminController');
        }, function myError(response){
          console.log(response.statusText);
        }// end error function
-       ); // end then response
+     ); // end then response
      }; // end surveyRequest function
 
      $scope.eventAndSurveyRequest = function() {  //runs both eventRequest and surveyRequest queries to display event and survey results on adminSurvey.html
@@ -116,11 +128,12 @@ console.log('in adminController');
 
      var hotelList=[];
 
-//add a hotel FUNCTIONALITY
+
+//CREATE a hotel FUNCTIONALITY
      $scope.newHotel = function(){
        hotelToSend = {
          hotel_name : $scope.hotel_name,
-         hotel_address : $scope.hotel_city,
+         hotel_address : $scope.hotel_address,
          hotel_city : $scope.hotel_city,
          hotel_state_province : $scope.hotel_state,
          hotel_zip : $scope.hotel_zip,
@@ -128,30 +141,34 @@ console.log('in adminController');
          hotel_url : $scope.hotel_url,
          hotel_notes : $scope.hotel_notes
        };
+       console.log(hotelToSend);
        $http({
          method: 'POST',
          url: '/newHotel',
          data: hotelToSend
+       }).then(function(){
+         $scope.hotelRequest();
        });
+
        // CLEARS HOTEL INPUT FIELDS
           $scope.hotel_name = '';
+          $scope.hotel_address = '';
           $scope.hotel_city = '';
-          $scope.hotel_state_province = '';
+          $scope.hotel_state = '';
           $scope.hotel_zip = '';
+          $scope.hotel_phone = '';
           $scope.hotel_url = '';
           $scope.hotel_notes = '';
      };//end HOTEL creation
 
-     $scope.hotelRequest = function() { // gets hotel list for Admin survey page
+     $scope.hotelRequest = function() {
        console.log("in hotelRequest function in adminController");
-       event.preventDefault();
+      //  event.preventDefault();
        $http({   // gets recordset via GET
          method: 'GET',
          url: '/hotelRequest',
-       }).then( function(response){  // success call - runs function with response parameter
-       // console.log(response.data);
-         surveyList = response.data;  // pulls the data from server and sets to global var surveyList
-         console.log($scope.hotelList);
+       }).then( function(response){
+         $scope.hotels = response.data;
        }, function myError(response){
          console.log(response.statusText);
        }// end error function
@@ -161,7 +178,6 @@ console.log('in adminController');
      var hotelRooms=[];
 
      var roomBeds=[];
-
 
 
 // TAB FUNCTIONALITY ----------------------------------

@@ -8,4 +8,16 @@ DRGNBT.controller('homeController', [ '$scope', '$http', '$window', function ( $
     // console.log("We have saved mango as ", $scope.mango);
   };
 
+$scope.hello = function(){
+  $http({
+    method: 'GET',
+    url: '/hello'
+  }).then(function(response){
+    sessionStorage.setItem("username", response.data);
+
+  });
+
+
+};
+
 }]); // End of home controller

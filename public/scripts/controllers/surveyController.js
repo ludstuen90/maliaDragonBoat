@@ -1,30 +1,98 @@
 
 DRGNBT.controller('surveyController', [ '$scope', '$http',
 function ( $scope, $http ) {
+  // sessionStorage.setItem("attending", attendingStatus );
 
-  $scope.responseYes = function() { // pulls event info and sends to database
-        console.log("button");
+// response is NO to attending ---------------------------------------------------
+  $scope.attendResponse = function( attendingStatus ) {
+    console.log( "in attendResponse:", attendingStatus );
+    sessionStorage.setItem("attending", attendingStatus );
+    console.log( 'sessionStorage attending:', sessionStorage.getItem("attending") );
 
-          location.href = '/#/surveyStep2'; // Send to step 2 in survey process
+    if( attendingStatus == 'no' )
+    {
+      console.log( 'NO' );
+        responseNo = {
+          attend_status: attendingStatus,
+          // events_id: sessionStorage.getItem("eventId")
+        }; // end object
 
-        };
+        console.log("I am not going ", responseNo );
 
-  $scope.responseNo = function() { // pulls event info and sends to database
+        // Thank you response
+        location.href = '/#/thanksResponse';
 
-    responseNo = {  // package inputs into object to send
-        attend_status: "no"
+        $http({
+          method: 'POST',
+          url: '/responseNo',
+          data: responseNo
+        }); // end http
+      }
+      else {
+        location.href = '/#/surveyStep2';
+      }
+    };
+
+// response is OTHER ACOOMMODATION, send to otherAccommodation.html
+    $scope.responseOtherAccommodation = function(){
+      // console.log(sessionStorage.getItem("attending"));
+      location.href = '/#/otherAccommodation';
+    };
+
+// response is OTHER ACOOMMODATION, now it is time to gather notes and send our data to the DB
+  $scope.otherAccommodationNotes = function() {
+    console.log("notes button pushed");
+
+    responseOtherAccommodation = {
+        attend_status: sessionStorage.getItem("attending"),
+        hotel_status: "no",
+        notes_other_accommodation: $scope.notes_other_accommodation,
+        // events_id: sessionStorage.getItem("eventId")
       }; // end object
 
-      console.log("I am not going ", responseNo );
+    // Thank you response
+    location.href = '/#/thanksResponse';
 
-      location.href = '/#/thanksResponse'; // Send to step 2 in survey process
+    // console.log(responseOtherAccommodation);
 
-      $http({  // sends object via POST to create event in database
+      $http({
         method: 'POST',
-        url: '/responseNo',
-        data: responseNo
+        url: '/otherAccommodation',
+        data: responseOtherAccommodation
       }); // end http
+    }; //end responseNo function
 
-    }; //end createSurvey function
+// response is HOTEL, send to surveyStep3.html
+  $scope.responseHotel = function(){
+    location.href = '/#/surveyStep3';
+  };
 
- }]); // End of survey controller
+// response is HOTEL, now it is time to gather hotel details and send our data to the DB
+  $scope.submitHotel = function() {
+    console.log("Hotel button pushed");
+
+    responseHotel = {
+        attend_status: sessionStorage.getItem("attending"),
+        hotel_status: "yes",
+        just_me: $scope.justMe,
+        me_and_non_paddlers: $scope.meAndNonPaddlers,
+        num_non_paddlers: $scope.numNonPaddlers,
+        me_and_one_paddler: $scope.meAndOnePaddler,
+        me_and_paddlers: $scope.meAndPaddlers,
+        notes_survey_room: $scope.notes_other_accommodation,
+        // room_preference:
+        // events_id: sessionStorage.getItem("eventId")
+      }; // end object
+
+      console.log(responseHotel);
+
+      // Thank you response
+      location.href = '/#/thanksResponse';
+
+      $http({
+        method: 'POST',
+        url: '/hotel',
+        data: responseHotel
+      }); // end http
+    }; //end responseNo function
+}]); // End of survey controller

@@ -44,9 +44,9 @@ DRGNBT.config(['$routeProvider', function($routeProvider, $locationProvider) {
       controller  : 'adminController'
     })
     // Route for the noHotel page
-    .when('/noHotel', {
-      templateUrl : 'views/noHotel.html',
-      controller  : ''
+    .when('/otherAccommodation', {
+      templateUrl : 'views/otherAccommodation.html',
+      controller  : 'surveyController'
     })
     // Route for the roomAssignment page
     .when('/roomAssignment', {

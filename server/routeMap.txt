@@ -34,3 +34,6 @@ JOIN routes ( these routes specifically contain SQL syntax that employ the JOIN 
 
             -type: GET
             -location: server/routes/hotels.js
+
+
+-/hello:          Exists to assist in assigning current username to a sessionStorage property

@@ -17,6 +17,7 @@ router.post('/newHotel', function(req, res){
   });
 });
 
+
 router.get('/hotelRequest', function(req, res){
   console.log('in hotelRequest');
   var hotelGet = [];
@@ -50,7 +51,11 @@ router.get( '/hotelBlock', function( req, res ) {
       });
       done();
     }
+<<<<<<< HEAD
   });
+=======
+  });
+>>>>>>> master
 });
 
 module.exports = router;

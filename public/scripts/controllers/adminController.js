@@ -64,26 +64,6 @@ console.log('in adminController');
 }; //end createEvent function
 
 
-
-
-           $http({  // sends object via POST to create event in database
-             method: 'POST',
-             url: '/createEvent',
-             data: objectToSend
-           }).then(function(){
-             $http({
-               method:'GET',
-               url: '/lastEvent'
-             }).then(function(response){
-               console.log(response.data[0].id);
-               sessionStorage.setItem("eventId", response.data[0].id);
-             }).then(function(){
-              //  $window.location.href = '/#/viewEvent';
-             });
-           });
-
-
-
     $scope.eventList=[];
 
      $scope.eventRequest = function() { // gets info for current event to display on for Admin survey page
@@ -211,6 +191,7 @@ $scope.outsideArray=[];
 
 $scope.getRoom = function() {
   console.log("in getRoom function in script");
+  console.log($scope.roomnum);
   roomToSend = {
        room_number: $scope.roomnum
    };
@@ -242,9 +223,9 @@ $http({   // gets recordset via GET
 $scope.roomnum="";
 }; // end showRoom function
 
-$scope.makeSqlHappy=function(recordroom_number, recordroom_type, recordcapacity, recordprice, recordcheck_in_date, recordcheck_out_date, recordnotes, recordid) {
+$scope.makeSqlHappy=function(recordroom_number, recordroom_type, recordcapacity, recordprice, recordcheck_in, recordcheck_out, recordnotes, recordid) {
 console.log('in makeSqlHappy');
-console.log("data from makeSqlHappy: ", recordroom_number, recordroom_type, recordcapacity, recordprice, recordcheck_in_date, recordcheck_out_date, recordnotes);
+console.log("data from makeSqlHappy: ", recordid, recordroom_number, recordroom_type, recordcapacity, recordprice, recordcheck_in, recordcheck_out, recordnotes);
 console.log("makeSqlHappy's stinkin id: ", recordid);
 var id=recordid;
 var data={
@@ -252,13 +233,13 @@ var data={
   room_type: recordroom_type,
   capacity: recordcapacity,
   price: recordprice,
-  check_in_date: recordcheck_in_date,
-  check_out_date: recordcheck_out_date,
+  check_in: recordcheck_in,
+  check_out: recordcheck_out,
   notes: recordnotes
 };
 console.log(data);
 $http({
-  method: 'PUT',
+  method: 'POST',
   url: '/saveRoom/' +id,
   data: data
 });

@@ -17,6 +17,14 @@ var router = require('./routes/router');
 var createEvent = require('./routes/event');
 var responseNo = require('./routes/survey');
 var otherAccommodation = require('./routes/survey');
+var surveyResults = require( './routes/survey' );
+var lastEvent = require('./routes/lastEvent');
+var hotelBlock = require( './routes/hotels' );
+var eventWhotel = require( './routes/event' );
+var eventDetails = require('./routes/eventDetails');
+var selectEvent = require('./routes/selectEvent');
+var hello = require('./routes/hello');
+var surveyComplete = require('./routes/surveyComplete');
 
 app.use(bodyParser.json());
 
@@ -45,6 +53,14 @@ app.use('/', login);
 app.use('/', router);
 app.use('/', responseNo);
 app.use('/', otherAccommodation);
+app.use( '/', surveyResults );
+app.use('/', lastEvent);
+app.use( '/', hotelBlock );
+app.use( '/', eventWhotel );
+app.use('/', eventDetails);
+app.use('/', selectEvent);
+app.use('/', hello);
+app.use('/', surveyComplete);
 
 // base url
 router.get( '/', function ( req, res ){

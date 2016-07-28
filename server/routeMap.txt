@@ -1,0 +1,39 @@
+ATTN: This text file exists as a way of detailing server routes, their functions, and their correct applications.
+      Many of these routes may be incomplete, or, if necessary, refitted to fit other needs. I will try to make the
+      notes within as detailed as possible.  -Nick.
+
+JOIN routes ( these routes specifically contain SQL syntax that employ the JOIN command. )
+
+- /surveyResults:  As the name implies, this route should be employed to return survey results to the admin. Information
+                   is pulled from both the events and users tables. In it's current state ( as of 7-27-2016 ) it does NOT
+                   take any parameters, however, I believe it will be necessary to do so.
+
+          -type: GET
+          -location: server/routes/survey.js
+
+
+
+-/eventWhotel:     This route serves to query the database for a single event's information. It returns not only the event
+                   information, but also the hotel information. ( It is my suggestion that this route be employed to
+                   display all information on any one specific event. For example: if I click on a specific event to
+                   get a more detailed view, this route should be employed to retrieve that information. ) If the hotel
+                   information is null, then this simply need not be displayed on the DOM. Again, I believe this will
+                   require the implementation of parameters.
+
+
+          -type: GET
+          -location: server/routes/hotels.js
+
+
+
+-/hotelBlock:      This route queries the database for room information, specifically after the hotel block generation
+                   phase. Information on built rooms such as capacity, price, check-in/out date, and/or who's been
+                   assigned to the room will be sent back from the server. Like the others, I suspect this route will
+                   require a parameter, as well ( maybe event_id? ).
+
+
+            -type: GET
+            -location: server/routes/hotels.js
+
+
+-/hello:          Exists to assist in assigning current username to a sessionStorage property

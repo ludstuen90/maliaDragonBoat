@@ -28,7 +28,7 @@ var hotel = require('./routes/hotel');
 var eventDetails = require('./routes/eventDetails');
 
 
-var hotelBlock = require( './routes/hotels' );
+var hotelBlock = require( './routes/hotel' );
 var eventWhotel = require( './routes/event' );
 var eventDetails = require('./routes/eventDetails');
 var selectEvent = require('./routes/selectEvent');

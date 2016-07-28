@@ -85,6 +85,7 @@
                <td>{{hotel.hotel_url}}</td>
                <td>{{hotel.hotel_notes}}</td>
                <td> <button type="button" name="hotelButton" ng-click= "assignHotel(hotel.id)">Assign</button></td>
+               <td> <button type="button" name="deleteHotel" ng-click= "deleteHotel(hotel.id)">Delete Hotel</button></td>
              </tr>
           </table>
              <h4>Add A Hotel</h4>
@@ -99,7 +100,6 @@
              <input type= "text" ng-model= "hotel_notes" value= "" placeholder="notes">
 
              <button type="button" name="createHotelButton" ng-click= "newHotel()" >Add Hotel</button>
-
            </div>
 
     <button ng-click="showEvent()">Show me the dog!!</button>
@@ -256,4 +256,3 @@
 
         </div> -->
         <!-- end hotel information -->
->>>>>>> roombuilder

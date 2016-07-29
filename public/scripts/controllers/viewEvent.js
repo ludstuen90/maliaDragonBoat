@@ -27,6 +27,11 @@ $scope.surveysCompleted = "";
 $scope.userSurveyCompletion = function(){
       for (var i = 0; i < ($scope.surveysCompleted.length); i++){
         if (($scope.surveysCompleted[i].username == $scope.hello)&&( $scope.surveysCompleted[i].events_id == $scope.mango)) {
+          console.log('surveys completed', $scope.surveysCompleted);
+          console.log("username now checking", $scope.surveysCompleted[i].username);
+          console.log('scope.hello', $scope.hello);
+          console.log('surveysCompletedNow checking ', $scope.surveysCompleted[i].events_id);
+          console.log('scope.mango is ', $scope.mango);
           $scope.pageMessage= "Thanks for filling out your survey! You rock! You'll receive an email when Hotel room selection is ready.";
           $scope.pageMessage2= "";
           $scope.pageMessage3 = "";

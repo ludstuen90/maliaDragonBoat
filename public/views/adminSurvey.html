@@ -16,7 +16,7 @@
                   <p>{{record.company}}</p>
                   <p>Results website: {{record.results_url}}</p>
                   <p>Notes: {{record.notes_events}}</p>
-              </div> <!--end row - Event Information-->
+            </div> <!--end row - Event Information-->
 
               <p ng-show="surveyList.length==0">No survey results available.</p>
               <table class="table-bordered">
@@ -125,8 +125,6 @@
         <div class="row" ng-controller="adminController"> <!-- begin hotel information -->
           <p ng-show="hotel.length==0">No hotels available.</p>
           <h4>Add Hotel Room</h4>
-
-          <input type= "text" ng-model= "roomnum" value= "" placeholder="Enter Room Number"><button type="button" name="getRoomButton" ng-click= "getRoom()">Get Room</button>
 
           <div class="panel panel-default createRoomContainer">
              <div class="panel-heading">

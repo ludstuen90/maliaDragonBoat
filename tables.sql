@@ -81,6 +81,8 @@ JOIN users ON occupant_room.users_id = users.id
 JOIN rooms ON occupant_room.rooms_id = rooms.id;
 
 --survey and users JOIN XX
+
+
 SELECT attend_status, hotel_status, notes_other_accommodation, roommate_option, num_non_paddlers, notes_survey_room, room_preference, first_name, last_name, username, event_name
 FROM survey
 JOIN users ON survey.user_id = users.id

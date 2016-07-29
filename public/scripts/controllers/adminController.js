@@ -246,6 +246,9 @@ $scope.addRoom = function() {
     $scope.notes = "";
 };
 
+var roomsToGet;
+
+
 $scope.getRoom = function() {
   console.log("in getRoom function in adminController");
   roomsToGet = {
@@ -269,7 +272,6 @@ $http({   // gets recordset via GET
   method: 'GET',
   url: '/showRoom',
 }).then( function(response){  // success call - runs function with response parameter
-// console.log(response.data);
   $scope.roomToShow = response.data;
   console.log($scope.roomToShow);
 }, function myError(response){
@@ -287,10 +289,9 @@ $scope.deleteRoom = function(recordid){
     data: sendId,
     headers:  {'Content-Type': 'application/json;charset=utf-8'}
   }).then(function(){
-   $scope.getRoom();
+    $scope.getRoom();
   });
 };
-
 
 $scope.makeSqlHappy=function(recordroom_number, recordroom_type, recordcapacity, recordprice, recordcheck_in, recordcheck_out, recordnotes, recordid) {
 console.log('in makeSqlHappy');

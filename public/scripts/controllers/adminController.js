@@ -246,15 +246,8 @@ $scope.addRoom = function() {
     $scope.notes = "";
 };
 
-// $scope.outsideArray=[];
-
 $scope.getRoom = function() {
   console.log("in getRoom function in adminController");
-  // console.log($scope.roomnum);
-  // roomToSend = {
-  //      room_number: $scope.roomnum
-  //  };
-  //  console.log(roomToSend);
   roomsToGet = {
     hotels_id : roomToSend.hotels_id,
     events_id : roomToSend.events_id,
@@ -277,14 +270,27 @@ $http({   // gets recordset via GET
   url: '/showRoom',
 }).then( function(response){  // success call - runs function with response parameter
 // console.log(response.data);
-  $scope.roomToShow = response.data;  // pulls the data from app.js and sets to global var roomToShow
+  $scope.roomToShow = response.data;
   console.log($scope.roomToShow);
 }, function myError(response){
   console.log(response.statusText);
 }// end error function
 ); // end then response
-// $scope.roomnum="";
 }; // end showRoom function
+
+$scope.deleteRoom = function(recordid){
+  console.log('in delete room', recordid);
+  var sendId = {id: recordid};
+  $http({
+    method: 'DELETE',
+    url: '/deleteRoom' ,
+    data: sendId,
+    headers:  {'Content-Type': 'application/json;charset=utf-8'}
+  }).then(function(){
+   $scope.getRoom();
+  });
+};
+
 
 $scope.makeSqlHappy=function(recordroom_number, recordroom_type, recordcapacity, recordprice, recordcheck_in, recordcheck_out, recordnotes, recordid) {
 console.log('in makeSqlHappy');

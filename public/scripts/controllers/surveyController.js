@@ -29,6 +29,7 @@ function ( $scope, $http ) {
       console.log( 'NO' );
         responseNo = {
           attend_status: attendingStatus,
+          events_id: sessionStorage.getItem("eventId")
           // events_id: sessionStorage.getItem("eventId")
         }; // end object
 
@@ -62,7 +63,7 @@ function ( $scope, $http ) {
         attend_status: sessionStorage.getItem("attending"),
         hotel_status: "no",
         notes_other_accommodation: $scope.notes_other_accommodation,
-        // events_id: sessionStorage.getItem("eventId")
+        events_id: sessionStorage.getItem("eventId")
       }; // end object
 
     // Thank you response
@@ -92,6 +93,8 @@ function ( $scope, $http ) {
         roommate_option: $scope.roommateOption,
         num_non_paddlers: $scope.numNonPaddlers,
         notes_survey_room: $scope.notes_survey_room,
+        events_id: sessionStorage.getItem("eventId")
+
         // room_preference:
         // events_id: sessionStorage.getItem("eventId")
       }; // end object

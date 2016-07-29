@@ -12,6 +12,10 @@ router.get('/hello', function(req, res){
     res.send(req.user.username);
   });
 
+  
+
+
+
 
 
 module.exports = router;

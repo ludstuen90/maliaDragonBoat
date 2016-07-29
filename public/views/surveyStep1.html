@@ -2,17 +2,13 @@
 <div class="survey">
   <form name="myForm" ng-controller="surveyController" class="surveyContainer">
 
-    <label>
-      <input class="btn btn-primary btn-lg btn-block" type="button" ng-click="attendResponse('yes')" value="I believe I will attend this event"></input>
-    </label><br/>
+    <h1 class="surveyTitle"> Are you planning on attending this event?</h1><br/><br/>
 
-    <label>
-      <input class="btn btn-primary btn-lg btn-block" type="button" ng-click="attendResponse('maybe')" value="I may attend this event"></input>
-    </label><br/>
+      <md-button class="md-raised surveyButton" ng-click="attendResponse('yes')"> I believe I will attend this event </md-button><br/>
 
-    <label>
-      <input class="btn btn-primary btn-lg btn-block" type="button" ng-click="attendResponse('no')" value="I don't believe I will attend this event"></input>
-    </label><br/>
+      <md-button class="md-raised surveyButton" ng-click="attendResponse('maybe')"> I may attend this event </md-button><br/>
+
+      <md-button class="md-raised surveyButton" ng-click="attendResponse('no')">I don't believe I will attend this event</md-button><br/>
 
   </form>
 </div>

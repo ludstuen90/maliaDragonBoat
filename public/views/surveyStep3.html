@@ -2,37 +2,33 @@
 <div class="survey">
   <form name="myForm" ng-controller="surveyController" class="surveyContainer">
 
-    <label>
-      <input type="checkbox" ng-model="justMe" value="">
-      I would like a room for just me
-    </label><br/>
+<!-- Begin radio group -->
+    <md-radio-group ng-model="roommateOption">
+      <md-radio-button class="md-primary surveyRadio" value="nobody">I would like a room for just me</md-radio-button>
 
-    <label>
-      <input type="checkbox" ng-model="meAndNonPaddlers" value="true">
-      I would like a room for me and non-paddlers
-    </label><br/>
+      <md-radio-button class="md-primary" value="non-paddlers">I would like a room for me and non-paddlers</md-radio-button>
 
-    <label>Number of non-paddlers:
-    <input type="number" name="input" ng-model="numNonPaddlers"
-           min="0" max="20" required>
-    </label><br/>
+<!-- Number of non-paddlers -->
+      <md-input-container style="margin-right: 10px;">
+        <label>Number of non-paddlers</label>
+        <md-select ng-model="number">
+          <md-option ng-repeat="number in numbers" value="{{number}}">{{number}}</md-option>
+        </md-select>
+      </md-input-container>
+<!-- End Number of non-paddlers -->
 
-    <label>
-      <input type="checkbox" ng-model="meAndOnePaddler" value="">
-      I would like to share a room with one paddler
-    </label><br/>
+      <md-radio-button class="md-primary" value="one paddler">I would like to share a room with one paddler</md-radio-button>
 
-    <label>
-      <input type="checkbox" ng-model="meAndPaddlers" value="">
-      I would like to share a room with as many paddlers as possible
-    </label><br/>
+      <md-radio-button class="md-primary" value="many paddlers">I would like to share a room with as many paddlers as possible</md-radio-button>
+    </md-radio-group>
+<!-- End of radio group -->
 
     <div class="form-group">
       <label class="control-label"></label>
-      <textarea class="form-control" type= "text" ng-model= "notes_survey_room" value= "" placeholder="notes" rows="8"></textarea>
+      <textarea class="form-control" type= "text" ng-model= "notes_survey_room" value= "" placeholder="notes" rows="6"></textarea>
     </div>
-
-    <input class="btn btn-primary btn-lg btn-block" type="button" name="submitButton" id="submitButton" value="submit" ng-click="submitHotel()">
+<!-- Submit button -->
+    <md-button class="md-raised surveyButton" ng-click="submitHotel()"> Submit </md-button>
 
    </form>
 </div>

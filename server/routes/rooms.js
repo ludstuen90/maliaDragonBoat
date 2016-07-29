@@ -54,10 +54,10 @@ router.post('/saveRoom/:id', function(req, res) {
       'room_number = $3, ' +
       'notes = $4, ' +
       'price = $5, ' +
-      'check_in_date = $6, ' +
-      'check_out_date = $7 ' +
+      'check_in = $6, ' +
+      'check_out = $7 ' +
       'WHERE id = $8',
-       [room.room_type, room.capacity, room.room_number, room.notes, room.price, room.check_in_date, room.check_out_date, id],  // updating room info changes
+       [room.room_type, room.capacity, room.room_number, room.notes, room.price, room.check_in, room.check_out, id],
     function(err, result){
       done();
       if (err) {
@@ -71,9 +71,16 @@ router.post('/saveRoom/:id', function(req, res) {
   }); //end connection
 }); //end /saveroom function
 
-
-
-
-
+router.delete( '/deleteRoom/:id', function( req, res ){   //DELETE ROOMS
+  var id = req.params.id;
+  pg.connect( connectionString, function( err, client, done ) {
+    console.log( '/deleteRoom route hit.' );
+    if( err ){
+      console.log( 'Failed to delete room from database.' );
+    } else {
+      client.query( "DELETE FROM rooms WHERE id = $1;", [ req.params.id ] );
+    }
+  });
+});
 
 module.exports = router;

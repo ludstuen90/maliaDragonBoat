@@ -1,4 +1,5 @@
 
+
 .logo {
   float: left;
   width: 260px;
@@ -89,7 +90,7 @@
 .thankYouContainer {
 	/*background: #ecf0f1;*/
   padding: 0px;
-  display: flex;
+  display: inline-flex;
   color: white;
 }
 
@@ -103,48 +104,92 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 0px;
+  color: white;
 }
 
 /*SURVEY STYLING*/
+.surveyRadio {
+  color: white;
+}
+
+.surveyButton {
+  min-height: 70px !important;
+  width: 700px;
+  font-size: 14px !important;
+  line-height: 10px;
+  display: flex;
+  max-width: 100%;
+  text-wrap: none;
+}
+
+.surveyTitle {
+  font-size: 34px;
+  text-align: center;
+}
+
 .survey {
-  width: 600px ;
   margin: 16px auto;
 	padding: 60px;
+  color: white;
 }
 
 .surveyContainer {
-	background: #ecf0f1;
-  padding: 25px;
+	background: #13647F;
+  padding: 2em 5em 2em 5em;
+  max-height: 840px;
+  max-width: 870px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /*ADMIN TABS STYLING*/
-ul {
+.adminButtons {
+  float: none;
+  /*display:flex;*/
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.ulButtons {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 2px;
+    float: none;
+    /*display: inline-block;*/
+    margin-left: auto;
+    margin-right: auto;
+    /*text-align: center;*/
 }
 
 .tabLi {
     width: 300px;
     border: 1px solid #000;
     /*border-bottom-width: 0;*/
-    margin-bottom: 10px;
+    margin: 0px;
+    /*margin-bottom: 10px;*/
     padding: 10px 20px 10px 20px;
-    background-color: #CCC;
-    color: #696969;
+    background-color: #3c84a2;
+    border-color: transparent;
+    color: white;
+    /*color: #696969;*/
     float: none;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    display: inline-block;
+    margin: 2px;
+    /*margin-left: auto;
+    margin-right: auto;*/
     text-align: center;
 }
 
 .tabLi:hover {
   cursor: pointer;
+  background: #13647F;
 }
 
 #tabs {
   margin-top: 50px;
+  display: block;
+  /*background-color: blue;*/
 }
 
 #mainView {
@@ -157,9 +202,10 @@ ul {
   margin-left: auto;
   margin-right: auto;
 }
+
 .active {
-  background-color: #FFF;
-  color: #000;
+  background-color: #13647F;
+  color: white;
 }
 
 /*FOOTER & NAVIGATION STYLING*/
@@ -252,7 +298,6 @@ nav {
 }
 
 /*CREATE EVENT STYLING*/
-
 .panel-title{
   color: black;
   font-size: 30px;

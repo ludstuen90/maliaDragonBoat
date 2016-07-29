@@ -1,4 +1,3 @@
-<!DOCTYPE html>
   <head>
     <title>Survey Results</title>
   </head>
@@ -6,7 +5,7 @@
   <body>
 
     <div id="tabs" ng-controller="adminController">
-        <ul>
+        <ul class="adminButtons">
             <li class = "tabLi"
                 ng-repeat="tab in tabs"
                 ng-class="{active:isActiveTab(tab.url)}"
@@ -30,6 +29,7 @@
               <p>{{record.city}}, {{record.state_province}}</p>
               <p>Event website: {{record.event_url}}</p>
               <p>Schedule website: {{record.event}}</p>
+              <p>Event Hotel: {{record.}}</p>
               <p>{{record.begin_date}} - {{record.end_date}}</p>
               <p>{{record.company}}</p>
               <p>Results website: {{record.results_url}}</p>
@@ -53,15 +53,15 @@
                  <td> <p>{{roomPreference}}</p></td>
                  <td> <p>{{numNonPaddlers}}</p></td>
                  <td> <p>{{notes_survey}}</p></td>
-                 </tr>
+                </tr>
                </table>
              </div><!-- end survey information -->
     	</script>
 <!-- SECOND TAB -->
     	<script type="text/ng-template" id="two.tpl.html">
-    		<div id="viewTwo" ng-controller="adminController">
+    		<div id="viewTwo" >
 
-      <div class="row"> <!-- begin hotel information -->
+      <div class="row" ng-controller="adminController"> <!-- begin hotel information -->
         <p ng-show="hotel.length==0">No hotels available.</p>
           <table class="table-bordered">
             <tr>
@@ -85,6 +85,7 @@
                <td>{{hotel.hotel_url}}</td>
                <td>{{hotel.hotel_notes}}</td>
                <td> <button type="button" name="hotelButton" ng-click= "assignHotel(hotel.id)">Assign</button></td>
+               <td> <button type="button" name="deleteHotel" ng-click= "deleteHotel(hotel.id)">Delete Hotel</button></td>
              </tr>
           </table>
              <h4>Add A Hotel</h4>
@@ -99,27 +100,22 @@
              <input type= "text" ng-model= "hotel_notes" value= "" placeholder="notes">
 
              <button type="button" name="createHotelButton" ng-click= "newHotel()" >Add Hotel</button>
-
            </div>
 
     <button ng-click="showEvent()">Show me the dog!!</button>
 
   </div><!-- end hotel information -->
 
-
-
-
   </div>  <!-- end Tab 2-->
 
     	</script>
-    </div> <!-- end container-->
 <!-- THIRD TAB -->
-  <div ng-controller="adminController">
+
 
       <script type="text/ng-template" id="three.tpl.html">
-    		<div id="viewThree">
+    		<div id="viewThree"  ng-controller="adminController">
           <h4>Add Hotel Room</h4>
-          <input type= "text" ng-model= "roomnum" value= "" placeholder="Enter Room Number"><button type="button" name="getRoomButton" ng-click= "getRoom()" >Get Room</button>
+          <input type= "text" ng-model= "roomnum" value= "" placeholder="Enter Room Number"><button type="button" name="getRoomButton" ng-click= "getRoom()">Get Room</button>
           <table class="table table-bordered table-hover table-condensed">
                   <tr style="font-weight: bold">
                       <th>Room ID</th>
@@ -130,6 +126,7 @@
                       <th>Check In Date</th>
                       <th>Check Out Date</th>
                       <th>Notes</th>
+                      <!-- <th ></th> -->
                   </tr>
                   <tr ng-repeat='record in roomToShow'>
                     <td><span editable-text="record.id" e-form="rowform" e-required>{{ record.id }}</span></td>
@@ -137,12 +134,13 @@
                     <td><span editable-text="record.room_type" e-form="rowform" e-required>{{ record.room_type }}</span></td>
                     <td><span editable-text="record.capacity" e-form="rowform" e-required>{{ record.capacity }}</span></td>
                     <td><span editable-text="record.price" e-form="rowform" e-required>{{ record.price }}</span></td>
-                    <td><span editable-text="record.check_in_date" e-form="rowform" e-required>{{ record.check_in_date }}</span></td>
-                    <td><span editable-text="record.check_out_date" e-form="rowform" e-required>{{ record.check_out_date}}</span></td>
+                    <td><span editable-date="record.check_in" e-form="rowform" e-required>{{ (record.check_in | date: "MM-dd-yyyy") }}</span></td>
+                    <td><span editable-date="record.check_out" e-form="rowform" e-required>{{ (record.check_out | date: "MM-dd-yyyy")}}</span></td>
                     <td><span editable-text="record.notes" e-form="rowform" e-required>{{ record.notes }}</span></td>
+
                     <td style="white-space:nowrap">
-                      <!-- <form editable-form name="rowform" onbeforesave="makeSqlHappy($data, record.id )" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == record"> -->
-                      <form editable-form name="rowform" onaftersave="makeSqlHappy(record.room_number, record.room_type, record.capacity, record.price, record.check_in_date, record.check_out_date, record.notes, record.id )" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == record">
+                      <form editable-form name="rowform" onaftersave="makeSqlHappy(record.room_number, record.room_type, record.capacity, record.price, record.check_in, record.check_out, record.notes, record.id )" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == record">
+
                         <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
                             Save
                         </button>
@@ -151,7 +149,8 @@
                         </button>
                       </form>
                       <div class="buttons" ng-show="!rowform.$visible">
-                        <button class="btn btn-primary" ng-click="rowform.$show()">Edit</button>
+                        <button class="btn btn-primary" ng-click="rowform.$show()">
+                          Edit</button>
                       </div>
                   </tr>
                 </table>  <!-- end room -->
@@ -162,7 +161,6 @@
 
   </div><!--end controller-->
 
-</html>
 
 
 
@@ -256,4 +254,3 @@
 
         </div> -->
         <!-- end hotel information -->
->>>>>>> roombuilder

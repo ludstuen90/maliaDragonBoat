@@ -8,13 +8,10 @@ var connectionString = 'postgres://localhost:5432/groupDB';
 
 // RESPONSE OTHER ACCOMODATION
 router.post('/responseNo', function (req, res){
-<<<<<<< HEAD
-  console.log("ID of current user is:", req.user.id);
-=======
+
   // console.log("ID of current user is:", req.user.id);
   console.log('we are in a no response!');
   console.log('alternatively, ', req.user.id);
->>>>>>> 82b08a160641cdbfd45fa9715118edebb74a7105
 
   var survey = req.body;
 

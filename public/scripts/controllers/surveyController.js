@@ -62,7 +62,7 @@ function ( $scope, $http ) {
         attend_status: sessionStorage.getItem("attending"),
         hotel_status: "no",
         notes_other_accommodation: $scope.notes_other_accommodation,
-        // events_id: sessionStorage.getItem("eventId")
+        events_id: sessionStorage.getItem("eventId")
       }; // end object
 
     // Thank you response

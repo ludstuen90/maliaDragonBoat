@@ -8,7 +8,7 @@ var connectionString = 'postgres://localhost:5432/groupDB';
 
 // RESPONSE OTHER ACCOMODATION
 router.post('/responseNo', function (req, res){
-  // console.log("ID of current user is:", req.user.id);
+  console.log("ID of current user is:", req.user.id);
 
   var survey = req.body;
 

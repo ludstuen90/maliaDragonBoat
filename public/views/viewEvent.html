@@ -1,29 +1,33 @@
 <div class="row">
-  <div class="container">
     <div class="col-md-6" ng-init="getInformation()">
 
         <h1> {{eventData.event_name}}</h1>
         <h4><i>{{eventData.begin_date | limitTo:10}} - {{eventData.end_date | limitTo:10}}</i></h4>
         <h4>{{eventData.company}}</h4>
-<br>
+              <br>
         <p>Address: {{eventData.address_one}}</p>
         <p>{{eventData.address_two}}</p>
         <p>{{eventData.event_city}}, {{eventData.event_state_province}}</p>
-
-<p>Hello, {{hello}}!
-
-<button ng-click="testButton()">click Me</button>
-
-</div>
-  <div class="col-md-6">
-    <br><br><br><br>
-    <h4><b>Websites:</b></h4>
-     <p><b>Event Website:</b> <a href="{{eventData.event_url}}" target="_blank">{{eventData.event_url}}</a></p>
-    <p><b>Schedule:</b> <a href="{{eventData.schedule_url}}" target="_blank">{{eventData.schedule_url}}</a></p>
-    <p><b>Results:</b> <a href="{{eventData.results_url}}" target="_blank">{{eventData.results_url}}</a></p>
-
-  </div>
+        </div>
+          <div class="col-md-6">
+            <br><br><br><br>
+            <h4><b>Websites:</b></h4>
+             <p><b>Event Website:</b> <a href="{{eventData.event_url}}" target="_blank">{{eventData.event_url}}</a></p>
+            <p><b>Schedule:</b> <a href="{{eventData.schedule_url}}" target="_blank">{{eventData.schedule_url}}</a></p>
+            <p><b>Results:</b> <a href="{{eventData.results_url}}" target="_blank">{{eventData.results_url}}</a></p>
+          </div>
 
     </div>
+      <div class="row">
+        <div class="col-md-4 line">
+        </div>
+        <div class="col-md-4">
+          <h4>Next Steps:</h4>
+          Hello, {{hello | uppercase}}! <br><br>
+
+          {{pageMessage}} <a ng-href="{{pageMessage2}}">{{pageMessage3}} </a>
+        </div>
+          <div class="col-md-4 line">
+      </div>
   </div>
 </div>

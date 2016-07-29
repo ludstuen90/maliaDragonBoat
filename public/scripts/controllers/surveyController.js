@@ -29,6 +29,7 @@ function ( $scope, $http ) {
       console.log( 'NO' );
         responseNo = {
           attend_status: attendingStatus,
+          events_id: sessionStorage.getItem("eventId")
           // events_id: sessionStorage.getItem("eventId")
         }; // end object
 
@@ -92,6 +93,8 @@ function ( $scope, $http ) {
         roommate_option: $scope.roommateOption,
         num_non_paddlers: $scope.numNonPaddlers,
         notes_survey_room: $scope.notes_survey_room,
+        events_id: sessionStorage.getItem("eventId")
+
         // room_preference:
         // events_id: sessionStorage.getItem("eventId")
       }; // end object

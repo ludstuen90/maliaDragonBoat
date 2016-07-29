@@ -158,7 +158,7 @@ $scope.deleteHotel = function(hotelID){
   console.log('in delete hotel');
   var sendID = {id: hotelID};
   $http({
-    method: 'POST',
+    method: 'DELETE',
     url: '/deleteHotel',
     data: sendID,
     headers: {'Content-Type': 'application/json;charset=utf-8'}
@@ -166,6 +166,17 @@ $scope.deleteHotel = function(hotelID){
     $scope.hotelRequest();
   });
 };
+
+$scope.assignHotel = function(hotelID){
+  console.log('in assignHotel');
+  var sendID = {id : hotelID};
+  $http({
+  method: 'POST',
+  url: '/assignHotel',
+  data: sendID
+  });
+};
+
      var hotelRooms=[];
 
      var roomBeds=[];

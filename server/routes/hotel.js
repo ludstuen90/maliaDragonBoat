@@ -59,7 +59,7 @@ router.get( '/hotelBlock', function( req, res ) {
    });
   });
 
-  router.post('/deleteHotel', function (req, res){
+  router.delete('/deleteHotel', function (req, res){
     console.log('in deleteHotel.js');
     pg.connect(connectionString, function(err, client, done){
       client.query("DELETE FROM hotels WHERE id=" + req.body.id);

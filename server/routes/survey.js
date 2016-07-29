@@ -44,8 +44,8 @@ router.post('/hotel', function (req, res){
 
   pg.connect(connectionString, function(err, client, done){
 
-    client.query("INSERT INTO survey ( attend_status, user_id, hotel_status, just_me, me_and_non_paddlers, num_non_paddlers, me_and_one_paddler, me_and_paddlers, notes_survey_room ) values ( $1, $2, $3, $4, $5, $6, $7, $8, $9 )",
-    [survey.attend_status, req.user.id, survey.hotel_status, survey.just_me, survey.me_and_non_paddlers, survey.num_non_paddlers, survey.me_and_one_paddler, survey.me_and_paddlers, survey.notes_survey_room ]);
+    client.query("INSERT INTO survey ( attend_status, user_id, hotel_status, roommate_optionjust_me, num_non_paddlers, notes_survey_room ) values ( $1, $2, $3, $4, $5, $6 )",
+    [survey.attend_status, req.user.id, survey.hotel_status, survey.roommate_option, survey.num_non_paddlers, survey.notes_survey_room ]);
 
     res.send(true);
     done();

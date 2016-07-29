@@ -35,8 +35,32 @@ $scope.hello = sessionStorage.getItem("username");
 
     //Queries the server to see if a the logged in user has filled out a survey for the current eventData
 
+$scope.surveysCompleted = "";
 
 
+
+//
+$scope.userSurveyCompletion = function(){
+  console.log('in filter,and reuslts are', $scope.surveysCompleted);
+  console.log('length of sureys completed', $scope.surveysCompleted.length);
+console.log('user is ', $scope.hello);
+  for (var i = 0; i < ($scope.surveysCompleted.length); i++){
+    if (($scope.surveysCompleted[i].username == $scope.hello)&&( $scope.surveysCompleted[i].events_id == $scope.mango)) {
+      console.log('in this test, we compare ', $scope.surveysCompleted[i].username, 'and ', $scope.hello);
+      console.log('as well as ', $scope.surveysCompleted[i].events_id, ' and ', $scope.mango);
+      console.log('yes, user has filled out survey!');
+      $scope.pageMessage= "Thanks for filling out your survey! You rock!";
+      return;
+    }
+    else {
+      console.log('in this test, we compare ', $scope.surveysCompleted[i].username, 'and ', $scope.hello);
+      console.log('as well as ', $scope.surveysCompleted[i].events_id, ' and ', $scope.mango);
+
+      console.log('no, user has not filled out a survey');
+      $scope.pageMessage = "We haven't yet received a survey from you. Here's your link";
+    }
+  }
+};
 
 
 
@@ -45,14 +69,12 @@ $scope.hello = sessionStorage.getItem("username");
 
   };
 
-// This test button exists to provide a route to send the username and event ID
-// to the server. Now that this exists, I will build a query that checks to see
-// 1. what stage of the booking process is this event in?
-//      IF hotel phase, will display link to hotel block
-//      ELSE IF survey phase, will check the following:
-//            has user completed their survey?
-//            IF YES: Thank user for completing survey!
-//            ELSE IF: Prompt user to complete survey for selected event
+
+
+//this function queries the server to see what phase the event is in -- if it is in the survey
+// phase, or the hotel room booking phase
+// after this, it fires the function 'userSurveyCompletion' to see if the logged in user has completed
+// a survey required for each event
 
 $scope.testButton = function(){
   console.log('test button clicked');
@@ -63,9 +85,50 @@ $scope.testButton = function(){
 
   $http({
     method: 'POST',
-    url: '/surveyComplete',
+    url: '/eventPhase',
     data: surveyInfoToSend
+  }).then(function(response){
+    console.log('hotel phase for this event is: ', response.data[0].hotel_phase);
+    $scope.hotel_phase = response.data[0].hotel_phase;
+
+      if ($scope.hotel_phase) {
+        $scope.pageMessage = "we will display hotel room selection!";
+      }
+
+      else {
+        console.log('made it to else');
+
+        $scope.pageMessage = "No, we will not display the hotel room selection";
+
+        $http({
+          method: 'GET',
+          url: '/surveyResults',
+        }).then(function(response){
+          $scope.surveysCompleted = response.data;
+          console.log('surveysCompleted is ', $scope.surveysCompleted);
+        }).then(function(){
+          $scope.userSurveyCompletion();
+        });
+
+
+      }
+
+
+
+
+
+
+
+
   });
+
+
+
+
+
+
+
+
 };
 
 

@@ -14,11 +14,15 @@ var connectionString = 'postgres://localhost:5432/groupDB';
 router.post('/addRoom', function(req, res){
   var room = req.body;
   pg.connect(connectionString, function(err, client, done){
+    if( err ) {
+      console.log( "/addRoom failed." );
+    } else {
     console.log('In addRoom', room);
     client.query("INSERT INTO rooms ( hotels_id, events_id, room_type, capacity, price, check_in, check_out, notes) values ($1, $2, $3, $4, $5, $6, $7, $8)",
     [room.hotels_id, room.events_id, room.room_type, room.capacity, room.price, room.check_in, room.check_out, room.notes]);
     res.send(true);
     done();
+  }
   });
 });
 

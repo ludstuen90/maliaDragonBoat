@@ -35,8 +35,27 @@ $scope.hello = sessionStorage.getItem("username");
 
     //Queries the server to see if a the logged in user has filled out a survey for the current eventData
 
+$scope.surveysCompleted = "";
 
 
+$scope.filterResults = function(){
+  console.log('in filter,and reuslts are', $scope.surveysCompleted);
+  console.log('length of sureys completed', $scope.surveysCompleted.length);
+console.log('user is ', $scope.hello);
+  for (var i = 0; i < ($scope.surveysCompleted.length); i++){
+    if ($scope.surveysCompleted[i].username === $scope.hello) {
+      console.log('in this test, we compare ', $scope.surveysCompleted[i].username, 'and ', $scope.hello);
+      console.log('yes, user has filled out survey!');
+      $scope.pageMessage= "Thanks for filling out your survey! You rock!";
+      return;
+    }
+    else {
+      console.log('in this test, we compare ', $scope.surveysCompleted[i].username, 'and ', $scope.hello);
+      console.log('no, user has not filled out a survey');
+      $scope.pageMessage = "We haven't yet received a survey from you. Here's your link";
+    }
+  }
+};
 
 
 
@@ -63,9 +82,50 @@ $scope.testButton = function(){
 
   $http({
     method: 'POST',
-    url: '/surveyComplete',
+    url: '/eventPhase',
     data: surveyInfoToSend
+  }).then(function(response){
+    console.log('hotel phase for this event is: ', response.data[0].hotel_phase);
+    $scope.hotel_phase = response.data[0].hotel_phase;
+
+      if ($scope.hotel_phase) {
+        $scope.pageMessage = "we will display hotel room selection!";
+      }
+
+      else {
+        console.log('made it to else');
+
+        $scope.pageMessage = "No, we will not display the hotel room selection";
+
+        $http({
+          method: 'GET',
+          url: '/surveyResults',
+        }).then(function(response){
+          $scope.surveysCompleted = response.data;
+          console.log($scope.surveysCompleted);
+        }).then(function(){
+          $scope.filterResults();
+        });
+
+
+      }
+
+
+
+
+
+
+
+
   });
+
+
+
+
+
+
+
+
 };
 
 

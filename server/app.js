@@ -35,7 +35,8 @@ var selectEvent = require('./routes/selectEvent');
 var hello = require('./routes/hello');
 var surveyComplete = require('./routes/surveyComplete');
 var hotel = require('./routes/hotel');
-var rooms = require( './routes/rooms' );
+var rooms = require( './routes/rooms');
+var eventPhase = require('./routes/eventPhase');
 
 
 
@@ -57,7 +58,6 @@ app.use(session({
 // start up passport sessions
 app.use(passport.initialize());
 app.use(passport.session());
-
 // Routes
 app.use('/', createEvent);
 app.use('/register', register);
@@ -69,26 +69,20 @@ app.use('/', responseNo);
 app.use('/', otherAccommodation);
 app.use( '/', surveyResults );
 app.use('/', lastEvent);
-
 app.use('/', hotel);
-
 // app.use( '/', hotelBlock );
 // app.use( '/', eventWhotel );
 app.use('/', eventDetails);
-
-
 app.use( '/', hotelBlock );
 app.use( '/', eventWhotel );
 app.use('/', eventDetails);
 app.use('/', selectEvent);
 app.use('/', hello);
 app.use('/', surveyComplete);
-
 app.use('/', hotel);
-
-
-
 app.use('/', rooms);
+app.use('/', eventPhase);
+
 
 // base url
 router.get( '/', function ( req, res ){

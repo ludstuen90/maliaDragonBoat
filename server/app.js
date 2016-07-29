@@ -32,7 +32,8 @@ var selectEvent = require('./routes/selectEvent');
 var hello = require('./routes/hello');
 var surveyComplete = require('./routes/surveyComplete');
 var hotel = require('./routes/hotel');
-var rooms = require( './routes/rooms' );
+var rooms = require( './routes/rooms');
+var eventPhase = require('./routes/eventPhase');
 
 // Setting static page
 app.use(express.static( 'public' ));
@@ -49,7 +50,6 @@ app.use(session({
 // start up passport sessions
 app.use(passport.initialize());
 app.use(passport.session());
-
 // Routes
 app.use('/', createEvent);
 app.use('/register', register);
@@ -73,6 +73,8 @@ app.use('/', hello);
 app.use('/', surveyComplete);
 app.use('/', hotel);
 app.use('/', rooms);
+app.use('/', eventPhase);
+
 
 // base url
 router.get( '/', function ( req, res ){

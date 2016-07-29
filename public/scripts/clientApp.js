@@ -1,4 +1,4 @@
-var DRGNBT = angular.module('DRGNBT', ['ngRoute', 'xeditable']);
+var DRGNBT = angular.module('DRGNBT', ['ngRoute', 'xeditable', 'ngMaterial']);
 
 
 //CODE FOR XEDITABLE --------------------------------------
@@ -10,6 +10,7 @@ DRGNBT.run(function(editableOptions) {
 DRGNBT.run(function(editableOptions) {
   editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
 });
+
 
 
 // Configure routes

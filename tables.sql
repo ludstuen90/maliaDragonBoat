@@ -41,11 +41,8 @@ CREATE TABLE survey (
   attend_status TEXT,
   hotel_status BOOLEAN,
   notes_other_accommodation TEXT,
-  just_me TEXT,
-  me_and_non_paddlers TEXT,
+  roommate_option TEXT,
   num_non_paddlers TEXT,
-  me_and_one_paddler TEXT,
-  me_and_paddlers TEXT,
   notes_survey_room TEXT,
   room_preference TEXT,
   user_id int references users(id),
@@ -84,11 +81,9 @@ JOIN users ON occupant_room.users_id = users.id
 JOIN rooms ON occupant_room.rooms_id = rooms.id;
 
 --survey and users JOIN XX
-<<<<<<< HEAD
+
+
 SELECT attend_status, hotel_status, notes_other_accommodation, roommate_option, num_non_paddlers, notes_survey_room, room_preference, first_name, last_name, username, event_name
-=======
-SELECT attend_status, hotel_status, notes_other_accommodation, just_me, me_and_non_paddlers, num_non_paddlers, me_and_one_paddler, me_and_paddlers, notes_survey_room, room_preference, first_name, last_name, user_name, event_name
->>>>>>> roombuilder3
 FROM survey
 JOIN users ON survey.user_id = users.id
 JOIN events ON survey.events_id = events.id;

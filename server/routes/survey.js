@@ -9,7 +9,9 @@ var connectionString = 'postgres://localhost:5432/groupDB';
 // RESPONSE OTHER ACCOMODATION
 router.post('/responseNo', function (req, res){
   // console.log("ID of current user is:", req.user.id);
-  // var survey = req.body;
+
+  var survey = req.body;
+
   // console.log(survey);
   pg.connect(connectionString, function(err, client, done){
     client.query("INSERT INTO survey ( attend_status, user_id ) values ( $1, $2 )",
@@ -21,7 +23,9 @@ router.post('/responseNo', function (req, res){
 
 // RESPONSE OTHER ACCOMODATION
 router.post('/otherAccommodation', function (req, res){
-  // var survey = req.body;
+
+  var survey = req.body;
+
   console.log(survey);
   pg.connect(connectionString, function(err, client, done){
     client.query("INSERT INTO survey ( attend_status, user_id, hotel_status, notes_other_accommodation ) values ( $1, $2, $3, $4 )",

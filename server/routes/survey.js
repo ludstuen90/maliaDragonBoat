@@ -55,7 +55,7 @@ router.post('/hotel', function (req, res){
 router.get( '/surveyResults', function( req, res ) {
   var surveyResults = [];
   pg.connect( connectionString, function( err, client, done ) {
-    var surveyData = client.query( "SELECT attend_status, hotel_status, notes_other_accommodation, just_me, me_and_non_paddlers, num_non_paddlers, me_and_one_paddler, me_and_paddlers, notes_survey_room, room_preference, first_name, last_name, event_name, username FROM survey JOIN users ON survey.user_id = users.id JOIN events ON survey.events_id = events.id;" );
+    var surveyData = client.query( "SELECT attend_status, hotel_status, notes_other_accommodation, just_me, me_and_non_paddlers, num_non_paddlers, me_and_one_paddler, me_and_paddlers, notes_survey_room, room_preference, first_name, last_name, event_name, username, events_id FROM survey JOIN users ON survey.user_id = users.id JOIN events ON survey.events_id = events.id;" );
     surveyData.on( 'row', function( row ) {
       surveyResults.push( row );
       console.log( "/surveyResults returned with: " + surveyResults + ',' + ' which consists of: ' + surveyResults.first_name + ', ' + surveyResults.last_name + '.' );

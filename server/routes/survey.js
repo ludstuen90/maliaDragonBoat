@@ -44,8 +44,8 @@ router.post('/hotel', function (req, res){
 
   pg.connect(connectionString, function(err, client, done){
 
-    client.query("INSERT INTO survey ( attend_status, user_id, hotel_status, just_me, me_and_non_paddlers, num_non_paddlers, me_and_one_paddler, me_and_paddlers, notes_survey_room ) values ( $1, $2, $3, $4, $5, $6, $7, $8, $9 )",
-    [survey.attend_status, req.user.id, survey.hotel_status, survey.just_me, survey.me_and_non_paddlers, survey.num_non_paddlers, survey.me_and_one_paddler, survey.me_and_paddlers, survey.notes_survey_room ]);
+    client.query("INSERT INTO survey ( attend_status, user_id, hotel_status, roommate_option, num_non_paddlers, notes_survey_room ) values ( $1, $2, $3, $4, $5, $6,)",
+    [survey.attend_status, req.user.id, survey.hotel_status, survey.roommate_option, survey.num_non_paddlers, survey.notes_survey_room ]);
 
     res.send(true);
     done();
@@ -55,7 +55,7 @@ router.post('/hotel', function (req, res){
 router.get( '/surveyResults', function( req, res ) {
   var surveyResults = [];
   pg.connect( connectionString, function( err, client, done ) {
-    var surveyData = client.query( "SELECT attend_status, hotel_status, notes_other_accommodation, just_me, me_and_non_paddlers, num_non_paddlers, me_and_one_paddler, me_and_paddlers, notes_survey_room, room_preference, first_name, last_name, event_name FROM survey JOIN users ON survey.user_id = users.id JOIN events ON survey.events_id = events.id;" );
+    var surveyData = client.query( "SELECT attend_status, hotel_status, notes_other_accommodation, just_me, me_and_non_paddlers, num_non_paddlers, me_and_one_paddler, me_and_paddlers, notes_survey_room, room_preference, first_name, last_name, user_name, event_name FROM survey JOIN users ON survey.user_id = users.id JOIN events ON survey.events_id = events.id;" );
     surveyData.on( 'row', function( row ) {
       surveyResults.push( row );
       console.log( "/surveyResults returned with: " + surveyResults + ',' + ' which consists of: ' + surveyResults.first_name + ', ' + surveyResults.last_name + '.' );

@@ -55,11 +55,13 @@
                  <td> <p>{{notes_survey}}</p></td>
                  </tr>
                </table>
-             </div><!-- end survey information -->
+             </div> <!-- end row -->
+           </div><!-- end Tab 1 container -->
+         </div> <!-- end View One -->
     	</script>
 <!-- SECOND TAB -->
-    	<script type="text/ng-template" id="two.tpl.html">
-    		<div id="viewTwo" >
+    <script type="text/ng-template" id="two.tpl.html">
+    	<div id="viewTwo" >
 
       <div class="row" ng-controller="adminController"> <!-- begin hotel information -->
         <p ng-show="hotel.length==0">No hotels available.</p>
@@ -101,26 +103,74 @@
              <input type= "text" ng-model= "hotel_notes" value= "" placeholder="notes">
 
              <button type="button" name="createHotelButton" ng-click= "newHotel()" >Add Hotel</button>
-           </div>
+           </div> <!-- end row, adminController -->
 
     <button ng-click="showEvent()">Show me the dog!!</button>
 
-  </div><!-- end hotel information -->
+  </div><!-- end view 2 -->
+	</script>
 
-
-
-
-  </div>  <!-- end Tab 2-->
-
-    	</script>
-    </div> <!-- end container-->
 <!-- THIRD TAB -->
-
 
       <script type="text/ng-template" id="three.tpl.html">
     		<div id="viewThree"  ng-controller="adminController">
-          <h4>Add Hotel Room</h4>
           <input type= "text" ng-model= "roomnum" value= "" placeholder="Enter Room Number"><button type="button" name="getRoomButton" ng-click= "getRoom()">Get Room</button>
+
+          <div class="panel panel-default createRoomContainer">
+             <div class="panel-heading">
+              <h1 class="panel-title">Add Hotel Room</h1>
+             </div>
+             <div class="panel-body">
+               <!-- ROW 1 -->
+               <div class="row">
+                           <div class="col-sm-4">
+                             <div class="form-group">
+                                <label class="control-label">Room Type</label>
+                                <input class="form-control" type= "text" ng-model= "room_number" value= "" >
+                              </div> <!--end group-->
+                            </div><!--end col-->
+                            <div class="col-sm-4">
+                              <div class="form-group">
+                                <label class="control-label">Capacity</label>
+                                <input class="form-control" type= "text" ng-model= "capacity" value= "" >
+                              </div><!--end group-->
+                            </div> <!--end col-->
+                            <div class="col-sm-4">
+                              <div class="form-group">
+                                <label class="control-label">Price</label>
+                                <input class="form-control" type= "text" ng-model= "price" value= "" >
+                              </div> <!--end group-->
+                            </div> <!--end col-->
+                </div> <!-- end row -->
+                 <div class="row">
+                   <div class="col-sm-3">
+                      <div class="form-group">
+                          <label class="control-label">Check In Date</label>
+                          <input class="form-control" ng-model= "check_in" value= "" type= "date" ui-date="{dateFormat: 'yyyy-mm-dd'}">
+                      </div>  <!--end group-->
+                   </div> <!--end col-->
+                   <div class="col-sm-3">
+                      <div class="form-group">
+                          <label class="control-label">Check Out Date</label>
+                          <input class="form-control" ng-model= "check_out" value= "" type= "date" ui-date="{dateFormat: 'yyyy-mm-dd'}">
+                      </div>  <!--end group-->
+                   </div> <!--end col-->
+                   <div class="col-sm-6">
+                     <div class="form-group">
+                       <label class="control-label">Notes</label>
+                       <input class="form-control" type= "text" ng-model= "notes" value= "" >
+                     </div>  <!--end group-->
+                  </div> <!--end col-->
+                </div> <!-- end row -->
+               <button type="button" name="addRoomButton" ng-click= "addRoom()" >Add Room</button>
+             </div> <!-- end panel body -->
+           </div>  <!-- end createRoomContainer -->
+
+
+
+
+
+<!--SHOW ROOM  -->
           <table class="table table-bordered table-hover table-condensed">
                   <tr style="font-weight: bold">
                       <th>Room ID</th>
@@ -162,7 +212,7 @@
 
 
     	</script> <!-- end tab 3 script -->
-    </div>  <!-- end tab 3 div -->
+    </div>  <!-- end tab 3 controller div -->
 
   </div><!--end controller-->
 

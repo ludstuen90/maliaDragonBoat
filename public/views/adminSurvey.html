@@ -1,10 +1,11 @@
+
   <head>
     <title>Survey Results</title>
   </head>
 
   <body>
 
-    <div id="tabs" ng-controller="adminController">
+    <div id="tabs" >
         <ul class="adminButtons">
             <li class = "tabLi"
                 ng-repeat="tab in tabs"
@@ -18,18 +19,18 @@
 
 <!-- FIRST TAB -->
     <script type="text/ng-template" id="one.tpl.html">
-		<div id="viewOne">
-      <div class="container" ng-init='eventAndSurveyRequest()'>
+		<div id="viewOne" >
+      <div class="container" ng-controller="adminController" >
           <h3>Survey Results</h3>
           <h4>Event:</h4>
-          <p ng-show="eventList.length==0">No event information available.</p>
+          <!-- <p ng-show="eventList.length==0">No event information available.</p> -->
           <div class="row" ng-repeat='record in eventList'> <!-- Begin event info. eventList is name of array in adminController.js -->
               <p>{{record.event}}</p>
               <p>{{record.addressOne}}, {{record.addressTwo}}</p>
               <p>{{record.city}}, {{record.state_province}}</p>
               <p>Event website: {{record.event_url}}</p>
               <p>Schedule website: {{record.event}}</p>
-              <p>Event Hotel: {{record.}}</p>
+              <p>Event Hotel: {{record.hotel_name}}</p>
               <p>{{record.begin_date}} - {{record.end_date}}</p>
               <p>{{record.company}}</p>
               <p>Results website: {{record.results_url}}</p>
@@ -56,7 +57,8 @@
                 </tr>
                </table>
              </div><!-- end survey information -->
-    	</script>
+           </div>
+      </script>
 <!-- SECOND TAB -->
     	<script type="text/ng-template" id="two.tpl.html">
     		<div id="viewTwo" >
@@ -79,7 +81,7 @@
                <td>{{hotel.hotel_name}}</td>
                <td>{{hotel.hotel_address}}</td>
                <td>{{hotel.hotel_city}}</td>
-               <td>{{hotel.hotel_state}}</td>
+               <td>{{hotel.hotel_state_province}}</td>
                <td>{{hotel.hotel_zip}}</td>
                <td>{{hotel.hotel_phone}}</td>
                <td>{{hotel.hotel_url}}</td>
@@ -156,10 +158,8 @@
                 </table>  <!-- end room -->
 
 
-    	</script> <!-- end tab 3 script -->
-    </div>  <!-- end tab 3 div -->
+    	      </script> <!-- end tab 3 script -->
 
-  </div><!--end controller-->
 
 
 

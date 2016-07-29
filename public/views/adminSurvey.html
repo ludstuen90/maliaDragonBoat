@@ -1,41 +1,23 @@
-  <head>
-    <title>Survey Results</title>
-  </head>
+<md-content ng-controller="adminController">
+  <md-tabs md-dynamic-height md-border-bottom>
+    <md-tab label="Survey Results">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">Survey Results</h1>
 
-  <body>
+            <div>
+              <h4>Event:</h4>
+              <p ng-show="eventList.length==0">No event information available.</p>
+                  <p>{{record.event}}</p>
+                  <p>{{record.addressOne}}, {{record.addressTwo}}</p>
+                  <p>{{record.city}}, {{record.state_province}}</p>
+                  <p>Event website: {{record.event_url}}</p>
+                  <p>Schedule website: {{record.event}}</p>
+                  <p>{{record.begin_date}} - {{record.end_date}}</p>
+                  <p>{{record.company}}</p>
+                  <p>Results website: {{record.results_url}}</p>
+                  <p>Notes: {{record.notes_events}}</p>
+              </div> <!--end row - Event Information-->
 
-    <div id="tabs" ng-controller="adminController">
-        <ul class="adminButtons">
-            <li class = "tabLi"
-                ng-repeat="tab in tabs"
-                ng-class="{active:isActiveTab(tab.url)}"
-                ng-click="onClickTab(tab)">{{tab.title}}</li>
-        </ul>
-        <div id="mainView">
-            <div ng-include="currentTab"></div>
-        </div>
-    </div>  <!-- end div adminController-->
-
-<!-- FIRST TAB -->
-    <script type="text/ng-template" id="one.tpl.html">
-		<div id="viewOne">
-      <div class="container" ng-init='eventAndSurveyRequest()'>
-          <h3>Survey Results</h3>
-          <h4>Event:</h4>
-          <p ng-show="eventList.length==0">No event information available.</p>
-          <div class="row" ng-repeat='record in eventList'> <!-- Begin event info. eventList is name of array in adminController.js -->
-              <p>{{record.event}}</p>
-              <p>{{record.addressOne}}, {{record.addressTwo}}</p>
-              <p>{{record.city}}, {{record.state_province}}</p>
-              <p>Event website: {{record.event_url}}</p>
-              <p>Schedule website: {{record.event}}</p>
-              <p>Event Hotel: {{record.}}</p>
-              <p>{{record.begin_date}} - {{record.end_date}}</p>
-              <p>{{record.company}}</p>
-              <p>Results website: {{record.results_url}}</p>
-              <p>Notes: {{record.notes_events}}</p>
-            </div> <!--end row - Event Information-->
-            <div class="row"> <!-- begin survey information -->
               <p ng-show="surveyList.length==0">No survey results available.</p>
               <table class="table-bordered">
                <tr>
@@ -55,67 +37,95 @@
                  <td> <p>{{notes_survey}}</p></td>
                 </tr>
                </table>
-             </div> <!-- end row -->
-           </div><!-- end Tab 1 container -->
-         </div> <!-- end View One -->
-    	</script>
-<!-- SECOND TAB -->
-    <script type="text/ng-template" id="two.tpl.html">
-    	<div id="viewTwo" >
 
-      <div class="row" ng-controller="adminController"> <!-- begin hotel information -->
-        <p ng-show="hotel.length==0">No hotels available.</p>
-          <table class="table-bordered">
-            <tr>
-               <td>Hotel Name</td>
-               <td>Address</td>
-               <td>City</td>
-               <td>State or Province</td>
-               <td>Zip</td>
-               <td>Phone</td>
-               <td>Website</td>
-               <td>Notes</td>
-               <td>Assign to Event</td>
-            </tr>
-             <tr ng-repeat='hotel in hotels | orderBy:hotel_name'>  <!-- hotelList is name of array in adminController.js -->
-               <td>{{hotel.hotel_name}}</td>
-               <td>{{hotel.hotel_address}}</td>
-               <td>{{hotel.hotel_city}}</td>
-               <td>{{hotel.hotel_state}}</td>
-               <td>{{hotel.hotel_zip}}</td>
-               <td>{{hotel.hotel_phone}}</td>
-               <td>{{hotel.hotel_url}}</td>
-               <td>{{hotel.hotel_notes}}</td>
-               <td> <button type="button" name="hotelButton" ng-click= "assignHotel(hotel.id)">Assign</button></td>
-               <td> <button type="button" name="deleteHotel" ng-click= "deleteHotel(hotel.id)">Delete Hotel</button></td>
-             </tr>
-          </table>
-             <h4>Add A Hotel</h4>
+             </md-content>
+        </md-tab>
 
-             <input type= "text" ng-model= "hotel_name" value= "" placeholder="hotel name" required>
-             <input type= "text" ng-model= "hotel_address" value= "" placeholder="street address">
-             <input type= "text" ng-model= "hotel_city" value= "" placeholder="city">
-             <input type= "text" ng-model= "hotel_state" value= "" placeholder="state/province">
-             <input type= "text" ng-model= "hotel_zip" value= "" placeholder="zip">
-             <input type= "text" ng-model= "hotel_phone" value= "" placeholder="phone">
-             <input type= "text" ng-model= "hotel_url" value= "" placeholder="hotel web address">
-             <input type= "text" ng-model= "hotel_notes" value= "" placeholder="notes">
+<!-- SECOND TAB // HOTEL LIST -->
+        <md-tab label="Hotel List">
+            <md-content class="md-padding">
+              <h1 class="md-display-2">Hotel List</h1>
 
-             <button type="button" name="createHotelButton" ng-click= "newHotel()" >Add Hotel</button>
-           </div> <!-- end row, adminController -->
+              <div class="row" ng-controller="adminController"> <!-- begin hotel information -->
+                <p ng-show="hotel.length==0">No hotels available.</p>
+                  <table class="table table-striped">
+                    <thead>
+                      <th>Hotel Name</th>
+                      <th>Address</th>
+                      <th>City</th>
+                      <th>State or Province</th>
+                      <th>Zip</th>
+                      <th>Phone</th>
+                      <th>Website</th>
+                      <th>Notes</th>
+                      <th>Assign to Event</th>
+                    </thead>
+                     <tr ng-repeat='hotel in hotels | orderBy:hotel_name'>  <!-- hotelList is name of array in adminController.js -->
+                       <td>{{hotel.id}}</td>
+                       <td>{{hotel.hotel_name}}</td>
+                       <td>{{hotel.hotel_address}}</td>
+                       <td>{{hotel.hotel_city}}</td>
+                       <td>{{hotel.hotel_state}}</td>
+                       <td>{{hotel.hotel_zip}}</td>
+                       <td>{{hotel.hotel_phone}}</td>
+                       <td>{{hotel.hotel_url}}</td>
+                       <td>{{hotel.hotel_notes}}</td>
+                       <td class="hotelButtons"> <md-button class="md-raised md-primary" ng-click= "assignHotel(hotel.id)">Assign</md-button><md-button class="md-raised md-warn hotelButtons" ng-click= "deleteHotel(hotel.id)">Delete Hotel</md-button></td>
+                       <!-- <td> <md-button class="md-raised md-warn hotelButtons" ng-click= "deleteHotel(hotel.id)">Delete Hotel</md-button></td> -->
+                     </tr>
+                  </table>
+                     <h4>Add A Hotel</h4><br>
 
-    <button ng-click="showEvent()">Show me the dog!!</button>
+                     <md-input-container class="md-block">
+                       <label>Hotel Name</label>
+                       <input ng-model="hotel_name">
+                     </md-input-container>
+                     <md-input-container class="md-block">
+                       <label>Hotel Address</label>
+                       <input ng-model="hotel_address">
+                     </md-input-container>
+                     <md-input-container class="md-block">
+                       <label>Hotel City</label>
+                       <input ng-model="hotel_city">
+                     </md-input-container>
+                     <md-input-container class="md-block">
+                       <label>Hotel Stat</label>
+                       <input ng-model="hotel_state">
+                     </md-input-container>
+                     <md-input-container class="md-block">
+                       <label>Hotel Zip</label>
+                       <input ng-model="hotel_zip">
+                     </md-input-container>
+                     <md-input-container class="md-block">
+                       <label>Hotel Phone</label>
+                       <input ng-model="hotel_phone">
+                     </md-input-container>
+                     <md-input-container class="md-block">
+                       <label>Hotel Website</label>
+                       <input ng-model="hotel_url">
+                     </md-input-container>
+                     <md-input-container class="md-block">
+                       <label>Hotel Notes</label>
+                       <input ng-model="hotel_notes">
+                     </md-input-container>
 
-  </div><!-- end view 2 -->
-	</script>
+                     <button type="button" name="createHotelButton" ng-click= "newHotel()" >Add Hotel</button>
+                   </div>
 
-  </div>  <!-- end Tab 2-->
+            <button ng-click="showEvent()">Show me the dog!!</button>
 
-    	</script>
-<!-- THIRD TAB -->
+          </div>
+       </md-content>
+  </md-tab>
 
-      <script type="text/ng-template" id="three.tpl.html">
-    		<div id="viewThree"  ng-controller="adminController">
+<!-- THIRD TAB // HOTEL BUILDER -->
+  <md-tab label="Hotel Room Builder">
+      <md-content class="md-padding">
+        <h1 class="md-display-2">Tab One</h1>
+        <div class="row" ng-controller="adminController"> <!-- begin hotel information -->
+          <p ng-show="hotel.length==0">No hotels available.</p>
+          <h4>Add Hotel Room</h4>
+
           <input type= "text" ng-model= "roomnum" value= "" placeholder="Enter Room Number"><button type="button" name="getRoomButton" ng-click= "getRoom()">Get Room</button>
 
           <div class="panel panel-default createRoomContainer">
@@ -182,10 +192,6 @@
              </div> <!-- end panel body -->
            </div>  <!-- end createRoomContainer -->
 
-
-
-
-
 <!--SHOW ROOM  -->
           <table class="table table-bordered table-hover table-condensed">
                   <tr style="font-weight: bold">
@@ -197,7 +203,6 @@
                       <th>Check In Date</th>
                       <th>Check Out Date</th>
                       <th>Notes</th>
-                      <!-- <th ></th> -->
                   </tr>
                   <tr ng-repeat='record in roomToShow'>
                     <td><span editable-text="record.id" e-form="rowform" e-required>{{ record.id }}</span></td>
@@ -230,102 +235,9 @@
                   </tr>
                 </table>  <!-- end room -->
 
+      </div><!-- end hotel information -->
+     </md-content>
+    </md-tab>
 
-    	</script> <!-- end tab 3 script -->
-    </div>  <!-- end tab 3 controller div -->
-
-  </div><!--end controller-->
-
-
-
-
-
-
-
-
-
-<!-- <div class="container" ng-init='eventAndSurveyRequest()'>
-    <h3>Survey Results</h3>
-    <h4>Event:</h4>
-    <p ng-show="eventList.length==0">No event information available.</p>
-    <div class="row" ng-repeat='record in eventList'>  -->
-      <!-- Begin event info. eventList is name of array in adminController.js -->
-        <!-- <p>{{record.event}}</p>
-        <p>{{record.addressOne}}, {{record.addressTwo}}</p>
-        <p>{{record.city}}, {{record.state_province}}</p>
-        <p>Event website: {{record.event_url}}</p>
-        <p>Schedule website: {{record.event}}</p>
-        <p>{{record.begin_date}} - {{record.end_date}}</p>
-        <p>{{record.company}}</p>
-        <p>Results website: {{record.results_url}}</p>
-        <p>Notes: {{record.notes_events}}</p>
-      </div>  -->
-      <!--end row - Event Information-->
-      <!-- <div class="row">  -->
-        <!-- begin survey information -->
-        <!-- <p ng-show="surveyList.length==0">No survey results available.</p>
-        <table class="table-bordered">
-         <tr>
-           <td> <h4>Paddler Name</h4></td>
-           <td> <h4>Attend Status</h4></td>
-           <td> <h4>Want In Hotel Block?</h4></td>
-           <td> <h4>Room Preference</h4></td>
-           <td> <h4>Number of Non-Paddlers Coming</h4></td>
-           <td> <h4>Notes</h4></td>
-           </tr>
-         <tr ng-repeat='record in surveyList | orderBy:username'>   -->
-           <!-- surveyList is name of array in adminController.js -->
-           <!-- <td> <p>{{username}}</p></td>
-           <td> <p>{{attendStatus}}</p></td>
-           <td> <p>{{hotelBlock}}</p></td>
-           <td> <p>{{roomPreference}}</p></td>
-           <td> <p>{{numNonPaddlers}}</p></td>
-           <td> <p>{{notes_survey}}</p></td>
-           </tr>
-         </table>
-       </div> -->
-       <!-- end survey information -->
-       <!-- <h3>Hotels</h3> -->
-<!-- Need some kind of ng-show or ng-hide on condition that hotel is not selected yet (show), or has been selected for this event (hide).  -->
-       <!-- <div class="row">  -->
-         <!-- begin hotel information -->
-         <!-- <p ng-show="hotelList.length==0">No hotels available.</p>
-         <table class="table-bordered">
-          <tr>
-            <td> <h4>Hotel Name</h4></td>
-            <td> <h4>Address</h4></td>
-            <td> <h4>City</h4></td>
-            <td> <h4>State or Province</h4></td>
-            <td> <h4>Zip</h4></td>
-            <td> <h4>Phone</h4></td>
-            <td> <h4>Website</h4></td>
-            <td> <h4>Notes</h4></td>
-            <td> <h4>Assign to Event</td>
-            </tr>
-          <tr ng-repeat='record in hotelList | orderBy:hotel_name'>   -->
-            <!-- hotelList is name of array in adminController.js -->
-            <!-- <td> <p>{{hotel_name}}</p></td>
-            <td> <p>{{hotel_address}}</p></td>
-            <td> <p>{{hotel_city}}</p></td>
-            <td> <p>{{hotel_state}}</p></td>
-            <td> <p>{{hotel_zip}}</p></td>
-            <td> <p>{{hotel_phone}}</p></td>
-            <td> <p>{{hotel_URL}}</p></td>
-            <td> <p>{{hotel_notes}}</p></td>
-            <td> <button type="button" name="hotelButton" ng-click= "assignHotel()">Assign</button></td>
-            </tr>
-          </table>
-          <h4>Add A Hotel</h4>
-          <input type= "text" ng-model= "hotel_name" value= "" placeholder="hotel name" required>
-          <input type= "text" ng-model= "hotel_address" value= "" placeholder="street address">
-          <input type= "text" ng-model= "hotel_city" value= "" placeholder="city">
-          <input type= "text" ng-model= "hotel_state" value= "" placeholder="state/province">
-          <input type= "text" ng-model= "hotel_zip" value= "" placeholder="zip">
-          <input type= "text" ng-model= "hotel_phone" value= "" placeholder="phone">
-          <input type= "text" ng-model= "hotel_url" value= "" placeholder="hotel web address">
-          <input type= "text" ng-model= "hotel_notes" value= "" placeholder="notes">
-
-          <button type="button" name="createHotelButton" ng-click= "newHotel()" >Add Hotel</button>
-
-        </div> -->
-        <!-- end hotel information -->
+  </md-tabs>
+</md-content>

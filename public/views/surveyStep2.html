@@ -2,13 +2,11 @@
 <div class="survey">
   <form name="myForm" ng-controller="surveyController" class="surveyContainer">
 
-    <label>
-      <input class="btn btn-primary btn-lg btn-block" type="button" ng-click="responseHotel()" value="I would like to stay in the team hotel block."></input>
-    </label><br/>
+    <h1 class="surveyTitle"> Where will you be staying during this event?</h1><br/><br/>
 
-    <label>
-      <input class="btn btn-primary btn-lg btn-block" type="button" ng-click="responseOtherAccommodation()" value="I will arrange my own accommodations."></input>
-    </label><br/>
+      <md-button class="md-raised surveyButton" ng-click="responseHotel()">I would like to stay in the team hotel block</md-button><br/>
+
+      <md-button class="md-raised surveyButton" ng-click="responseOtherAccommodation()">I will arrange my own accommodations</md-button><br/>
 
   </form>
 </div>

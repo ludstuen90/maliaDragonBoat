@@ -2,10 +2,9 @@
 <div class="survey">
   <form name="myForm" ng-controller="surveyController" class="surveyContainer">
 
-    <label>
-      <input type="checkbox" ng-model="justMe" value="">
-      I would like a room for just me
-    </label><br/>
+    <md-radio-group ng-model="justMe">
+      <md-radio-button class="md-primary" valu="true">I would like a room for just me</md-radio-button>
+    </md-radio-group>
 
     <label>
       <input type="checkbox" ng-model="meAndNonPaddlers" value="true">

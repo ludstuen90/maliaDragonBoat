@@ -25,6 +25,9 @@
   },
   "homepage": "https://github.com/ludstuen90/maliaDragonBoat#readme",
   "dependencies": {
+    "angular-animate": "^1.5.8",
+    "angular-aria": "^1.5.8",
+    "angular-material": "^1.1.0-rc.5",
     "angular-route": "^1.5.8",
     "angular-xeditable": "^0.2.0",
     "bcrypt": "^0.8.7",

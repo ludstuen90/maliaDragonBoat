@@ -2,9 +2,13 @@
 DRGNBT.controller('surveyController', [ '$scope', '$http',
 function ( $scope, $http ) {
   // sessionStorage.setItem("attending", attendingStatus );
+  // $scope.title1 = 'Button';
 
 // response is NO to attending ---------------------------------------------------
   $scope.attendResponse = function( attendingStatus ) {
+
+
+
     console.log( "in attendResponse:", attendingStatus );
     sessionStorage.setItem("attending", attendingStatus );
     console.log( 'sessionStorage attending:', sessionStorage.getItem("attending") );

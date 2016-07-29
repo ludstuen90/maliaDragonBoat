@@ -1,9 +1,4 @@
 
-
-
-
-
-
 .logo {
   float: left;
   width: 260px;
@@ -111,15 +106,35 @@
 }
 
 /*SURVEY STYLING*/
+
+.surveyButton {
+  min-height: 70px !important;
+  width: 700px;
+  font-size: 20px !important;
+  line-height: 10px;
+  display: flex;
+  max-width: 100%;
+  text-wrap: none;
+}
+
+.surveyTitle {
+  font-size: 34px;
+  text-align: center;
+}
+
 .survey {
-  width: 600px ;
   margin: 16px auto;
 	padding: 60px;
+  color: white;
 }
 
 .surveyContainer {
-	background: #ecf0f1;
-  padding: 25px;
+	background: #13647F;
+  padding: 2em 5em 2em 5em;
+  max-height: 840px;
+  max-width: 870px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /*ADMIN TABS STYLING*/

@@ -10,7 +10,7 @@ var connectionString = 'postgres://localhost:5432/groupDB';
 router.post('/responseNo', function (req, res){
   // console.log("ID of current user is:", req.user.id);
 
-  // var survey = req.body;
+  var survey = req.body;
 
   // console.log(survey);
   pg.connect(connectionString, function(err, client, done){
@@ -25,7 +25,7 @@ router.post('/responseNo', function (req, res){
 // RESPONSE OTHER ACCOMODATION
 router.post('/otherAccommodation', function (req, res){
 
-  // var survey = req.body;
+  var survey = req.body;
 
   console.log(survey);
   pg.connect(connectionString, function(err, client, done){

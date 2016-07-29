@@ -19,7 +19,7 @@ router.post('/newHotel', function(req, res){
 
 
 router.get('/hotelRequest', function(req, res){
-  console.log('in hotelRequest');
+  // console.log('in hotelRequest');
   var hotelGet = [];
   pg.connect(connectionString, function(err, client, done){
     if( err ){

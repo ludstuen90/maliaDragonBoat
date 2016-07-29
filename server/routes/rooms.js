@@ -92,6 +92,7 @@ router.delete( '/deleteRoom', function( req, res ){   //DELETE ROOMS
       client.query( "DELETE FROM rooms WHERE id = $1;", [ req.body.id ] );
     }
   });
+  res.sendStatus(200);
 });
 
 module.exports = router;

@@ -52,11 +52,11 @@ router.get('/eventRequest', function (req, res){
     });
   });
 
-  router.get( '/specialRoute', function( req, res ) {
-    var idArray = [];
-    pg.connect( connectionString, function( err, client, done ) {
-      client.query( "SEQUEL SYNTAX TO BE USED, ONCE WE DETERMINE WHAT WE WANT FROM THE DATABASE." );
-    });
-  });
+  // router.get( '/specialRoute', function( req, res ) {
+  //   var idArray = [];
+  //   pg.connect( connectionString, function( err, client, done ) {
+  //     client.query( "SEQUEL SYNTAX TO BE USED, ONCE WE DETERMINE WHAT WE WANT FROM THE DATABASE." );
+  //   });
+  // });
 
 module.exports = router;

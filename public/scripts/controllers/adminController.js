@@ -289,7 +289,7 @@ $scope.deleteRoom = function(recordid){
     data: sendId,
     headers:  {'Content-Type': 'application/json;charset=utf-8'}
   }).then(function(){
-   $scope.showRoom();
+    $scope.getRoom();
   });
 };
 

@@ -28,7 +28,8 @@ CREATE TABLE events (
  notes_events TEXT,
  results_url TEXT,
  schedule_url TEXT,
- hotel_id int references hotels(id)
+ hotel_id int references hotels(id),
+ hotel_phase BOOLEAN
  );
 CREATE TABLE survey (
  id SERIAL PRIMARY KEY,

@@ -126,8 +126,10 @@
           <p ng-show="hotel.length==0">No hotels available.</p>
           <h4>Add Hotel Room</h4>
 
-          <input type= "text" ng-model= "roomnum" value= "" placeholder="Enter Room Number"><button type="button" name="getRoomButton" ng-click= "getRoom()">Get Room</button>
+  <!-- ADD ROOM -->
 
+      <script type="text/ng-template" id="three.tpl.html">
+    		<div id="viewThree"  ng-controller="adminController">
           <div class="panel panel-default createRoomContainer">
              <div class="panel-heading">
               <h1 class="panel-title">Add Hotel Room</h1>
@@ -225,15 +227,12 @@
                         </button>
                       </form>
                       <div class="buttons" ng-show="!rowform.$visible">
-                        <button class="btn btn-primary" ng-click="rowform.$show()">
-                          Edit</button>
-                      </div>
-                      <div class="buttons" ng-show="!rowform.$visible">
-                        <button class="btn btn-primary" ng-click="deleteRoom(record.id)">
-                          Delete</button>
+                        <button class="btn btn-primary" ng-click="rowform.$show()">Edit</button>
+                        <button class="btn btn-primary" ng-click="deleteRoom(record.id)">Delete</button>
                       </div>
                   </tr>
                 </table>  <!-- end room -->
+
 
       </div><!-- end hotel information -->
      </md-content>
@@ -241,3 +240,8 @@
 
   </md-tabs>
 </md-content>
+
+    	</script> <!-- end tab 3 script -->
+    </div>  <!-- end tab 3 controller div -->
+
+  </div><!--end controller-->

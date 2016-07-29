@@ -210,9 +210,39 @@ $scope.assignHotel = function(hotelID){
 
 // ROOM BUILDER FUNCTIONALITY -----------------------------
 
+    //ADD A ROOM -------------------
+$scope.addRoom = function() {
+  console.log("in addRoom function in adminController");
+  roomToSend = {
+    room_type : $scope.room_type,
+    capacity : $scope.capacity,
+    price : $scope.price,
+    check_in : $scope.check_in,
+    check_out : $scope.check_out,
+    notes : $scope.notes
+    //need event id and hotel id
+  };
+  console.log(roomToSend);
+  $http({
+    method: 'POST',
+    url: '/addRoom',
+    data: roomToSend
+  }).then(function(){
+    $scope.showRoom();
+  });
+  // CLEARS Room INPUT FIELDS
+    $scope.room_type = "";
+    $scope.capacity = "";
+    $scope.price = "";
+    $scope.check_in = "";
+    $scope.check_out = "";
+    $scope.notes = "";
+};
+
+
 $scope.outsideArray=[];
 
-$scope.getRoom = function() {
+$scope.getRoom = function() {  // THIS NEEDS TO CHANGE TO PASS IN ROOM ID INSTEAD OF ROOM NUMBER, AND TO BE CALLED AT THE END OF THE ADDROOM FUNCTION SO IT'S AUTOMATIC.
   console.log("in getRoom function in script");
   console.log($scope.roomnum);
   roomToSend = {

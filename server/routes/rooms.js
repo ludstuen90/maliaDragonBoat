@@ -78,12 +78,9 @@ router.delete( '/deleteRoom/:id', function( req, res ){   //DELETE ROOMS
     if( err ){
       console.log( 'Failed to delete room from database.' );
     } else {
-      client.query( "DELETE * FROM rooms WHERE id = $1;", [ req.params.id ] );
+      client.query( "DELETE FROM rooms WHERE id = $1;", [ req.params.id ] );
     }
   });
 });
-
-
-
 
 module.exports = router;

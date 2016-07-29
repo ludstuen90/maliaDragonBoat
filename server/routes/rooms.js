@@ -10,6 +10,19 @@ var connectionString = 'postgres://localhost:5432/groupDB';
 // ROOM BUILDER --------------------------------------------------------------------
 // var selectedRoom=[];
 
+
+router.post('/addRoom', function(req, res){
+  var room = req.body;
+  pg.connect(connectionString, function(err, client, done){
+    console.log('In addRoom', room);
+    client.query("INSERT INTO rooms ( hotels_id, events_id, room_type, capacity, price, check_in, check_out, notes) values ($1, $2, $3, $4, $5, $6, $7, $8)",
+    [room.hotels_id, room.events_id, room.room_type, room.capacity, room.price, room.check_in, room.check_out, room.notes]);
+    res.send(true);
+    done();
+  });
+});
+
+
 router.post('/getRoom', function(req, res) { // pulling selected room info from database to display on room picker
     console.log("in app.post  getroom");
     console.log(req.body);
@@ -18,9 +31,8 @@ router.post('/getRoom', function(req, res) { // pulling selected room info from 
       if (err) {     // check for errors
       console.log(err);
     } else { // start selection criteria
-        //  roomInfo=client.query("SELECT * FROM roominfo WHERE room_number= ' + req.body.room_number ' ");
-         roomInfo=client.query("SELECT * FROM rooms WHERE room_number= '" + req.body.room_number +"'");
-         console.log("roominfoin app: ");
+         roomInfo=client.query("SELECT * FROM rooms WHERE hotels_id= '" + req.body.hotels_id +"' AND events_id= '" + req.body.events_id + "'");
+         console.log("in /getRoom app: ");
           rows = 0;
           roomInfo.on('row', function(row) {  // pushing to array
             selectedRoom.push(row);
@@ -72,14 +84,13 @@ router.post('/saveRoom/:id', function(req, res) {
   }); //end connection
 }); //end /saveroom function
 
-router.delete( '/deleteRoom/:id', function( req, res ){   //DELETE ROOMS
-  var id = req.params.id;
+router.delete( '/deleteRoom', function( req, res ){   //DELETE ROOMS
   pg.connect( connectionString, function( err, client, done ) {
     console.log( '/deleteRoom route hit.' );
     if( err ){
       console.log( 'Failed to delete room from database.' );
     } else {
-      client.query( "DELETE FROM rooms WHERE id = $1;", [ req.params.id ] );
+      client.query( "DELETE FROM rooms WHERE id = $1;", [ req.body.id ] );
     }
   });
 });

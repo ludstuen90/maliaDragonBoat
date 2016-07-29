@@ -8,12 +8,12 @@ var connectionString = 'postgres://localhost:5432/groupDB';
 
 
 // ROOM BUILDER --------------------------------------------------------------------
-var selectedRoom=[];
+// var selectedRoom=[];
 
 router.post('/getRoom', function(req, res) { // pulling selected room info from database to display on room picker
     console.log("in app.post  getroom");
     console.log(req.body);
-    selectedRoom = [];  // resets array to empty for new room
+    var selectedRoom = [];  // resets array to empty for new room  --> NOT ANYMORE.
     pg.connect(connectionString, function(err, client, done) {  // connecting to disinfectants database
       if (err) {     // check for errors
       console.log(err);
@@ -35,6 +35,7 @@ router.post('/getRoom', function(req, res) { // pulling selected room info from 
 }); // end /getRoomfunction
 
 router.get( '/showRoom', function( req, res ){  // makes returned room info available to room assigner
+  var selectedRoom = [];
       console.log("in showRoom function in app: ", selectedRoom);
       return res.json(selectedRoom);
   }); // end  /showRoom function

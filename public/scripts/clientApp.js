@@ -1,4 +1,4 @@
-var DRGNBT = angular.module('DRGNBT', ['ngRoute', 'xeditable']);
+var DRGNBT = angular.module('DRGNBT', ['ngRoute', 'xeditable', 'ngMaterial']);
 
 
 //CODE FOR XEDITABLE --------------------------------------

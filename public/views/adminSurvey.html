@@ -29,6 +29,7 @@
               <p>{{record.city}}, {{record.state_province}}</p>
               <p>Event website: {{record.event_url}}</p>
               <p>Schedule website: {{record.event}}</p>
+              <p>Event Hotel: {{record.}}</p>
               <p>{{record.begin_date}} - {{record.end_date}}</p>
               <p>{{record.company}}</p>
               <p>Results website: {{record.results_url}}</p>
@@ -77,7 +78,6 @@
                <td>Assign to Event</td>
             </tr>
              <tr ng-repeat='hotel in hotels | orderBy:hotel_name'>  <!-- hotelList is name of array in adminController.js -->
-               <td>{{hotel.id}}</td>
                <td>{{hotel.hotel_name}}</td>
                <td>{{hotel.hotel_address}}</td>
                <td>{{hotel.hotel_city}}</td>

@@ -4,10 +4,21 @@ function ( $scope, $http ) {
   // sessionStorage.setItem("attending", attendingStatus );
   // $scope.title1 = 'Button';
 
+  $scope.numbers = [
+       "1",
+       "2",
+       "3",
+       "4",
+       "5",
+       "6",
+       "7",
+       "8",
+       "9",
+       "10"
+   ];
+
 // response is NO to attending ---------------------------------------------------
   $scope.attendResponse = function( attendingStatus ) {
-
-
 
     console.log( "in attendResponse:", attendingStatus );
     sessionStorage.setItem("attending", attendingStatus );
@@ -78,11 +89,8 @@ function ( $scope, $http ) {
     responseHotel = {
         attend_status: sessionStorage.getItem("attending"),
         hotel_status: "yes",
-        just_me: $scope.justMe,
-        me_and_non_paddlers: $scope.meAndNonPaddlers,
+        roommate_option: $scope.roommateOption,
         num_non_paddlers: $scope.numNonPaddlers,
-        me_and_one_paddler: $scope.meAndOnePaddler,
-        me_and_paddlers: $scope.meAndPaddlers,
         notes_survey_room: $scope.notes_survey_room,
         // room_preference:
         // events_id: sessionStorage.getItem("eventId")

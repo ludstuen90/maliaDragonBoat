@@ -1,4 +1,5 @@
 
+
 .logo {
   float: left;
   width: 260px;
@@ -89,7 +90,7 @@
 .thankYouContainer {
 	/*background: #ecf0f1;*/
   padding: 0px;
-  display: flex;
+  display: inline-flex;
   color: white;
 }
 
@@ -103,14 +104,18 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 0px;
+  color: white;
 }
 
 /*SURVEY STYLING*/
+.surveyRadio {
+  color: white;
+}
 
 .surveyButton {
   min-height: 70px !important;
   width: 700px;
-  font-size: 20px !important;
+  font-size: 14px !important;
   line-height: 10px;
   display: flex;
   max-width: 100%;
@@ -197,6 +202,7 @@
   margin-left: auto;
   margin-right: auto;
 }
+
 .active {
   background-color: #13647F;
   color: white;
@@ -292,7 +298,6 @@ nav {
 }
 
 /*CREATE EVENT STYLING*/
-
 .panel-title{
   color: black;
   font-size: 30px;

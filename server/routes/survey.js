@@ -8,14 +8,17 @@ var connectionString = 'postgres://localhost:5432/groupDB';
 
 // RESPONSE OTHER ACCOMODATION
 router.post('/responseNo', function (req, res){
+
   // console.log("ID of current user is:", req.user.id);
+  console.log('we are in a no response!');
+  console.log('alternatively, ', req.user.id);
 
   var survey = req.body;
 
   // console.log(survey);
   pg.connect(connectionString, function(err, client, done){
-    client.query("INSERT INTO survey ( attend_status, user_id ) values ( $1, $2 )",
-    [survey.attend_status, req.user.id]);
+    client.query("INSERT INTO survey ( attend_status, user_id, events_id) values ( $1, $2, $3 )",
+    [survey.attend_status, req.user.id, survey.events_id]);
     res.send(true);
     done();
   });
@@ -28,8 +31,8 @@ router.post('/otherAccommodation', function (req, res){
 
   console.log(survey);
   pg.connect(connectionString, function(err, client, done){
-    client.query("INSERT INTO survey ( attend_status, user_id, hotel_status, notes_other_accommodation ) values ( $1, $2, $3, $4 )",
-    [survey.attend_status, req.user.id, survey.hotel_status, survey.notes_other_accommodation]);
+    client.query("INSERT INTO survey ( attend_status, user_id, events_id, hotel_status, notes_other_accommodation ) values ( $1, $2, $3, $4, $5 )",
+    [survey.attend_status, req.user.id, survey.events_id,  survey.hotel_status, survey.notes_other_accommodation]);
     res.send(true);
     done();
   });
@@ -39,8 +42,9 @@ router.post('/otherAccommodation', function (req, res){
 router.post('/hotel', function (req, res){
   var survey = req.body;
   pg.connect(connectionString, function(err, client, done){
-    client.query("INSERT INTO survey ( attend_status, user_id, hotel_status, roommate_option, num_non_paddlers, notes_survey_room ) values ( $1, $2, $3, $4, $5, $6,)",
-    [survey.attend_status, req.user.id, survey.hotel_status, survey.roommate_option, survey.num_non_paddlers, survey.notes_survey_room ]);
+    client.query("INSERT INTO survey ( attend_status, user_id, events_id,  hotel_status, roommate_option, num_non_paddlers, notes_survey_room ) values ( $1, $2, $3, $4, $5, $6, $7 )",
+    [survey.attend_status, req.user.id, survey.events_id, survey.hotel_status, survey.roommate_option, survey.num_non_paddlers, survey.notes_survey_room ]);
+
     res.send(true);
     done();
   });

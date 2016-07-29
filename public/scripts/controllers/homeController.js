@@ -14,8 +14,10 @@ $scope.hello = function(){
     url: '/hello'
   }).then(function(response){
     sessionStorage.setItem("username", response.data);
-
   });
+
+
+
 
 
 };

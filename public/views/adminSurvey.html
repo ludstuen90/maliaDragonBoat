@@ -110,38 +110,51 @@
     <md-tab label="Select Event">
         <md-content class="md-padding">
 
-    <h3 align="center">Select An Event To Administer</h3>
+            <h3 align="center">Select An Event To Administer</h3>
+
+            <div ng-init="pageLoad()"></div>
+
+          <div class="row">
+            <div class="container">
+              <div class="col-md-12">
+            <form name="userForm">
+              <div layout-gt-sm="row">
+
+              <md-input-container class="md-block" flex-gt-lg>
+                <label>Choose an Event</label>
+                <md-select ng-model="eventChosen">
+                  <md-option ng-repeat="thing in alltheEvents track by $index" value="{{thing.id}}">
+                    {{thing.event_name}} ({{thing.begin_date | date: "MM-dd-yyyy"}} - {{thing.end_date | date: "MM-dd-yyyy"}})
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="container">
+          <div col="col-md-12">
+              {{eventChosen}}
+          </div>
+        </div>
+      </div>
 
 
-    <div ng-init="pageLoad()">
-  	<div ng-repeat="event in alltheEvents"  role="button" ng-click="assignEvent(  event.id  )" class="col-xs-1 col-sm-1 homeEvent">
+
+<!--
+
+
+  	<div ng-repeat="event in alltheEvents"  role="button" ng-click="assignEvent(  event.id  )" class="col-md-6 adminEvent">
   		<h4> {{ event.event_name }} <h4>
   			<p> {{ event.begin_date }} to {{ event.end_date }} </p>
-  </div>
+
+  </div> -->
 
 
-    <!-- <div class="upcomingEvents" ng-init="pageLoad()"> -->
-      <!-- Replace with ng-repeat of current events. One function only ( assignEvent() )   -->
-      <!-- <div role="button" ng-repeat="for thing in events track by $index" class=".col-xs-4 .col-sm-3 selectEvent">
-          <h2 class="eventHeader">{{thing.event_name}}</h2>
-      </div> -->
 
-    	<!-- <div role="button" ng-click="selectEvent(event.id)" class=".col-xs-4 .col-sm-3 selectEvent">
-    		<h2 class="eventHeader">Quebec Cup</h2>
-    		<h4> 6/25 </h4>
-    	</div> -->
-    	<!-- <div role="button" ng-click="selectEvent(eventId)" class=".col-xs-4 .col-sm-3 selectEvent">
-    		<h2 class="eventHeader">Riverfront Dragon Boat & Asian Festival</h2>
-    		<h4> 6/25 </h4>
-    	</div>
-    	<div role="button" ng-click="selectEvent(eventId)" class=".col-xs-4 .col-sm-3 selectEvent">
-    		<h2 class="eventHeader">Montreal Challenge</h2>
-    		<h4> 6/25 </h4>
-    	</div>
-    	<div role="button" ng-click="selectEvent(eventId)" class=".col-xs-4 .col-sm-3 selectEvent">
-    		<h2 class="eventHeader">Springfield Dragon Boat Festival</h2>
-    		<h4> 6/25 </h4>
-    	</div> -->
+
 
          </md-content>
     </md-tab>

@@ -9,11 +9,19 @@
 
     <h3 align="center">Select An Event To Administer</h3>
 
-    <div class="upcomingEvents" ng-init="pageLoad()">
+
+    <div ng-init="pageLoad()">
+  	<div ng-repeat="event in alltheEvents"  role="button" ng-click="assignEvent(  event.id  )" class=".col-xs-6 .col-sm-3 homeEvent">
+  		<h4> {{ event.event_name }} <h4>
+  			<p> {{ event.begin_date }} to {{ event.end_date }} </p>
+  </div>
+
+
+    <!-- <div class="upcomingEvents" ng-init="pageLoad()"> -->
       <!-- Replace with ng-repeat of current events. One function only ( assignEvent() )   -->
-      <div role="button" ng-repeat="for thing in events track by $index" class=".col-xs-4 .col-sm-3 selectEvent">
+      <!-- <div role="button" ng-repeat="for thing in events track by $index" class=".col-xs-4 .col-sm-3 selectEvent">
           <h2 class="eventHeader">{{thing.event_name}}</h2>
-      </div>
+      </div> -->
 
     	<!-- <div role="button" ng-click="selectEvent(event.id)" class=".col-xs-4 .col-sm-3 selectEvent">
     		<h2 class="eventHeader">Quebec Cup</h2>

@@ -117,25 +117,9 @@ h3 {
 }
 
 /*SURVEY STYLING*/
-.radioText {
-  font-size: 24px;
-  line-height: 2px;
-}
-
 .nonPaddlers {
-  display: inline-block;
-}
-
-md-input-container {
-  display: inline-block;
-}
-
-.surveyRadio {
-  color: white;
-}
-
-md-radio-button.md-default-theme ._md-off, md-radio-button ._md-off {
-  border-color: white;
+  display: inline-flex;
+  width: 700px;
 }
 
 .md-button.md-raised {
@@ -143,10 +127,6 @@ md-radio-button.md-default-theme ._md-off, md-radio-button ._md-off {
   background-color: #13647F;
   font-weight: 500;
   margin: 15px;
-}
-
-md-radio-button:not([disabled]).md-primary ._md-on {
-  background-color: lightblue;
 }
 
 .surveyButton {
@@ -170,17 +150,37 @@ md-radio-button:not([disabled]).md-primary ._md-on {
 }
 
 .survey {
+  width: 1000px ;
   margin: 16px auto;
+  font-size: 16px;
 	padding: 60px;
-  color: white;
+  text-align: center;
+}
+
+.survey2 {
+  width: 1000px ;
+  margin: 16px auto;
+  font-size: 16px;
+	padding: 60px;
 }
 
 .surveyContainer {
   border-top: 6px;
   border-top-color: #ff9900;
   border-top-style: solid;
-	background: #E9E9E9;
+	background: white;
   /*padding: 2em 5em 2em 5em;*/
+  max-height: 840px;
+  max-width: 870px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.surveyContainer2 {
+  border-top: 6px;
+  border-top-color: #ff9900;
+  border-top-style: solid;
+	background: white;
   max-height: 840px;
   max-width: 870px;
   margin-left: auto;
@@ -200,10 +200,6 @@ md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item
 
 md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-tabs.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-tabs.md-default-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused, md-tabs.md-default-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused md-icon {
   color: #fff !important;
-}
-
-md-input-container:not(.md-input-has-value) input:not(:focus), md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-ampm-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-day-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-hour-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-millisecond-field, md-input-container:not(.md-input-has-value){
- color: green;
 }
 
 md-input-container:not(.md-input-invalid).md-input-focused .md-input {
@@ -247,6 +243,10 @@ md-tabs.md-dynamic-height md-tabs-content-wrapper {
     margin-right: auto;
     /*text-align: center;*/
 }
+
+/*.col-sm-6{
+  padding: 0px;
+}*/
 
 .tabLi {
     width: 300px;
@@ -425,8 +425,7 @@ nav {
   width: 600px ;
   margin: 16px auto;
   font-size: 16px;
-	padding: 60px;
-	font-weight: lighter;
+	padding: 70px;
 }
 
 .login-header,
@@ -471,7 +470,10 @@ nav {
   outline: 0;
   font-family: inherit;
   font-size: 0.95em;
-	font-weight: lighter;
+}
+
+.md-whiteframe-1dp {
+  padding: 30px;
 }
 
 a:link {

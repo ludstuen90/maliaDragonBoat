@@ -321,17 +321,26 @@ $http({   // gets recordset via GET
 ); // end then response
 }; // end showRoom function
 
-
+var roomId;
 
 $scope.deleteSlots = function(recordid) {
   console.log("in deleteSlots", recordid);
-
+  var sendId = {id: recordid};
+  roomId=sendId;
+  $http({
+    method: 'DELETE',
+    url: '/deleteSlots' ,
+    data: sendId,
+    headers:  {'Content-Type': 'application/json;charset=utf-8'}
+  }).then(function(){
+    $scope.deleteRoom(recordid);
+  });
 
 };
 
-$scope.deleteRoom = function(recordid){
-  console.log('in delete room', recordid);
-  var sendId = {id: recordid};
+$scope.deleteRoom = function(roomId){
+  console.log('in delete room', roomId);
+  var sendId = {id: roomId};
   $http({
     method: 'DELETE',
     url: '/deleteRoom' ,

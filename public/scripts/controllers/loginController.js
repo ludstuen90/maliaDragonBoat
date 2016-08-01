@@ -63,4 +63,13 @@ function($scope, $http, $window, $location) {
       }
     };
 
+    $scope.logout = function() {
+      $http.get('/router/logout').then(function(response) {
+        console.log('logged out');
+        $location.path("/login");
+      });
+    };
+
+
+
 }]);

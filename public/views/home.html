@@ -11,7 +11,7 @@
 
 </div>
 
-<div class="upcomingEvents">
+<!-- <div class="upcomingEvents">
 	<div role="button" ng-click="assignEvent('1')" class=".col-xs-6 .col-sm-3 homeEvent">
 		<h2 class="eventHeader">Quebec Cup</h2>
 		<h4> 6/25 </h4>
@@ -27,8 +27,13 @@
 	<div role="button" ng-click="assignEvent('4')" class=".col-xs-6 .col-sm-3 homeEvent">
 		<h2 class="eventHeader">Springfield Dragon Boat Festival</h2>
 		<h4> 6/25 </h4>
-	</div>
-
+	</div> -->
+	<div ng-init="fetchEvents">
+	<div ng-repeat="event in alltheEvents"  role="button" ng-click="assignEvent(  event.id  )" class=".col-xs-6 .col-sm-3 homeEvent">
+		<h4> {{ event.event_name }} <h4>
+			<p> {{ event.begin_date }} to {{ event.end_date }} </p>
+</div>
+</div>
 	<!-- <button ng-click="showEvent()">View Event</button>
 	<button ng-click="assignEvent('1')">Assign Event = Corgi </button>
 	<button ng-click="assignEvent('2')">Assign Event = Pit Bull</button>

@@ -11,7 +11,7 @@ if(process.env.DATABASE_URL !== undefined) {
  } else {
      connectionString = 'postgres://localhost:5432/groupDB';
  }
- console.log("connectionString set to: ", connectionString);
+ // console.log("connectionString set to: ", connectionString);
 
 // Handles Ajax request for user information if user is authenticated
 router.get('/', function(req, res) {

@@ -110,38 +110,52 @@
     <md-tab label="Select Event">
         <md-content class="md-padding">
 
-    <h3 align="center">Select An Event To Administer</h3>
+            <h3 align="center">Select An Event To Administer</h3>
+
+            <div ng-init="pageLoad()"></div>
+
+          <div class="row">
+            <div class="container">
+              <div class="col-md-12">
+            <form name="userForm">
+              <div layout-gt-sm="row">
+
+              <md-input-container class="md-block" flex-gt-lg>
+                <label>Choose an Event</label>
+                <md-select ng-model="eventChosen">
+                  <md-option ng-repeat="thing in alltheEvents track by $index" value="{{thing.id}}">
+                    {{thing.event_name}} ({{thing.begin_date | date: "MM-dd-yyyy"}} - {{thing.end_date | date: "MM-dd-yyyy"}})
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="container">
+          <div col="col-md-12">
+              {{eventChosen}}
+          </div>
+        </div>
+      </div>
 
 
-    <div ng-init="pageLoad()">
-  	<div ng-repeat="event in alltheEvents"  role="button" ng-click="assignEvent(  event.id  )" class="col-xs-1 col-sm-1 homeEvent">
+
+<!--
+
+
+  	<div ng-repeat="event in alltheEvents"  role="button" ng-click="assignEvent(  event.id  )" class="col-md-6 adminEvent">
   		<h4> {{ event.event_name }} <h4>
   			<p> {{ event.begin_date }} to {{ event.end_date }} </p>
-  </div>
+
+  </div> -->
 
 
-    <!-- <div class="upcomingEvents" ng-init="pageLoad()"> -->
-      <!-- Replace with ng-repeat of current events. One function only ( assignEvent() )   -->
-      <!-- <div role="button" ng-repeat="for thing in events track by $index" class=".col-xs-4 .col-sm-3 selectEvent">
-          <h2 class="eventHeader">{{thing.event_name}}</h2>
-      </div> -->
 
-    	<!-- <div role="button" ng-click="selectEvent(event.id)" class=".col-xs-4 .col-sm-3 selectEvent">
-    		<h2 class="eventHeader">Quebec Cup</h2>
-    		<h4> 6/25 </h4>
-    	</div> -->
-    	<!-- <div role="button" ng-click="selectEvent(eventId)" class=".col-xs-4 .col-sm-3 selectEvent">
-    		<h2 class="eventHeader">Riverfront Dragon Boat & Asian Festival</h2>
-    		<h4> 6/25 </h4>
-    	</div>
-    	<div role="button" ng-click="selectEvent(eventId)" class=".col-xs-4 .col-sm-3 selectEvent">
-    		<h2 class="eventHeader">Montreal Challenge</h2>
-    		<h4> 6/25 </h4>
-    	</div>
-    	<div role="button" ng-click="selectEvent(eventId)" class=".col-xs-4 .col-sm-3 selectEvent">
-    		<h2 class="eventHeader">Springfield Dragon Boat Festival</h2>
-    		<h4> 6/25 </h4>
-    	</div> -->
+
+
 
          </md-content>
     </md-tab>
@@ -158,15 +172,14 @@
                   <p>{{event.event_name}}</p>
                   <p>{{event.address_one}}, {{event.address_two}}</p>
                   <p>{{eventList.event_city}}, {{event.event_state_province}}</p>
-                  <p>Event website: {{event.event_url}}</p>
-                  <p>Schedule website: {{event.event}}</p>
+                  <p>Event website: <a href="{{event.event_url}}" target="_blank"> {{event.event_url}}</a></p>
+                  <p>Schedule website:<a href="event.event" target="_blank">{{event.event}}</a></p>
                   <p>{{event.begin_date}} - {{event.end_date}}</p>
                   <p>{{event.company}}</p>
-                  <p>Results website: {{event.results_url}}</p>
+                  <p>Results website:<a href="event.results_url" target="_blank">{{event.results_url}}</a></p>
                   <p>Notes: {{event.notes_events}}</p>
                 </h4>
             </div> <!--end row - Event Information-->
-
               <p ng-show="surveyList.length==0">No survey results available.</p>
               <table class="table table-striped">
                 <thead>
@@ -246,7 +259,6 @@
                 <p ng-show="hotel.length==0">No hotels available.</p>
                   <table class="table table-striped">
                     <thead>
-                      <th>Hotel Id</th>
                       <th>Hotel Name</th>
                       <th>Address</th>
                       <th>City</th>
@@ -256,6 +268,8 @@
                       <th>Website</th>
                       <th>Notes</th>
                     </thead>
+                    <p><b>Event Website:</b></p>
+
                      <tr ng-repeat="hotel in hotels | orderBy:hotel_name">
                        <td>{{hotel.hotel_name}}</td>
                        <td>{{hotel.hotel_address}}</td>
@@ -263,7 +277,7 @@
                        <td>{{hotel.hotel_state_province}}</td>
                        <td>{{hotel.hotel_zip}}</td>
                        <td>{{hotel.hotel_phone}}</td>
-                       <td>{{hotel.hotel_url}}</td>
+                       <td><a href="{{hotel.hotel_url}}" target="_blank">{{hotel.hotel_url}}</a></td>
                        <td>{{hotel.hotel_notes}}</td>
                        <td class="hotelButtons"><button type="button" class="btn btn-danger" ng-click= "deleteHotel(hotel.id)">Delete Hotel</button></td>
                      </tr>
@@ -275,73 +289,175 @@
 
 
 
+<!-- OLD CODE -->
+
+  <!-- TAB 4 // HOTEL BUILDER -->
+    <md-tab label="Hotel Room Builder">
+        <md-content class="md-padding">
+          <div class="row" ng-controller="adminController"> <!-- begin hotel information -->
+            <p ng-show="hotel.length==0">No hotels available.</p>
+
+    <!-- ADD ROOM -->
+
+            <div class="panel panel-default createRoomContainer">
+               <div class="panel-heading">
+                <h1 class="panel-title">Add Hotel Room</h1>
+               </div>
+               <div class="panel-body">
+                 <!-- ROW 1 -->
+                  <div class="row">
+                    <!-- <div class="col-sm-6">
+                      <div class="form-group">
+                         <label class="control-label">Hotel ID (temporary field)</label>
+                         <input class="form-control" type= "text" ng-model= "hotels_id" value= "" >
+                       </div> -->
+                     </div>
+                     <div class="col-sm-6">
+                       <div class="form-group">
+                         <label class="control-label">Event ID (temporary field)</label>
+                         <input class="form-control" type= "text" ng-model= "events_id" value= "" >
+                       </div><!--end group-->
+                     </div> <!--end col-->
+                   </div> <!-- ends row -->
+
+                                  <div class="row">
+                                    <div class="col-sm-4">
+                                      <div class="form-group">
+                                         <label class="control-label">Room Type</label>
+                                         <input class="form-control" type= "text" ng-model= "room_type" value= "" >
+                                       </div> <!--end group-->
+                                     </div><!--end col-->
+                                     <div class="col-sm-4">
+                                       <div class="form-group">
+                                         <label class="control-label">Capacity</label>
+                                         <input class="form-control" type= "text" ng-model= "capacity" value= "" >
+                                       </div><!--end group-->
+                                     </div> <!--end col-->
+                                     <div class="col-sm-4">
+                                       <div class="form-group">
+                                         <label class="control-label">Price</label>
+                                         <input class="form-control" type= "text" ng-model= "price" value= "" >
+                                       </div> <!--end group-->
+                                     </div> <!--end col-->
+
+                                   </div> <!-- end row -->
+                                    <div class="row">
+                                      <div class="col-sm-3">
+                                         <div class="form-group">
+                                             <label class="control-label">Check In Date</label>
+                                             <input class="form-control" ng-model= "check_in" value= "" type= "date" ui-date="{dateFormat: 'yyyy-mm-dd'}">
+                                         </div>  <!--end group-->
+                                      </div> <!--end col-->
+                                      <div class="col-sm-3">
+                                         <div class="form-group">
+                                             <label class="control-label">Check Out Date</label>
+                                             <input class="form-control" ng-model= "check_out" value= "" type= "date" ui-date="{dateFormat: 'yyyy-mm-dd'}">
+                                         </div>  <!--end group-->
+                                      </div> <!--end col-->
+                                      <div class="col-sm-6">
+
+                                     <div class="form-group">
+                                       <label class="control-label">Notes</label>
+                                       <input class="form-control" type= "text" ng-model= "notes" value= "" >
+                                     </div>  <!--end group-->
+                                  </div> <!--end col-->
+                                </div> <!-- end row -->
+                               <button type="button" name="addRoomButton" ng-click= "addRoom()" >Add Room</button>
+
+                           </div>  <!-- end createRoomContainer -->
+
+
+
+
+<!--NEW CODE that doesn't work -->
+
 <!-- TAB 4 // HOTEL BUILDER -->
-  <md-tab label="Hotel Room Builder">
+  <!-- <md-tab label="Hotel Room Builder">
       <md-content class="md-padding">
-        <div class="row" ng-controller="adminController"> <!-- begin hotel information -->
-          <p ng-show="hotel.length==0">No hotels available.</p>
+        <div class="row" ng-controller="adminController">  -->
+          <!-- begin hotel information -->
+          <!-- <p ng-show="hotel.length==0">No hotels available.</p> -->
 
   <!-- ADD ROOM -->
-               <!-- ROW 1 -->
-                <div class="row">
-                  <div class="col-sm-6">
+      <!-- ROW 1 -->
+                <!-- <div class="row"> -->
+                  <!-- <div class="col-sm-6">
                     <div class="form-group">
                        <label class="control-label">Hotel ID (temporary field)</label>
                        <input class="form-control" type= "text" ng-model= "hotels_id" value= "" >
-                     </div> <!--end group-->
-                   </div><!--end col-->
-                   <div class="col-sm-6">
+                     </div>
+                   </div> -->
+                   <!-- <div class="col-sm-6">
                      <div class="form-group">
                        <label class="control-label">Event ID (temporary field)</label>
                        <input class="form-control" type= "text" ng-model= "events_id" value= "" >
-                     </div><!--end group-->
-                   </div> <!--end col-->
-                 </div> <!-- ends row -->
+                     </div> -->
+                     <!--end group-->
+                   <!-- </div>  -->
+                   <!--end col-->
+                 <!-- </div>  -->
+                 <!-- ends row -->
 
-               <div class="row">
+               <!-- <div class="row">
                  <div class="col-sm-4">
                     <div class="form-group">
                      <md-input-container md-no-float class="md-block">
                        <input ng-model="room_type" placeholder="Room Type">
-                     </md-input-container>
-                    </div> <!--end group-->
-                 </div><!--end col-->
-                  <div class="col-sm-4">
+                     </md-input-container> -->
+                    <!-- </div> -->
+                     <!--end group-->
+                 <!-- </div> -->
+                 <!--end col-->
+                  <!-- <div class="col-sm-4">
                     <div class="form-group">
                      <md-input-container md-no-float class="md-block">
                        <input ng-model="capacity" placeholder="Capacity">
-                     </md-input-container>
-                    </div> <!--end group-->
-                  </div> <!--end col-->
-                  <div class="col-sm-4">
+                     </md-input-container> -->
+                    <!-- </div>  -->
+                    <!--end group-->
+                  <!-- </div>  -->
+                  <!--end col-->
+                  <!-- <div class="col-sm-4">
                     <div class="form-group">
                      <md-input-container md-no-float class="md-block">
                        <input ng-model="price" placeholder="Price">
-                     </md-input-container>
-                    </div> <!--end group-->
-                  </div> <!--end col-->
-                </div> <!-- end row -->
+                     </md-input-container> -->
+                    <!-- </div> -->
+                     <!--end group-->
+                  <!-- </div>  -->
+                  <!--end col-->
+                <!-- </div>  -->
+                <!-- end row -->
 
-                 <div class="row">
+                 <!-- <div class="row">
                    <div class="col-sm-3">
                       <div class="form-group">
-                          <md-datepicker ng-model="check_in" md-placeholder="Check In Date"></md-datepicker>
-                      </div>  <!--end group-->
-                   </div> <!--end col-->
-                   <div class="col-sm-3">
+                          <md-datepicker ng-model="check_in" md-placeholder="Check In Date"></md-datepicker> -->
+                      <!-- </div>  -->
+                       <!--end group-->
+                   <!-- </div> -->
+
+                   <!--end col-->
+                   <!-- <div class="col-sm-3">
                       <div class="form-group">
-                        <md-datepicker ng-model="check_out" md-placeholder="Check Out Date"></md-datepicker>
-                      </div>  <!--end group-->
-                   </div> <!--end col-->
-                   <div class="col-sm-6">
+                        <md-datepicker ng-model="check_out" md-placeholder="Check Out Date"></md-datepicker> -->
+                      <!-- </div>  -->
+                       <!--end group-->
+                   <!-- </div>  -->
+                   <!--end col-->
+                   <!-- <div class="col-sm-6">
                      <div class="form-group">
                        <md-input-container md-no-float class="md-block">
                          <textarea ng-model="notes" md-maxlength="150" rows="3" placeholder="Hotel Notes"></textarea>
-                       </md-input-container>
-                     </div>  <!--end group-->
-                  </div> <!--end col-->
-                </div> <!-- end row -->
-               <button type="button" class="createEventButton btn-lg btn-block" name="addRoomButton" ng-click= "addRoom()" >Add Room</button>
+                       </md-input-container> -->
+                     <!-- </div>  -->
+                      <!--end group-->
+                  <!-- </div>  -->
+
+                  <!--end col-->
+                <!-- </div>  -->
+                <!-- end row -->
+               <!-- <button type="button" class="createEventButton btn-lg btn-block" name="addRoomButton" ng-click= "addRoom()" >Add Room</button> -->
           <br>
           <br>
           <br>
@@ -362,12 +478,13 @@
                     <td><span editable-text="record.id" e-form="rowform" e-required>{{ record.id }}</span></td>
                     <td><span editable-text="record.room_number" e-form="rowform" e-required>{{ record.room_number }}</span></td>
                     <td><span editable-text="record.room_type" e-form="rowform" e-required>{{ record.room_type }}</span></td>
-                    <td><span editable-text="record.capacity" e-form="rowform" e-required>{{ record.capacity }}</span></td>
+                    <td>{{ record.capacity }}</td>
+                    <!-- <td><span editable-text="record.capacity" e-form="rowform" e-required>{{ record.capacity }}</span></td> -->
                     <td><span editable-text="record.price" e-form="rowform" e-required>{{ record.price }}</span></td>
                     <td><span editable-date="record.check_in" e-form="rowform" e-required>{{ (record.check_in | date: "MM-dd-yyyy") }}</span></td>
                     <td><span editable-date="record.check_out" e-form="rowform" e-required>{{ (record.check_out | date: "MM-dd-yyyy")}}</span></td>
                     <td><span editable-text="record.notes" e-form="rowform" e-required>{{ record.notes }}</span></td>
-
+                  </tr>
                     <td style="white-space:nowrap">
                       <form editable-form name="rowform" onaftersave="makeSqlHappy(record.room_number, record.room_type, record.capacity, record.price, record.check_in, record.check_out, record.notes, record.id )" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == record">
 
@@ -382,10 +499,12 @@
                         <button class="btn btn-primary" ng-click="rowform.$show()">Edit</button>
                         <button class="btn btn-primary" ng-click="deleteRoom(record.id)">Delete</button>
                       </div>
-                  </td>
-                </table>
+                  </td> <!-- end buttons in row -->
+                  <button type="submit" ng-click= "createSlots()" class="btn btn-primary">Create Room Slots</button>
 
-      </div><!-- end hotel information -->
+                </table> <!-- end table showing rooms -->
+
+      </div><!-- end tab 4 controller -->
      </md-content>
     </md-tab>
 

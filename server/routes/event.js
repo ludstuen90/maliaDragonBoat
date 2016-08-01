@@ -34,7 +34,18 @@ router.get( '/eventPopulate', function( req, res ) {
   });
 });
 
-
+router.put( '/tableUpdate', function( req, res ) {
+  pg.connect( connectionString, function( err, client, done ) {
+    if( err ) {
+      console.log( 'Unable to update table.' );
+    }else {
+    client.query( "UPDATE events SET active = FALSE WHERE end_date < now();" );
+    console.log( "Table Update query successful." );
+    res.send( true );
+    done();
+  }
+  });
+});
 
 
 
@@ -85,12 +96,5 @@ router.get('/eventRequest', function (req, res){
     }
     });
   });
-
-  // router.get( '/specialRoute', function( req, res ) {
-  //   var idArray = [];
-  //   pg.connect( connectionString, function( err, client, done ) {
-  //     client.query( "SEQUEL SYNTAX TO BE USED, ONCE WE DETERMINE WHAT WE WANT FROM THE DATABASE." );
-  //   });
-  // });
 
 module.exports = router;

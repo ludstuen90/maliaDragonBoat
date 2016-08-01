@@ -289,6 +289,10 @@ md-tabs.md-dynamic-height md-tabs-content-wrapper {
   margin-right: auto;
 }
 
+#homeEventDisplay {
+  background-color: lightblue;
+}
+
 .active {
   background-color: #13647F;
   color: white;

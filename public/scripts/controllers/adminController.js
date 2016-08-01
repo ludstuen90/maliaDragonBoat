@@ -288,6 +288,8 @@ $http({   // gets recordset via GET
 ); // end then response
 }; // end showRoom function
 
+
+
 $scope.deleteSlots = function(recordid) {
   console.log("in deleteSlots", recordid);
 

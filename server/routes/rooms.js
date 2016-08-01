@@ -35,11 +35,12 @@ router.post('/addRoom', function(req, res){
   });
 });
 
+var selectedRoom = [];
 
 router.post('/getRoom', function(req, res) { // pulling selected room info from database to display on room picker
     console.log("in router.post  /getroom");
     console.log(req.body);
-    var selectedRoom = [];  // resets array to empty for new room  --> NOT ANYMORE.
+    selectedRoom = [];  // resets array to empty for new room  --> NOT ANYMORE.
     pg.connect(connectionString, function(err, client, done) {  // connecting to disinfectants database
       if (err) {     // check for errors
       console.log(err);
@@ -61,7 +62,6 @@ router.post('/getRoom', function(req, res) { // pulling selected room info from 
 
 
 router.get( '/showRoom', function( req, res ){  // makes returned room info available to room assigner
-  var selectedRoom = [];
       console.log("in showRoom function in app: ", selectedRoom);
       return res.json(selectedRoom);
   }); // end  /showRoom function

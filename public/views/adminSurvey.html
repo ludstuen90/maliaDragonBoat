@@ -103,7 +103,7 @@
                        <td>{{hotel.hotel_phone}}</td>
                        <td>{{hotel.hotel_url}}</td>
                        <td>{{hotel.hotel_notes}}</td>
-                       <td class="hotelButtons"> <button type="button" class="btn btn-primary" ng-click= "assignHotel(hotel.id)">Assign</button><button type="button" class="btn btn-danger" ng-click= "deleteHotel(hotel.id)">Delete Hotel</button></td>
+                       <td class="hotelButtons"><button type="button" class="btn btn-danger" ng-click= "deleteHotel(hotel.id)">Delete Hotel</button></td>
                      </tr>
                   </table>
 
@@ -205,25 +205,27 @@
                      </div><!--end group-->
                    </div> <!--end col-->
                  </div> <!-- ends row -->
+                 
                <div class="row">
-                           <div class="col-sm-4">
-                             <div class="form-group">
-                                <label class="control-label">Room Type</label>
-                                <input class="form-control" type= "text" ng-model= "room_type" value= "" >
-                              </div> <!--end group-->
-                            </div><!--end col-->
-                            <div class="col-sm-4">
-                              <div class="form-group">
-                                <label class="control-label">Capacity</label>
-                                <input class="form-control" type= "text" ng-model= "capacity" value= "" >
-                              </div><!--end group-->
-                            </div> <!--end col-->
-                            <div class="col-sm-4">
-                              <div class="form-group">
-                                <label class="control-label">Price</label>
-                                <input class="form-control" type= "text" ng-model= "price" value= "" >
-                              </div> <!--end group-->
-                            </div> <!--end col-->
+                 <div class="col-sm-4">
+                   <div class="form-group">
+                      <label class="control-label">Room Type</label>
+                      <input class="form-control" type= "text" ng-model= "room_type" value= "" >
+                    </div> <!--end group-->
+                  </div><!--end col-->
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label class="control-label">Capacity</label>
+                      <input class="form-control" type= "text" ng-model= "capacity" value= "" >
+                    </div><!--end group-->
+                  </div> <!--end col-->
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label class="control-label">Price</label>
+                      <input class="form-control" type= "text" ng-model= "price" value= "" >
+                    </div> <!--end group-->
+                  </div> <!--end col-->
+
                 </div> <!-- end row -->
                  <div class="row">
                    <div class="col-sm-3">

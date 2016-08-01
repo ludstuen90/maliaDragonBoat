@@ -84,7 +84,6 @@ function ( $scope, $http ) {
         notes_survey_room: $scope.notes_survey_room,
         events_id: sessionStorage.getItem("eventId")
 
-        // room_preference:
         // events_id: sessionStorage.getItem("eventId")
       }; // end object
 

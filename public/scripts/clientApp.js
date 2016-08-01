@@ -28,7 +28,7 @@ DRGNBT.config(['$routeProvider', function($routeProvider, $locationProvider) {
     })
     .when('/home', {
       templateUrl: '/views/home.html',
-      controller: "homeController"
+      controller: 'homeController'
     })
     // Route for the adminSurvey page
     .when('/adminSurvey', {

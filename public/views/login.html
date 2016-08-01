@@ -4,12 +4,29 @@
   <h2 class="login-header">WELCOME</h2>
   <h1 class="lead alert alert-danger" role="alert" ng-if="message != ''">{{message}}</h2>
 
-  <form ng-submit="login()" class="login-container">
+  <!-- <form ng-submit="login()" class="login-container"> -->
+  <form ng-submit="login()" class="md-whiteframe-1dp">
 
     <img src="/assets/images/malia-logo-2013.gif" alt="logo" class="formLogo"/>
 
-    <p><input type="username" placeholder="USERNAME" ng-model="user.username"></p>
-    <p><input type="password" placeholder="PASSWORD" ng-model="user.password"></p>
+    <md-input-container class="md-block">
+      <label>Username</label>
+      <input required name="username" ng-model="user.username">
+      <div ng-messages="username.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <label>Password</label>
+      <input required name="password" type="password" ng-model="user.password">
+      <div ng-messages="password.$error">
+        <div ng-message="required">This is required.</div>
+      </div>
+    </md-input-container>
+
+    <!-- <p><input type="username" placeholder="USERNAME" ng-model="user.username"></p>
+    <p><input type="password" placeholder="PASSWORD" ng-model="user.password"></p> -->
     <p><input type="submit" value="LOG IN"></p>
 
     <p><a type="submit" class="reg" href="#register">REGISTER</a></p>

@@ -89,6 +89,8 @@ router.post('/assignHotel', function (req, res){
   pg.connect(connectionString, function(err, client, done){
     client.query("INSERT INTO events ");
   });
+
+  res.sendStatus(200);
 });
 
 module.exports = router;

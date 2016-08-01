@@ -16,7 +16,22 @@ $scope.hello = function(){
     sessionStorage.setItem("username", response.data);
   });
 
+$scope.fetchEvents = function(){
+  $http({
+    method: 'GET',
+    url: '/eventPopulate'
+  }).then( function( response ) {
+    $scope.alltheEvents = separator( response.data );
+    console.log( response.data );
+  });
+};
+$scope.fetchEvents();
 
+var separator = function( array ) {
+  for( i = 0; i < array.length; i++ ) {
+  return event;  
+  }
+};
 
 
 

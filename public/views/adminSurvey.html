@@ -2,6 +2,37 @@
 <br>
 <md-content ng-controller="adminController">
   <md-tabs md-dynamic-height md-border-bottom>
+
+<!-- TAB 1 SELECT EVENT -->
+    <md-tab label="Select Event">
+        <md-content class="md-padding">
+
+    <h3 align="center">Select An Event To Administer</h3>
+
+    <div class="upcomingEvents">
+      <!-- Replace with ng-repeat of current events. One function only ( assignEvent() )   -->
+    	<div role="button" ng-click="selectEvent(event.id)" class=".col-xs-4 .col-sm-3 selectEvent">
+    		<h2 class="eventHeader">Quebec Cup</h2>
+    		<h4> 6/25 </h4>
+    	</div>
+    	<div role="button" ng-click="selectEvent(eventId)" class=".col-xs-4 .col-sm-3 selectEvent">
+    		<h2 class="eventHeader">Riverfront Dragon Boat & Asian Festival</h2>
+    		<h4> 6/25 </h4>
+    	</div>
+    	<div role="button" ng-click="selectEvent(eventId)" class=".col-xs-4 .col-sm-3 selectEvent">
+    		<h2 class="eventHeader">Montreal Challenge</h2>
+    		<h4> 6/25 </h4>
+    	</div>
+    	<div role="button" ng-click="selectEvent(eventId)" class=".col-xs-4 .col-sm-3 selectEvent">
+    		<h2 class="eventHeader">Springfield Dragon Boat Festival</h2>
+    		<h4> 6/25 </h4>
+    	</div>
+
+         </md-content>
+    </md-tab>
+
+<!-- TAB 2 SURVEY RESULTS -->
+
     <md-tab label="Survey Results">
         <md-content class="md-padding">
 
@@ -45,7 +76,7 @@
              </md-content>
         </md-tab>
 
-<!-- SECOND TAB // HOTEL LIST -->
+<!-- TAB 3 // HOTEL LIST -->
         <md-tab label="Hotel List">
             <md-content class="md-padding">
 
@@ -146,12 +177,11 @@
 
 
 
-<!-- THIRD TAB // HOTEL BUILDER -->
+<!-- TAB 4 // HOTEL BUILDER -->
   <md-tab label="Hotel Room Builder">
       <md-content class="md-padding">
         <div class="row" ng-controller="adminController"> <!-- begin hotel information -->
           <p ng-show="hotel.length==0">No hotels available.</p>
-          <h4>Add Hotel Room</h4>
 
   <!-- ADD ROOM -->
 

@@ -2,12 +2,11 @@ DRGNBT.controller('adminController', ['$scope', '$http', '$window', '$filter', f
 console.log('in adminController');
     var objectToSend={}; // creates global object to send
 
-
-
     $scope.assignEvent = function(eventId){
         console.log(eventId);
         sessionStorage.setItem("eventId", eventId);
       $scope.mango = sessionStorage.getItem("eventId");
+      console.log("mango is: ", $scope.mango);
       // console.log("We have saved mango as ", $scope.mango);
     };
 
@@ -64,45 +63,36 @@ console.log('in adminController');
 }; //end createEvent function
 
 
-    $scope.eventList=[];
-
+    // $scope.eventList=[];
+$scope.events = '';
      $scope.eventRequest = function() { // gets info for current event to display on for Admin survey page
        console.log("in eventRequest function in adminController");
        event.preventDefault();
        $http({   // gets recordset via GET
          method: 'GET',
          url: '/eventRequest',
-       }).then( function(response){  // success call - runs function with response parameter
-       // console.log(response.data);
-         eventList = response.data;  // pulls the data from server and sets to global var eventList
-         console.log($scope.eventList);
+       }).then(function(response){  // success call - runs function with response parameter
+         $scope.events = response.data;  // pulls the data from server and sets to global var eventList
+         console.log($scope.events);
        }, function myError(response){
          console.log(response.statusText);
-       }// end error function
-       ); // end then response
+       }); // end then response
      }; // end eventRequest function
-
-     var surveyList=[];
+$scope.eventRequest();
+    //  var $scope.surveyList = [];
 
      $scope.surveyRequest = function() { // gets survey results for current event for Admin survey page
-       console.log("in surveyRequest function in adminController");
-       event.preventDefault();
        $http({   // gets recordset via GET
          method: 'GET',
-         url: '/surveyRequest',
-       }).then( function(response){  // success call - runs function with response parameter
-       // console.log(response.data);
-         surveyList = response.data;  // pulls the data from server and sets to global var surveyList
-         console.log($scope.surveyList);
-       }, function myError(response){
-         console.log(response.statusText);
-       }// end error function
-     ); // end then response
+         url: '/surveyResults',
+       }).then(function(response){  // success call - runs function with response parameter
+         $scope.surveyList = response.data;  // pulls the data from server and sets to global var surveyList
+       }); // end then response
      }; // end surveyRequest function
-
+$scope.surveyRequest();
     //  $scope.eventAndSurveyRequest = function() {  //runs both eventRequest and surveyRequest queries to display event and survey results on adminSurvey.html
-    //    eventRequest();
-    //    surveyRequest();
+    //    $scope.eventRequest();
+    //    $scope.surveyRequest();
     //  };
 
      var hotelList=[];
@@ -152,7 +142,7 @@ console.log('in adminController');
        }// end error function
        ); // end then response
      }; // end hotelRequest function
-$scope.hotelRequest();
+// $scope.hotelRequest();
 
 $scope.deleteHotel = function(hotelID){
   console.log('in delete hotel');
@@ -166,7 +156,7 @@ $scope.deleteHotel = function(hotelID){
     $scope.hotelRequest();
   });
 };
-
+//GOTTA FINISH BUILDING THIS OUT LATER
 $scope.assignHotel = function(hotelID){
   console.log('in assignHotel');
   var sendID = {id : hotelID};
@@ -184,14 +174,17 @@ $scope.assignHotel = function(hotelID){
 
 // TAB FUNCTIONALITY ----------------------------------
      $scope.tabs = [{
+            title: 'Select Event',
+            url: 'one.tpl.html'
+        }, {
              title: 'Survey Results',
-             url: 'one.tpl.html'
-         }, {
-             title: 'Hotel List',
              url: 'two.tpl.html'
          }, {
-             title: 'Hotel Room Builder',
+             title: 'Hotel List',
              url: 'three.tpl.html'
+         }, {
+             title: 'Hotel Room Builder',
+             url: 'four.tpl.html'
      }];
 
      $scope.currentTab = 'one.tpl.html';
@@ -317,7 +310,59 @@ $http({
 // END XEDITABLE ROOM ASSIGNER CODE -----------------
 
 
+    $scope.selectEvent = function(eventId) {
+      // assignEvent(eventId);
+      console.log("in selectEvent assignEvent complete");
+       $scope.currentTab = 'two.tpl.html';
+    };
 
+    $scope.getRoom2 = function() {
+      console.log("in getRoom2 function in adminController");
+      console.log($scope.events_id);
+      roomsToGet = {
+        events_id : $scope.events_id,
+      };
+      console.log(roomsToGet);
+      $http({   // gets recordset via POST
+        method: 'POST',
+        url: '/getRoom2',
+        data: roomsToGet
+      }).then(function() {
+        $scope.showRoom2();
+      });
+    }; // end getRoom function
+
+    $scope.showRoom2 = function() {
+    console.log("in show room function in adminController");
+    $http({   // gets recordset via GET
+      method: 'GET',
+      url: '/showRoom2',
+    }).then( function(response){  // success call - runs function with response parameter
+      $scope.roomToShow = response.data;
+      console.log($scope.roomToShow);
+      getSlots();
+    }, function myError(response){
+      console.log(response.statusText);
+    }// end error function
+    ); // end then response
+    }; // end showRoom function
+
+    var roomSlots={};
+
+    $scope.createSlots = function() {
+      console.log("in createSlots function in adminController");
+            roomSlots = {
+              capacity : $scope.capacity,
+              room_id : $scope.room_id
+            };
+      console.log(roomSlots);
+      $http({
+        method: 'POST',
+        url: '/createSlots',
+        data: roomSlots
+      }).then(function(){
+      });
+    };
 
 
 

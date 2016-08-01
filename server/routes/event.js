@@ -19,7 +19,7 @@ if(process.env.DATABASE_URL !== undefined) {
 router.get( '/eventPopulate', function( req, res ) {
   var activeEvents = [];
   pg.connect( connectionString, function( err, client, done ) {
-    var query = client.query( "SELECT * FROM events WHERE active = TRUE;" );
+    var query = client.query( "SELECT * FROM events WHERE active = TRUE ORDER BY begin_date ASC;" );
     if( err ) {
       console.log( "Unable to retrieve event info." );
     } else {

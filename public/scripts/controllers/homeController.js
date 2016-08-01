@@ -18,6 +18,10 @@ $scope.hello = function(){
 
 $scope.fetchEvents = function(){
   $http({
+    method: 'PUT',
+    url: '/tableUpdate'
+  }).then( function() {
+  $http({
     method: 'GET',
     url: '/eventPopulate'
   }).then( function( response ) {
@@ -25,6 +29,7 @@ $scope.fetchEvents = function(){
     console.log('and the response data is: ');
     console.log( response.data );
   });
+});
 };
 $scope.fetchEvents();
 

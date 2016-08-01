@@ -160,6 +160,10 @@ $scope.surveyRequest();
      }; // end hotelRequest function
 // $scope.hotelRequest();
 
+
+// };
+
+
 $scope.deleteHotel = function(hotelID){
   console.log('in delete hotel');
   var sendID = {id: hotelID};
@@ -226,7 +230,7 @@ var roomToSend={};
 $scope.addRoom = function() {
   console.log("in addRoom function in adminController");
   roomToSend = {
-    hotels_id : $scope.hotels_id,
+    // hotels_id : $scope.hotels_id,
     events_id : $scope.events_id,
     room_type : $scope.room_type,
     capacity : $scope.capacity,
@@ -245,7 +249,7 @@ $scope.addRoom = function() {
     $scope.getRoom();
   });
   // CLEARS Room INPUT FIELDS
-  $scope.hotels_id = "";
+  // $scope.hotels_id = "";
   $scope.events_id = "";
     $scope.room_type = "";
     $scope.capacity = "";
@@ -257,11 +261,10 @@ $scope.addRoom = function() {
 
 var roomsToGet;
 
-
 $scope.getRoom = function() {
   console.log("in getRoom function in adminController");
   roomsToGet = {
-    hotels_id : roomToSend.hotels_id,
+    // hotels_id : roomToSend.hotels_id,
     events_id : roomToSend.events_id,
   };
   $http({   // gets recordset via POST
@@ -282,12 +285,20 @@ $http({   // gets recordset via GET
   url: '/showRoom',
 }).then( function(response){  // success call - runs function with response parameter
   $scope.roomToShow = response.data;
-  console.log($scope.roomToShow);
+  console.log("showRoom roomToShow:", $scope.roomToShow);
 }, function myError(response){
   console.log(response.statusText);
 }// end error function
 ); // end then response
 }; // end showRoom function
+
+
+
+$scope.deleteSlots = function(recordid) {
+  console.log("in deleteSlots", recordid);
+
+
+};
 
 $scope.deleteRoom = function(recordid){
   console.log('in delete room', recordid);
@@ -325,13 +336,30 @@ $http({
 };
 // END XEDITABLE ROOM ASSIGNER CODE -----------------
 
+//CREATE ROOM OCCUPANT SLOTS, RUNS ON ADMIN TAB 4 - ADD A HOTEL ROOM
 
+$scope.createSlots = function() {
+  console.log("roomToShow in createSlots: ", $scope.roomToShow);
+  $http({
+    method: 'POST',
+    url: '/createSlots',
+    data: $scope.roomToShow
+    // data: roomSlots
+  }).then(function(){
+  });
+};
+
+
+
+// FUNCTION FOR MOVING FROM ADMIN TAB 1 TO TAB 2 **NOT WORKING**
     $scope.selectEvent = function(eventId) {
       // assignEvent(eventId);
       console.log("in selectEvent assignEvent complete");
        $scope.currentTab = 'two.tpl.html';
     };
 
+
+//ROOM ASSIGNMENT PAGE FUNCTIONS
     $scope.getRoom2 = function() {
       console.log("in getRoom2 function in adminController");
       console.log($scope.events_id);
@@ -363,27 +391,17 @@ $http({
     ); // end then response
     }; // end showRoom function
 
-    var roomSlots={};
-
-    $scope.createSlots = function() {
-      console.log("in createSlots function in adminController");
-            roomSlots = {
-              capacity : $scope.capacity,
-              room_id : $scope.room_id
-            };
-      console.log(roomSlots);
-      $http({
-        method: 'POST',
-        url: '/createSlots',
-        data: roomSlots
-      }).then(function(){
-      });
-    };
-
 
 
 
 $scope.pageLoad = function(){
+
+$http.get('loadHotels').then(function(response){
+  $scope.hotelSelect = response.data;
+  console.log(response.data);
+});
+
+$scope.hotelRequest();
 
 
 

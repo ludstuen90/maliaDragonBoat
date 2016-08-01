@@ -21,17 +21,24 @@ $scope.fetchEvents = function(){
     method: 'GET',
     url: '/eventPopulate'
   }).then( function( response ) {
-    $scope.alltheEvents = separator( response.data );
+    $scope.alltheEvents = response.data;
     console.log( response.data );
   });
 };
 $scope.fetchEvents();
 
-var separator = function( array ) {
-  for( i = 0; i < array.length; i++ ) {
-  return event;  
-  }
-};
+// var separator = function( array ) {
+//   for( i = 0; i < array.length; i++ ) {
+//     var event = {
+//       id: array.id,
+//       name: array.name,
+//       begin: array.begin_date,
+//       end: array.end_date
+//     };
+//     console.log( event );
+//   return event;
+//   }
+// };
 
 
 

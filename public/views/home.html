@@ -28,10 +28,10 @@
 		<h2 class="eventHeader">Springfield Dragon Boat Festival</h2>
 		<h4> 6/25 </h4>
 	</div> -->
-	<div ng-init="fetchEvents" role="button" ng-click="assignEvent( {{ [i]event.id }} )" class=".col-xs-6 .col-sm-3 homeEvent">
-	<div ng-repeat="event in alltheEvents">
-		<h4>{{ event.event_name }}<h4>
-			<p>{{ event.begin_date }} to {{ event.end_date }}</p>
+	<div ng-init="fetchEvents">
+	<div ng-repeat="event in alltheEvents"  role="button" ng-click="assignEvent(  event.id  )" class=".col-xs-6 .col-sm-3 homeEvent">
+		<h4> {{ event.event_name }} <h4>
+			<p> {{ event.begin_date }} to {{ event.end_date }} </p>
 </div>
 </div>
 	<!-- <button ng-click="showEvent()">View Event</button>

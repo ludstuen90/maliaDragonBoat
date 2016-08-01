@@ -1,4 +1,3 @@
-
 <br>
 <br>
 <md-content ng-controller="adminController">
@@ -8,16 +7,18 @@
 
             <div>
               <h4>Event:</h4>
-              <p ng-show="eventList.length==0">No event information available.</p>
-                  <p>{{record.event}}</p>
-                  <p>{{record.addressOne}}, {{record.addressTwo}}</p>
-                  <p>{{record.city}}, {{record.state_province}}</p>
-                  <p>Event website: {{record.event_url}}</p>
-                  <p>Schedule website: {{record.event}}</p>
-                  <p>{{record.begin_date}} - {{record.end_date}}</p>
-                  <p>{{record.company}}</p>
-                  <p>Results website: {{record.results_url}}</p>
-                  <p>Notes: {{record.notes_events}}</p>
+              <p ng-show="events.length==0">No event information available.</p>
+              <h4 ng-repeat = "event in events">
+                  <p>{{event.event_name}}</p>
+                  <p>{{event.address_one}}, {{event.address_two}}</p>
+                  <p>{{eventList.event_city}}, {{event.event_state_province}}</p>
+                  <p>Event website: {{event.event_url}}</p>
+                  <p>Schedule website: {{event.event}}</p>
+                  <p>{{event.begin_date}} - {{event.end_date}}</p>
+                  <p>{{event.company}}</p>
+                  <p>Results website: {{event.results_url}}</p>
+                  <p>Notes: {{event.notes_events}}</p>
+                </h4>
             </div> <!--end row - Event Information-->
 
               <p ng-show="surveyList.length==0">No survey results available.</p>
@@ -31,13 +32,13 @@
                    <th>Notes</th>
                 </thead>
 
-               <tr ng-repeat='record in surveyList | orderBy:username'>  <!-- surveyList is name of array in adminController.js -->
-                 <td> <p>{{username}}</p></td>
-                 <td> <p>{{attendStatus}}</p></td>
-                 <td> <p>{{hotelBlock}}</p></td>
-                 <td> <p>{{roomPreference}}</p></td>
-                 <td> <p>{{numNonPaddlers}}</p></td>
-                 <td> <p>{{notes_survey}}</p></td>
+               <tr ng-repeat="record in surveyList | orderBy:username">
+                 <td>{{record.first_name}} {{record.last_name}}</td>
+                 <td>{{record.attend_status}}</td>
+                 <td>{{record.hotel_status}}</td>
+                 <td>{{record.roommate_option}}</td>
+                 <td>{{record.num_non_paddlers}}</td>
+                 <td>{{record.notes_survey_room}}</td>
                 </tr>
                </table>
 
@@ -62,12 +63,11 @@
                       <th>Website</th>
                       <th>Notes</th>
                     </thead>
-                     <tr ng-repeat='hotel in hotels | orderBy:hotel_name'>  <!-- hotelList is name of array in adminController.js -->
-                       <td>{{hotel.id}}</td>
+                     <tr ng-repeat="hotel in hotels | orderBy:hotel_name">
                        <td>{{hotel.hotel_name}}</td>
                        <td>{{hotel.hotel_address}}</td>
                        <td>{{hotel.hotel_city}}</td>
-                       <td>{{hotel.hotel_state}}</td>
+                       <td>{{hotel.hotel_state_province}}</td>
                        <td>{{hotel.hotel_zip}}</td>
                        <td>{{hotel.hotel_phone}}</td>
                        <td>{{hotel.hotel_url}}</td>
@@ -231,7 +231,7 @@
                       <th>Check Out Date</th>
                       <th>Notes</th>
                   </tr>
-                  <tr ng-repeat='record in roomToShow'>
+                  <tr ng-repeat="record in roomToShow">
                     <td><span editable-text="record.id" e-form="rowform" e-required>{{ record.id }}</span></td>
                     <td><span editable-text="record.room_number" e-form="rowform" e-required>{{ record.room_number }}</span></td>
                     <td><span editable-text="record.room_type" e-form="rowform" e-required>{{ record.room_type }}</span></td>
@@ -255,8 +255,8 @@
                         <button class="btn btn-primary" ng-click="rowform.$show()">Edit</button>
                         <button class="btn btn-primary" ng-click="deleteRoom(record.id)">Delete</button>
                       </div>
-                  </tr>
-                </table>  <!-- end room -->
+                  </td>
+                </table>
 
 
       </div><!-- end hotel information -->

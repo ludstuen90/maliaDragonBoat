@@ -98,6 +98,19 @@ router.post('/saveRoom/:id', function(req, res) {
   }); //end connection
 }); //end /saveroom function
 
+router.delete( '/deleteSlots', function( req, res ){   //DELETE Slots so it will then delete the room
+  pg.connect( connectionString, function( err, client, done ) {
+    console.log( '/deleteSlots route hit.' );
+    if( err ){
+      console.log( 'Failed to delete slots from database.' );
+    } else {
+      client.query( "DELETE FROM occupant_room WHERE rooms_id = $1;", [ req.body.id ] );
+    }
+  });
+  res.sendStatus(200);
+});
+
+
 router.delete( '/deleteRoom', function( req, res ){   //DELETE ROOMS
   pg.connect( connectionString, function( err, client, done ) {
     console.log( '/deleteRoom route hit.' );

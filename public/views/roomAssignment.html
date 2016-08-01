@@ -19,7 +19,6 @@
               <p>Check In Date: {{ (record.check_in | date: "MM-dd-yyyy") }}</p>
               <p>Check Out Date: {{ (record.check_out | date: "MM-dd-yyyy")}}</p>
               <p>Notes: {{ record.notes }}</p>
-              <p>Occupant Slots Go Here</p>
               <div ng-repeat='record in roomSlots'>  <!-- occupant code -->
                 <div editable-text="record.guest_name" e-form="rowform" e-required> {{guest_name}} </div>
               </div> <!-- end occupant code -->

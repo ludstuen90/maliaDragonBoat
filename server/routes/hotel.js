@@ -84,13 +84,33 @@ router.get( '/hotelBlock', function( req, res ) {
     });
   });//end DELETE
 
-router.post('/assignHotel', function (req, res){
-  console.log('in assignHotel');
-  pg.connect(connectionString, function(err, client, done){
-    client.query("INSERT INTO events ");
+  router.get('/loadHotels', function(req, res){
+    console.log('in loadHotels');
+    var hotelGet = [];
+    pg.connect(connectionString, function(err, client, done){
+      if( err ){
+        console.log( err );
+      }
+      else{
+        var queriedHotel = client.query("SELECT * FROM hotels;");
+        queriedHotel.on('row', function(row){
+          hotelGet.push(row);
+        });
+        queriedHotel.on('end', function(){
+          return res.json(hotelGet);
+        });
+        done();
+      } // end no err
+    });
   });
 
-  res.sendStatus(200);
-});
-
+// router.post('/assignHotel', function (req, res){
+//   console.log('in assignHotel');
+//   pg.connect(connectionString, function(err, client, done){
+//     client.query("INSERT INTO events ");
+//   });
+//
+//   res.sendStatus(200);
+// });
+//
 module.exports = router;

@@ -33,6 +33,7 @@ CREATE TABLE events (
  notes_events TEXT,
  results_url TEXT,
  schedule_url TEXT,
+ active BOOLEAN,
  hotel_id int references hotels(id)
  );
 

@@ -27,20 +27,6 @@ $scope.fetchEvents = function(){
 };
 $scope.fetchEvents();
 
-// var separator = function( array ) {
-//   for( i = 0; i < array.length; i++ ) {
-//     var event = {
-//       id: array.id,
-//       name: array.name,
-//       begin: array.begin_date,
-//       end: array.end_date
-//     };
-//     console.log( event );
-//   return event;
-//   }
-// };
-
-
 
 };
 

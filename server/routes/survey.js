@@ -13,7 +13,7 @@ if(process.env.DATABASE_URL !== undefined) {
  } else {
      connectionString = 'postgres://localhost:5432/groupDB';
  }
- console.log("connectionString set to: ", connectionString);
+ // console.log("connectionString set to: ", connectionString);
 
 
 // RESPONSE OTHER ACCOMODATION

@@ -18,13 +18,7 @@ if(process.env.DATABASE_URL !== undefined) {
 
 // RESPONSE OTHER ACCOMODATION
 router.post('/responseNo', function (req, res){
-
-  // console.log("ID of current user is:", req.user.id);
-  console.log('we are in a no response!');
-  console.log('alternatively, ', req.user.id);
-
   var survey = req.body;
-
   // console.log(survey);
   pg.connect(connectionString, function(err, client, done){
     client.query("INSERT INTO survey ( attend_status, user_id, events_id) values ( $1, $2, $3 )",
@@ -36,9 +30,7 @@ router.post('/responseNo', function (req, res){
 
 // RESPONSE OTHER ACCOMODATION
 router.post('/otherAccommodation', function (req, res){
-
   var survey = req.body;
-
   console.log(survey);
   pg.connect(connectionString, function(err, client, done){
     client.query("INSERT INTO survey ( attend_status, user_id, events_id, hotel_status, notes_other_accommodation ) values ( $1, $2, $3, $4, $5 )",
@@ -54,7 +46,6 @@ router.post('/hotel', function (req, res){
   pg.connect(connectionString, function(err, client, done){
     client.query("INSERT INTO survey ( attend_status, user_id, events_id,  hotel_status, roommate_option, num_non_paddlers, notes_survey_room ) values ( $1, $2, $3, $4, $5, $6, $7 )",
     [survey.attend_status, req.user.id, survey.events_id, survey.hotel_status, survey.roommate_option, survey.num_non_paddlers, survey.notes_survey_room ]);
-
     res.send(true);
     done();
   });

@@ -1,13 +1,30 @@
 DRGNBT.controller('adminController', ['$scope', '$http', '$window', '$filter', function($scope, $http, $window, $filter){
-console.log('in adminController');
+// console.log('in adminController');
     var objectToSend={}; // creates global object to send
+
+
 
     $scope.assignEvent = function(eventId){
         console.log(eventId);
         sessionStorage.setItem("eventId", eventId);
       $scope.mango = sessionStorage.getItem("eventId");
       console.log("mango is: ", $scope.mango);
-      // console.log("We have saved mango as ", $scope.mango);
+
+
+        $scope.tabChange = function($scope) {
+          $scope.selectedTab = 0;
+
+         	console.log($scope.selectedTab);
+           $scope.changeNavigation = function() {
+             console.log('Hello World1');
+             $scope.selectedTab = 2;
+           };
+         };
+
+         $scope.tabChange(1);
+
+
+               // console.log("We have saved mango as ", $scope.mango);
     };
 
 
@@ -73,12 +90,11 @@ $scope.events = '';
          url: '/eventRequest',
        }).then(function(response){  // success call - runs function with response parameter
          $scope.events = response.data;  // pulls the data from server and sets to global var eventList
-         console.log($scope.events);
+         console.log('$scope.events is ', $scope.events);
        }, function myError(response){
          console.log(response.statusText);
        }); // end then response
      }; // end eventRequest function
-$scope.eventRequest();
     //  var $scope.surveyList = [];
 
      $scope.surveyRequest = function() { // gets survey results for current event for Admin survey page
@@ -364,6 +380,29 @@ $http({
       });
     };
 
+
+
+
+$scope.pageLoad = function(){
+
+
+
+$scope.fetchEvents = function(){
+  $http({
+    method: 'GET',
+    url: '/eventPopulate'
+  }).then( function( response ) {
+    $scope.alltheEvents = response.data;
+    console.log('and the response data is: ');
+    console.log( response.data );
+  });
+};
+
+$scope.hotelRequest();
+$scope.eventRequest();
+$scope.fetchEvents();
+
+};
 
 
 }]); // end adminController

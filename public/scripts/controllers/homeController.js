@@ -26,6 +26,7 @@ $scope.fetchEvents = function(){
     url: '/eventPopulate'
   }).then( function( response ) {
     $scope.alltheEvents = response.data;
+    console.log('and the response data is: ');
     console.log( response.data );
   });
 });

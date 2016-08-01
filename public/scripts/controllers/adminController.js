@@ -98,6 +98,19 @@ $scope.events = '';
     //  var $scope.surveyList = [];
 
 
+    $scope.data = {
+        cb1: true,
+      };
+
+$scope.changeDial = function(){
+  console.log('button works');
+  console.log($scope.data.cb1);
+  if ($scope.data.cb1 === true) {
+    ($scope.data.cb1 = false);
+  } else {
+    $scope.data.cb1 = true;
+  }
+};
 $scope.subEvent = function(){
   console.log('coffee is the way, and the life');
   console.log($scope.eventChosen);

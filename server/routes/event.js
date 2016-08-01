@@ -16,7 +16,23 @@ if(process.env.DATABASE_URL !== undefined) {
  }
  console.log("connectionString set to: ", connectionString);
 
-
+router.get( '/eventPopulate', function( req, res ) {
+  var activeEvents = [];
+  pg.connect( connectionString, function( err, client, done ) {
+    var query = client.query( "SELECT * FROM events WHERE active = TRUE;" );
+    if( err ) {
+      console.log( "Unable to retrieve event info." );
+    } else {
+    query.on( 'row', function( row ) {
+      activeEvents.push( row );
+    });
+    query.on( 'end', function() {
+      return res.json( activeEvents );
+    });
+    done();
+  }
+  });
+});
 
 
 

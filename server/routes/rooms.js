@@ -17,17 +17,21 @@ if(process.env.DATABASE_URL !== undefined) {
  console.log("connectionString set to: ", connectionString);
 
 // ROOM BUILDER --------------------------------------------------------------------
-var selectedRoom=[];
+// var selectedRoom=[];
 
 
 router.post('/addRoom', function(req, res){
   var room = req.body;
   pg.connect(connectionString, function(err, client, done){
+    if( err ) {
+      console.log( "/addRoom failed." );
+    } else {
     console.log('In addRoom', room);
     client.query("INSERT INTO rooms ( hotels_id, events_id, room_type, capacity, price, check_in, check_out, notes) values ($1, $2, $3, $4, $5, $6, $7, $8)",
     [room.hotels_id, room.events_id, room.room_type, room.capacity, room.price, room.check_in, room.check_out, room.notes]);
     res.send(true);
     done();
+  }
   });
 });
 
@@ -35,8 +39,8 @@ router.post('/addRoom', function(req, res){
 router.post('/getRoom', function(req, res) { // pulling selected room info from database to display on room picker
     console.log("in router.post  /getroom");
     console.log(req.body);
-    selectedRoom = [];  // resets array to empty for new room
-    pg.connect(connectionString, function(err, client, done) {  // connecting
+    var selectedRoom = [];  // resets array to empty for new room  --> NOT ANYMORE.
+    pg.connect(connectionString, function(err, client, done) {  // connecting to disinfectants database
       if (err) {     // check for errors
       console.log(err);
     } else { // start selection criteria
@@ -81,6 +85,7 @@ router.post('/getRoom2', function(req, res) { // pulling selected room info from
 
 
 router.get( '/showRoom', function( req, res ){  // makes returned room info available to room assigner
+  var selectedRoom = [];
       console.log("in showRoom function in app: ", selectedRoom);
       return res.json(selectedRoom);
   }); // end  /showRoom function

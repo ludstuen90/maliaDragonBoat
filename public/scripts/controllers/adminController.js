@@ -1,6 +1,7 @@
 DRGNBT.controller('adminController', ['$scope', '$http', '$window', '$filter', function($scope, $http, $window, $filter){
-console.log('in adminController');
+// console.log('in adminController');
     var objectToSend={}; // creates global object to send
+
 
     $scope.assignEvent = function(eventId){
         console.log(eventId);
@@ -73,12 +74,11 @@ $scope.events = '';
          url: '/eventRequest',
        }).then(function(response){  // success call - runs function with response parameter
          $scope.events = response.data;  // pulls the data from server and sets to global var eventList
-         console.log($scope.events);
+         console.log('$scope.events is ', $scope.events);
        }, function myError(response){
          console.log(response.statusText);
        }); // end then response
      }; // end eventRequest function
-$scope.eventRequest();
     //  var $scope.surveyList = [];
 
      $scope.surveyRequest = function() { // gets survey results for current event for Admin survey page
@@ -364,6 +364,23 @@ $http({
       });
     };
 
+
+
+
+$scope.pageLoad = function(){
+
+$scope.hotelRequest();
+
+
+$scope.eventRequest();
+
+$scope.getEvents = function(){
+  console.log('made it to getEvents!');
+};
+
+$scope.getEvents();
+
+};
 
 
 }]); // end adminController

@@ -11,43 +11,10 @@
 
 </div>
 
-<div class="upcomingEvents">
-	<div role="button" ng-click="assignEvent('1')" class=".col-xs-6 .col-sm-3 homeEvent">
-		<h2 class="eventHeader"></h2>
-		<h4>  </h4>
-	</div>
-	<div role="button" ng-click="assignEvent('2')" class=".col-xs-6 .col-sm-3 homeEvent">
-		<h2 class="eventHeader"></h2>
-		<h4>  </h4>
-	</div>
-	<div role="button" ng-click="assignEvent('3')" class=".col-xs-6 .col-sm-3 homeEvent">
-		<h2 class="eventHeader"></h2>
-		<h4>  </h4>
-	</div>
-	<div role="button" ng-click="assignEvent('4')" class=".col-xs-6 .col-sm-3 homeEvent">
-		<h2 class="eventHeader"></h2>
-		<h4>  </h4>
-	</div>
-	<div role="button" ng-click="assignEvent('1')" class=".col-xs-6 .col-sm-3 homeEvent">
-		<h2 class="eventHeader"></h2>
-		<h4>  </h4>
-	</div>
-	<div role="button" ng-click="assignEvent('2')" class=".col-xs-6 .col-sm-3 homeEvent">
-		<h2 class="eventHeader"></h2>
-		<h4>  </h4>
-	</div>
-	<div role="button" ng-click="assignEvent('3')" class=".col-xs-6 .col-sm-3 homeEvent">
-		<h2 class="eventHeader"></h2>
-		<h4>  </h4>
-	</div>
-	<div role="button" ng-click="assignEvent('4')" class=".col-xs-6 .col-sm-3 homeEvent">
-		<h2 class="eventHeader"></h2>
-		<h4>  </h4>
-	</div>
-
-	<!-- <button ng-click="showEvent()">View Event</button>
-	<button ng-click="assignEvent('1')">Assign Event = Corgi </button>
-	<button ng-click="assignEvent('2')">Assign Event = Pit Bull</button>
-	<button ng-click="assignEvent('3')">Assign Event = Chihuahua</button> -->
-<!-- Words not meant for master -->
+	<div ng-init="fetchEvents">
+	<div ng-repeat="event in alltheEvents"  role="button" ng-click="assignEvent(  event.id  )" class=".col-xs-6 .col-sm-3 homeEvent">
+		<h4> {{ event.event_name }} </h4>
+			<p> {{ event.begin_date }} to {{ event.end_date }} </p>
 </div>
+</div>
+	

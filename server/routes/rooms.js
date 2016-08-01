@@ -24,8 +24,8 @@ router.post('/addRoom', function(req, res){
   var room = req.body;
   pg.connect(connectionString, function(err, client, done){
     console.log('In addRoom', room);
-    client.query("INSERT INTO rooms ( hotels_id, events_id, room_type, capacity, price, check_in, check_out, notes) values ($1, $2, $3, $4, $5, $6, $7, $8)",
-    [room.hotels_id, room.events_id, room.room_type, room.capacity, room.price, room.check_in, room.check_out, room.notes]);
+    client.query("INSERT INTO rooms ( events_id, room_type, capacity, price, check_in, check_out, notes) values ($1, $2, $3, $4, $5, $6, $7)",
+    [ room.events_id, room.room_type, room.capacity, room.price, room.check_in, room.check_out, room.notes]);
     res.send(true);
     done();
   });
@@ -40,32 +40,8 @@ router.post('/getRoom', function(req, res) { // pulling selected room info from 
       if (err) {     // check for errors
       console.log(err);
     } else { // start selection criteria
-         roomInfo=client.query("SELECT * FROM rooms WHERE hotels_id= '" + req.body.hotels_id +"' AND events_id= '" + req.body.events_id + "'");
-         console.log("in /getRoom app: ");
-          rows = 0;
-          roomInfo.on('row', function(row) {  // pushing to array
-            selectedRoom.push(row);
-          });  // end query push
-          roomInfo.on('end', function() {  // sending to scripts
-            console.log("room info from app.post in app", selectedRoom);
-            return res.json(selectedRoom);
-          }); // end products.on function
-          done(); // signals done
-      } // end else (for success)
-    }); // end pg connect function
-}); // end /getRoomfunction
-
-router.post('/getRoom2', function(req, res) { // pulling selected room info from database to display on room picker
-    console.log("in rooms.js getroom2");
-    console.log(req.body);
-    selectedRoom = [];  // resets array to empty for new room
-    pg.connect(connectionString, function(err, client, done) {  // connecting
-      if (err) {     // check for errors
-      console.log(err);
-    } else { // start selection criteria
-        console.log("successful connection in /getroom2");
          roomInfo=client.query("SELECT * FROM rooms WHERE events_id= '" + req.body.events_id + "'");
-         console.log("in /getRoom2 app: ", roomInfo);
+         console.log("in /getRoom app: ");
           rows = 0;
           roomInfo.on('row', function(row) {  // pushing to array
             selectedRoom.push(row);
@@ -129,9 +105,58 @@ router.delete( '/deleteRoom', function( req, res ){   //DELETE ROOMS
   res.sendStatus(200);
 });
 
-router.get( '/showRoom2', function( req, res ){  // makes returned room info available to room assigner
+// CREATES ROOM OCCUPANT SLOTS IN OCCUPANT_ROOMS TABLE, CALLED IN ADMINSURVEY TAB 4
+
+// var slotsArray = [];
+
+router.post('/createSlots', function(req, res){
+  var slots = req.body;
+  console.log('In createSlot', slots);
+  pg.connect(connectionString, function(err, client, done){
+    for (var i=0; i<slots.length; i++) {   // loops thru slotArray
+        for (var j=0; j<slots[i].capacity; j++) {
+          client.query("INSERT INTO occupant_room ( rooms_id ) VALUES ($1)",
+            [ slots[i].id ]);
+        } //end loop thru capacity
+    } // end loop thru slotArray
+    res.send(true);
+    done();
+  });
+});
+
+
+
+
+
+
+//ROOM ASSIGNMENT ROUTES:
+router.post('/getRoom2', function(req, res) { // pulling selected room info from database to display on room assignment page
+    console.log("in rooms.js getroom2");
+    console.log(req.body);
+    selectedRoom = [];  // resets array to empty for new room
+    pg.connect(connectionString, function(err, client, done) {  // connecting
+      if (err) {     // check for errors
+      console.log(err);
+    } else { // start selection criteria
+        console.log("successful connection in /getroom2");
+         roomInfo=client.query("SELECT * FROM rooms WHERE events_id= '" + req.body.events_id + "'");
+         console.log("in /getRoom2 app: ", roomInfo);
+          rows = 0;
+          roomInfo.on('row', function(row) {  // pushing to array
+            selectedRoom.push(row);
+          });  // end query push
+          roomInfo.on('end', function() {  // sending to client
+            console.log("room info from app.post in app", selectedRoom);
+            return res.json(selectedRoom);
+          }); // end products.on function
+          done(); // signals done
+      } // end else (for success)
+    }); // end pg connect function
+}); // end /getRoom2 function
+
+router.get( '/showRoom2', function( req, res ){  // makes returned room info available to room assignment page
       console.log("in showRoom2 function in app: ", selectedRoom);
       return res.json(selectedRoom);
-  }); // end  /showRoom function
+  }); // end  /showRoom2 function
 
 module.exports = router;

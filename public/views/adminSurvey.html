@@ -1,8 +1,10 @@
+
+<br>
+<br>
 <md-content ng-controller="adminController">
   <md-tabs md-dynamic-height md-border-bottom>
     <md-tab label="Survey Results">
         <md-content class="md-padding">
-          <h1 class="md-display-2">Survey Results</h1>
 
             <div>
               <h4>Event:</h4>
@@ -16,18 +18,19 @@
                   <p>{{record.company}}</p>
                   <p>Results website: {{record.results_url}}</p>
                   <p>Notes: {{record.notes_events}}</p>
-              </div> <!--end row - Event Information-->
+            </div> <!--end row - Event Information-->
 
               <p ng-show="surveyList.length==0">No survey results available.</p>
-              <table class="table-bordered">
-               <tr>
-                 <td> <h4>Paddler Name</h4></td>
-                 <td> <h4>Attend Status</h4></td>
-                 <td> <h4>Want In Hotel Block?</h4></td>
-                 <td> <h4>Room Preference</h4></td>
-                 <td> <h4>Number of Non-Paddlers Coming</h4></td>
-                 <td> <h4>Notes</h4></td>
-                 </tr>
+              <table class="table table-striped">
+                <thead>
+                   <th>Paddler Name</th>
+                   <th>Attend Status</th>
+                   <th>Want In Hotel Block?</th>
+                   <th>Room Preference</th>
+                   <th>Number of Non-Paddlers Coming</th>
+                   <th>Notes</th>
+                </thead>
+
                <tr ng-repeat='record in surveyList | orderBy:username'>  <!-- surveyList is name of array in adminController.js -->
                  <td> <p>{{username}}</p></td>
                  <td> <p>{{attendStatus}}</p></td>
@@ -44,12 +47,12 @@
 <!-- SECOND TAB // HOTEL LIST -->
         <md-tab label="Hotel List">
             <md-content class="md-padding">
-              <h1 class="md-display-2">Hotel List</h1>
 
               <div class="row" ng-controller="adminController"> <!-- begin hotel information -->
                 <p ng-show="hotel.length==0">No hotels available.</p>
                   <table class="table table-striped">
                     <thead>
+                      <th>Hotel Id</th>
                       <th>Hotel Name</th>
                       <th>Address</th>
                       <th>City</th>
@@ -58,7 +61,6 @@
                       <th>Phone</th>
                       <th>Website</th>
                       <th>Notes</th>
-                      <th>Assign to Event</th>
                     </thead>
                      <tr ng-repeat='hotel in hotels | orderBy:hotel_name'>  <!-- hotelList is name of array in adminController.js -->
                        <td>{{hotel.id}}</td>
@@ -70,66 +72,89 @@
                        <td>{{hotel.hotel_phone}}</td>
                        <td>{{hotel.hotel_url}}</td>
                        <td>{{hotel.hotel_notes}}</td>
-                       <td class="hotelButtons"> <md-button class="md-raised md-primary" ng-click= "assignHotel(hotel.id)">Assign</md-button><md-button class="md-raised md-warn hotelButtons" ng-click= "deleteHotel(hotel.id)">Delete Hotel</md-button></td>
-                       <!-- <td> <md-button class="md-raised md-warn hotelButtons" ng-click= "deleteHotel(hotel.id)">Delete Hotel</md-button></td> -->
+                       <td class="hotelButtons"> <button type="button" class="btn btn-primary" ng-click= "assignHotel(hotel.id)">Assign</button><button type="button" class="btn btn-danger" ng-click= "deleteHotel(hotel.id)">Delete Hotel</button></td>
                      </tr>
                   </table>
-                     <h4>Add A Hotel</h4><br>
 
-                     <md-input-container class="md-block">
-                       <label>Hotel Name</label>
-                       <input ng-model="hotel_name">
-                     </md-input-container>
-                     <md-input-container class="md-block">
-                       <label>Hotel Address</label>
-                       <input ng-model="hotel_address">
-                     </md-input-container>
-                     <md-input-container class="md-block">
-                       <label>Hotel City</label>
-                       <input ng-model="hotel_city">
-                     </md-input-container>
-                     <md-input-container class="md-block">
-                       <label>Hotel Stat</label>
-                       <input ng-model="hotel_state">
-                     </md-input-container>
-                     <md-input-container class="md-block">
-                       <label>Hotel Zip</label>
-                       <input ng-model="hotel_zip">
-                     </md-input-container>
-                     <md-input-container class="md-block">
-                       <label>Hotel Phone</label>
-                       <input ng-model="hotel_phone">
-                     </md-input-container>
-                     <md-input-container class="md-block">
-                       <label>Hotel Website</label>
-                       <input ng-model="hotel_url">
-                     </md-input-container>
-                     <md-input-container class="md-block">
-                       <label>Hotel Notes</label>
-                       <input ng-model="hotel_notes">
-                     </md-input-container>
+                  <md-input-container md-no-float class="md-block">
+                    <input ng-model="hotel_name" placeholder="Hotel Name">
+                  </md-input-container>
 
-                     <button type="button" name="createHotelButton" ng-click= "newHotel()" >Add Hotel</button>
-                   </div>
+                  <div class="row">
+                     <div class="col-sm-4">
+                       <div class="form-group">
+                         <md-input-container md-no-float class="md-block">
+                           <input ng-model="hotel_address" placeholder="Address">
+                         </md-input-container>
+                       </div>
+                     </div><!-- Col -->
 
-            <button ng-click="showEvent()">Show me the dog!!</button>
 
-          </div>
+                     <div class="col-sm-4">
+                       <div class="form-group">
+                         <md-input-container md-no-float class="md-block">
+                           <input ng-model="hotel_city" placeholder="City">
+                         </md-input-container>
+                      </div>
+                    </div>
+
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <md-input-container md-no-float class="md-block">
+                            <input ng-model="hotel_state" placeholder="State">
+                          </md-input-container>
+                        </div>
+                      </div>
+                    </div> <!-- End of Row -->
+
+                     <div class="row">
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <md-input-container md-no-float class="md-block">
+                              <input ng-model="hotel_zip" placeholder="Zip">
+                            </md-input-container>
+                          </div>
+                        </div>
+
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <md-input-container md-no-float class="md-block">
+                              <input ng-model="hotel_phone" placeholder="Phone">
+                            </md-input-container>
+                          </div>
+                        </div>
+
+                         <div class="col-sm-4">
+                           <div class="form-group">
+                             <md-input-container md-no-float class="md-block">
+                               <input ng-model="hotel_url" placeholder="Website">
+                             </md-input-container>
+                           </div>
+                         </div>
+                      </div><!-- End of Row -->
+                      <!-- Notes -->
+                      <md-input-container md-no-float class="md-block">
+                        <textarea ng-model="hotel_notes" md-maxlength="150" rows="5" placeholder="Hotel Notes"></textarea>
+                      </md-input-container>
+
+                     <button class="createEventButton btn-lg btn-block" type="button" name="createHotelButton" ng-click= "newHotel()" >Add Hotel</button>
+
+              </div>  <!-- End hotel information -->
        </md-content>
   </md-tab>
+
+
 
 <!-- THIRD TAB // HOTEL BUILDER -->
   <md-tab label="Hotel Room Builder">
       <md-content class="md-padding">
-        <h1 class="md-display-2">Tab One</h1>
         <div class="row" ng-controller="adminController"> <!-- begin hotel information -->
           <p ng-show="hotel.length==0">No hotels available.</p>
           <h4>Add Hotel Room</h4>
 
   <!-- ADD ROOM -->
 
-      <script type="text/ng-template" id="three.tpl.html">
-    		<div id="viewThree"  ng-controller="adminController">
           <div class="panel panel-default createRoomContainer">
              <div class="panel-heading">
               <h1 class="panel-title">Add Hotel Room</h1>
@@ -240,8 +265,3 @@
 
   </md-tabs>
 </md-content>
-
-    	</script> <!-- end tab 3 script -->
-    </div>  <!-- end tab 3 controller div -->
-
-  </div><!--end controller-->

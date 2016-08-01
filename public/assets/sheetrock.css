@@ -79,23 +79,21 @@
 }
 
 .thankYou {
-  text-align: center;
   font-size: 60px;
   font-weight: bold;
   width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.thankYouContainer {
+  color: white;
   float: none;
   display: block;
   margin-left: auto;
   margin-right: auto;
   margin-top: 0px;
-  /*color: #ff9c08;*/
-}
-
-.thankYouContainer {
-	/*background: #ecf0f1;*/
-  padding: 0px;
-  display: inline-flex;
-  color: white;
+  text-align: center;
 }
 
 .contactShortly {
@@ -112,23 +110,56 @@
 }
 
 /*SURVEY STYLING*/
+.radioText {
+  font-size: 24px;
+  line-height: 2px;
+}
+
+.nonPaddlers {
+  display: inline-block;
+}
+
+md-input-container {
+  display: inline-block;
+}
+
 .surveyRadio {
   color: white;
+}
+
+md-radio-button.md-default-theme ._md-off, md-radio-button ._md-off {
+  border-color: white;
+}
+
+.md-button.md-raised {
+  color: white;
+  background-color: #13647F;
+  font-weight: 500;
+  margin: 15px;
+}
+
+md-radio-button:not([disabled]).md-primary ._md-on {
+  background-color: lightblue;
 }
 
 .surveyButton {
   min-height: 70px !important;
   width: 700px;
-  font-size: 14px !important;
+  font-size: 16px !important;
   line-height: 10px;
   display: flex;
   max-width: 100%;
   text-wrap: none;
+  background-color: blue;
+  color: blue;
 }
 
 .surveyTitle {
+  color: #13647F;
   font-size: 34px;
-  text-align: center;
+  /*text-align: center;*/
+  padding: 8px;
+  margin: 0px;
 }
 
 .survey {
@@ -138,8 +169,11 @@
 }
 
 .surveyContainer {
-	background: #13647F;
-  padding: 2em 5em 2em 5em;
+  border-top: 6px;
+  border-top-color: #ff9900;
+  border-top-style: solid;
+	background: #E9E9E9;
+  /*padding: 2em 5em 2em 5em;*/
   max-height: 840px;
   max-width: 870px;
   margin-left: auto;
@@ -147,6 +181,47 @@
 }
 
 /*ADMIN TABS STYLING*/
+
+md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
+    color: #ff9900 !important;
+    background-color: #ff9900 !important;
+}
+
+md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]) {
+  color: #e4e4e4 !important;
+}
+
+md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-tabs.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active md-icon, md-tabs.md-default-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused, md-tabs.md-default-theme.md-accent > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused md-icon {
+  color: #fff !important;
+}
+
+md-input-container:not(.md-input-has-value) input:not(:focus), md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-ampm-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-day-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-hour-field, md-input-container:not(.md-input-has-value) input:not(:focus)::-webkit-datetime-edit-millisecond-field, md-input-container:not(.md-input-has-value){
+ color: green;
+}
+
+md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+    border-color: #3c84a2;
+}
+
+input.md-input:focus{ border-color: green; }
+
+md-content {
+  background-color: ;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
+md-tabs-canvas {
+  background-color: #3c84a2;
+  /*background-color: #faa723;*/
+}
+
+md-tabs.md-dynamic-height md-tabs-content-wrapper {
+  padding: 0 4em 2em 4em;
+}
+
 .adminButtons {
   float: none;
   /*display:flex;*/
@@ -289,12 +364,20 @@ nav {
 .homeEvent {
  /*display: inline-flex;*/
  /*background-color: #ff9900;*/
- background-color: lightgray;
+ /*background-color: #faa723;*/
  width: 400px;
- /*border: 25px solid green;*/
+ border: 3px solid orange;
  padding: 60px 30px 60px 30px;
  margin: 25px;
  text-align: center;
+ opacity: 0.7;
+
+}
+
+.homeEvent:hover {
+  background-color: #faa723;
+  opacity: 1;
+
 }
 
 .eventHeader {

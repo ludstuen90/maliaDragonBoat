@@ -2,12 +2,11 @@ DRGNBT.controller('adminController', ['$scope', '$http', '$window', '$filter', f
 console.log('in adminController');
     var objectToSend={}; // creates global object to send
 
-
-
     $scope.assignEvent = function(eventId){
         console.log(eventId);
         sessionStorage.setItem("eventId", eventId);
       $scope.mango = sessionStorage.getItem("eventId");
+      console.log("mango is: ", $scope.mango);
       // console.log("We have saved mango as ", $scope.mango);
     };
 
@@ -175,14 +174,17 @@ $scope.assignHotel = function(hotelID){
 
 // TAB FUNCTIONALITY ----------------------------------
      $scope.tabs = [{
+            title: 'Select Event',
+            url: 'one.tpl.html'
+        }, {
              title: 'Survey Results',
-             url: 'one.tpl.html'
-         }, {
-             title: 'Hotel List',
              url: 'two.tpl.html'
          }, {
-             title: 'Hotel Room Builder',
+             title: 'Hotel List',
              url: 'three.tpl.html'
+         }, {
+             title: 'Hotel Room Builder',
+             url: 'four.tpl.html'
      }];
 
      $scope.currentTab = 'one.tpl.html';
@@ -308,7 +310,59 @@ $http({
 // END XEDITABLE ROOM ASSIGNER CODE -----------------
 
 
+    $scope.selectEvent = function(eventId) {
+      // assignEvent(eventId);
+      console.log("in selectEvent assignEvent complete");
+       $scope.currentTab = 'two.tpl.html';
+    };
 
+    $scope.getRoom2 = function() {
+      console.log("in getRoom2 function in adminController");
+      console.log($scope.events_id);
+      roomsToGet = {
+        events_id : $scope.events_id,
+      };
+      console.log(roomsToGet);
+      $http({   // gets recordset via POST
+        method: 'POST',
+        url: '/getRoom2',
+        data: roomsToGet
+      }).then(function() {
+        $scope.showRoom2();
+      });
+    }; // end getRoom function
+
+    $scope.showRoom2 = function() {
+    console.log("in show room function in adminController");
+    $http({   // gets recordset via GET
+      method: 'GET',
+      url: '/showRoom2',
+    }).then( function(response){  // success call - runs function with response parameter
+      $scope.roomToShow = response.data;
+      console.log($scope.roomToShow);
+      getSlots();
+    }, function myError(response){
+      console.log(response.statusText);
+    }// end error function
+    ); // end then response
+    }; // end showRoom function
+
+    var roomSlots={};
+
+    $scope.createSlots = function() {
+      console.log("in createSlots function in adminController");
+            roomSlots = {
+              capacity : $scope.capacity,
+              room_id : $scope.room_id
+            };
+      console.log(roomSlots);
+      $http({
+        method: 'POST',
+        url: '/createSlots',
+        data: roomSlots
+      }).then(function(){
+      });
+    };
 
 
 

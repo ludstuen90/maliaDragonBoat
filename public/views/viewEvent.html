@@ -2,7 +2,8 @@
     <div class="col-md-6" ng-init="getInformation()">
 
         <h1> {{eventData.event_name}}</h1>
-        <h4><i>{{eventData.begin_date | limitTo:10}} - {{eventData.end_date | limitTo:10}}</i></h4>
+        <h4><i>{{ (eventData.begin_date | date: "MM-dd-yyyy") }} - {{ (eventData.end_date | date: "MM-dd-yyyy") }}</i></h4>
+
         <h4>{{eventData.company}}</h4>
               <br>
         <p>Address: {{eventData.address_one}}</p>

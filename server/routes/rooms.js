@@ -24,7 +24,7 @@ router.post('/addRoom', function(req, res){
 
 
 router.post('/getRoom', function(req, res) { // pulling selected room info from database to display on room picker
-    console.log("in app.post  getroom");
+    console.log("in router.post  /getroom");
     console.log(req.body);
     selectedRoom = [];  // resets array to empty for new room
     pg.connect(connectionString, function(err, client, done) {  // connecting
@@ -45,6 +45,31 @@ router.post('/getRoom', function(req, res) { // pulling selected room info from 
       } // end else (for success)
     }); // end pg connect function
 }); // end /getRoomfunction
+
+router.post('/getRoom2', function(req, res) { // pulling selected room info from database to display on room picker
+    console.log("in rooms.js getroom2");
+    console.log(req.body);
+    selectedRoom = [];  // resets array to empty for new room
+    pg.connect(connectionString, function(err, client, done) {  // connecting
+      if (err) {     // check for errors
+      console.log(err);
+    } else { // start selection criteria
+        console.log("successful connection in /getroom2");
+         roomInfo=client.query("SELECT * FROM rooms WHERE events_id= '" + req.body.events_id + "'");
+         console.log("in /getRoom2 app: ", roomInfo);
+          rows = 0;
+          roomInfo.on('row', function(row) {  // pushing to array
+            selectedRoom.push(row);
+          });  // end query push
+          roomInfo.on('end', function() {  // sending to scripts
+            console.log("room info from app.post in app", selectedRoom);
+            return res.json(selectedRoom);
+          }); // end products.on function
+          done(); // signals done
+      } // end else (for success)
+    }); // end pg connect function
+}); // end /getRoomfunction
+
 
 router.get( '/showRoom', function( req, res ){  // makes returned room info available to room assigner
       console.log("in showRoom function in app: ", selectedRoom);
@@ -94,5 +119,10 @@ router.delete( '/deleteRoom', function( req, res ){   //DELETE ROOMS
   });
   res.sendStatus(200);
 });
+
+router.get( '/showRoom2', function( req, res ){  // makes returned room info available to room assigner
+      console.log("in showRoom2 function in app: ", selectedRoom);
+      return res.json(selectedRoom);
+  }); // end  /showRoom function
 
 module.exports = router;

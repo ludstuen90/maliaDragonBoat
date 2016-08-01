@@ -123,23 +123,59 @@
               <md-input-container class="md-block" flex-gt-lg>
                 <label>Choose an Event</label>
                 <md-select ng-model="eventChosen">
-                  <md-option ng-repeat="thing in alltheEvents track by $index" value="{{thing.id}}">
+                  <md-option ng-repeat="thing in alltheEvents" value="{{thing.id}}">
                     {{thing.event_name}} ({{thing.begin_date | date: "MM-dd-yyyy"}} - {{thing.end_date | date: "MM-dd-yyyy"}})
                   </md-option>
-                </md-select>
+                </md-select><md-button class="md-raised" ng-click="subEvent()">Submit</md-button>
               </md-input-container>
             </div>
             </form>
           </div>
         </div>
       </div>
+
+
       <div class="row">
         <div class="container">
-          <div col="col-md-12">
-              {{eventChosen}}
+          <div class="col-md-12">
+            <h1>{{eventToDisplay.event_name}}</h1>
+            <p>{{eventToDisplay.company}}</p>
+            <h4><i>{{ (eventToDisplay.begin_date | date: "MM-dd-yyyy") }} - {{ (eventToDisplay.end_date | date: "MM-dd-yyyy") }}</i></h4>
+            <h4>{{eventToDisplay.city}}</h4>
+            <h4>{{eventToDisplay.event_url}}</h4>
+
+
+<br><br>
+
+<p ng-show="surveyList.length==0">No survey results available.</p>
+<table class="table table-striped">
+  <thead>
+     <th>Paddler Name</th>
+     <th>Attend Status</th>
+     <th>Want In Hotel Block?</th>
+     <th>Room Preference</th>
+     <th>Number of Non-Paddlers Coming</th>
+     <th>Notes</th>
+  </thead>
+
+ <tr ng-repeat="record in surveyList | orderBy:username">
+   <td>{{record.first_name}} {{record.last_name}}</td>
+   <td>{{record.attend_status}}</td>
+   <td>{{record.hotel_status}}</td>
+   <td>{{record.roommate_option}}</td>
+   <td>{{record.num_non_paddlers}}</td>
+   <td>{{record.notes_survey_room}}</td>
+  </tr>
+ </table>
+
+
+
           </div>
         </div>
       </div>
+
+
+
 
 
 

@@ -64,45 +64,36 @@ DRGNBT.controller('adminController', ['$scope', '$http', '$window', '$filter', f
 }; //end createEvent function
 
 
-    $scope.eventList=[];
-
+    // $scope.eventList=[];
+$scope.events = '';
      $scope.eventRequest = function() { // gets info for current event to display on for Admin survey page
        console.log("in eventRequest function in adminController");
        event.preventDefault();
        $http({   // gets recordset via GET
          method: 'GET',
          url: '/eventRequest',
-       }).then( function(response){  // success call - runs function with response parameter
-       // console.log(response.data);
-         eventList = response.data;  // pulls the data from server and sets to global var eventList
-         console.log($scope.eventList);
+       }).then(function(response){  // success call - runs function with response parameter
+         $scope.events = response.data;  // pulls the data from server and sets to global var eventList
+         console.log($scope.events);
        }, function myError(response){
          console.log(response.statusText);
-       }// end error function
-       ); // end then response
+       }); // end then response
      }; // end eventRequest function
-
-     var surveyList=[];
+$scope.eventRequest();
+    //  var $scope.surveyList = [];
 
      $scope.surveyRequest = function() { // gets survey results for current event for Admin survey page
-       console.log("in surveyRequest function in adminController");
-       event.preventDefault();
        $http({   // gets recordset via GET
          method: 'GET',
-         url: '/surveyRequest',
-       }).then( function(response){  // success call - runs function with response parameter
-       // console.log(response.data);
-         surveyList = response.data;  // pulls the data from server and sets to global var surveyList
-         console.log($scope.surveyList);
-       }, function myError(response){
-         console.log(response.statusText);
-       }// end error function
-     ); // end then response
+         url: '/surveyResults',
+       }).then(function(response){  // success call - runs function with response parameter
+         $scope.surveyList = response.data;  // pulls the data from server and sets to global var surveyList
+       }); // end then response
      }; // end surveyRequest function
-
+$scope.surveyRequest();
     //  $scope.eventAndSurveyRequest = function() {  //runs both eventRequest and surveyRequest queries to display event and survey results on adminSurvey.html
-    //    eventRequest();
-    //    surveyRequest();
+    //    $scope.eventRequest();
+    //    $scope.surveyRequest();
     //  };
 
      var hotelList=[];
@@ -152,7 +143,7 @@ DRGNBT.controller('adminController', ['$scope', '$http', '$window', '$filter', f
        }// end error function
        ); // end then response
      }; // end hotelRequest function
-$scope.hotelRequest();
+// $scope.hotelRequest();
 
 $scope.deleteHotel = function(hotelID){
   console.log('in delete hotel');
@@ -166,7 +157,7 @@ $scope.deleteHotel = function(hotelID){
     $scope.hotelRequest();
   });
 };
-
+//GOTTA FINISH BUILDING THIS OUT LATER
 $scope.assignHotel = function(hotelID){
   console.log('in assignHotel');
   var sendID = {id : hotelID};

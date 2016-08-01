@@ -39,7 +39,6 @@ notes_other_accommodation TEXT,
 roommate_option TEXT,
 num_non_paddlers TEXT,
 notes_survey_room TEXT,
-room_preference TEXT,
 user_id int references users(id),
 events_id int references events(id)
 );

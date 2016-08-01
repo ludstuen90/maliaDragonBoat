@@ -12,9 +12,9 @@
 </div>
 
 	<div ng-init="fetchEvents">
-	<div ng-repeat="event in alltheEvents"  role="button" ng-click="assignEvent(  event.id  )" class=".col-xs-6 .col-sm-3 homeEvent">
-		<h4> {{ event.event_name }} </h4>
-			<p> {{ event.begin_date }} to {{ event.end_date }} </p>
+	<div ng-repeat="event in alltheEvents"  role="button" ng-click="assignEvent(  event.id  )" class=".col-xs-6 .col-sm-3 homeEvent" id = "homeEventDisplay">
+		<h2> {{ event.event_name }} </h2>
+			<p> {{ event.begin_date | date: "MM-dd-yyyy" }} to {{ event.end_date | date: "MM-dd-yyyy" }} </p>
 </div>
 </div>
 	

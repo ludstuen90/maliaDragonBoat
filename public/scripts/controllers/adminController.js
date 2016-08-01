@@ -102,7 +102,6 @@ $scope.subEvent = function(){
   console.log('coffee is the way, and the life');
   console.log($scope.eventChosen);
 
-
   for (var i = 0; i < $scope.events.length; i++){
     if($scope.events[i].id == $scope.eventChosen) {
       $scope.eventToDisplay = $scope.events[i];
@@ -110,18 +109,32 @@ $scope.subEvent = function(){
   }
   console.log($scope.eventToDisplay);
 
+var showThisEvent = {
+  id: $scope.eventChosen
+};
+
+$http({
+  method: 'POST',
+  url: '/surveyShow',
+  data: showThisEvent
+}).then(function(response){
+  console.log('from survey show we have', response.data);
+  $scope.surveyList = response.data;
+});
+
+
 };
 
 
-     $scope.surveyRequest = function() { // gets survey results for current event for Admin survey page
-       $http({   // gets recordset via GET
-         method: 'GET',
-         url: '/surveyResults',
-       }).then(function(response){  // success call - runs function with response parameter
-         $scope.surveyList = response.data;  // pulls the data from server and sets to global var surveyList
-       }); // end then response
-     }; // end surveyRequest function
-$scope.surveyRequest();
+    //  $scope.surveyRequest = function() { // gets survey results for current event for Admin survey page
+    //    $http({   // gets recordset via GET
+    //      method: 'GET',
+    //      url: '/surveyResults',
+    //    }).then(function(response){  // success call - runs function with response parameter
+    //      $scope.surveyList = response.data;  // pulls the data from server and sets to global var surveyList
+    //    }); // end then response
+    //  }; // end surveyRequest function
+// $scope.surveyRequest();
     //  $scope.eventAndSurveyRequest = function() {  //runs both eventRequest and surveyRequest queries to display event and survey results on adminSurvey.html
     //    $scope.eventRequest();
     //    $scope.surveyRequest();

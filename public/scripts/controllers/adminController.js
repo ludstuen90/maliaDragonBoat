@@ -144,6 +144,10 @@ $scope.surveyRequest();
      }; // end hotelRequest function
 // $scope.hotelRequest();
 
+
+// };
+
+
 $scope.deleteHotel = function(hotelID){
   console.log('in delete hotel');
   var sendID = {id: hotelID};
@@ -366,8 +370,12 @@ $http({
 
 
 
-
 $scope.pageLoad = function(){
+
+$http.get('loadHotels').then(function(response){
+  $scope.hotelSelect = response.data;
+  console.log(response.data);
+});
 
 $scope.hotelRequest();
 

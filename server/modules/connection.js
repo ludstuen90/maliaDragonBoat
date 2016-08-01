@@ -1,5 +1,8 @@
+var pg = require('pg');
+
 var connectionString = 'postgres://localhost:5432/groupDB';
-//extra = sign added
+
+
 if(process.env.DATABASE_URL !== undefined) {
      console.log('env connection string');
      connectionString = process.env.DATABASE_URL;
@@ -7,5 +10,5 @@ if(process.env.DATABASE_URL !== undefined) {
  } else {
      connectionString = 'postgres://localhost:5432/groupDB';
  }
-
-module.exports = connectionString;
+ console.log("connectionString set to: ", connectionString);
+ module.exports = connectionString;

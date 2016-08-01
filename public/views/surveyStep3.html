@@ -4,37 +4,39 @@
 
 <!-- Begin radio group -->
     <md-radio-group ng-model="roommateOption">
-      <md-radio-button class="md-primary surveyRadio" value="nobody">I would like a room for just me</md-radio-button>
+      <md-radio-button class="md-primary surveyRadio" value="nobody"><p class="radioText">Room for just me</p></md-radio-button>
 
-      <md-radio-button class="md-primary" value="non-paddlers">I would like a room for me and non-paddlers</md-radio-button>
+      <div class="nonPaddlers">
+            <md-radio-button class="md-primary" value="non-paddlers"><p class="radioText">Room for me and non-paddlers</p></md-radio-button>
 
-<!-- Number of non-paddlers -->
-      <md-input-container style="margin-right: 10px;">
-        <label>Number of non-paddlers</label>
-        <md-select ng-model="number">
-          <md-option value="1">1</md-option>
-          <md-option value="2">2</md-option>
-          <md-option value="3">3</md-option>
-          <md-option value="4">4</md-option>
-          <md-option value="5">5</md-option>
-          <md-option value="7">7</md-option>
-          <md-option value="8">8</md-option>
-          <md-option value="9">9</md-option>
-          <md-option value="10">10</md-option>
-        </md-select>
-      </md-input-container>
-<!-- End Number of non-paddlers -->
+      <!-- Number of non-paddlers -->
+            <md-input-container style="margin-right: 10px;">
+              <label>Number of non-paddlers</label>
+              <md-select ng-model="number">
+                <md-option value="1">1</md-option>
+                <md-option value="2">2</md-option>
+                <md-option value="3">3</md-option>
+                <md-option value="4">4</md-option>
+                <md-option value="5">5</md-option>
+                <md-option value="7">7</md-option>
+                <md-option value="8">8</md-option>
+                <md-option value="9">9</md-option>
+                <md-option value="10">10</md-option>
+              </md-select>
+            </md-input-container>
+      <!-- End Number of non-paddlers -->
+      </div>
 
-      <md-radio-button class="md-primary" value="one paddler">I would like to share a room with one paddler</md-radio-button>
+      <md-radio-button class="md-primary" value="one paddler"><p class="radioText">Room with one paddler</p></md-radio-button>
 
-      <md-radio-button class="md-primary" value="many paddlers">I would like to share a room with as many paddlers as possible</md-radio-button>
-    </md-radio-group>
-<!-- End of radio group -->
+        <md-radio-button class="md-primary" value="many paddlers"><p class="radioText">Room with as many paddlers as possible</p></md-radio-button>
+      </md-radio-group>
+  <!-- End of radio group -->
+      <div class="form-group">
+        <label class="control-label"></label>
+        <textarea class="form-control" type= "text" ng-model= "notes_survey_room" value= "" placeholder="notes" rows="6"></textarea>
+      </div>
 
-    <div class="form-group">
-      <label class="control-label"></label>
-      <textarea class="form-control" type= "text" ng-model= "notes_survey_room" value= "" placeholder="notes" rows="6"></textarea>
-    </div>
 <!-- Submit button -->
     <md-button class="md-raised surveyButton" ng-click="submitHotel()"> Submit </md-button>
 

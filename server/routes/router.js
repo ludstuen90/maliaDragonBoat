@@ -4,6 +4,15 @@ var path = require('path');
 var pg = require('pg');
 var connectionString = 'postgres://localhost:5432/groupDB';
 
+if(process.env.DATABASE_URL !== undefined) {
+     console.log('env connection string');
+     connectionString = process.env.DATABASE_URL;
+     pg.defaults.ssl = true;
+ } else {
+     connectionString = 'postgres://localhost:5432/groupDB';
+ }
+ console.log("connectionString set to: ", connectionString);
+
 // Handles Ajax request for user information if user is authenticated
 router.get('/', function(req, res) {
     // check if logged in

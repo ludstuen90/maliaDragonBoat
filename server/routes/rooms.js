@@ -152,7 +152,7 @@ router.post('/getSlots', function(req, res) { // pulling selected room info from
       if (err) {     // check for errors
       console.log(err);
     } else { // start selection criteria
-         slotsInfo=client.query("SELECT * FROM occupant_room WHERE rooms_id= '" + req.body.rooms.id + "';");
+         slotsInfo=client.query("SELECT * FROM occupant_room WHERE rooms_id= '" + req.body.room + "';");
          console.log("in /getSlots app: ", slotsInfo);
           rows = 0;
           slotsInfo.on('row', function(row) {  // pushing to array
@@ -168,7 +168,7 @@ router.post('/getSlots', function(req, res) { // pulling selected room info from
 }); // end /getRoomfunction
 
 router.get( '/showSlots', function( req, res ){  // makes returned room info available to room assigner
-      console.log("in showRoom function in app: ", slotsArray);
+      console.log("in showSlots function in app: ", slotsArray);
       return res.json(slotsArray);
   }); // end  /showRoom function
 
@@ -204,5 +204,34 @@ router.get( '/showRoom2', function( req, res ){  // makes returned room info ava
       console.log("in showRoom2 function in app: ", selectedRoom);
       return res.json(selectedRoom);
   }); // end  /showRoom2 function
+
+router.post('/saveSlot/:id', function(req, res) {
+    var slot = req.body;
+    var id = req.params.id;
+    pg.connect(connectionString, function(err, client, done) {
+      if (err){  //connection error
+        console.log('error at pg connect.');
+        res.sendStatus(500);
+      } // end connection error
+      console.log("in saveSlot client.query update");
+      client.query('UPDATE occupant_room ' +
+        'SET guest_name = $1, ' +
+        'rooms_id = $2, ' +
+        'users_id = $3 ' +
+        'WHERE id = $4',
+         [slot.guest_name, slot.rooms_id, slot.users_id, id],
+      function(err, result){
+        done();
+        if (err) {
+          console.log("error in rooms.js:");
+           console.log(err);
+            res.sendStatus(500);
+            return;
+        }
+        res.sendStatus(204);  // success
+      });
+    }); //end connection
+}); //end /saveSlot function
+
 
 module.exports = router;

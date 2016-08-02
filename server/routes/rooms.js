@@ -45,7 +45,7 @@ router.post('/getRoom', function(req, res) { // pulling selected room info from 
       if (err) {     // check for errors
       console.log(err);
     } else { // start selection criteria
-         roomInfo=client.query("SELECT * FROM rooms WHERE events_id= '" + req.body.events_id + "'");
+         roomInfo=client.query("SELECT * FROM rooms WHERE events_id= '" + req.body.events_id + "' ORDER BY(id) DESC");
          console.log("in /getRoom app: ");
           rows = 0;
           roomInfo.on('row', function(row) {  // pushing to array
@@ -124,18 +124,16 @@ router.delete( '/deleteRoom', function( req, res ){   //DELETE ROOMS
   res.sendStatus(200);
 });
 
-// CREATES ROOM OCCUPANT SLOTS IN OCCUPANT_ROOMS TABLE, CALLED IN ADMINSURVEY TAB 4
-
-
 
 router.post('/createSlots', function(req, res){
   var slots = req.body;
   console.log('In createSlot', slots);
   pg.connect(connectionString, function(err, client, done){
-    for (var i=0; i<slots.length; i++) {   // loops thru slotArray
-        for (var j=0; j<slots[i].capacity; j++) {
-        client.query("INSERT INTO occupant_room ( rooms_id, guest_name) VALUES ($1, $2);",
-      [slots[i].id, "empty"] );
+    for (var i=0; i<slots.length; i++) {   // loops thru slots array to hit each room
+        for (var j=0; j<slots[i].capacity; j++) { // loops thru capacity to create a slot for the capacity of each room
+          client.query("INSERT INTO occupant_room ( rooms_id, guest_name) VALUES ($1, $2);", [slots[i].id, "empty"] );
+          // client.query("INSERT INTO occupant_room ( rooms_id, ) VALUES ($1);",
+            // [ slots[i].id ]);
         } //end loop thru capacity
     } // end loop thru slotArray
     res.send(true);
@@ -143,13 +141,13 @@ router.post('/createSlots', function(req, res){
   });
 });
 
-var slotsArray = [];
+var slotsArray;
 
 
 
 
 
-router.post('/getSlots', function(req, res){
+router.post('/getSlots9000', function(req, res){
   console.log("Get client request received!");
   var client = {
     id: req.body.room
@@ -197,13 +195,13 @@ router.post('/getSlots', function(req, res) { // pulling selected room info from
           search.on('end', function() {  // sending to scripts
             // console.log("slots info from app.post in app", slotsArray);
             return res.json(slotsArray);
-          }); // end products.on function
+          }); // end function
           done(); // signals done
           pg.end();
       } // end else (for success)
     }); // end pg connect function
-    // res.sendStatus(204);
-}); // end /getRoomfunction
+
+}); // end /getSlotsfunction
 
 // router.get( '/showSlots', function( req, res ){  // makes returned room info available to room assigner
 //       console.log("in showSlots function in app: ", slotsArray);

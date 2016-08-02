@@ -125,7 +125,7 @@ router.delete( '/deleteRoom', function( req, res ){   //DELETE ROOMS
 
 // CREATES ROOM OCCUPANT SLOTS IN OCCUPANT_ROOMS TABLE, CALLED IN ADMINSURVEY TAB 4
 
-// var slotsArray = [];
+
 
 router.post('/createSlots', function(req, res){
   var slots = req.body;
@@ -133,7 +133,7 @@ router.post('/createSlots', function(req, res){
   pg.connect(connectionString, function(err, client, done){
     for (var i=0; i<slots.length; i++) {   // loops thru slotArray
         for (var j=0; j<slots[i].capacity; j++) {
-          client.query("INSERT INTO occupant_room ( rooms_id ) VALUES ($1)",
+          client.query("INSERT INTO occupant_room ( rooms_id ) VALUES ($1);",
             [ slots[i].id ]);
         } //end loop thru capacity
     } // end loop thru slotArray
@@ -142,7 +142,35 @@ router.post('/createSlots', function(req, res){
   });
 });
 
+var slotsArray = [];
 
+router.post('/getSlots', function(req, res) { // pulling selected room info from database to display on room picker
+    console.log("in router.post  /getslots");
+    console.log(req.body);
+    slotsArray = [];  // resets array to empty
+    pg.connect(connectionString, function(err, client, done) {  // connecting to database
+      if (err) {     // check for errors
+      console.log(err);
+    } else { // start selection criteria
+         slotsInfo=client.query("SELECT * FROM occupant_room WHERE rooms_id= '" + req.body.rooms.id + "';");
+         console.log("in /getSlots app: ", slotsInfo);
+          rows = 0;
+          slotsInfo.on('row', function(row) {  // pushing to array
+            slotsArray.push(row);
+          });  // end query push
+          slotsInfo.on('end', function() {  // sending to scripts
+            console.log("slots info from app.post in app", slotsArray);
+            return res.json(slotsArray);
+          }); // end products.on function
+          done(); // signals done
+      } // end else (for success)
+    }); // end pg connect function
+}); // end /getRoomfunction
+
+router.get( '/showSlots', function( req, res ){  // makes returned room info available to room assigner
+      console.log("in showRoom function in app: ", slotsArray);
+      return res.json(slotsArray);
+  }); // end  /showRoom function
 
 
 

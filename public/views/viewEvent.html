@@ -4,30 +4,30 @@
     <img class="dragonBoats" src="assets/images/dragon_boat_2.jpg" alt="" />
   </div>
 
-    <div class="col-xs-6 col-sm-3" ng-init="getInformation()">
+    <div class="eventDiv2" ng-init="getInformation()">
 
         <h1>{{eventData.event_name}}</h1>
         <hr>
-        <h4><i>{{ (eventData.begin_date | date: "MM-dd-yyyy") }} - {{ (eventData.end_date | date: "MM-dd-yyyy") }}</i></h4>
+        <h4><i>Event Dates: {{ (eventData.begin_date | date: "MM-dd-yyyy") }} - {{ (eventData.end_date | date: "MM-dd-yyyy") }}</i></h4>
 
-        <h4>{{eventData.company}}</h4>
-              <br>
-        <p>Address: {{eventData.address_one}}</p>
-        <p>{{eventData.address_two}}</p>
-        <p>{{eventData.event_city}}, {{eventData.event_state_province}}</p>
-    </div>
-    <div class="col-xs-6 col-sm-3">
-      <br><br><br><br>
-      <h4><b>Websites:</b></h4>
-       <p><b>Event Website:</b> <a href="{{eventData.event_url}}" target="_blank">{{eventData.event_url}}</a></p>
-      <p><b>Schedule:</b> <a href="{{eventData.schedule_url}}" target="_blank">{{eventData.schedule_url}}</a></p>
-      <p><b>Results:</b> <a href="{{eventData.results_url}}" target="_blank">{{eventData.results_url}}</a></p>
-    </div>
+        <div class="col-xs-6 col-sm-4">
 
-  <div class="row">
-    <div class="col-md-4 line">
-    </div>
-    <div class="col-md-4">
+              <h4>{{eventData.company}}</h4>
+                    <br>
+              <p>Address: {{eventData.address_one}}</p>
+              <p>{{eventData.address_two}}</p>
+              <p>{{eventData.event_city}}, {{eventData.event_state_province}}</p>
+
+              <p><b>Event Website:</b> <a href="{{eventData.event_url}}" target="_blank">{{eventData.event_url}}</a></p>
+              <p><b>Schedule:</b> <a href="{{eventData.schedule_url}}" target="_blank">{{eventData.schedule_url}}</a></p>
+              <p><b>Hotel Name:</b> <a href="{{eventData.schedule_url}}" target="_blank">{{eventData.schedule_url}}</a></p>
+              <p><b>Hotel:</b> <a href="{{eventData.schedule_url}}" target="_blank">{{eventData.schedule_url}}</a></p>
+
+              <!-- <p><b>Results:</b> <a href="{{eventData.results_url}}" target="_blank">{{eventData.results_url}}</a></p> -->
+        </div>
+
+
+    <div class="col-xs-6 nextSteps">
       <h4>Next Steps:</h4>
       Hello, {{hello | uppercase}}! <br><br>
 

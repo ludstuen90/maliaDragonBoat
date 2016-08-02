@@ -120,6 +120,7 @@ router.delete( '/deleteRoom', function( req, res ){   //DELETE ROOMS
       client.query( "DELETE FROM rooms WHERE id = $1;", [ req.body.id ] );
     }
   });
+  pg.end();
   res.sendStatus(200);
 });
 
@@ -148,7 +149,7 @@ var slotsArray = [];
 
 
 
-router.post('/getSlots9000', function(req, res){
+router.post('/getSlots', function(req, res){
   console.log("Get client request received!");
   var client = {
     id: req.body.room

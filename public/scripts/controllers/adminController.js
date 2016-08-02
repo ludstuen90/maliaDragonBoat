@@ -1,7 +1,7 @@
 DRGNBT.controller('adminController', ['$scope', '$http', '$window', '$filter', function($scope, $http, $window, $filter){
 // console.log('in adminController');
     var objectToSend={}; // creates global object to send
-
+    $scope.eventToDisplay= [];
 
 
     $scope.assignEvent = function(eventId){
@@ -97,15 +97,44 @@ $scope.events = '';
      }; // end eventRequest function
     //  var $scope.surveyList = [];
 
-     $scope.surveyRequest = function() { // gets survey results for current event for Admin survey page
-       $http({   // gets recordset via GET
-         method: 'GET',
-         url: '/surveyResults',
-       }).then(function(response){  // success call - runs function with response parameter
-         $scope.surveyList = response.data;  // pulls the data from server and sets to global var surveyList
-       }); // end then response
-     }; // end surveyRequest function
-$scope.surveyRequest();
+
+$scope.subEvent = function(){
+  console.log('coffee is the way, and the life');
+  console.log($scope.eventChosen);
+
+  for (var i = 0; i < $scope.events.length; i++){
+    if($scope.events[i].id == $scope.eventChosen) {
+      $scope.eventToDisplay = $scope.events[i];
+    }
+  }
+  console.log($scope.eventToDisplay);
+
+var showThisEvent = {
+  id: $scope.eventChosen
+};
+
+$http({
+  method: 'POST',
+  url: '/surveyShow',
+  data: showThisEvent
+}).then(function(response){
+  console.log('from survey show we have', response.data);
+  $scope.surveyList = response.data;
+});
+
+
+};
+
+
+    //  $scope.surveyRequest = function() { // gets survey results for current event for Admin survey page
+    //    $http({   // gets recordset via GET
+    //      method: 'GET',
+    //      url: '/surveyResults',
+    //    }).then(function(response){  // success call - runs function with response parameter
+    //      $scope.surveyList = response.data;  // pulls the data from server and sets to global var surveyList
+    //    }); // end then response
+    //  }; // end surveyRequest function
+// $scope.surveyRequest();
     //  $scope.eventAndSurveyRequest = function() {  //runs both eventRequest and surveyRequest queries to display event and survey results on adminSurvey.html
     //    $scope.eventRequest();
     //    $scope.surveyRequest();
@@ -292,17 +321,26 @@ $http({   // gets recordset via GET
 ); // end then response
 }; // end showRoom function
 
-
+var roomId;
 
 $scope.deleteSlots = function(recordid) {
   console.log("in deleteSlots", recordid);
-
+  var sendId = {id: recordid};
+  roomId=sendId;
+  $http({
+    method: 'DELETE',
+    url: '/deleteSlots' ,
+    data: sendId,
+    headers:  {'Content-Type': 'application/json;charset=utf-8'}
+  }).then(function(){
+    $scope.deleteRoom(recordid);
+  });
 
 };
 
-$scope.deleteRoom = function(recordid){
-  console.log('in delete room', recordid);
-  var sendId = {id: recordid};
+$scope.deleteRoom = function(roomId){
+  console.log('in delete room', roomId);
+  var sendId = {id: roomId};
   $http({
     method: 'DELETE',
     url: '/deleteRoom' ,
@@ -411,8 +449,8 @@ $scope.fetchEvents = function(){
     url: '/eventPopulate'
   }).then( function( response ) {
     $scope.alltheEvents = response.data;
-    console.log('and the response data is: ');
-    console.log( response.data );
+    console.log('and the response data is: ',   $scope.alltheEvents);
+    console.log('events is ', $scope.events);
   });
 };
 

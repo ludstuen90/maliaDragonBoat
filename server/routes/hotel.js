@@ -104,13 +104,22 @@ router.get( '/hotelBlock', function( req, res ) {
     });
   });
 
-// router.post('/assignHotel', function (req, res){
-//   console.log('in assignHotel');
+router.put('/assignHotel/:eventChosen', function (req, res){
+  console.log('in router put assignHotel');
+  var events = req.body;
+  var id = req.params.eventChosen;
+  console.log('assignHotel', req.body);
+  pg.connect(connectionString, function(err, client, done){
+    client.query("UPDATE events SET hotel_id = $1 WHERE id = $2",[events.id, id]);
+  });
+  res.sendStatus(200);
+});
+// router.put('/assignHotel', function (req, res){
+//   console.log('assignHotel', req.body);
 //   pg.connect(connectionString, function(err, client, done){
-//     client.query("INSERT INTO events ");
+//     client.query("INSERT INTO events (hotel_id) values ($1)",[req.body.id]);
 //   });
-//
 //   res.sendStatus(200);
 // });
-//
+
 module.exports = router;

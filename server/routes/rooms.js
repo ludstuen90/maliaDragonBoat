@@ -152,7 +152,7 @@ router.post('/getSlots', function(req, res) { // pulling selected room info from
       if (err) {     // check for errors
       console.log(err);
     } else { // start selection criteria
-         slotsInfo=client.query("SELECT * FROM occupant_room WHERE rooms_id= '" + req.body.room);
+         slotsInfo=client.query("SELECT * FROM occupant_room WHERE rooms_id=" + req.body.room);
          console.log("in /getSlots app: ", slotsInfo);
           rows = 0;
           slotsInfo.on('row', function(row) {  // pushing to array

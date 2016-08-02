@@ -1,7 +1,9 @@
-<div class="row">
-    <div class="col-md-6" ng-init="getInformation()">
+<div class="row eventDiv md-whiteframe-1dp surveyContainer">
 
-        <h1> {{eventData.event_name}}</h1>
+    <div class="col-xs-6 col-sm-3" ng-init="getInformation()">
+
+        <h1>{{eventData.event_name}}</h1>
+        <hr>
         <h4><i>{{ (eventData.begin_date | date: "MM-dd-yyyy") }} - {{ (eventData.end_date | date: "MM-dd-yyyy") }}</i></h4>
 
         <h4>{{eventData.company}}</h4>
@@ -9,26 +11,25 @@
         <p>Address: {{eventData.address_one}}</p>
         <p>{{eventData.address_two}}</p>
         <p>{{eventData.event_city}}, {{eventData.event_state_province}}</p>
-        </div>
-          <div class="col-md-6">
-            <br><br><br><br>
-            <h4><b>Websites:</b></h4>
-             <p><b>Event Website:</b> <a href="{{eventData.event_url}}" target="_blank">{{eventData.event_url}}</a></p>
-            <p><b>Schedule:</b> <a href="{{eventData.schedule_url}}" target="_blank">{{eventData.schedule_url}}</a></p>
-            <p><b>Results:</b> <a href="{{eventData.results_url}}" target="_blank">{{eventData.results_url}}</a></p>
-          </div>
-
     </div>
-      <div class="row">
-        <div class="col-md-4 line">
-        </div>
-        <div class="col-md-4">
-          <h4>Next Steps:</h4>
-          Hello, {{hello | uppercase}}! <br><br>
+    <div class="col-xs-6 col-sm-3">
+      <br><br><br><br>
+      <h4><b>Websites:</b></h4>
+       <p><b>Event Website:</b> <a href="{{eventData.event_url}}" target="_blank">{{eventData.event_url}}</a></p>
+      <p><b>Schedule:</b> <a href="{{eventData.schedule_url}}" target="_blank">{{eventData.schedule_url}}</a></p>
+      <p><b>Results:</b> <a href="{{eventData.results_url}}" target="_blank">{{eventData.results_url}}</a></p>
+    </div>
 
-          {{pageMessage}} <a ng-href="{{pageMessage2}}">{{pageMessage3}} </a>
-        </div>
-          <div class="col-md-4 line">
+  <div class="row">
+    <div class="col-md-4 line">
+    </div>
+    <div class="col-md-4">
+      <h4>Next Steps:</h4>
+      Hello, {{hello | uppercase}}! <br><br>
+
+      {{pageMessage}} <a ng-href="{{pageMessage2}}">{{pageMessage3}} </a>
+    </div>
+      <div class="col-md-4 line">
       </div>
   </div>
 </div>

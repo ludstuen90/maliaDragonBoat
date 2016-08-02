@@ -136,7 +136,6 @@
         </div>
       </div>
 
-      {{eventChosen}}
 
 <!-- Select/Assign a Hotel -->
       <div class="row">
@@ -187,13 +186,13 @@
 
 <p ng-show="surveyList.length==0">No survey results available.</p>
 <table class="table table-striped">
-  <thead>
-     <th>Paddler Name</th>
-     <th>Attend Status</th>
-     <th>Want In Hotel Block?</th>
-     <th>Room Preference</th>
-     <th>Number of Non-Paddlers Coming</th>
-     <th>Notes</th>
+  <thead id = "adminEventTable">
+     <th id = "borderIt">Paddler Name</th>
+     <th id = "borderIt">Attend Status</th>
+     <th id = "borderIt">Hotel Block?</th>
+     <th id = "borderIt">Room Preference</th>
+     <th id = "borderIt"># Non-Paddlers</th>
+     <th id = "borderIt">Notes</th>
   </thead>
 
  <tr ng-repeat="record in surveyList | orderBy:username">
@@ -341,7 +340,7 @@
                      <div class="col-sm-6">
                        <div class="form-group">
                          <label class="control-label">Event ID (temporary field)</label>
-                         <input class="form-control" type= "text" ng-model= "events_id" value= "" >
+                         <input class="form-control" type= "number" ng-model= "events_id" value= "" >
                        </div><!--end group-->
                      </div> <!--end col-->
                    </div> <!-- ends row -->
@@ -356,13 +355,13 @@
                                      <div class="col-sm-4">
                                        <div class="form-group">
                                          <label class="control-label">Capacity</label>
-                                         <input class="form-control" type= "text" ng-model= "capacity" value= "" >
+                                         <input class="form-control" type= "number" ng-model= "capacity" value= "" >
                                        </div><!--end group-->
                                      </div> <!--end col-->
                                      <div class="col-sm-4">
                                        <div class="form-group">
                                          <label class="control-label">Price</label>
-                                         <input class="form-control" type= "text" ng-model= "price" value= "" >
+                                         <input class="form-control" type= "number" ng-model= "price" value= "" >
                                        </div> <!--end group-->
                                      </div> <!--end col-->
 

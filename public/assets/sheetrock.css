@@ -352,6 +352,20 @@ md-tabs.md-dynamic-height md-tabs-content-wrapper {
   background: #13647F;
 }
 
+#adminEventTable {
+  background: #13647F;
+  color: white;
+  border: solid;
+  border: 1px, 1px, 1px, 1px;
+  border-color: darkgrey;
+}
+
+#borderIt {
+  border: solid;
+  border-right: 1px;
+  border-color: darkgrey;
+}
+
 #tabs {
   margin-top: 50px;
   display: block;

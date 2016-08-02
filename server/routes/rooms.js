@@ -120,6 +120,7 @@ router.delete( '/deleteRoom', function( req, res ){   //DELETE ROOMS
       client.query( "DELETE FROM rooms WHERE id = $1;", [ req.body.id ] );
     }
   });
+  pg.end();
   res.sendStatus(200);
 });
 
@@ -133,8 +134,8 @@ router.post('/createSlots', function(req, res){
   pg.connect(connectionString, function(err, client, done){
     for (var i=0; i<slots.length; i++) {   // loops thru slotArray
         for (var j=0; j<slots[i].capacity; j++) {
-          client.query("INSERT INTO occupant_room ( rooms_id ) VALUES ($1);",
-            [ slots[i].id ]);
+        client.query("INSERT INTO occupant_room ( rooms_id, guest_name) VALUES ($1, $2);",
+      [slots[i].id, "empty"] );
         } //end loop thru capacity
     } // end loop thru slotArray
     res.send(true);
@@ -144,6 +145,39 @@ router.post('/createSlots', function(req, res){
 
 var slotsArray = [];
 
+
+
+
+
+router.post('/getSlots', function(req, res){
+  console.log("Get client request received!");
+  var client = {
+    id: req.body.room
+  };
+
+  console.log("clent ID is  ", client.id);
+
+    console.log("We are about to search for client ", client.id);
+    var search =('SELECT * FROM occupant_room WHERE rooms_id=' + client.id );
+    search.toString();
+      results = [];
+      pg.connect(connectionString, function(err, client, done){
+        var query = client.query(search);
+        query.on('row', function(row){
+          console.log('we are now pushing ', row);
+          results.push(row);
+        });
+        query.on('end', function(){
+          done();
+          pg.end();
+          return res.json(results);
+        });
+        if(err){
+          console.log(err);
+        }
+        });
+});
+
 router.post('/getSlots', function(req, res) { // pulling selected room info from database to display on room picker
     console.log("in router.post  /getslots");
     console.log(req.body.room);
@@ -152,26 +186,30 @@ router.post('/getSlots', function(req, res) { // pulling selected room info from
       if (err) {     // check for errors
       console.log(err);
     } else { // start selection criteria
-         slotsInfo=client.query("SELECT * FROM occupant_room WHERE rooms_id= '" + req.body.room + "';");
-         console.log("in /getSlots app: ", slotsInfo);
+         var search = client.query("SELECT * FROM occupant_room WHERE rooms_id='" + req.body.room + "'");
+         search.toString();
+        //  console.log("in /getSlots app: ", slotsInfo);
           rows = 0;
-          slotsInfo.on('row', function(row) {  // pushing to array
+          search.on('row', function(row) {  // pushing to array
+            console.log('row is now', row);
             slotsArray.push(row);
           });  // end query push
-          slotsInfo.on('end', function() {  // sending to scripts
-            console.log("slots info from app.post in app", slotsArray);
+          search.on('end', function() {  // sending to scripts
+            // console.log("slots info from app.post in app", slotsArray);
             return res.json(slotsArray);
           }); // end products.on function
           done(); // signals done
+          pg.end();
       } // end else (for success)
     }); // end pg connect function
+    // res.sendStatus(204);
 }); // end /getRoomfunction
 
-router.get( '/showSlots', function( req, res ){  // makes returned room info available to room assigner
-      console.log("in showSlots function in app: ", slotsArray);
-      return res.json(slotsArray);
-  }); // end  /showRoom function
-
+// router.get( '/showSlots', function( req, res ){  // makes returned room info available to room assigner
+//       console.log("in showSlots function in app: ", slotsArray);
+//       return res.json(slotsArray);
+//   }); // end  /showRoom function
+//
 
 
 
@@ -200,10 +238,10 @@ router.post('/getRoom2', function(req, res) { // pulling selected room info from
     }); // end pg connect function
 }); // end /getRoom2 function
 
-router.get( '/showRoom2', function( req, res ){  // makes returned room info available to room assignment page
-      console.log("in showRoom2 function in app: ", selectedRoom);
-      return res.json(selectedRoom);
-  }); // end  /showRoom2 function
+// router.get( '/showRoom2', function( req, res ){  // makes returned room info available to room assignment page
+//       console.log("in showRoom2 function in app: ", selectedRoom);
+//       return res.json(selectedRoom);
+//   }); // end  /showRoom2 function
 
 router.post('/saveSlot/:id', function(req, res) {
     var slot = req.body;

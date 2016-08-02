@@ -5,19 +5,25 @@
     <h4>Hotel: [HOTELNAME]</h4>
     <br />
     <h4>Enter your name and the names of any non-paddlers coming with you into the bed spaces below.</h4>
+<button ng-click="getSlots(1)">1</button>
+<button ng-click="getSlots(2)">2</button>
+<button ng-click="getSlots(3)">3</button> 
 
     <p>Event ID Number: </p>
     <input type= "text" ng-model= "events_id" value= ""><button type="button" ng-click= "getRoom2()" >Get Rooms</button>
     <div class="container">
       <div class="row">
         <div ng-repeat='record in roomToShow'>
-          <div class="col-xs-6 col-sm-3 roomAssigner" ng-init="getSlots(record.id)">
+          <div class="col-xs-6 col-sm-3 roomAssigner">
               <p>Room ID: {{ record.id }}  Room Number: {{ record.room_number }}</p>
               <p>Room Type: {{ record.room_type }}</p>
               <p>Price: {{ record.price }}</p>
               <p>Check In Date: {{ (record.check_in | date: "MM-dd-yyyy") }}</p>
               <p>Check Out Date: {{ (record.check_out | date: "MM-dd-yyyy")}}</p>
               <p>Notes: {{ record.notes }}</p>
+
+
+
               <table class="table table-bordered table-hover table-condensed">
                   <tr ng-repeat='record in slotsToShow'>  <!-- occupant code -->
                       <td><span editable-text="record.guest_name" e-form="rowform" e-required class="occupant"> {{guest_name}} </span></td>

@@ -224,14 +224,17 @@ $scope.deleteHotel = function(hotelID){
   });
 };
 //GOTTA FINISH BUILDING THIS OUT LATER
-$scope.assignHotel = function(hotelID){
+$scope.assignHotel = function(eventChosen){
   console.log('in assignHotel');
-  var sendID = {id : hotelID};
+  console.log($scope.selectHotel);
+  console.log($scope.eventChosen);
+  var sendID = { id : $scope.selectHotel };
   $http({
-  method: 'POST',
-  url: '/assignHotel',
+  method: 'PUT',
+  url: '/assignHotel/' + eventChosen,
   data: sendID
   });
+  console.log('out of js.assignHotel');
 };
 
      var hotelRooms=[];
@@ -327,16 +330,16 @@ $scope.roomToShow = [];
 
 $scope.showRoom = function() {
 console.log("in show room function in adminController");
-$http({   // gets recordset via GET
-  method: 'GET',
-  url: '/showRoom',
-}).then( function(response){  // success call - runs function with response parameter
-  $scope.roomToShow = response.data;
-  console.log("showRoom roomToShow:", $scope.roomToShow);
-}, function myError(response){
-  console.log(response.statusText);
-}// end error function
-); // end then response
+  $http({   // gets recordset via GET
+    method: 'GET',
+    url: '/showRoom',
+  }).then( function(response){  // success call - runs function with response parameter
+    $scope.roomToShow = response.data;
+    console.log("showRoom roomToShow:", $scope.roomToShow);
+  }, function myError(response){
+    console.log(response.statusText);
+  }// end error function
+  ); // end then response
 }; // end showRoom function
 
 var roomId;

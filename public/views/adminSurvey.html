@@ -126,7 +126,7 @@
                 <label>Choose an Event</label>
                 <md-select ng-model="eventChosen">
                   <md-option ng-repeat="thing in alltheEvents" value="{{thing.id}}">
-                    {{thing.event_name}} ({{thing.begin_date | date: "MM-dd-yyyy"}} - {{thing.end_date | date: "MM-dd-yyyy"}})
+                    {{thing.event_name}}  ({{thing.begin_date | date: "MM-dd-yyyy"}} - {{thing.end_date | date: "MM-dd-yyyy"}})
                   </md-option>
                 </md-select><md-button class="md-raised" ng-click="subEvent()">Submit</md-button>
               </md-input-container>
@@ -135,6 +135,31 @@
           </div>
         </div>
       </div>
+
+      {{eventChosen}}
+
+<!-- Select/Assign a Hotel -->
+      <div class="row">
+        <div class="container">
+          <div class="col-md-12">
+        <form name="userForm">
+          <div layout-gt-sm="row">
+
+              <md-input-container class="md-block" flex-gt-lg>
+                <label>Choose an Hotel</label>
+                <md-select ng-model="selectHotel">
+                  <md-option ng-repeat="hotel in hotelSelect" value="{{hotel.id}}">
+                    {{hotel.hotel_name}}
+                  </md-option>
+                </md-select><md-button class="md-raised" ng-click="assignHotel( eventChosen )">Submit</md-button>
+              </md-input-container>
+
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
 
 
       <div class="row">

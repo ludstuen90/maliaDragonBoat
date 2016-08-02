@@ -108,7 +108,7 @@ $scope.saveDial = function(){
 
   console.log($scope.eventToDisplay.event_name, 'will be updated to ', $scope.data.cb1);
 
-  
+
 
 
 };
@@ -449,11 +449,10 @@ $scope.createSlots = function() {
 
   var slotsToGet;
 
-  $scope.getSlots = function(cheetah) {
+  $scope.getSlots = function(stuff) {
     console.log("in getSlots function in adminController");
-    console.log('we are sending over room id:' , cheetah);
     slotsToGet = {
-      room : cheetah,
+      room : stuff,
     };
     console.log("slotsToGet: ", slotsToGet);
     $http({   // gets recordset via POST
@@ -481,9 +480,23 @@ var slotsToShow;
     ); // end then response
     }; // end showRoom function
 
-
-
-
+    $scope.updateOccupants=function(recordguest_name, recordusers_id, recordrooms_id, recordid) {
+    console.log('in updateOccupants');
+    console.log("data from updateOccupants: ", recordid, recordrooms_id, recordguest_name, recordusers_id );
+    console.log("updateOccupants id: ", recordid);
+    var id=recordid;
+    var data={
+      guest_name: recordguest_name,
+      users_id: recordusers_id,
+      rooms_id: recordrooms_id
+    };
+    console.log(data);
+    $http({
+      method: 'POST',
+      url: '/saveSlot/' +id,
+      data: data
+    });
+    };
 
 
 $scope.pageLoad = function(){

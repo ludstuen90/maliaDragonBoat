@@ -1,5 +1,4 @@
-<!-- Need Event Select tab???   -->
-
+<div ng-include="nav.html"></div>
 <md-content ng-controller="adminController"> <!-- need a ng-init to pass in eventid -->
 
     <h3>Room Assigner for [EVENTNAME]</h3>
@@ -19,12 +18,19 @@
               <p>Check In Date: {{ (record.check_in | date: "MM-dd-yyyy") }}</p>
               <p>Check Out Date: {{ (record.check_out | date: "MM-dd-yyyy")}}</p>
               <p>Notes: {{ record.notes }}</p>
-              <div ng-repeat='record in slotsToGet'>  <!-- occupant code -->
-                <div editable-text="record.guest_name" e-form="rowform" e-required> {{guest_name}} </div>
-              </div> <!-- end occupant code -->
-              <form editable-form name="rowform" onaftersave="updateOccupants(record.guestname, record.users_id, record.id )" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == record">
-                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">Update</button>
-              </form>
+              <table class="table table-bordered table-hover table-condensed">
+                  <tr ng-repeat='record in slotsToShow'>  <!-- occupant code -->
+                      <td><span editable-text="record.guest_name" e-form="rowform" e-required class="occupant"> {{guest_name}} </span></td>
+                      <td style="white-space:nowrap">
+                        <form editable-form name="rowform" onaftersave="updateOccupants(record.guest_name, record.users_id, record.rooms_id )"  ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == record">
+                          <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">Update</button>
+                          <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">Cancel</button>
+                        </form>
+                        <div class="buttons" ng-show="!rowform.$visible">
+                          <button class="btn btn-primary" ng-click="rowform.$show()">Edit</button>
+                        </div>
+                  </tr> <!-- end row-->
+                </table> <!-- end occupant code -->
         	</div> <!-- end room code -->
         </div> <!-- end row -->
       </div><!-- end container -->

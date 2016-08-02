@@ -12,14 +12,14 @@
     <div class="container">
       <div class="row">
         <div ng-repeat='record in roomToShow'>
-          <div class="col-xs-6 col-sm-3 roomAssigner">
+          <div class="col-xs-6 col-sm-3 roomAssigner" ng-init="getSlots(record.id)">
               <p>Room ID: {{ record.id }}  Room Number: {{ record.room_number }}</p>
               <p>Room Type: {{ record.room_type }}</p>
               <p>Price: {{ record.price }}</p>
               <p>Check In Date: {{ (record.check_in | date: "MM-dd-yyyy") }}</p>
               <p>Check Out Date: {{ (record.check_out | date: "MM-dd-yyyy")}}</p>
               <p>Notes: {{ record.notes }}</p>
-              <div ng-repeat='record in roomSlots'>  <!-- occupant code -->
+              <div ng-repeat='record in slotsToGet'>  <!-- occupant code -->
                 <div editable-text="record.guest_name" e-form="rowform" e-required> {{guest_name}} </div>
               </div> <!-- end occupant code -->
               <form editable-form name="rowform" onaftersave="updateOccupants(record.guestname, record.users_id, record.id )" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == record">

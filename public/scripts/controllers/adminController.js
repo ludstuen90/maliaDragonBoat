@@ -393,12 +393,47 @@ $scope.createSlots = function() {
     }).then( function(response){  // success call - runs function with response parameter
       $scope.roomToShow = response.data;
       console.log($scope.roomToShow);
-      getSlots();
     }, function myError(response){
       console.log(response.statusText);
     }// end error function
     ); // end then response
     }; // end showRoom function
+
+
+  var slotsToGet;
+
+  $scope.getSlots = function() {
+    console.log("in getSlots function in adminController");
+    slotsToGet = {
+      room : $scope.roomToShow,
+    };
+    console.log("slotsToGet: ", slotsToGet);
+    $http({   // gets recordset via POST
+      method: 'POST',
+      url: '/getSlots',
+      data: slotsToGet
+    }).then(function() {
+      $scope.showSlots();
+    });
+  }; // end getSlotsfunction
+
+var slotsToShow;
+
+    $scope.showSlots = function() {
+    console.log("in show slots function in adminController");
+    $http({   // gets recordset via GET
+      method: 'GET',
+      url: '/showSlots',
+    }).then( function(response){  // success call - runs function with response parameter
+      $scope.slotsToShow = response.data;
+      console.log("showSlots slotsToShow:", $scope.slotsToShow);
+    }, function myError(response){
+      console.log(response.statusText);
+    }// end error function
+    ); // end then response
+    }; // end showRoom function
+
+
 
 
 

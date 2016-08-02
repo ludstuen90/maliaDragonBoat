@@ -162,13 +162,13 @@
 
 <p ng-show="surveyList.length==0">No survey results available.</p>
 <table class="table table-striped">
-  <thead>
-     <th>Paddler Name</th>
-     <th>Attend Status</th>
-     <th>Want In Hotel Block?</th>
-     <th>Room Preference</th>
-     <th>Number of Non-Paddlers Coming</th>
-     <th>Notes</th>
+  <thead id = "adminEventTable">
+     <th id = "borderIt">Paddler Name</th>
+     <th id = "borderIt">Attend Status</th>
+     <th id = "borderIt">Hotel Block?</th>
+     <th id = "borderIt">Room Preference</th>
+     <th id = "borderIt"># Non-Paddlers</th>
+     <th id = "borderIt">Notes</th>
   </thead>
 
  <tr ng-repeat="record in surveyList | orderBy:username">

@@ -2,6 +2,7 @@
 .dragonBoats {
   height: 400px;
   width: 100%;
+  padding: 0px;
 }
 
 .hotelTime{
@@ -159,6 +160,13 @@ h3 {
   margin: 15px;
 }
 
+.md-button.md-raised:hover {
+  color: white;
+  background-color: blue;
+  font-weight: 500;
+  margin: 15px;
+}
+
 .surveyButton {
   min-height: 70px !important;
   width: 700px;
@@ -219,11 +227,23 @@ h3 {
 
 /*VIEW EVENT PAGE*/
 
+.nextSteps {
+  background-color: lightgray;
+  width: 500px;
+  height: 200px;
+  margin-left: 80px;
+}
+
 .eventDiv {
+  padding: 0px !important;
   max-width: 1000px;
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.eventDiv2 {
+  padding:1cm 1cm 1cm 1cm;
 }
 
 /*ADMIN TABS STYLING*/
@@ -248,7 +268,6 @@ md-input-container:not(.md-input-invalid).md-input-focused .md-input {
 input.md-input:focus{ border-color: green; }
 
 md-content {
-  background-color: ;
   max-width: 1600px;
   margin-left: auto;
   margin-right: auto;
@@ -256,7 +275,7 @@ md-content {
 }
 
 md-tabs-canvas {
-  background-color: #3c84a2;
+  /*background-color: #3c84a2;*/
   /*background-color: #faa723;*/
 }
 

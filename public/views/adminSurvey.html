@@ -126,7 +126,7 @@
                 <label>Choose an Event</label>
                 <md-select ng-model="eventChosen">
                   <md-option ng-repeat="thing in alltheEvents" value="{{thing.id}}">
-                    {{thing.event_name}} ({{thing.begin_date | date: "MM-dd-yyyy"}} - {{thing.end_date | date: "MM-dd-yyyy"}})
+                    {{thing.event_name}}  ({{thing.begin_date | date: "MM-dd-yyyy"}} - {{thing.end_date | date: "MM-dd-yyyy"}})
                   </md-option>
                 </md-select><md-button class="md-raised" ng-click="subEvent()">Submit</md-button>
               </md-input-container>
@@ -135,6 +135,31 @@
           </div>
         </div>
       </div>
+
+      {{eventChosen}}
+
+<!-- Select/Assign a Hotel -->
+      <div class="row">
+        <div class="container">
+          <div class="col-md-12">
+        <form name="userForm">
+          <div layout-gt-sm="row">
+
+              <md-input-container class="md-block" flex-gt-lg>
+                <label>Choose an Hotel</label>
+                <md-select ng-model="selectHotel">
+                  <md-option ng-repeat="hotel in hotelSelect" value="{{hotel.id}}">
+                    {{hotel.hotel_name}}
+                  </md-option>
+                </md-select><md-button class="md-raised" ng-click="assignHotel( eventChosen )">Submit</md-button>
+              </md-input-container>
+
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
 
 
       <div class="row">
@@ -162,13 +187,13 @@
 
 <p ng-show="surveyList.length==0">No survey results available.</p>
 <table class="table table-striped">
-  <thead>
-     <th>Paddler Name</th>
-     <th>Attend Status</th>
-     <th>Want In Hotel Block?</th>
-     <th>Room Preference</th>
-     <th>Number of Non-Paddlers Coming</th>
-     <th>Notes</th>
+  <thead id = "adminEventTable">
+     <th id = "borderIt">Paddler Name</th>
+     <th id = "borderIt">Attend Status</th>
+     <th id = "borderIt">Hotel Block?</th>
+     <th id = "borderIt">Room Preference</th>
+     <th id = "borderIt"># Non-Paddlers</th>
+     <th id = "borderIt">Notes</th>
   </thead>
 
  <tr ng-repeat="record in surveyList | orderBy:username">
@@ -209,49 +234,6 @@
 
          </md-content>
     </md-tab>
-
-<!-- TAB 2 SURVEY RESULTS -->
-
-    <md-tab label="Survey Results">
-        <md-content class="md-padding">
-
-            <div>
-              <h4>Event:</h4>
-              <p ng-show="events.length==0">No event information available.</p>
-              <h4 ng-repeat = "event in events">
-                  <p>{{event.event_name}}</p>
-                  <p>{{event.address_one}}, {{event.address_two}}</p>
-                  <p>{{eventList.event_city}}, {{event.event_state_province}}</p>
-                  <p>Event website: <a href="{{event.event_url}}" target="_blank"> {{event.event_url}}</a></p>
-                  <p>Schedule website:<a href="event.event" target="_blank">{{event.event}}</a></p>
-                  <p>{{event.begin_date}} - {{event.end_date}}</p>
-                  <p>{{event.company}}</p>
-                  <p>Results website:<a href="event.results_url" target="_blank">{{event.results_url}}</a></p>
-                  <p>Notes: {{event.notes_events}}</p>
-                </h4>
-            </div> <!--end row - Event Information-->
-              <p ng-show="surveyList.length==0">No survey results available.</p>
-              <table class="table table-striped">
-                <thead>
-                   <th>Paddler Name</th>
-                   <th>Attend Status</th>
-                   <th>Want In Hotel Block?</th>
-                   <th>Room Preference</th>
-                   <th>Number of Non-Paddlers Coming</th>
-                   <th>Notes</th>
-                </thead>
-
-               <tr ng-repeat="record in surveyList | orderBy:username">
-                 <td>{{record.first_name}} {{record.last_name}}</td>
-                 <td>{{record.attend_status}}</td>
-                 <td>{{record.hotel_status}}</td>
-                 <td>{{record.roommate_option}}</td>
-                 <td>{{record.num_non_paddlers}}</td>
-                 <td>{{record.notes_survey_room}}</td>
-                </tr>
-               </table>
-             </md-content>
-        </md-tab>
 
 <!-- TAB 3 // HOTEL LIST -->
         <md-tab class="hotelTime" label="Hotel List">

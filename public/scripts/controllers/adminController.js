@@ -444,10 +444,11 @@ $scope.createSlots = function() {
 
   var slotsToGet;
 
-  $scope.getSlots = function() {
+  $scope.getSlots = function(cheetah) {
     console.log("in getSlots function in adminController");
+    console.log('we are sending over room id:' , cheetah);
     slotsToGet = {
-      room : $scope.roomToShow,
+      room : cheetah,
     };
     console.log("slotsToGet: ", slotsToGet);
     $http({   // gets recordset via POST

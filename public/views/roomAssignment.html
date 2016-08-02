@@ -12,7 +12,7 @@
     <div class="container">
       <div class="row">
         <div ng-repeat='record in roomToShow'>
-          <div class="col-xs-6 col-sm-3 roomAssigner" ng-init="getSlots(record.id)">
+          <div class="col-xs-6 col-sm-3 roomAssigner" ng-click="getSlots(record.id)">
               <p>Room ID: {{ record.id }}  Room Number: {{ record.room_number }}</p>
               <p>Room Type: {{ record.room_type }}</p>
               <p>Price: {{ record.price }}</p>

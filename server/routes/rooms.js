@@ -125,7 +125,7 @@ router.delete( '/deleteRoom', function( req, res ){   //DELETE ROOMS
 
 // CREATES ROOM OCCUPANT SLOTS IN OCCUPANT_ROOMS TABLE, CALLED IN ADMINSURVEY TAB 4
 
-// var slotsArray = [];
+
 
 router.post('/createSlots', function(req, res){
   var slots = req.body;
@@ -133,7 +133,7 @@ router.post('/createSlots', function(req, res){
   pg.connect(connectionString, function(err, client, done){
     for (var i=0; i<slots.length; i++) {   // loops thru slotArray
         for (var j=0; j<slots[i].capacity; j++) {
-          client.query("INSERT INTO occupant_room ( rooms_id ) VALUES ($1)",
+          client.query("INSERT INTO occupant_room ( rooms_id ) VALUES ($1);",
             [ slots[i].id ]);
         } //end loop thru capacity
     } // end loop thru slotArray
@@ -142,7 +142,35 @@ router.post('/createSlots', function(req, res){
   });
 });
 
+var slotsArray = [];
 
+router.post('/getSlots', function(req, res) { // pulling selected room info from database to display on room picker
+    console.log("in router.post  /getslots");
+    console.log(req.body.room);
+    slotsArray = [];  // resets array to empty
+    pg.connect(connectionString, function(err, client, done) {  // connecting to database
+      if (err) {     // check for errors
+      console.log(err);
+    } else { // start selection criteria
+         slotsInfo=client.query("SELECT * FROM occupant_room WHERE rooms_id= '" + req.body.room + "';");
+         console.log("in /getSlots app: ", slotsInfo);
+          rows = 0;
+          slotsInfo.on('row', function(row) {  // pushing to array
+            slotsArray.push(row);
+          });  // end query push
+          slotsInfo.on('end', function() {  // sending to scripts
+            console.log("slots info from app.post in app", slotsArray);
+            return res.json(slotsArray);
+          }); // end products.on function
+          done(); // signals done
+      } // end else (for success)
+    }); // end pg connect function
+}); // end /getRoomfunction
+
+router.get( '/showSlots', function( req, res ){  // makes returned room info available to room assigner
+      console.log("in showSlots function in app: ", slotsArray);
+      return res.json(slotsArray);
+  }); // end  /showRoom function
 
 
 
@@ -150,14 +178,14 @@ router.post('/createSlots', function(req, res){
 //ROOM ASSIGNMENT ROUTES:
 router.post('/getRoom2', function(req, res) { // pulling selected room info from database to display on room assignment page
     console.log("in rooms.js getroom2");
-    console.log(req.body);
+    console.log('req.body.events id is ', req.body.events_id);
     selectedRoom = [];  // resets array to empty for new room
     pg.connect(connectionString, function(err, client, done) {  // connecting
       if (err) {     // check for errors
       console.log(err);
     } else { // start selection criteria
         console.log("successful connection in /getroom2");
-         roomInfo=client.query("SELECT * FROM rooms WHERE events_id= '" + req.body.events_id + "'");
+         roomInfo=client.query("SELECT * FROM rooms WHERE events_id=" + req.body.events_id);
          console.log("in /getRoom2 app: ", roomInfo);
           rows = 0;
           roomInfo.on('row', function(row) {  // pushing to array
@@ -176,5 +204,34 @@ router.get( '/showRoom2', function( req, res ){  // makes returned room info ava
       console.log("in showRoom2 function in app: ", selectedRoom);
       return res.json(selectedRoom);
   }); // end  /showRoom2 function
+
+router.post('/saveSlot/:id', function(req, res) {
+    var slot = req.body;
+    var id = req.params.id;
+    pg.connect(connectionString, function(err, client, done) {
+      if (err){  //connection error
+        console.log('error at pg connect.');
+        res.sendStatus(500);
+      } // end connection error
+      console.log("in saveSlot client.query update");
+      client.query('UPDATE occupant_room ' +
+        'SET guest_name = $1, ' +
+        'rooms_id = $2, ' +
+        'users_id = $3 ' +
+        'WHERE id = $4',
+         [slot.guest_name, slot.rooms_id, slot.users_id, id],
+      function(err, result){
+        done();
+        if (err) {
+          console.log("error in rooms.js:");
+           console.log(err);
+            res.sendStatus(500);
+            return;
+        }
+        res.sendStatus(204);  // success
+      });
+    }); //end connection
+}); //end /saveSlot function
+
 
 module.exports = router;

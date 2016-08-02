@@ -6,12 +6,6 @@ DRGNBT.run(function(editableOptions) {
   editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
 });
 
-// Room Builder theme
-DRGNBT.run(function(editableOptions) {
-  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
-});
-
-
 
 // Configure routes
 
@@ -58,7 +52,7 @@ DRGNBT.config(['$routeProvider', function($routeProvider, $locationProvider) {
     // Route for the roomAssignment page
     .when('/roomAssignment', {
       templateUrl : 'views/roomAssignment.html',
-      controller  : ''
+      controller  : 'adminController'
     })
     // Route for the surveyStep1 page
     .when('/surveyStep1', {

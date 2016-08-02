@@ -1,4 +1,8 @@
 
+html body {
+  height: 100%;
+}
+
 .dragonBoats {
   height: 400px;
   width: 100%;
@@ -227,23 +231,41 @@ h3 {
 
 /*VIEW EVENT PAGE*/
 
+.nextStepsHeader {
+  margin-top: 0px;
+  color: white;
+}
+
 .nextSteps {
-  background-color: lightgray;
-  width: 500px;
-  height: 200px;
-  margin-left: 80px;
+  padding: 35px;
+  color: white;
+  background-color: #ff9900;
+  margin-top: 0px;
+  /*width: 500px;*/
+  /*height: 250px;*/
+  /*margin-left: 80px;*/
 }
 
 .eventDiv {
-  padding: 0px !important;
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+  padding-top: 0px !important;
+  padding-bottom: 30px;
   max-width: 1000px;
-  margin-top: 50px;
+  margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 150px;
+
 }
 
 .eventDiv2 {
-  padding:1cm 1cm 1cm 1cm;
+  padding:0.3cm 1cm 0cm 1cm;
+}
+
+.eventDiv3 {
+  margin: 10px;
+  padding-bottom: 30px;
 }
 
 /*ADMIN TABS STYLING*/
@@ -275,7 +297,7 @@ md-content {
 }
 
 md-tabs-canvas {
-  /*background-color: #3c84a2;*/
+  background-color: #3c84a2;
   /*background-color: #faa723;*/
 }
 

@@ -19,6 +19,7 @@ $scope.hello = sessionStorage.getItem("username");
     }).then(function(response){
       $scope.eventData = response.data[0];
       $scope.getHotelInformation();
+      console.log(response.data);
     });
     //Queries the server to see if a the logged in user has filled out a survey for the current eventData
 

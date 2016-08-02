@@ -98,6 +98,20 @@ $scope.events = '';
     //  var $scope.surveyList = [];
 
 
+    $scope.data = {
+        cb1: false,
+      };
+
+$scope.saveDial = function(){
+  console.log('button works');
+  console.log($scope.data.cb1);
+
+  console.log($scope.eventToDisplay.event_name, 'will be updated to ', $scope.data.cb1);
+
+
+
+
+};
 $scope.subEvent = function(){
   console.log('coffee is the way, and the life');
   console.log($scope.eventChosen);
@@ -108,6 +122,10 @@ $scope.subEvent = function(){
     }
   }
   console.log($scope.eventToDisplay);
+  // console.log('eventPhase: ', $scope.eventToDisplay.hotel_phase);
+console.log($scope.data.cb1 = $scope.eventToDisplay.hotel_phase);
+
+  // if($scope.eventDoDisplay.data.cb1)
 
 var showThisEvent = {
   id: $scope.eventChosen
@@ -422,7 +440,6 @@ $scope.createSlots = function() {
     }).then( function(response){  // success call - runs function with response parameter
       $scope.roomToShow = response.data;
       console.log($scope.roomToShow);
-      getSlots();
     }, function myError(response){
       console.log(response.statusText);
     }// end error function
@@ -430,6 +447,56 @@ $scope.createSlots = function() {
     }; // end showRoom function
 
 
+  var slotsToGet;
+
+  $scope.getSlots = function(stuff) {
+    console.log("in getSlots function in adminController");
+    slotsToGet = {
+      room : stuff,
+    };
+    console.log("slotsToGet: ", slotsToGet);
+    $http({   // gets recordset via POST
+      method: 'POST',
+      url: '/getSlots',
+      data: slotsToGet
+    }).then(function() {
+      $scope.showSlots();
+    });
+  }; // end getSlotsfunction
+
+var slotsToShow;
+
+    $scope.showSlots = function() {
+    console.log("in show slots function in adminController");
+    $http({   // gets recordset via GET
+      method: 'GET',
+      url: '/showSlots',
+    }).then( function(response){  // success call - runs function with response parameter
+      $scope.slotsToShow = response.data;
+      console.log("showSlots slotsToShow:", $scope.slotsToShow);
+    }, function myError(response){
+      console.log(response.statusText);
+    }// end error function
+    ); // end then response
+    }; // end showRoom function
+
+    $scope.updateOccupants=function(recordguest_name, recordusers_id, recordrooms_id, recordid) {
+    console.log('in updateOccupants');
+    console.log("data from updateOccupants: ", recordid, recordrooms_id, recordguest_name, recordusers_id );
+    console.log("updateOccupants id: ", recordid);
+    var id=recordid;
+    var data={
+      guest_name: recordguest_name,
+      users_id: recordusers_id,
+      rooms_id: recordrooms_id
+    };
+    console.log(data);
+    $http({
+      method: 'POST',
+      url: '/saveSlot/' +id,
+      data: data
+    });
+    };
 
 
 $scope.pageLoad = function(){

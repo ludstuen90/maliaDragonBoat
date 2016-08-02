@@ -99,17 +99,18 @@ $scope.events = '';
 
 
     $scope.data = {
-        cb1: true,
+        cb1: false,
       };
 
-$scope.changeDial = function(){
+$scope.saveDial = function(){
   console.log('button works');
   console.log($scope.data.cb1);
-  if ($scope.data.cb1 === true) {
-    ($scope.data.cb1 = false);
-  } else {
-    $scope.data.cb1 = true;
-  }
+
+  console.log($scope.eventToDisplay.event_name, 'will be updated to ', $scope.data.cb1);
+
+
+
+
 };
 $scope.subEvent = function(){
   console.log('coffee is the way, and the life');
@@ -121,6 +122,10 @@ $scope.subEvent = function(){
     }
   }
   console.log($scope.eventToDisplay);
+  // console.log('eventPhase: ', $scope.eventToDisplay.hotel_phase);
+console.log($scope.data.cb1 = $scope.eventToDisplay.hotel_phase);
+
+  // if($scope.eventDoDisplay.data.cb1)
 
 var showThisEvent = {
   id: $scope.eventChosen

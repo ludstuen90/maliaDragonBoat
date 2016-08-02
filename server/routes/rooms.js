@@ -146,7 +146,7 @@ var slotsArray = [];
 
 router.post('/getSlots', function(req, res) { // pulling selected room info from database to display on room picker
     console.log("in router.post  /getslots");
-    console.log(req.body);
+    console.log(req.body.room);
     slotsArray = [];  // resets array to empty
     pg.connect(connectionString, function(err, client, done) {  // connecting to database
       if (err) {     // check for errors
@@ -178,14 +178,14 @@ router.get( '/showSlots', function( req, res ){  // makes returned room info ava
 //ROOM ASSIGNMENT ROUTES:
 router.post('/getRoom2', function(req, res) { // pulling selected room info from database to display on room assignment page
     console.log("in rooms.js getroom2");
-    console.log(req.body);
+    console.log('req.body.events id is ', req.body.events_id);
     selectedRoom = [];  // resets array to empty for new room
     pg.connect(connectionString, function(err, client, done) {  // connecting
       if (err) {     // check for errors
       console.log(err);
     } else { // start selection criteria
         console.log("successful connection in /getroom2");
-         roomInfo=client.query("SELECT * FROM rooms WHERE events_id= '" + req.body.events_id + "'");
+         roomInfo=client.query("SELECT * FROM rooms WHERE events_id=" + req.body.events_id);
          console.log("in /getRoom2 app: ", roomInfo);
           rows = 0;
           roomInfo.on('row', function(row) {  // pushing to array

@@ -405,9 +405,7 @@ md-tabs.md-dynamic-height md-tabs-content-wrapper {
 }
 
 #borderIt {
-  border: solid;
-  border-right: 1px;
-  border-color: darkgrey;
+  border: 0.5px solid #faa723;
 }
 
 #tabs {
@@ -727,4 +725,16 @@ button.md-button.md-raised:not([disabled]) {
 .occupant {
   width: 125px;
   font-weight: bold;
+}
+
+thead {
+  background-color: #b5d5e3;
+}
+
+.rowline {
+  border-bottom: 3px solid orange;
+}
+
+.orangeButton {
+  background-color: #b5d5e3;
 }

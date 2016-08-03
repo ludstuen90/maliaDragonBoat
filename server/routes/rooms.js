@@ -184,6 +184,7 @@ router.post('/getSlots', function(req, res) { // pulling selected room info from
       if (err) {     // check for errors
       console.log(err);
     } else { // start selection criteria
+        //  var search = client.query("SELECT occupant_room.id, first_name, last_name, guest_name, room_type, capacity, room_number, check_in, check_out, price FROM occupant_room JOIN users ON occupant_room.users_id = users.id JOIN rooms ON occupant_room.rooms_id = rooms.id WHERE rooms_id=" + req.body.room);
          var search = client.query("SELECT * FROM occupant_room WHERE rooms_id='" + req.body.room + "'");
          search.toString();
         //  console.log("in /getSlots app: ", slotsInfo);
@@ -221,7 +222,8 @@ router.post('/getRoom2', function(req, res) { // pulling selected room info from
       console.log(err);
     } else { // start selection criteria
         console.log("successful connection in /getroom2");
-         roomInfo=client.query("SELECT * FROM rooms WHERE events_id=" + req.body.events_id);
+         roomInfo=client.query("SELECT event_name, room_type, capacity, room_number, check_in, check_out, price, hotel_name FROM rooms JOIN events ON rooms.events_id = events.id JOIN hotels ON rooms.hotels_id = hotels.id WHERE events_id =" + req.body.events_id);
+        //  roomInfo=client.query("SELECT * FROM rooms WHERE events_id=" + req.body.events_id);
          console.log("in /getRoom2 app: ", roomInfo);
           rows = 0;
           roomInfo.on('row', function(row) {  // pushing to array

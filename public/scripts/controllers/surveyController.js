@@ -49,6 +49,7 @@ function ( $scope, $http ) {
     console.log("notes button pushed");
 
     responseOtherAccommodation = {
+        
         attend_status: sessionStorage.getItem("attending"),
         hotel_status: "no",
         notes_other_accommodation: $scope.notes_other_accommodation,

@@ -78,6 +78,7 @@ JOIN hotels ON events.hotel_id = hotels.id;
 --occupant_room and users JOIN  XX
 SELECT occupant_room.id, first_name, last_name, guest_name, room_type, capacity, room_number, check_in, check_out, price
 FROM occupant_room
+JOIN events ON rooms.rooms_id = rooms.id
 JOIN users ON occupant_room.users_id = users.id
 JOIN rooms ON occupant_room.rooms_id = rooms.id;
 
@@ -90,7 +91,7 @@ JOIN users ON survey.user_id = users.id
 JOIN events ON survey.events_id = events.id;
 
 --events and rooms and hotels  ////Is this route necessary?  --Nick////
-SELECT event_name, room_type, capacity, room_number, check_in, check_out, price, hotel_name
+SELECT event_name, room_type, capacity, room_number, check_in, check_out, price, hotel_name,
 FROM rooms
 JOIN events ON rooms.events_id = events.id
 JOIN hotels ON rooms.hotels_id = hotels.id;

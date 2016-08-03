@@ -33,13 +33,13 @@ DRGNBT.controller('adminController', ['$scope', '$http', '$window', '$filter', f
          objectToSend ={  // package inputs into object to send
            event_name : $scope.eventName,
            address_one : $scope.addressOne,
-           address_two : $scope.addressTwo,
+          //  address_two : $scope.addressTwo,
            event_city : $scope.event_city,
            event_state_province : $scope.event_state_province,
            event_url : $scope.event_url,
            company : $scope.company,
-           results_url : $scope.results_url,
-           schedule_url : $scope.schedule_url,
+          //  results_url : $scope.results_url,
+          //  schedule_url : $scope.schedule_url,
            begin_date : $scope.begin_date,
            end_date : $scope.end_date,
            notes_events : $scope.notes_events

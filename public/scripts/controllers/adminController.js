@@ -3,6 +3,7 @@ DRGNBT.controller('adminController', ['$scope', '$http', '$window', '$filter', f
     var objectToSend={}; // creates global object to send
     $scope.eventToDisplay= [];
 
+$scope.sampleText = "This is a string.";
 
     $scope.assignEvent = function(eventId){
         console.log(eventId);
@@ -121,9 +122,13 @@ $scope.subEvent = function(){
       $scope.eventToDisplay = $scope.events[i];
     }
   }
-  console.log($scope.eventToDisplay);
+$scope.eventToModify = {
+  id: $scope.eventToDisplay.id,
+  name: $scope.eventToDisplay.event_name
+};
+
   // console.log('eventPhase: ', $scope.eventToDisplay.hotel_phase);
-console.log($scope.data.cb1 = $scope.eventToDisplay.hotel_phase);
+// console.log($scope.data.cb1 = $scope.eventToDisplay.hotel_phase);
 
   // if($scope.eventDoDisplay.data.cb1)
 
@@ -140,8 +145,8 @@ $http({
   $scope.surveyList = response.data;
 });
 
-
-};
+console.log( "This was built: ", $scope.eventToModify, ". It contains ", $scope.eventToModify.id, ", and ", $scope.eventToModify.name, "." );
+};  //End subEvent()
 
 
     //  $scope.surveyRequest = function() { // gets survey results for current event for Admin survey page
@@ -223,7 +228,7 @@ $scope.deleteHotel = function(hotelID){
     $scope.hotelRequest();
   });
 };
-//GOTTA FINISH BUILDING THIS OUT LATER
+//GOTTA FINISH BUILDING THIS OUT LATER                   ATTN: NICK!    <---------------------------
 $scope.assignHotel = function(eventChosen){
   console.log('in assignHotel');
   console.log($scope.selectHotel);
@@ -235,7 +240,7 @@ $scope.assignHotel = function(eventChosen){
   data: sendID
   });
   console.log('out of js.assignHotel');
-};
+};  //End assignHotel()
 
      var hotelRooms=[];
 
@@ -542,7 +547,7 @@ $scope.fetchEvents = function(){
     url: '/eventPopulate'
   }).then( function( response ) {
     $scope.alltheEvents = response.data;
-    console.log('and the response data is: ',   $scope.alltheEvents);
+    console.log('and the response data is: ', $scope.alltheEvents);
     console.log('events is ', $scope.events);
   });
 };

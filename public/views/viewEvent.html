@@ -5,42 +5,50 @@
     <img class="dragonBoats" src="assets/images/dragon_boat_2.jpg" alt="" />
   </div>
 
-  <div class="nextSteps">
-    <h3 class="nextStepsHeader">Next Steps:</h3>
 
-    Hello, {{hello | uppercase}}!
-
-    {{pageMessage}} <a ng-href="{{pageMessage2}}">{{pageMessage3}} </a>
-  </div>
 
     <div class="eventDiv2" ng-init="getInformation()">
       <div>
-        <h1>{{eventData.event_name}}</h1>
+        <h2>{{eventData.event_name}}</h2>
         <hr>
-        <h4><i>Event Dates: {{ (eventData.begin_date | date: "MM-dd-yyyy") }} - {{ (eventData.end_date | date: "MM-dd-yyyy") }}</i></h4>          <h4>{{eventData.company}}</h4>
+        <h4><i>{{ (eventData.begin_date | date: "MMMM dd, yyyy") }} - {{ (eventData.end_date | date: "MMMM dd, yyyy") }}</i></h4>          <h4>{{eventData.company}}</h4>
       </div>
     </div>
 
+
       <div class="eventDiv3">
         <div class="col-xs-6 col-md-4 eventInfo">
-          <h3>Event Address</h3>
+          <h3 class="eventHeaders">Event Address</h3>
 
           <p>{{eventData.address_one}}</p>
           <p>{{eventData.address_two}}</p>
           <p>{{eventData.event_city}}, {{eventData.event_state_province}}</p>
         </div>
         <div class="col-xs-6 col-md-4">
-          <h3>Event Information</h3>
+          <h3 class="eventHeaders">Event Information</h3>
 
           <p><b>Event Website:</b> <a href="{{eventData.event_url}}" target="_blank">{{eventData.event_url}}</a></p>
-          <p><b>Schedule:</b> <a href="{{eventData.schedule_url}}" target="_blank">{{eventData.schedule_url}}</a></p>
+          <!-- <p><b>Schedule:</b> <a href="{{eventData.schedule_url}}" target="_blank">{{eventData.schedule_url}}</a></p> -->
         </div>
         <div class="col-xs-6 col-md-4">
-          <h3>Hotel Information</h3>
+          <h3 class="eventHeaders">Hotel Information</h3>
 
           <p><b>Hotel Name:</b> {{eventData.hotel_name}}</p>
           <p><b>Hotel:</b> <a href="{{eventData.hotel_url}}" target="_blank">{{eventData.hotel_url}}</a></p>
 
         </div>
       </div>
-  </div>
+
+      <div class="nextSteps">
+        <div class="nextSteps2">
+          <h1 class="nextStepsHeader">Next Steps</h1>
+        </div>
+        <div class="hello">
+          <h4 class="helloAgain">
+          Hello, {{hello | uppercase}}!
+
+          {{pageMessage}} </h4><md-button class="md-raised eventButton"><a ng-href="{{pageMessage2}}">{{pageMessage3}} </a></md-button>
+
+        </div>
+      </div>
+    </div>

@@ -184,6 +184,7 @@ router.post('/getSlots', function(req, res) { // pulling selected room info from
       if (err) {     // check for errors
       console.log(err);
     } else { // start selection criteria
+        //  var search = client.query("SELECT occupant_room.id, first_name, last_name, guest_name, room_type, capacity, room_number, check_in, check_out, price FROM occupant_room JOIN users ON occupant_room.users_id = users.id JOIN rooms ON occupant_room.rooms_id = rooms.id WHERE rooms_id=" + req.body.room);
          var search = client.query("SELECT * FROM occupant_room WHERE rooms_id='" + req.body.room + "'");
          search.toString();
         //  console.log("in /getSlots app: ", slotsInfo);

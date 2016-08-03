@@ -34,13 +34,13 @@ $scope.sampleText = "This is a string.";
          objectToSend ={  // package inputs into object to send
            event_name : $scope.eventName,
            address_one : $scope.addressOne,
-           address_two : $scope.addressTwo,
+          //  address_two : $scope.addressTwo,
            event_city : $scope.event_city,
            event_state_province : $scope.event_state_province,
            event_url : $scope.event_url,
            company : $scope.company,
-           results_url : $scope.results_url,
-           schedule_url : $scope.schedule_url,
+          //  results_url : $scope.results_url,
+          //  schedule_url : $scope.schedule_url,
            begin_date : $scope.begin_date,
            end_date : $scope.end_date,
            notes_events : $scope.notes_events
@@ -446,70 +446,31 @@ $http({
           console.log($scope.theObject.id);
           $scope.sendRoom = $scope.theObject.id;
           console.log('we are about to send ', $scope.sendRoom);
-          $scope.getSlots($scope.sendRoom);
-        }
-
-      // $scope.getSlots(1);
-
-
-      });
-    }; // end getRoom function
-
-    // $scope.showRoom2 = function() {
-    // console.log("in show room function in adminController");
-    // $http({   // gets recordset via GET
-    //   method: 'GET',
-    //   url: '/showRoom2',
-    // }).then( function(response){  // success call - runs function with response parameter
-    //   $scope.roomToShow = response.data;
-    //   console.log('room to show returns' , $scope.roomToShow);
-    // }, function myError(response){
-    //   console.log(response.statusText);
-    // }// end error function
-    // ); // end then response
-    // }; // end showRoom function
+            console.log("in getSlots function in adminController");
+            console.log('now, we are searching for', $scope.sendRoom);
+            slotsToGet = {
+              room : $scope.sendRoom,
+            };
+            console.log("slotsToGet: ", slotsToGet);
+            $http({   // gets recordset via POST
+              method: 'POST',
+              url: '/getSlots',
+              data: slotsToGet
+              }).then(function(response) {
+              // $scope.showSlots();
+              console.log('and for ', $scope.roomToShow,' the slots we will show are: ', response.data);
+              $scope.slotsToShow = response.data;
+            });
+          } // end getSlotsfunction
+        } //end then
+    );}; // end getRoom function
 
 $scope.showMeSlots = function(){
   console.log('slots to show are ', $scope.slotsToShow);
   console.log('and rooms to show is ', $scope.roomToShow);
 };
 
-
   // var slotsToGet;
-
-  $scope.getSlots = function(stuff) {
-    console.log("in getSlots function in adminController");
-    console.log('now, we are searching for', stuff);
-    slotsToGet = {
-      room : stuff,
-    };
-    console.log("slotsToGet: ", slotsToGet);
-    $http({   // gets recordset via POST
-      method: 'POST',
-      url: '/getSlots',
-      data: slotsToGet
-    }).then(function(response) {
-      // $scope.showSlots();
-      console.log('and for ', stuff,' the slots we will show are: ', response.data);
-      $scope.slotsToShow = response.data;
-    });
-  }; // end getSlotsfunction
-
-// $scope.slotsToShow= [];
-
-    // $scope.showSlots = function() {
-    // console.log("in show slots function in adminController");
-    // $http({   // gets recordset via GET
-    //   method: 'GET',
-    //   url: '/showSlots',
-    // }).then( function(response){  // success call - runs function with response parameter
-    //   $scope.slotsToShow = response.data;
-    //   console.log("showSlots slotsToShow:", $scope.slotsToShow);
-    // }, function myError(response){
-    //   console.log(response.statusText);
-    // }// end error function
-    // ); // end then response
-    // }; // end showRoom function
 
     $scope.updateOccupants=function(recordguest_name, recordusers_id, recordrooms_id, recordid) {
     console.log('in updateOccupants');

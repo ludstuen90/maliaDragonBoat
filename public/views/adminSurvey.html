@@ -9,43 +9,61 @@
             <md-content class="md-padding">
 
               <!-- First Row -->
+              <div class="row">
+                  <div class="col-sm-6">
                       <div class="form-group">
                         <md-input-container md-no-float class="md-block">
                           <input ng-model="eventName" placeholder="Event Name">
                         </md-input-container>
                       </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <md-input-container md-no-float class="md-block">
+                          <input ng-model="company" placeholder="Company">
+                        </md-input-container>
+                      </div>
+                    </div><!-- Col -->
+              </div>
               <!-- Second Row -->
+              <div class="row">
+                  <div class="col-sm-6">
                       <div class="form-group">
                         <md-input-container md-no-float class="md-block">
                           <input ng-model="addressOne" placeholder="Street Address">
                         </md-input-container>
                       </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <md-input-container md-no-float class="md-block">
+                        <input ng-model="event_city" placeholder="City">
+                      </md-input-container>
+                    </div>
+                  </div><!-- Col -->
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <md-input-container md-no-float class="md-block">
+                        <input ng-model="event_state_province" placeholder="State/Province">
+                      </md-input-container>
+                    </div>
+                  </div><!-- Col -->
+
+              </div>
               <!-- Third Row -->
-                        <div class="row">
+                        <!-- <div class="row">
                            <div class="col-sm-4">
                              <div class="form-group">
                                <md-input-container md-no-float class="md-block">
                                  <input ng-model="addressTwo" placeholder="Address">
                                </md-input-container>
                              </div>
-                           </div><!-- Col -->
+                           </div> -->
 
-                           <div class="col-sm-4">
-                             <div class="form-group">
-                               <md-input-container md-no-float class="md-block">
-                                 <input ng-model="event_city" placeholder="City">
-                               </md-input-container>
-                             </div>
-                           </div><!-- Col -->
 
-                           <div class="col-sm-4">
-                             <div class="form-group">
-                               <md-input-container md-no-float class="md-block">
-                                 <input ng-model="event_state_province" placeholder="State/Province">
-                               </md-input-container>
-                             </div>
-                           </div><!-- Col -->
-                         </div><!-- Row -->
               <!-- Fourth Row -->
                          <div class="row">
 
@@ -57,34 +75,6 @@
                               </div>
                             </div><!-- Col -->
 
-                            <div class="col-sm-6">
-                              <div class="form-group">
-                                <md-input-container md-no-float class="md-block">
-                                  <input ng-model="company" placeholder="Company">
-                                </md-input-container>
-                              </div>
-                            </div><!-- Col -->
-                          </div><!-- Row -->
-              <!-- Fifth Row -->
-                         <div class="row">
-                            <div class="col-sm-6">
-                              <div class="form-group">
-                                <md-input-container md-no-float class="md-block">
-                                  <input ng-model="results_url" placeholder="Results URL">
-                                </md-input-container>
-                              </div>
-                            </div><!-- Col -->
-
-                            <div class="col-sm-6">
-                              <div class="form-group">
-                                <md-input-container md-no-float class="md-block">
-                                  <input ng-model="schedule_url" placeholder="Schedule URL">
-                                </md-input-container>
-                              </div>
-                            </div><!-- Col -->
-                          </div><!-- Row -->
-              <!-- Sixth Row -->
-                          <div class="row">
                             <div class="col-sm-3">
                               <div class="form-group">
                                 <md-datepicker ng-model="begin_date" md-placeholder="Begin date"></md-datepicker>
@@ -99,8 +89,9 @@
                           </div><!-- Row -->
               <!-- Seventh Row -->
                           <div class="form-group">
-                              <label class="control-label"></label>
-                              <textarea class="form-control" type= "text" ng-model= "notes_events" value= "" placeholder="notes" rows="8"></textarea>
+                            <md-input-container md-no-float class="md-block">
+                              <textarea ng-model="notes_events" md-maxlength="150" rows="5" placeholder="Event Notes"></textarea>
+                            </md-input-container>
                           </div>
 
                           <button class="createEventButton btn-lg btn-block" type="button" name="submitEventButton" ng-click= "createEvent()" >Create Event</button>
@@ -238,55 +229,61 @@
         <md-tab class="hotelTime" label="Hotel List">
             <md-content class="md-padding">
 
-              <div class="row" ng-controller="adminController"> <!-- begin hotel information -->
+              <div ng-controller="adminController"> <!-- begin hotel information -->
 
-
-                        <div class="col-md-4">
-
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-3">
                                         <md-input-container md-no-float class="md-block">
                                           <input ng-model="hotel_name" placeholder="Hotel Name">
                                         </md-input-container>
-
+                                    </div>
+                                    <div class="col-xs-6 col-sm-3">
                                          <md-input-container md-no-float class="md-block">
                                            <input ng-model="hotel_address" placeholder="Address">
                                          </md-input-container>
-
+                                    </div>
+                                    <div class="col-xs-6 col-sm-2">
                                          <md-input-container md-no-float class="md-block">
                                            <input ng-model="hotel_city" placeholder="City">
                                          </md-input-container>
-
+                                      </div>
+                                    <div class="col-xs-6 col-sm-2">
                                           <md-input-container md-no-float class="md-block">
                                             <input ng-model="hotel_state" placeholder="State">
                                           </md-input-container>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-2">
+                                      <md-input-container md-no-float class="md-block">
+                                        <input ng-model="hotel_zip" placeholder="Zip">
+                                      </md-input-container>
+                                    </div>
+                                  </div>
 
-                                            <md-input-container md-no-float class="md-block">
-                                              <input ng-model="hotel_zip" placeholder="Zip">
-                                            </md-input-container>
+                                <div>
 
-                                            <md-input-container md-no-float class="md-block">
-                                              <input ng-model="hotel_phone" placeholder="Phone">
-                                            </md-input-container>
+                                      <div class="col-xs-6 col-sm-3">
+                                          <md-input-container md-no-float class="md-block">
+                                            <input ng-model="hotel_phone" placeholder="Phone">
+                                          </md-input-container>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-3">
+                                           <md-input-container md-no-float class="md-block">
+                                             <input ng-model="hotel_url" placeholder="Website">
+                                           </md-input-container>
+                                         </div>
 
-
-
-                                             <md-input-container md-no-float class="md-block">
-                                               <input ng-model="hotel_url" placeholder="Website">
-                                             </md-input-container>
-
-                                            <!-- Notes -->
+                                          <!-- Notes -->
+                                          <div class="col-xs-6">
                                             <md-input-container md-no-float class="md-block">
                                               <textarea ng-model="hotel_notes" md-maxlength="150" rows="5" placeholder="Hotel Notes"></textarea>
                                             </md-input-container>
+                                          </div>
 
-                                           <button class="createEventButton btn-lg btn-block" type="button" name="createHotelButton" ng-click= "newHotel()" >Add Hotel</button>
+                                          <button class="createEventButton btn-lg btn-block" type="button" name="createHotelButton" ng-click= "newHotel()" >Add Hotel</button>
 
                                         </div>
 
-
-
-
-
-              <div class="col-md-8">
+              <div>
                 <p ng-show="hotel.length==0">No hotels available.</p>
                   <table class="table table-striped">
                     <thead>
@@ -305,14 +302,14 @@
                        <td>{{hotel.hotel_name}}</td>
                        <td>{{hotel.hotel_address}}</td>
                        <td>{{hotel.hotel_city}}</td>
-                       <td>{{hotel.hgotel_state_province}}</td>
+                       <td>{{hotel.hotel_state_province}}</td>
                        <td>{{hotel.hotel_zip}}</td>
                        <td>{{hotel.hotel_phone}}</td>
                        <td><a href="{{hotel.hotel_url}}" target="_blank">{{hotel.hotel_url}}</a></td>
                        <td>{{hotel.hotel_notes}}</td>
                        <td class="hotelButtons"><button type="button" class="btn btn-danger" ng-click= "deleteHotel(hotel.id)">Delete Hotel</button></td>
                      </tr>
-                  </table>
+                    </table>
                   </div>
               </div>  <!-- End hotel information -->
        </md-content>

@@ -472,6 +472,7 @@ $scope.showMeSlots = function(){
 
   // var slotsToGet;
 
+
     $scope.updateOccupants=function(recordguest_name, recordusers_id, recordrooms_id, recordid) {
     console.log('in updateOccupants');
     console.log("data from updateOccupants: ", recordid, recordrooms_id, recordguest_name, recordusers_id );

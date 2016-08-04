@@ -492,13 +492,12 @@ $scope.showMeSlots = function(){
 
 
 $scope.pageLoad = function(){
-
 $http.get('loadHotels').then(function(response){
   $scope.hotelSelect = response.data;
   console.log(response.data);
 });
 
-$scope.hotelRequest();
+
 
 
 

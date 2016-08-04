@@ -113,8 +113,8 @@
                         <div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-lg>
                           <label>Choose an Event</label>
-                          <md-select ng-model="eventChosen">
-                            <md-option ng-repeat="thing in alltheEvents" value="{{thing.id}}">
+                          <md-select ng-model="eventChosen" class="bottomspacesmall">
+                            <md-option ng-repeat="thing in alltheEvents" value="{{thing.id}}" class="bottomspace">
                               <b>{{thing.event_name}}</b>  ({{thing.begin_date | date: "MM-dd-yyyy"}} - {{thing.end_date | date: "MM-dd-yyyy"}})
                             </md-option>
                           </md-select><button class="createEventButton btn-md" ng-click="subEvent()">Submit Event</button>
@@ -127,7 +127,7 @@
                             <div layout-gt-sm="row">
                                 <md-input-container class="md-block" flex-gt-lg>
                                   <label>Choose an Hotel</label>
-                                  <md-select ng-model="selectHotel">
+                                  <md-select ng-model="selectHotel" class="bottomspacesmall">
                                     <md-option ng-repeat="hotel in hotelSelect" value="{{hotel.id}}">
                                       {{hotel.hotel_name}}
                                     </md-option>
@@ -152,7 +152,7 @@
                                 </div>
                               </div> <!-- end row -->
                               <div align="center">
-                              <button class="createEventButton btn-md" ng-click="saveDial()">Save Event Phase</button>
+                              <button class="createEventButton btn-md" ng-click="saveDial( data.cb1, eventToDisplay.id )">Save Event Phase</button>
                             </div>
                               <hr>
 
@@ -266,7 +266,8 @@
                       <th>Delete</th>
                     </thead>
                     <br>
-                     <tr ng-repeat="hotel in hotels | orderBy:hotel_name">
+
+                     <tr ng-repeat="hotel in hotels | orderBy:hotel_name | filter: {hotel_name: '!TBA'}" >
                        <td>{{hotel.hotel_name}}</td>
                        <td>{{hotel.hotel_address}}</td>
                        <td>{{hotel.hotel_city}}</td>

@@ -21,6 +21,7 @@ a:link {
     text-decoration: none;
 }
 
+<<<<<<< HEAD
 .takeSurvey {
   color: white;
   font-size: 30px;
@@ -34,6 +35,11 @@ a:link {
   color: #459ec1;
 }
 
+=======
+hr {
+  border-color: #ff9900;
+}
+>>>>>>> e4acafe07f29c0bb7f37dc0a787e0500c6cd30f4
 .dragonBoats {
   height: 400px;
   width: 100%;
@@ -797,10 +803,8 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
     color: #13647F;
 }
 
-.hideIt {
-  visibility: hidden;
-}
-
-.showIt {
-  visibility: visible:
+.inSurvey {
+  text-align: right;
+  font-weight: bold;
+  margin-top: 18px;
 }

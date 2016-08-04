@@ -60,6 +60,7 @@ router.get( '/hotelBlock', function( req, res ) {
       console.log( '/hotelBlock returned with ' + hotelBlockDisplay + ' which contains ' + hotelBlockDisplay.room_type, hotelBlockDisplay.capacity + '.' );
     });
     if( err ) {
+      res.sendStatus( 500 );
       console.log( 'Unable to retrieve hotel block information.' );
     } else {
       hotelQuery.on( 'end', function() {

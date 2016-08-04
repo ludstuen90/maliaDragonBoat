@@ -39,8 +39,6 @@ $scope.sampleText = "This is a string.";
            event_state_province : $scope.event_state_province,
            event_url : $scope.event_url,
            company : $scope.company,
-          //  results_url : $scope.results_url,
-          //  schedule_url : $scope.schedule_url,
            begin_date : $scope.begin_date,
            end_date : $scope.end_date,
            notes_events : $scope.notes_events
@@ -77,7 +75,6 @@ $scope.sampleText = "This is a string.";
        $scope.begin_date = '';
        $scope.end_date = '';
        $scope.notes_events = '';
-     // shows verification message
 }; //end createEvent function
 
     // $scope.eventList=[];
@@ -109,24 +106,20 @@ $scope.saveDial = function(){
   console.log($scope.eventToDisplay.event_name, 'will be updated to ', $scope.data.cb1);
 };
 
-
 $scope.subEvent = function(){
   console.log('coffee is the way, and the life');
   console.log($scope.eventChosen);
-
   for (var i = 0; i < $scope.events.length; i++){
     if($scope.events[i].id == $scope.eventChosen) {
       $scope.eventToDisplay = $scope.events[i];
     }
   }
-$scope.eventToModify = {
-  id: $scope.eventToDisplay.id,
-  name: $scope.eventToDisplay.event_name
-};
-
+  $scope.eventToModify = {
+    id: $scope.eventToDisplay.id,
+    name: $scope.eventToDisplay.event_name
+  };
   // console.log('eventPhase: ', $scope.eventToDisplay.hotel_phase);
 // console.log($scope.data.cb1 = $scope.eventToDisplay.hotel_phase);
-
   // if($scope.eventDoDisplay.data.cb1)
 
 var showThisEvent = {
@@ -139,22 +132,10 @@ $http({
 }).then(function(response){
   console.log('from survey show we have', response.data);
   $scope.surveyList = response.data;
-  // $scope.showIt();
 });
-
-
-console.log( "This was built: ", $scope.eventToModify, ". It contains ", $scope.eventToModify.id, ", and ", $scope.eventToModify.name, "." );
 };  //End subEvent()
 
-
-// $scope.showIt = function() {
-//   if ($scope.class === "red")
-//       $scope.class = "blue";
-//     else
-//       $scope.class = "red";
-//
-// };
-
+                         //ARE WE USING THIS??
     //  $scope.surveyRequest = function() { // gets survey results for current event for Admin survey page
     //    $http({   // gets recordset via GET
     //      method: 'GET',
@@ -292,7 +273,7 @@ $scope.addRoom = function() {
   console.log("in addRoom function in adminController");
   roomToSend = {
     // hotels_id : $scope.hotels_id,
-    events_id : $scope.events_id,
+    events_id : $scope.eventToModify.id,
     room_type : $scope.room_type,
     capacity : $scope.capacity,
     price : $scope.price,

@@ -7,8 +7,8 @@
     <!-- TAB 1 CREATE EVENT -->
         <md-tab label="Create Event">
             <md-content class="md-padding">
-              <h3>Create an Event</h3>
 
+              <h3 class="bottomspace"> Create An Event</h3>
               <!-- First Row -->
               <div class="row">
                   <div class="col-sm-6">
@@ -54,18 +54,8 @@
                   </div><!-- Col -->
 
               </div>
+
               <!-- Third Row -->
-                        <!-- <div class="row">
-                           <div class="col-sm-4">
-                             <div class="form-group">
-                               <md-input-container md-no-float class="md-block">
-                                 <input ng-model="addressTwo" placeholder="Address">
-                               </md-input-container>
-                             </div>
-                           </div> -->
-
-
-              <!-- Fourth Row -->
                          <div class="row">
 
                             <div class="col-sm-6">
@@ -88,143 +78,105 @@
                               </div>
                             </div><!-- Col -->
                           </div><!-- Row -->
-              <!-- Seventh Row -->
+              <!-- Fourth Row -->
+              <div class="row">
+                        <div class="col-sm-9">
                           <div class="form-group">
                             <md-input-container md-no-float class="md-block">
                               <textarea ng-model="notes_events" md-maxlength="150" rows="1" placeholder="Event Notes"></textarea>
                             </md-input-container>
                           </div>
+                        </div><!-- Col -->
 
+                        <div class="col-sm-3">
                           <button class="createEventButton btn-lg btn-block" type="button" name="submitEventButton" ng-click= "createEvent()" >Create Event</button>
+                      </div><!-- Col -->
+                  </div><!-- Row -->
+
+                  <p class="verifyHidden">The event has been created. You may now send an email to the paddlers alerting them to take the survey.</p>
 
              </md-content>
         </md-tab>
 
 <!-- TAB 2 SELECT EVENT -->
-    <md-tab label="Select Event">
-        <md-content class="md-padding">
 
-            <h3>Select An Event To Administer</h3>
-
-            <div ng-init="pageLoad()"></div>
-
+  <md-tab label="Select Event">
+      <md-content class="md-padding">
+      <div class="container">
+        <h3> Select An Event To View Survey Results</h3>
+        </br>
+        <div ng-init="pageLoad()"></div>
           <div class="row">
-            <div class="container">
-              <div class="col-md-12">
-            <form name="userForm">
-              <div layout-gt-sm="row">
+              <div class="col-md-4">
+                      <form name="userForm">
+                        <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-lg>
+                          <label>Choose an Event</label>
+                          <md-select ng-model="eventChosen">
+                            <md-option ng-repeat="thing in alltheEvents" value="{{thing.id}}">
+                              <b>{{thing.event_name}}</b>  ({{thing.begin_date | date: "MM-dd-yyyy"}} - {{thing.end_date | date: "MM-dd-yyyy"}})
+                            </md-option>
+                          </md-select><button class="createEventButton btn-md" ng-click="subEvent()">Submit Event</md-button>
+                        </md-input-container>
+                      </div>
+                      </form>
 
-              <md-input-container class="md-block" flex-gt-lg>
-                <label>Choose an Event</label>
-                <md-select ng-model="eventChosen">
-                  <md-option ng-repeat="thing in alltheEvents" value="{{thing.id}}">
-                    {{thing.event_name}}  ({{thing.begin_date | date: "MM-dd-yyyy"}} - {{thing.end_date | date: "MM-dd-yyyy"}})
-                  </md-option>
-                </md-select><md-button class="md-raised" ng-click="subEvent()">Submit</md-button>
-              </md-input-container>
-            </div>
-            </form>
-          </div>
-        </div>
-      </div>
+                  <!-- Select/Assign a Hotel -->
+                          <form name="userForm">
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-lg>
+                                  <label>Choose an Hotel</label>
+                                  <md-select ng-model="selectHotel">
+                                    <md-option ng-repeat="hotel in hotelSelect" value="{{hotel.id}}">
+                                      {{hotel.hotel_name}}
+                                    </md-option>
+                                  </md-select><button class="createEventButton btn-md" ng-click="assignHotel( eventChosen )">Submit Hotel</md-button>
+                                </md-input-container>
 
+                              </div>
+                            </form>
 
-<!-- Select/Assign a Hotel -->
-      <div class="row">
-        <div class="container">
-          <div class="col-md-12">
-        <form name="userForm">
-          <div layout-gt-sm="row">
+                      <md-switch ng-model="data.cb1" aria-label="Switch 1">
+                         Activate Hotel Phase: {{ data.cb1 }}
+                       </md-switch>
+                        <md-button class="createEventButton btn-lg" ng-click="saveDial()">Save Event Phase</md-button>
 
-              <md-input-container class="md-block" flex-gt-lg>
-                <label>Choose an Hotel</label>
-                <md-select ng-model="selectHotel">
-                  <md-option ng-repeat="hotel in hotelSelect" value="{{hotel.id}}">
-                    {{hotel.hotel_name}}
-                  </md-option>
-                </md-select><md-button class="md-raised" ng-click="assignHotel( eventChosen )">Submit</md-button>
-              </md-input-container>
+              </div> <!-- End col 1 -->
+              <div class="col-md-8"> <!-- Start col 2 -->
+                            <div class="hideIt">
+                            <p><span class="subhead">{{eventToDisplay.event_name}}</span><span class="subdate">{{ (eventToDisplay.begin_date | date: "MMMM dd, yyyy") }} - {{ (eventToDisplay.end_date | date: "MMMM dd, yyyy") }}</span>
+                            <p><b>{{eventToDisplay.event_city}}, {{eventToDisplay.event_state_province}} -  {{eventToDisplay.event_url}} - by {{eventToDisplay.company}}</b></p>
+                            <p class="bottomspace">Notes: {{eventToDisplay.notes_events}}</p>
+                            </div>
+                            <p ng-show="surveyList.length==0">No survey results available.</p>
 
-            </div>
-            </form>
-          </div>
-        </div>
-      </div>
+                            <h4>Survey Results</h4>
+                            <table class="table table-striped">
+                              <thead class="rowline">
+                                 <th>Paddler Name</th>
+                                 <th>Attend Status</th>
+                                 <th>Hotel Block?</th>
+                                 <th>Room Preference</th>
+                                 <th># Non-Paddlers</th>
+                                 <th >Notes</th>
+                              </thead>
 
-
-
-      <div class="row">
-        <div class="container">
-          <div class="col-md-6">
-            <h1>{{eventToDisplay.event_name}}</h1>
-            <p>{{eventToDisplay.company}}</p>
-            <h4><i>{{ (eventToDisplay.begin_date | date: "MMMM dd, yyyy") }} - {{ (eventToDisplay.end_date | date: "MMMM dd, yyyy") }}</i></h4>
-            <h4>{{eventToDisplay.city}}</h4>
-            <h4>{{eventToDisplay.event_url}}</h4>
-            <p>Notes: {{eventToDisplay.notes_events}}</p>
-
-            <div class="col-md-6">
-              <md-switch ng-model="data.cb1" aria-label="Switch 1">
-                 Activate Hotel Phase: {{ data.cb1 }}
-               </md-switch>
-
-                <md-button class="md-raised" ng-click="saveDial()">Save Event Phase</md-button>
-            </div>
-
-            <div class="col-md-12">
-
-
-<br><br>
-
-<p ng-show="surveyList.length==0">No survey results available.</p>
-<table class="table table-striped">
-  <thead id = "adminEventTable">
-     <th id = "borderIt">Paddler Name</th>
-     <th id = "borderIt">Attend Status</th>
-     <th id = "borderIt">Hotel Block?</th>
-     <th id = "borderIt">Room Preference</th>
-     <th id = "borderIt"># Non-Paddlers</th>
-     <th id = "borderIt">Notes</th>
-  </thead>
-
- <tr ng-repeat="record in surveyList | orderBy:username">
-   <td>{{record.first_name}} {{record.last_name}}</td>
-   <td>{{record.attend_status}}</td>
-   <td>{{record.hotel_status}}</td>
-   <td>{{record.roommate_option}}</td>
-   <td>{{record.num_non_paddlers}}</td>
-   <td>{{record.notes_survey_room}}</td>
-  </tr>
- </table>
+                             <tr ng-repeat="record in surveyList | orderBy:username">
+                               <td class="capitalize">{{record.first_name}} {{record.last_name}}</td>
+                               <td class="capitalize">{{record.attend_status}}</td>
+                               <td>{{record.hotel_status?'Yes':'No'}}</td>
+                               <td class="capitalize">{{record.roommate_option}}</td>
+                               <td>{{record.num_non_paddlers}}</td>
+                               <td class="capitalize">{{record.notes_survey_room}}</td>
+                              </tr>
+                             </table>
+              </div><!-- End col 2 -->
+            </div> <!-- End row-->
+          </div> <!-- end container -->
+        </md-content>
+     </md-tab>
 
 
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-
-
-
-<!--
-
-
-  	<div ng-repeat="event in alltheEvents"  role="button" ng-click="assignEvent(  event.id  )" class="col-md-6 adminEvent">
-  		<h4> {{ event.event_name }} <h4>
-  			<p> {{ event.begin_date }} to {{ event.end_date }} </p>
-
-  </div> -->
-
-
-
-
-
-
-         </md-content>
-    </md-tab>
 
 <!-- TAB 3 // HOTEL LIST -->
         <md-tab class="hotelTime" label="Hotel List">
@@ -324,77 +276,66 @@
     <md-tab label="Hotel Room Builder">
         <md-content class="md-padding">
           <div class="row" ng-controller="adminController"> <!-- begin Tab 4 hotel information -->
-            <!-- <p ng-show="hotel.length==0">No hotels available.</p> -->
 
     <!-- ADD ROOM -->
     <h3>Add Hotel Room</h3>
-
-        <!-- <md-input-container md-no-float class="md-block">
-          <input ng-model="hotel_name" placeholder="Hotel Name">
-        </md-input-container> -->
+    <h4>{{ eventToModify.name }}</h4>
 
 
-        <div class="row">
-           <div class="col-sm-6">
-             <div class="form-group">
-               <label class="control-label">Event ID (temporary field)</label>
-               <input class="form-control" type= "number" ng-model= "events_id" value= "" >
-             </div><!--end group-->
-           </div> <!--end col-->
-         </div> <!-- ends row -->
-        <!-- First Row -->
-              <div class="row">
-                     <div class="col-sm-4">
-                       <div class="form-group">
-                         <md-input-container md-no-float class="md-block">
-                           <input ng-model="room_type" placeholder="Room Type">
-                         </md-input-container>
-                       </div>
-                     </div><!-- Col -->
+            <!-- First Row -->
+                  <div class="row">
+                         <div class="col-sm-4">
+                           <div class="form-group">
+                             <md-input-container md-no-float class="md-block">
+                               <input ng-model="room_type" placeholder="Room Type">
+                             </md-input-container>
+                           </div>
+                         </div><!-- Col -->
 
-                     <div class="col-sm-4">
-                       <div class="form-group">
-                         <md-input-container md-no-float class="md-block">
-                           <input ng-model="capacity"  placeholder="Capacity">
-                         </md-input-container>
-                       </div>
-                     </div><!-- Col -->
+                         <div class="col-sm-4">
+                           <div class="form-group">
+                             <md-input-container md-no-float class="md-block">
+                               <input ng-model="capacity"  placeholder="Capacity">
+                             </md-input-container>
+                           </div>
+                         </div><!-- Col -->
 
-                     <div class="col-sm-4">
-                       <div class="form-group">
-                         <md-input-container md-no-float class="md-block">
-                           <input ng-model="price" placeholder="Price">
-                         </md-input-container>
-                       </div>
-                     </div><!-- Col -->
-              </div><!-- Row -->
-        <!-- Second Row -->
-              <div class="row">
-                      <div class="col-sm-2">
-                        <div class="form-group">
-                            <md-datepicker ng-model="check_in" md-placeholder="Check In Date"></md-datepicker>
-                        </div>
-                      </div><!-- Col -->
-
-                        <div class="col-sm-2">
-                          <div class="form-group">
-                            <md-datepicker ng-model="check_out" md-placeholder="Check Out Date"></md-datepicker>
-                          </div>
-                        </div><!-- Col -->
-
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <md-input-container md-no-float class="md-block">
-                            <input ng-model="notes"  placeholder="Notes">
-                          </md-input-container>
+                         <div class="col-sm-4">
+                           <div class="form-group">
+                             <md-input-container md-no-float class="md-block">
+                               <input ng-model="price"  class="price" type="number" step="0.01" placeholder="Price">
+                               <img class="dollarsign" src="assets/images/dollarsign.png"></img>
+                             </md-input-container>
+                           </div>
+                         </div><!-- Col -->
+                  </div><!-- Row -->
+            <!-- Second Row -->
+                  <div class="row">
+                          <div class="col-sm-2">
+                            <div class="form-group">
+                                <md-datepicker ng-model="check_in" md-placeholder="Check In Date"></md-datepicker>
                             </div>
-                        </div><!-- Col -->
+                          </div><!-- Col -->
 
-                        <div class="col-sm-2">
-                           <button class="createEventButton btn-lg" type="button" name="addRoomButton" ng-click= "addRoom()" >Add Room</button>
-                        </div><!-- Col -->
-                    </div><!-- Row -->
-        </md-content>
+                            <div class="col-sm-2">
+                              <div class="form-group">
+                                <md-datepicker ng-model="check_out" md-placeholder="Check Out Date"></md-datepicker>
+                              </div>
+                            </div><!-- Col -->
+
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <md-input-container md-no-float class="md-block">
+                                <input ng-model="notes"  placeholder="Notes">
+                              </md-input-container>
+                                </div>
+                            </div><!-- Col -->
+
+                            <div class="col-sm-2">
+                               <button class="createEventButton btn-lg" type="button" name="addRoomButton" ng-click= "addRoom()" >Add Room</button>
+                            </div><!-- Col -->
+                        </div><!-- Row -->
+            </md-content>
 
 <!--SHOW ROOM  -->
 <table class="table table-striped">
@@ -410,15 +351,15 @@
             <th>Actions</th>
         </thead>
         <tr ng-repeat="record in roomToShow | orderBy:record.id">
-          <td >{{ record.id }}</td>
-          <td ><span editable-text="record.room_number" e-form="rowform" e-required>{{ record.room_number }}</span></td>
-          <td class="rowline"><span editable-text="record.room_type" e-form="rowform" e-required>{{ record.room_type }}</span></td>
-          <td class="rowline">{{ record.capacity }}</td>
-          <td class="rowline"><span editable-text="record.price" e-form="rowform" e-required>{{ record.price }}</span></td>
-          <td class="rowline"><span editable-date="record.check_in" e-form="rowform" e-required>{{ (record.check_in | date: "MM-dd-yyyy") }}</span></td>
-          <td class="rowline"><span editable-date="record.check_out" e-form="rowform" e-required>{{ (record.check_out | date: "MM-dd-yyyy")}}</span></td>
-          <td class="rowline"><span editable-text="record.notes" e-form="rowform" e-required>{{ record.notes }}</span></td>
-          <td class="rowline" style="white-space:nowrap">
+          <td>{{ record.id }}</td>
+          <td><span editable-text="record.room_number" e-form="rowform" e-required>{{ record.room_number }}</span></td>
+          <td><span editable-text="record.room_type" e-form="rowform" e-required>{{ record.room_type }}</span></td>
+          <td>{{ record.capacity }}</td>
+          <td><span editable-text="record.price" e-form="rowform" e-required>{{ record.price | currency:"$"}}</span></td>
+          <td><span editable-date="record.check_in" e-form="rowform" e-required>{{ (record.check_in | date: "MM-dd-yyyy") }}</span></td>
+          <td><span editable-date="record.check_out" e-form="rowform" e-required>{{ (record.check_out | date: "MM-dd-yyyy")}}</span></td>
+          <td><span editable-text="record.notes" e-form="rowform" e-required>{{ record.notes }}</span></td>
+          <td style="white-space:nowrap">
             <form editable-form name="rowform" onaftersave="makeSqlHappy(record.room_number, record.room_type, record.capacity, record.price, record.check_in, record.check_out, record.notes, record.id )" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == record">
               <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary createEventButton">Save</button>
               <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default orangeButton"> Cancel</button>

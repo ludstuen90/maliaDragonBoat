@@ -3,6 +3,22 @@ html body {
   height: 2000px;
 }
 
+h3 {
+  font-family: “Helvetica Neue”, Helvetica, Arial, sans-serif;
+  font-size: 30px;
+  color: #13647F;
+}
+
+h4 {
+  font-family: “Helvetica Neue”, Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  color: #13647F;
+}
+
+a:link {
+    text-decoration: none;
+}
+
 .dragonBoats {
   height: 400px;
   width: 100%;
@@ -39,7 +55,6 @@ h3 {
   font-size: 30px;
   color: #ff9900;
 }
-
 
 .hotelButtons {
   margin: 0px;
@@ -346,7 +361,7 @@ md-content {
   max-width: 1600px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 md-tabs-canvas {
@@ -405,17 +420,6 @@ md-tabs.md-dynamic-height md-tabs-content-wrapper {
   background: #13647F;
 }
 
-#adminEventTable {
-  background: #13647F;
-  color: white;
-  border: solid;
-  border: 1px, 1px, 1px, 1px;
-  border-color: darkgrey;
-}
-
-#borderIt {
-  border: 0.5px solid #faa723;
-}
 
 #tabs {
   margin-top: 50px;
@@ -545,22 +549,17 @@ nav {
  /*background-color: #faa723;*/
 
  /*width: 100px;*/
- border: 3px solid orange;
+ border: 3px solid #faa723;
  /*padding: 60px 30px 60px 30px;*/
  /*margin: 25px;*/
  text-align: center;
  opacity: 0.7;
-
 }
 
 .adminEvent:hover {
   background-color: #faa723;
   opacity: 1;
-
 }
-
-
-
 
 .eventHeader {
   font-weight: 200;
@@ -650,10 +649,6 @@ nav {
   padding: 30px;
 }
 
-a:link {
-    text-decoration: none;
-}
-
 .reg{
 	color: #324452;
 	text-align: center;
@@ -699,7 +694,7 @@ a:link {
  /*background-color: #ff9900;*/
  /*background-color: #faa723;*/
  width: 225px;
- border: 3px solid orange;
+ border: 3px solid #faa723;
  padding: 20px 10px;
  margin: 10px;
  text-align: center;
@@ -725,7 +720,7 @@ button.md-button.md-raised:not([disabled]) {
 .roomAssigner {
   background: #b5d5e3;
   width: 325px;
-  border: 3px solid orange;
+  border: 3px solid #faa723;
   padding: 3px;
   margin: 10px;
   text-align: left;
@@ -744,6 +739,42 @@ thead {
   border-bottom: 3px solid #3c84a2;
 }
 
-.orangeButton {
-  background-color: #b5d5e3;
+.dollarsign {
+  margin-top: -93px;
+}
+
+.price {
+  margin: 20px;
+}
+
+.subhead {
+  font: 24px/28px “Helvetica Neue”, Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  color: #13647F;
+}
+
+.subdate {
+  font-size: 16px;
+  text-transform: uppercase;
+  padding-left: 30px;
+}
+
+.bottomspace {
+  margin-bottom: 20px;
+}
+
+.capitalize {
+  text-transform: capitalize;;
+}
+
+md-input-container:not(.md-input-invalid).md-input-focused label {
+    color: #13647F;
+}
+
+.hideIt {
+  visibility: hidden;
+}
+
+.showIt {
+  visibility: visible:
 }

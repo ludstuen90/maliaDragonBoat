@@ -141,17 +141,14 @@ $http({
   $scope.surveyList = response.data;
   // $scope.showIt();
 });
-
-
-console.log( "This was built: ", $scope.eventToModify, ". It contains ", $scope.eventToModify.id, ", and ", $scope.eventToModify.name, "." );
 };  //End subEvent()
 
 
-// $scope.showIt = function() {
-//   if ($scope.class === "red")
-//       $scope.class = "blue";
-//     else
-//       $scope.class = "red";
+// $scope.showIt = function() {                        <------------ARE WE USING ANY OF THIS?
+//   if ($scope.class === "red")                                           |
+//       $scope.class = "blue";                                            |
+//     else                                                                |
+//       $scope.class = "red";                                             V
 //
 // };
 
@@ -292,7 +289,7 @@ $scope.addRoom = function() {
   console.log("in addRoom function in adminController");
   roomToSend = {
     // hotels_id : $scope.hotels_id,
-    events_id : $scope.events_id,
+    events_id : $scope.eventToModify.id,
     room_type : $scope.room_type,
     capacity : $scope.capacity,
     price : $scope.price,

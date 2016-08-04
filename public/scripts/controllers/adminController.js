@@ -136,6 +136,7 @@ console.log( "This was built: ", $scope.eventToModify, ". It contains ", $scope.
 
 
 
+                         //ARE WE USING THIS??
     //  $scope.surveyRequest = function() { // gets survey results for current event for Admin survey page
     //    $http({   // gets recordset via GET
     //      method: 'GET',

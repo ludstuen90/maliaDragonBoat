@@ -48,7 +48,12 @@ a:link {
 }
 
 .gridListdemoBasicUsage .gray {
-  background: #f5f5f5;
+  background: #f5f5f5; }
+
+h3 {
+  font-family: “Helvetica Neue”, Helvetica, Arial, sans-serif;
+  font-size: 30px;
+  color: #ff9900;
 }
 
 .hotelButtons {
@@ -133,15 +138,17 @@ a:link {
 .thankYou {
   font-size: 60px;
   font-weight: bold;
-  width: 1000px;
+  /*width: 1000px;*/
   margin-left: auto;
   margin-right: auto;
+  float: none;
+  /*display: block;*/
 }
 
 .thankYouContainer {
   color: white;
   float: none;
-  display: block;
+  /*display: block;*/
   margin-left: auto;
   margin-right: auto;
   margin-top: 0px;
@@ -152,9 +159,9 @@ a:link {
   text-align: center;
   font-size: 24px;
   font-weight: normal;
-  width: 1000px;
+  /*width: 1000px;*/
   float: none;
-  display: block;
+  /*display: block;*/
   margin-left: auto;
   margin-right: auto;
   margin-top: 0px;
@@ -171,16 +178,19 @@ a:link {
   width: 700px;
 }
 
+.md-button.md-raised:not([disabled]):hover {
+  background-color: #13647F;
+}
+
 .md-button.md-raised {
   color: white;
-  background-color: #13647F;
+  background-color: #3c84a2;
   font-weight: 500;
   margin: 15px;
 }
 
-.md-button.md-raised:hover {
-  color: white;
-  background-color: blue;
+.md-raised:hover {
+  /*background-color: !important blue;*/
   font-weight: 500;
   margin: 15px;
 }
@@ -195,6 +205,10 @@ a:link {
   text-wrap: none;
   background-color: blue;
   color: blue;
+}
+
+.surveyButton:hover {
+  background-color: red;
 }
 
 .surveyTitle {
@@ -692,6 +706,10 @@ button.md-button.md-raised:not([disabled]) {
   box-shadow: none;
 }
 
+.md-button.md-raised:not([disabled]):hover {
+  background-color: !important blue;
+}
+
 .selectEvent:hover {
   background-color: #faa723;
   opacity: 1;
@@ -718,7 +736,7 @@ thead {
 }
 
 .rowline {
-  border-bottom: 3px solid #faa723;
+  border-bottom: 3px solid #3c84a2;
 }
 
 .dollarsign {

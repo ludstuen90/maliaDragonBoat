@@ -15,6 +15,6 @@
 	<div ng-init="fetchEvents">
 	<div ng-repeat="event in alltheEvents"  role="button" ng-click="assignEvent(  event.id  )" class="col-xs-6 .col-sm-3 homeEvent" id = "homeEventDisplay">
 		<h2> {{ event.event_name }} </h2>
-			<p> {{ event.begin_date | date: "MM-dd-yyyy" }} to {{ event.end_date | date: "MM-dd-yyyy" }} </p>
-</div>
+			<p> {{ event.begin_date | date: "MMMM dd, yyyy" }} - {{ event.end_date | date: "MMMM dd, yyyy" }} </p>
+	</div>
 </div>

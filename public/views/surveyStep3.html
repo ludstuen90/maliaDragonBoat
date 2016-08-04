@@ -47,9 +47,9 @@
       </md-radio-group>
   <!-- End of radio group -->
       <div class="form-group">
-        <label class="control-label"></label>
-        <textarea class="form-control" type= "text" ng-model= "notes_survey_room" value= "" placeholder="notes" rows="6"></textarea>
-      </div>
+        <md-input-container md-no-float class="md-block">
+          <textarea ng-model="notes_survey_room" md-maxlength="150" rows="3" placeholder="Notes"></textarea>
+        </md-input-container>
 
 <!-- Submit button -->
     <md-button class="md-raised surveyButton" ng-click="submitHotel()"> Submit </md-button>

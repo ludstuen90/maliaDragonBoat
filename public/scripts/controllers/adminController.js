@@ -34,13 +34,10 @@ $scope.sampleText = "This is a string.";
          objectToSend ={  // package inputs into object to send
            event_name : $scope.eventName,
            address_one : $scope.addressOne,
-          //  address_two : $scope.addressTwo,
            event_city : $scope.event_city,
            event_state_province : $scope.event_state_province,
            event_url : $scope.event_url,
            company : $scope.company,
-          //  results_url : $scope.results_url,
-          //  schedule_url : $scope.schedule_url,
            begin_date : $scope.begin_date,
            end_date : $scope.end_date,
            notes_events : $scope.notes_events
@@ -77,9 +74,7 @@ $scope.sampleText = "This is a string.";
        $scope.begin_date = '';
        $scope.end_date = '';
        $scope.notes_events = '';
-
 }; //end createEvent function
-
 
     // $scope.eventList=[];
 $scope.events = '';
@@ -108,47 +103,40 @@ $scope.saveDial = function(){
   console.log($scope.data.cb1);
 
   console.log($scope.eventToDisplay.event_name, 'will be updated to ', $scope.data.cb1);
-
-
-
-
 };
+
 $scope.subEvent = function(){
   console.log('coffee is the way, and the life');
   console.log($scope.eventChosen);
-
   for (var i = 0; i < $scope.events.length; i++){
     if($scope.events[i].id == $scope.eventChosen) {
       $scope.eventToDisplay = $scope.events[i];
     }
   }
-$scope.eventToModify = {
-  id: $scope.eventToDisplay.id,
-  name: $scope.eventToDisplay.event_name
-};
-
+  $scope.eventToModify = {
+    id: $scope.eventToDisplay.id,
+    name: $scope.eventToDisplay.event_name
+  };
   // console.log('eventPhase: ', $scope.eventToDisplay.hotel_phase);
 // console.log($scope.data.cb1 = $scope.eventToDisplay.hotel_phase);
-
   // if($scope.eventDoDisplay.data.cb1)
-
-var showThisEvent = {
-  id: $scope.eventChosen
-};
-
-$http({
-  method: 'POST',
-  url: '/surveyShow',
-  data: showThisEvent
-}).then(function(response){
-  console.log('from survey show we have', response.data);
-  $scope.surveyList = response.data;
-});
-
+  var showThisEvent = {
+    id: $scope.eventChosen
+  };
+  $http({
+    method: 'POST',
+    url: '/surveyShow',
+    data: showThisEvent
+  }).then(function(response){
+    console.log('from survey show we have', response.data);
+    $scope.surveyList = response.data;
+  });
 console.log( "This was built: ", $scope.eventToModify, ". It contains ", $scope.eventToModify.id, ", and ", $scope.eventToModify.name, "." );
 };  //End subEvent()
 
 
+
+                         //ARE WE USING THIS??
     //  $scope.surveyRequest = function() { // gets survey results for current event for Admin survey page
     //    $http({   // gets recordset via GET
     //      method: 'GET',
@@ -210,7 +198,6 @@ console.log( "This was built: ", $scope.eventToModify, ". It contains ", $scope.
        }// end error function
        ); // end then response
      }; // end hotelRequest function
-// $scope.hotelRequest();
 
 
 // };
@@ -286,14 +273,13 @@ $scope.addRoom = function() {
   console.log("in addRoom function in adminController");
   roomToSend = {
     // hotels_id : $scope.hotels_id,
-    events_id : $scope.events_id,
+    events_id : $scope.eventToModify.id,
     room_type : $scope.room_type,
     capacity : $scope.capacity,
     price : $scope.price,
     check_in : $scope.check_in,
     check_out : $scope.check_out,
     notes : $scope.notes
-    //need event id and hotel id
   };
   console.log(roomToSend);
   $http({
@@ -489,6 +475,21 @@ $scope.showMeSlots = function(){
       data: data
     });
     };
+
+  $scope.downloadPDF = function() {   // Export results to PDF using html2canvas and pdfmake
+      html2canvas(document.getElementById('exportPDF'), {
+          onrendered: function(canvas) {
+            var data=canvas.toDataURL();
+            var docDef={
+              content: [{
+                image: data,
+                width: 500,
+              }]
+            };
+            pdfMake.createPdf(docDef).download('HotelRoomAssignments.pdf');  // download the PDF
+          } // end making pdf out of rendered canvas image
+      }); //end html2canvas export function
+  }; // end downloadPDF function
 
 
 $scope.pageLoad = function(){

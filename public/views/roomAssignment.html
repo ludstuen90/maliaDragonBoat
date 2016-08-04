@@ -1,6 +1,6 @@
 <div ng-include="nav.html"></div>
 <md-content ng-controller="adminController"> <!-- need a ng-init to pass in eventid -->
-
+<div id="exportPDF">
     <h3>Room Assigner for [EVENTNAME]</h3>
     <h4>Hotel: [HOTELNAME]</h4>
     <br />
@@ -8,6 +8,8 @@
 <button ng-click="getSlots(1)">1</button>
 <button ng-click="getSlots(2)">2</button>
 <button ng-click="getSlots(3)">3</button>
+
+<button ng-click="downloadPDF()">Download PDF of Page</button>
 
     <p>Event ID Number: </p>
     <input type= "text" ng-model= "events_id" value= ""><button type="button" ng-click= "getRoom2()" >Get Rooms</button>
@@ -38,8 +40,9 @@
                         </div>
                   </tr> <!-- end row-->
                 </table> <!-- end occupant code -->
+              </div>
         	</div> <!-- end room code -->
         </div> <!-- end row -->
       </div><!-- end container -->
-
+</div><!-- end id for export pdf -->
 </md-content>

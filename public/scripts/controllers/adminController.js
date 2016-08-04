@@ -428,23 +428,25 @@ $scope.slots = [];
                 $scope.roomToShow = response.data;
 
                   console.log('room to show returns' , $scope.roomToShow);
-              }).then(function(){
-                for (i = 0; i < $scope.roomToShow.length; i++) {
-                  $scope.theObject = $scope.roomToShow[i];
-                  console.log($scope.theObject.id);
-                  $scope.sendRoom = $scope.theObject.id;
-                  $scope.roomIdsToDisplay.push($scope.sendRoom);
-                  $scope.arrayiffied = [$scope.sendRoom];
-                  $scope.slots.push($scope.arrayiffied);
-                    }
-                    console.log('and finally the array of rooms for which we need slots is', $scope.roomIdsToDisplay);
-                    console.log('dont forget slots is ', $scope.slots);
+              });
 
-                  $http({
-                    method: 'POST',
-                    url: '/getSlots',
-                    data: roomsToGet
-                  }).then(function(response){
+              // .then(function(){
+                // for (i = 0; i < $scope.roomToShow.length; i++) {
+                //   $scope.theObject = $scope.roomToShow[i];
+                //   console.log($scope.theObject.id);
+                //   $scope.sendRoom = $scope.theObject.id;
+                //   $scope.roomIdsToDisplay.push($scope.sendRoom);
+                //   $scope.arrayiffied = [$scope.sendRoom];
+                //   $scope.slots.push($scope.arrayiffied);
+                //     }
+                //     console.log('and finally the array of rooms for which we need slots is', $scope.roomIdsToDisplay);
+                //     console.log('dont forget slots is ', $scope.slots);
+
+                  // $http({
+                  //   method: 'POST',
+                  //   url: '/getSlots',
+                  //   data: roomsToGet
+                  // }).then(function(response){
                     // Receive all Slots associated with our event (as objects),
                     // convert each slot (object) into an array, and package
                     // all of these into an array ($scope.slots), sorted by
@@ -453,33 +455,33 @@ $scope.slots = [];
                     // the order of the rooms displayed on the page, and
                     // represented in $scope.roomIdsToDisplay
 
-                    console.log('and slots returns', response.data);
-                    $scope.slotsAvailable = response.data;
-                    for (var i = 0; i <($scope.slotsAvailable.length); i++){
-                      console.log($scope.slotsAvailable[i].guest_name, 'and ', $scope.slotsAvailable[i].rooms_id);
-                      for (var j = 0; j <($scope.roomIdsToDisplay.length); j++){
-                        console.log('room is ', $scope.roomIdsToDisplay[j], ' we look at ', $scope.slotsAvailable[i].guest_name);
-                        if ($scope.roomIdsToDisplay[j] == $scope.slotsAvailable[i].rooms_id ) {
-                          console.log('yes, we have identified ', $scope.slots[j]);
-                          console.log($scope.slotsAvailable[i]);
-                          $scope.array = $.map($scope.slotsAvailable[i], function(value, index){
-                            return [value];
-                          });
-                          console.log($scope.array[1]);
-                          $scope.slots[j].push($scope.array[1]);
-                        }
-                      }
-                      // $scope.thisParticularSlotRoomId = $scope.slotsAvailable[i].rooms_id;
-
-                      for (var m = 0; m < $scope.slots.length; m++){
-                        console.log('lets take off ', $scope.slots[m]);
-                        $scope.slots[m];
-
-                      }
-                    }
-                    console.log($scope.slots);
-                    // console.log($scope.slots[1][2][1]);
-                  });
+                  //   console.log('and slots returns', response.data);
+                  //   $scope.slotsAvailable = response.data;
+                  //   for (var i = 0; i <($scope.slotsAvailable.length); i++){
+                  //     console.log($scope.slotsAvailable[i].guest_name, 'and ', $scope.slotsAvailable[i].rooms_id);
+                  //     for (var j = 0; j <($scope.roomIdsToDisplay.length); j++){
+                  //       console.log('room is ', $scope.roomIdsToDisplay[j], ' we look at ', $scope.slotsAvailable[i].guest_name);
+                  //       if ($scope.roomIdsToDisplay[j] == $scope.slotsAvailable[i].rooms_id ) {
+                  //         console.log('yes, we have identified ', $scope.slots[j]);
+                  //         console.log($scope.slotsAvailable[i]);
+                  //         $scope.array = $.map($scope.slotsAvailable[i], function(value, index){
+                  //           return [value];
+                  //         });
+                  //         console.log($scope.array[1]);
+                  //         $scope.slots[j].push($scope.array[1]);
+                  //       }
+                  //     }
+                  //     // $scope.thisParticularSlotRoomId = $scope.slotsAvailable[i].rooms_id;
+                  //
+                  //     for (var m = 0; m < $scope.slots.length; m++){
+                  //       console.log('lets take off ', $scope.slots[m]);
+                  //       // $scope.slots[m];
+                  //
+                  //     }
+                  //   }
+                  //   console.log($scope.slots);
+                  //   // console.log($scope.slots[1][2][1]);
+                  // });
                   // Now, let's separate out the arrays
 
 
@@ -489,18 +491,28 @@ $scope.slots = [];
 
 
 
-                  }
-                ); //end then
-
+                //   }
+                // ); //end then
+                //
 
 
   }; // end getRoom function
 
-$scope.grid = [['hi', 'bye', 'array'],['coffee', 'latte', 'corgi']];
+$scope.seeRoom = function(roomId){
+  console.log('fired with ', roomId);
+  sessionStorage.setItem("roomId", roomId);
+  $window.location.href = '/#/roomOccupants';
+};
+
+
+
+
 
 $scope.showMeSlots = function(){
   console.log('slots to show are ', $scope.slotsToShow);
   console.log('and rooms to show is ', $scope.roomToShow);
+
+
 };
 
   // var slotsToGet;

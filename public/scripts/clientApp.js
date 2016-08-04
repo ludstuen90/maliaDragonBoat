@@ -81,6 +81,10 @@ DRGNBT.config(['$routeProvider', function($routeProvider, $locationProvider) {
       templateUrl : 'views/viewEvent.html',
       controller : 'viewEvent'
     })
+    .when('/roomOccupants', {
+      templateUrl : 'views/roomOccupants.html',
+      controller: 'roomController'
+    })
     .otherwise({
       redirectTo: 'login'
     });

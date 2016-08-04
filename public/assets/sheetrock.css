@@ -1,6 +1,8 @@
 
 html body {
-  height: 2000px;
+  height: 1300px;
+  font-family: “Helvetica Neue”, Helvetica, Arial, sans-serif;
+
 }
 
 h3 {
@@ -17,6 +19,19 @@ h4 {
 
 a:link {
     text-decoration: none;
+}
+
+.takeSurvey {
+  color: white;
+  font-size: 30px;
+  /*background-color: #26d7fe;*/
+  padding: 5px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.takeSurvey:hover{
+  color: #459ec1;
 }
 
 .dragonBoats {
@@ -207,6 +222,10 @@ h3 {
   color: blue;
 }
 
+.nextStepsHeader2 {
+  color: !important white;
+}
+
 .surveyButton:hover {
   background-color: red;
 }
@@ -261,11 +280,14 @@ h3 {
 
 .nextStepsHeader {
   margin-top: 0px;
+  color: white;
+  font-weight: bold;
 }
 
 .nextSteps {
   color: white;
   padding: 35px;
+  text-align: center;
   /*background-color: #3c84a2;*/
   background-color: #3c84a2;
   /*border-bottom: 2px;
@@ -283,6 +305,7 @@ h3 {
 
 .nextSteps2 {
   display: flex;
+  text-align: center;
 }
 
 .fa-exclamation{
@@ -291,11 +314,13 @@ h3 {
 }
 
 .hello {
-  display: flex;
+  /*display: flex;*/
 }
 
 .helloAgain {
-  padding-top: 20px;
+  /*padding-top: 20px;*/
+  color: white;
+  font-size: 18px;
 }
 
 .eventDiv {
@@ -439,7 +464,7 @@ md-tabs.md-dynamic-height md-tabs-content-wrapper {
 }
 
 #homeEventDisplay {
-  background-color: lightblue;
+  background-color:
 }
 
 .active {
@@ -526,10 +551,11 @@ nav {
  /*display: inline-flex;*/
  /*background-color: #ff9900;*/
  /*background-color: #faa723;*/
-
-
-
+ /*float: none;*/
+ margin-left: auto;
+ margin-right: auto;
  width: 400px;
+ height: 260px;
  border: 3px solid orange;
  padding: 60px 30px 60px 30px;
  margin: 25px;

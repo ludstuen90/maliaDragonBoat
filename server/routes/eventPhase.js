@@ -46,9 +46,22 @@ router.post('/eventPhase', function(req, res){
                   });
                 }
               });
-
-
 });
+
+router.put( '/updateEvent', function( req, res ) {
+                pg.connect( connectionString, function( err, client, done ) {
+                  if( err ) {
+                    console.log( 'Unable to update table.' );
+                  }else {
+                  client.query( "UPDATE events SET hotel_phase = TRUE WHERE id = " + req.body.id);
+                  console.log( "Hotel phase update query successful." );
+                  res.send( true );
+                  done();
+                }
+                });
+              });
+
+
 
 
 

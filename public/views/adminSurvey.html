@@ -139,7 +139,7 @@
                       <md-switch ng-model="data.cb1" aria-label="Switch 1">
                          Activate Hotel Phase: {{ data.cb1 }}
                        </md-switch>
-                        <md-button class="createEventButton btn-lg" ng-click="saveDial()">Save Event Phase</md-button>
+                        <md-button class="createEventButton btn-lg" ng-click="saveDial( data.cb1, eventToDisplay.id )">Save Event Phase</md-button>
 
               </div> <!-- End col 1 -->
               <div class="col-md-8"> <!-- Start col 2 -->

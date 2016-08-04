@@ -93,8 +93,6 @@
                       </div><!-- Col -->
                   </div><!-- Row -->
 
-                  <p class="verifyHidden">The event has been created. You may now send an email to the paddlers alerting them to take the survey.</p>
-
              </md-content>
         </md-tab>
 
@@ -116,7 +114,7 @@
                             <md-option ng-repeat="thing in alltheEvents" value="{{thing.id}}">
                               <b>{{thing.event_name}}</b>  ({{thing.begin_date | date: "MM-dd-yyyy"}} - {{thing.end_date | date: "MM-dd-yyyy"}})
                             </md-option>
-                          </md-select><button class="createEventButton btn-md" ng-click="subEvent()">Submit Event</md-button>
+                          </md-select><button class="createEventButton btn-md" ng-click="subEvent()">Submit Event</button>
                         </md-input-container>
                       </div>
                       </form>
@@ -130,23 +128,42 @@
                                     <md-option ng-repeat="hotel in hotelSelect" value="{{hotel.id}}">
                                       {{hotel.hotel_name}}
                                     </md-option>
-                                  </md-select><button class="createEventButton btn-md" ng-click="assignHotel( eventChosen )">Submit Hotel</md-button>
+                                  </md-select><button class="createEventButton btn-md" ng-click="assignHotel( eventChosen )">Submit Hotel</button>
                                 </md-input-container>
 
                               </div>
                             </form>
 
-                      <md-switch ng-model="data.cb1" aria-label="Switch 1">
+
+                      <!-- <md-switch ng-model="data.cb1" aria-label="Switch 1">
                          Activate Hotel Phase: {{ data.cb1 }}
                        </md-switch>
-                        <md-button class="createEventButton btn-lg" ng-click="saveDial( data.cb1, eventToDisplay.id )">Save Event Phase</md-button>
+                        <md-button class="createEventButton btn-lg" ng-click="saveDial( data.cb1, eventToDisplay.id )">Save Event Phase</md-button> -->
+
+                            <hr>
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <p class="inSurvey">In Survey Phase</p>
+                                </div>
+                                <div class="col-xs-2">
+                                    <md-switch ng-model="data.cb1" aria-label="Switch 1" class="md-hue-5"></md-switch>
+                                </div>
+                                <div class="col-xs-5">
+                                     <p><b>In Hotel Room Assignment Phase (surveys complete)</b></p>
+                                </div>
+                              </div> <!-- end row -->
+                              <div align="center">
+                              <button class="createEventButton btn-md" ng-click="saveDial()">Save Event Phase</button>
+                            </div>
+                              <hr>
+>>>>>>> 8325e56caa7213343c2a5196eb4a0cda770d816b
 
               </div> <!-- End col 1 -->
               <div class="col-md-8"> <!-- Start col 2 -->
-                            <div class="hideIt">
-                            <p><span class="subhead">{{eventToDisplay.event_name}}</span><span class="subdate">{{ (eventToDisplay.begin_date | date: "MMMM dd, yyyy") }} - {{ (eventToDisplay.end_date | date: "MMMM dd, yyyy") }}</span>
-                            <p><b>{{eventToDisplay.event_city}}, {{eventToDisplay.event_state_province}} -  {{eventToDisplay.event_url}} - by {{eventToDisplay.company}}</b></p>
-                            <p class="bottomspace">Notes: {{eventToDisplay.notes_events}}</p>
+                            <div ng-show="eventToDisplay.length!==0"> <!-- hides the empty punctuation and text below that would show by itself before an event is selected -->
+                                <p><span class="subhead">{{eventToDisplay.event_name}}</span><span class="subdate">{{ (eventToDisplay.begin_date | date: "MMMM dd, yyyy") }} - {{ (eventToDisplay.end_date | date: "MMMM dd, yyyy") }}</span>
+                                <p><b>{{eventToDisplay.event_city}}, {{eventToDisplay.event_state_province}}  -  {{eventToDisplay.event_url}}  -  by {{eventToDisplay.company}}</b></p>
+                                <p class="bottomspace">Notes: {{eventToDisplay.notes_events}}</p>
                             </div>
                             <p ng-show="surveyList.length==0">No survey results available.</p>
 

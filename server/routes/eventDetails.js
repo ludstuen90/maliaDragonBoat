@@ -21,8 +21,6 @@ if(process.env.DATABASE_URL !== undefined) {
 router.post('/eventData', function(req, res){
   console.log("request to see most recent client received");
   console.log('yes, and mango is ', req.body.eventId);
-
-
   getVal = [];
   pg.connect(connectionString, function(err, client, done){
     if(err){

@@ -143,10 +143,6 @@ router.post('/createSlots', function(req, res){
 
 var slotsArray;
 
-
-
-
-
 router.post('/getSlots9000', function(req, res){
   console.log("Get client request received!");
   var client = {
@@ -204,15 +200,8 @@ router.post('/getSlots', function(req, res) { // pulling selected room info from
 
 }); // end /getSlotsfunction
 
-// router.get( '/showSlots', function( req, res ){  // makes returned room info available to room assigner
-//       console.log("in showSlots function in app: ", slotsArray);
-//       return res.json(slotsArray);
-//   }); // end  /showRoom function
-//
-
-
-
 //ROOM ASSIGNMENT ROUTES:
+
 router.post('/getRoom2', function(req, res) { // pulling selected room info from database to display on room assignment page
     console.log("in rooms.js getroom2");
     console.log('req.body.events id is ', req.body.events_id);
@@ -238,10 +227,6 @@ router.post('/getRoom2', function(req, res) { // pulling selected room info from
     }); // end pg connect function
 }); // end /getRoom2 function
 
-// router.get( '/showRoom2', function( req, res ){  // makes returned room info available to room assignment page
-//       console.log("in showRoom2 function in app: ", selectedRoom);
-//       return res.json(selectedRoom);
-//   }); // end  /showRoom2 function
 
 router.post('/saveSlot/:id', function(req, res) {
     var slot = req.body;

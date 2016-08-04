@@ -21,8 +21,6 @@ if(process.env.DATABASE_URL !== undefined) {
 router.post('/eventPhase', function(req, res){
             console.log("request to see the event phase received. ");
             console.log('yes, and mango is ', req.body.eventId);
-
-
             getVal = [];
             pg.connect(connectionString, function(err, client, done){
               if(err){
@@ -39,7 +37,6 @@ router.post('/eventPhase', function(req, res){
                 query.on('end', function(){
                   done();
                   pg.end();
-
                   console.log('and the event phase status we are receiving will be: ');
                   console.log(getVal[0]);
                   return res.json(getVal);

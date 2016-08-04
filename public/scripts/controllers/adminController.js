@@ -479,13 +479,20 @@ $scope.slots = [];
                           $scope.array = $.map($scope.slotsAvailable[i], function(value, index){
                             return [value];
                           });
-                          console.log($scope.array);
-                          $scope.slots[j].push($scope.array);
+                          console.log($scope.array[1]);
+                          $scope.slots[j].push($scope.array[1]);
                         }
                       }
                       // $scope.thisParticularSlotRoomId = $scope.slotsAvailable[i].rooms_id;
+
+                      for (var m = 0; m < $scope.slots.length; m++){
+                        console.log('lets take off ', $scope.slots[m]);
+                        $scope.slots[m];
+
+                      }
                     }
                     console.log($scope.slots);
+                    // console.log($scope.slots[1][2][1]);
                   });
                   // Now, let's separate out the arrays
 

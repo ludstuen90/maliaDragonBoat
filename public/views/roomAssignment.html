@@ -9,12 +9,12 @@
 <button ng-click="getSlots(2)">2</button>
 <button ng-click="getSlots(3)">3</button>
 
-<table>
+<!-- <table>
   <tr ng-repeat "y in grid">
     <td ng-repeat="x in y"></td>
     <p ng-repeat="z in x track by $index">{{z.indexOf(1)}}</p>
   </tr>
-</table>
+</table> -->
 
 
 
@@ -22,7 +22,8 @@
 <div>
 <table>
 <tr ng-repeat="y in slots">
- <td ng-repeat="x in y track by $index"> {{x}} </td>
+ <td ng-repeat="x in y track by $index">{{x}} </td>
+ <p ng-repeat="z in x track by $index"></p>
 </tr>
 </table>
 
@@ -43,8 +44,8 @@
 
 
               <table class="table table-bordered table-hover table-condensed">
-                  <tr ng-repeat='record in slots'>  <!-- occupant code -->
-                      <td><span editable-text="record.guest_name" e-form="rowform" e-required class="occupant"> {{guest_name}} </span></td>
+                  <tr ng-repeat="y in slots">  <!-- occupant code -->
+                      <td ng-repeat="x in y"><span editable-text="x" e-form="rowform" e-required class="occupant"> {{x}} </span></td>
                       <td style="white-space:nowrap">
                         <form editable-form name="rowform" onaftersave="updateOccupants(record.guest_name, record.users_id, record.rooms_id )"  ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == record">
                           <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">Update</button>

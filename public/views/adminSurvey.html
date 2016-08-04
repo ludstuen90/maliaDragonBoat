@@ -7,6 +7,7 @@
     <!-- TAB 1 CREATE EVENT -->
         <md-tab label="Create Event">
             <md-content class="md-padding">
+              <h3>Create an Event</h3>
 
               <!-- First Row -->
               <div class="row">
@@ -90,7 +91,7 @@
               <!-- Seventh Row -->
                           <div class="form-group">
                             <md-input-container md-no-float class="md-block">
-                              <textarea ng-model="notes_events" md-maxlength="150" rows="5" placeholder="Event Notes"></textarea>
+                              <textarea ng-model="notes_events" md-maxlength="150" rows="1" placeholder="Event Notes"></textarea>
                             </md-input-container>
                           </div>
 
@@ -103,7 +104,7 @@
     <md-tab label="Select Event">
         <md-content class="md-padding">
 
-            <h3 align="center">Select An Event To Administer</h3>
+            <h3>Select An Event To Administer</h3>
 
             <div ng-init="pageLoad()"></div>
 
@@ -275,7 +276,7 @@
                                           <!-- Notes -->
                                           <div class="col-xs-6">
                                             <md-input-container md-no-float class="md-block">
-                                              <textarea ng-model="hotel_notes" md-maxlength="150" rows="5" placeholder="Hotel Notes"></textarea>
+                                              <textarea ng-model="hotel_notes" md-maxlength="150" rows="1" placeholder="Hotel Notes"></textarea>
                                             </md-input-container>
                                           </div>
 
@@ -286,18 +287,18 @@
               <div>
                 <p ng-show="hotel.length==0">No hotels available.</p>
                   <table class="table table-striped">
-                    <thead>
+                    <thead class"rowline">
                       <th>Hotel Name</th>
                       <th>Address</th>
                       <th>City</th>
-                      <th>State or Province</th>
+                      <th>State</th>
                       <th>Zip</th>
                       <th>Phone</th>
                       <th>Website</th>
                       <th>Notes</th>
+                      <th>Delete</th>
                     </thead>
-                    <p><b>Event Website:</b></p>
-
+                    <br>
                      <tr ng-repeat="hotel in hotels | orderBy:hotel_name">
                        <td>{{hotel.hotel_name}}</td>
                        <td>{{hotel.hotel_address}}</td>

@@ -37,7 +37,7 @@ html body {
 h3 {
   font-family: “Helvetica Neue”, Helvetica, Arial, sans-serif;
   font-size: 30px;
-  color: #13647F;
+  color: #ff9900;
 }
 
 
@@ -123,15 +123,17 @@ h3 {
 .thankYou {
   font-size: 60px;
   font-weight: bold;
-  width: 1000px;
+  /*width: 1000px;*/
   margin-left: auto;
   margin-right: auto;
+  float: none;
+  /*display: block;*/
 }
 
 .thankYouContainer {
   color: white;
   float: none;
-  display: block;
+  /*display: block;*/
   margin-left: auto;
   margin-right: auto;
   margin-top: 0px;
@@ -142,9 +144,9 @@ h3 {
   text-align: center;
   font-size: 24px;
   font-weight: normal;
-  width: 1000px;
+  /*width: 1000px;*/
   float: none;
-  display: block;
+  /*display: block;*/
   margin-left: auto;
   margin-right: auto;
   margin-top: 0px;
@@ -161,16 +163,19 @@ h3 {
   width: 700px;
 }
 
+.md-button.md-raised:not([disabled]):hover {
+  background-color: #13647F;
+}
+
 .md-button.md-raised {
   color: white;
-  background-color: #13647F;
+  background-color: #3c84a2;
   font-weight: 500;
   margin: 15px;
 }
 
-.md-button.md-raised:hover {
-  color: white;
-  background-color: blue;
+.md-raised:hover {
+  /*background-color: !important blue;*/
   font-weight: 500;
   margin: 15px;
 }
@@ -185,6 +190,10 @@ h3 {
   text-wrap: none;
   background-color: blue;
   color: blue;
+}
+
+.surveyButton:hover {
+  background-color: red;
 }
 
 .surveyTitle {
@@ -311,7 +320,7 @@ h3 {
 /*ADMIN TABS STYLING*/
 
 md-tabs-wrapper {
-  
+
 }
 
 md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
@@ -702,6 +711,10 @@ button.md-button.md-raised:not([disabled]) {
   box-shadow: none;
 }
 
+.md-button.md-raised:not([disabled]):hover {
+  background-color: !important blue;
+}
+
 .selectEvent:hover {
   background-color: #faa723;
   opacity: 1;
@@ -718,10 +731,6 @@ button.md-button.md-raised:not([disabled]) {
   text-align: left;
 }
 
-.md-button.md-raised{
-  bac
-}
-
 .occupant {
   width: 125px;
   font-weight: bold;
@@ -732,7 +741,7 @@ thead {
 }
 
 .rowline {
-  border-bottom: 3px solid orange;
+  border-bottom: 3px solid #3c84a2;
 }
 
 .orangeButton {

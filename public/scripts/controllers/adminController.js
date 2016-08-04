@@ -77,9 +77,8 @@ $scope.sampleText = "This is a string.";
        $scope.begin_date = '';
        $scope.end_date = '';
        $scope.notes_events = '';
-
+     // shows verification message
 }; //end createEvent function
-
 
     // $scope.eventList=[];
 $scope.events = '';
@@ -108,11 +107,9 @@ $scope.saveDial = function(){
   console.log($scope.data.cb1);
 
   console.log($scope.eventToDisplay.event_name, 'will be updated to ', $scope.data.cb1);
-
-
-
-
 };
+
+
 $scope.subEvent = function(){
   console.log('coffee is the way, and the life');
   console.log($scope.eventChosen);
@@ -135,7 +132,6 @@ $scope.eventToModify = {
 var showThisEvent = {
   id: $scope.eventChosen
 };
-
 $http({
   method: 'POST',
   url: '/surveyShow',
@@ -143,11 +139,21 @@ $http({
 }).then(function(response){
   console.log('from survey show we have', response.data);
   $scope.surveyList = response.data;
+  // $scope.showIt();
 });
+
 
 console.log( "This was built: ", $scope.eventToModify, ". It contains ", $scope.eventToModify.id, ", and ", $scope.eventToModify.name, "." );
 };  //End subEvent()
 
+
+// $scope.showIt = function() {
+//   if ($scope.class === "red")
+//       $scope.class = "blue";
+//     else
+//       $scope.class = "red";
+//
+// };
 
     //  $scope.surveyRequest = function() { // gets survey results for current event for Admin survey page
     //    $http({   // gets recordset via GET

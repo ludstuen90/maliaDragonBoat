@@ -109,51 +109,37 @@ $scope.saveDial = function(){
   console.log($scope.eventToDisplay.event_name, 'will be updated to ', $scope.data.cb1);
 };
 
-
 $scope.subEvent = function(){
   console.log('coffee is the way, and the life');
   console.log($scope.eventChosen);
-
   for (var i = 0; i < $scope.events.length; i++){
     if($scope.events[i].id == $scope.eventChosen) {
       $scope.eventToDisplay = $scope.events[i];
     }
   }
-$scope.eventToModify = {
-  id: $scope.eventToDisplay.id,
-  name: $scope.eventToDisplay.event_name
-};
-
+  $scope.eventToModify = {
+    id: $scope.eventToDisplay.id,
+    name: $scope.eventToDisplay.event_name
+  };
   // console.log('eventPhase: ', $scope.eventToDisplay.hotel_phase);
 // console.log($scope.data.cb1 = $scope.eventToDisplay.hotel_phase);
-
   // if($scope.eventDoDisplay.data.cb1)
-
-var showThisEvent = {
-  id: $scope.eventChosen
-};
-$http({
-  method: 'POST',
-  url: '/surveyShow',
-  data: showThisEvent
-}).then(function(response){
-  console.log('from survey show we have', response.data);
-  $scope.surveyList = response.data;
-  // $scope.showIt();
-});
-
-
+  var showThisEvent = {
+    id: $scope.eventChosen
+  };
+  $http({
+    method: 'POST',
+    url: '/surveyShow',
+    data: showThisEvent
+  }).then(function(response){
+    console.log('from survey show we have', response.data);
+    $scope.surveyList = response.data;
+  });
+  console.log("showIt about to run");
 console.log( "This was built: ", $scope.eventToModify, ". It contains ", $scope.eventToModify.id, ", and ", $scope.eventToModify.name, "." );
 };  //End subEvent()
 
 
-// $scope.showIt = function() {
-//   if ($scope.class === "red")
-//       $scope.class = "blue";
-//     else
-//       $scope.class = "red";
-//
-// };
 
     //  $scope.surveyRequest = function() { // gets survey results for current event for Admin survey page
     //    $http({   // gets recordset via GET

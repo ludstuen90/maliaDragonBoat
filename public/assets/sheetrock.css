@@ -19,6 +19,9 @@ a:link {
     text-decoration: none;
 }
 
+hr {
+  border-color: #ff9900;
+}
 .dragonBoats {
   height: 400px;
   width: 100%;
@@ -753,10 +756,8 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
     color: #13647F;
 }
 
-.hideIt {
-  visibility: hidden;
-}
-
-.showIt {
-  visibility: visible:
+.inSurvey {
+  text-align: right;
+  font-weight: bold;
+  margin-top: 18px;
 }

@@ -34,7 +34,6 @@ $scope.sampleText = "This is a string.";
          objectToSend ={  // package inputs into object to send
            event_name : $scope.eventName,
            address_one : $scope.addressOne,
-          //  address_two : $scope.addressTwo,
            event_city : $scope.event_city,
            event_state_province : $scope.event_state_province,
            event_url : $scope.event_url,
@@ -121,19 +120,21 @@ $scope.subEvent = function(){
   // console.log('eventPhase: ', $scope.eventToDisplay.hotel_phase);
 // console.log($scope.data.cb1 = $scope.eventToDisplay.hotel_phase);
   // if($scope.eventDoDisplay.data.cb1)
-
-var showThisEvent = {
-  id: $scope.eventChosen
-};
-$http({
-  method: 'POST',
-  url: '/surveyShow',
-  data: showThisEvent
-}).then(function(response){
-  console.log('from survey show we have', response.data);
-  $scope.surveyList = response.data;
-});
+  var showThisEvent = {
+    id: $scope.eventChosen
+  };
+  $http({
+    method: 'POST',
+    url: '/surveyShow',
+    data: showThisEvent
+  }).then(function(response){
+    console.log('from survey show we have', response.data);
+    $scope.surveyList = response.data;
+  });
+console.log( "This was built: ", $scope.eventToModify, ". It contains ", $scope.eventToModify.id, ", and ", $scope.eventToModify.name, "." );
 };  //End subEvent()
+
+
 
                          //ARE WE USING THIS??
     //  $scope.surveyRequest = function() { // gets survey results for current event for Admin survey page
@@ -197,7 +198,6 @@ $http({
        }// end error function
        ); // end then response
      }; // end hotelRequest function
-// $scope.hotelRequest();
 
 
 // };
@@ -280,7 +280,6 @@ $scope.addRoom = function() {
     check_in : $scope.check_in,
     check_out : $scope.check_out,
     notes : $scope.notes
-    //need event id and hotel id
   };
   console.log(roomToSend);
   $http({
@@ -476,6 +475,21 @@ $scope.showMeSlots = function(){
       data: data
     });
     };
+
+  $scope.downloadPDF = function() {   // Export results to PDF using html2canvas and pdfmake
+      html2canvas(document.getElementById('exportPDF'), {
+          onrendered: function(canvas) {
+            var data=canvas.toDataURL();
+            var docDef={
+              content: [{
+                image: data,
+                width: 500,
+              }]
+            };
+            pdfMake.createPdf(docDef).download('HotelRoomAssignments.pdf');  // download the PDF
+          } // end making pdf out of rendered canvas image
+      }); //end html2canvas export function
+  }; // end downloadPDF function
 
 
 $scope.pageLoad = function(){

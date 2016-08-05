@@ -6,7 +6,6 @@ var router = express.Router();
 var pg = require('pg');
 var connectionString = 'postgres://localhost:5432/groupDB';
 
-
 if(process.env.DATABASE_URL !== undefined) {
      console.log('env connection string');
      connectionString = process.env.DATABASE_URL;
@@ -27,7 +26,7 @@ router.post('/eventData', function(req, res){
       console.log(err);
     }
     else {
-      var getValQuery = ("SELECT events.id, event_name, address_one, event_state_province, company, begin_date, end_date, notes_events, results_url, schedule_url, hotel_name, hotel_url, event_city, event_url FROM events JOIN hotels ON events.hotel_id = hotels.id WHERE events.id =" + req.body.eventId);
+      var getValQuery = ("SELECT events.id, event_name, address_one, event_state_province, company, begin_date, end_date, notes_events, hotel_name, hotel_url, event_city, event_url FROM events JOIN hotels ON events.hotel_id = hotels.id WHERE events.id =" + req.body.eventId);
       console.log("we are sending over the query");
       console.log(getValQuery);
       var query = client.query(getValQuery);

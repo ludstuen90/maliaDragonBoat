@@ -89,8 +89,10 @@ router.get('/eventRequest', function (req, res){
         console.log( '/eventWhotel returned with ' + eventDisplay + ' which contains ' + eventDisplay.event_name + '.' );
       });
       if( err ) {
+        res.sendFile( 500 );
         console.log( 'Unable to retrieve event data.' );
       } else {
+        res.sendFile( 200 );
       queriedEvent.on( 'end', function() {
         return res.json( eventDisplay );
       });

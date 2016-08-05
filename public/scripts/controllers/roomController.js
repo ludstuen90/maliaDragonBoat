@@ -16,6 +16,8 @@ $http({
 console.log(response.data);
 $scope.guests = response.data;
 }).then(function(){
+
+
   $scope.guestsArray =  $.map($scope.guests, function(value, index){
       return [value];
     });
@@ -28,18 +30,7 @@ $scope.userlol = {
 };
 
 
-$scope.showMe = function(id, guest_name){
-  console.log(id);
-  var id = {};
-  var updateRoom = {
-    guest_name :
-  };
-  $http({
-    method : 'PUT',
-    url : '/guestName/' + id,
-    data: updateRoom
-  });
-
+$scope.showMe = function(){
   console.log($scope.guests);
 };
 

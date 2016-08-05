@@ -1,8 +1,7 @@
 
 html body {
-  height: 1300px;
+  max-height: 1300px;
   font-family: “Helvetica Neue”, Helvetica, Arial, sans-serif;
-
 }
 
 h3 {

@@ -65,7 +65,7 @@ $scope.getHotelInformation = function(){
   }).then(function(response){
     $scope.hotel_phase = response.data[0].hotel_phase;
       if ($scope.hotel_phase) {
-        $scope.pageMessage = "We're working on assiging hotel rooms. If you'll be staying with us, you can ";
+        $scope.pageMessage = "We're working on assigning hotel rooms. If you'll be staying with the team, you can...";
         $scope.pageMessage2= "/#roomAssignment";
         $scope.pageMessage3 = "See the hotel block assignments here.";      }
       else {

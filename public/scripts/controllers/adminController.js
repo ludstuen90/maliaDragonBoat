@@ -99,10 +99,23 @@ $scope.events = '';
       };
 
 $scope.saveDial = function(){
+  console.log($scope.eventToDisplay);
+
+  var updateSend = {
+    id : $scope.eventToDisplay.id,
+  };
+  $http({
+    method : 'PUT',
+    url : '/updateEvent',
+    data : updateSend
+  }).then(function(response){
+    $scope.eventRequest();
+    // $scope.data = response.data;
+  });
+  // console.log(response.data);
   console.log('button works');
   console.log($scope.data.cb1);
-
-  console.log($scope.eventToDisplay.event_name, 'will be updated to ', $scope.data.cb1);
+  console.log($scope.eventToDisplay.id, 'will be updated to ', $scope.data.cb1);
 };
 
 $scope.subEvent = function(){
@@ -505,6 +518,7 @@ $scope.showMeSlots = function(){
 
   // var slotsToGet;
 
+
     $scope.updateOccupants=function(recordguest_name, recordusers_id, recordrooms_id, recordid) {
     console.log('in updateOccupants');
     console.log("data from updateOccupants: ", recordid, recordrooms_id, recordguest_name, recordusers_id );
@@ -540,13 +554,12 @@ $scope.showMeSlots = function(){
 
 
 $scope.pageLoad = function(){
-
 $http.get('loadHotels').then(function(response){
   $scope.hotelSelect = response.data;
   console.log(response.data);
 });
 
-$scope.hotelRequest();
+
 
 
 

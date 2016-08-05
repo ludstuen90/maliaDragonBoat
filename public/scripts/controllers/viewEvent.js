@@ -63,6 +63,7 @@ $scope.getHotelInformation = function(){
     url: '/eventPhase',
     data: surveyInfoToSend
   }).then(function(response){
+    
     $scope.hotel_phase = response.data[0].hotel_phase;
       if ($scope.hotel_phase) {
         $scope.pageMessage = "We're working on assigning hotel rooms. If you'll be staying with the team, you can...";

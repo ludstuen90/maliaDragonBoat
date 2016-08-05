@@ -6,7 +6,6 @@ var router = express.Router();
 var pg = require('pg');
 var connectionString = 'postgres://localhost:5432/groupDB';
 
-
 if(process.env.DATABASE_URL !== undefined) {
      console.log('env connection string');
      connectionString = process.env.DATABASE_URL;

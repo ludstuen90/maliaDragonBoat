@@ -256,9 +256,8 @@ router.post('/saveSlot/:id', function(req, res) {
     }); //end connection
 }); //end /saveSlot function
 
-router.put( '/guestName/: id', function( req, res ) {
+router.put( '/saveGuest', function( req, res ) {
   console.log(req.body);
-  var id = req.params.id;
   var name = req.body;
                 pg.connect( connectionString, function( err, client, done ) {
                   if( err ) {

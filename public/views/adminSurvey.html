@@ -103,7 +103,8 @@
 
   <md-tab label="Select Event">
       <md-content class="md-padding">
-      <div class="container">
+      <div>
+      <!-- <div class="container"> -->
         <h3> Select An Event To View Survey Results</h3>
         </br>
         <div ng-init="pageLoad()"></div>
@@ -115,7 +116,7 @@
                           <label>Choose an Event</label>
                           <md-select ng-model="eventChosen" class="bottomspacesmall">
                             <md-option ng-repeat="thing in alltheEvents" value="{{thing.id}}" class="bottomspace">
-                              <b>{{thing.event_name}}</b>  ({{thing.begin_date | date: "MM-dd-yyyy"}} - {{thing.end_date | date: "MM-dd-yyyy"}})
+                              <b>{{thing.event_name}}</b>  ({{thing.begin_date | date: "MM-dd-yyyy"}})
                             </md-option>
                           </md-select><button class="createEventButton btn-md" ng-click="subEvent()">Submit Event</button>
                         </md-input-container>
@@ -291,12 +292,11 @@
   <!-- TAB 4 // HOTEL BUILDER -->
     <md-tab label="Hotel Room Builder">
         <md-content class="md-padding">
-          <div class="row" ng-controller="adminController"> <!-- begin Tab 4 hotel information -->
+          <div ng-controller="adminController"> <!-- begin Tab 4 hotel information -->
 
     <!-- ADD ROOM -->
     <h3>Add Hotel Room</h3>
     <h4>{{ eventToModify.name }}</h4>
-
 
             <!-- First Row -->
                   <div class="row">
@@ -325,64 +325,7 @@
                            </div>
                          </div><!-- Col -->
                   </div><!-- Row -->
-            <!-- Second Row -->
-                  <div class="row">
-                          <div class="col-sm-2">
-                            <div class="form-group">
-                                <md-datepicker ng-model="check_in" md-placeholder="Check In Date"></md-datepicker>
-                            </div>
-                          </div><!-- Col -->
 
-        <!-- <md-input-container md-no-float class="md-block">
-          <input ng-model="hotel_name" placeholder="Hotel Name">
-        </md-input-container> -->
-
-
-        <div class="row">
-           <div class="col-sm-6">
-             <div class="form-group">
-             </div><!--end group-->
-           </div> <!--end col-->
-         </div> <!-- ends row -->
-        <!-- First Row -->
-              <div class="row">
-                     <div class="col-sm-4">
-                       <div class="form-group">
-
-                       </div><!--end group-->
-                     </div> <!--end col-->
-                   </div> <!-- ends row -->
-
-                                  <div class="row">
-                                    <div class="col-sm-4">
-                                      <div class="form-group">
-                                        <h4>{{ eventToModify.name }}</h4>
-                           </div>  <!-- end createRoomContainer -->
-
-          <br>
-
-                         <md-input-container md-no-float class="md-block">
-                           <input ng-model="room_type" placeholder="Room Type">
-                         </md-input-container>
-                       </div>
-                     </div><!-- Col -->
-
-                     <div class="col-sm-4">
-                       <div class="form-group">
-                         <md-input-container md-no-float class="md-block">
-                           <input ng-model="capacity"  placeholder="Capacity">
-                         </md-input-container>
-                       </div>
-                     </div><!-- Col -->
-
-                     <div class="col-sm-4">
-                       <div class="form-group">
-                         <md-input-container md-no-float class="md-block">
-                           <input ng-model="price" placeholder="Price">
-                         </md-input-container>
-                       </div>
-                     </div><!-- Col -->
-              </div><!-- Row -->
         <!-- Second Row -->
               <div class="row">
                       <div class="col-sm-2">

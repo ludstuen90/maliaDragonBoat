@@ -4,14 +4,14 @@
 <h1 class="surveyTitle"> What is your room preference?</h1><br/><br/>
 <!-- Begin radio group -->
     <md-radio-group ng-model="roommateOption">
-      <md-radio-button class="md-primary surveyRadio" value="nobody"><p class="radioText">Room for just me</p></md-radio-button>
+      <md-radio-button class="md-primary surveyRadio" value="No preference."><p class="radioText">Room for just me</p></md-radio-button>
 
       <div class="nonPaddlers">
 
                <div class="col-sm-6 nonPads">
                  <div class="form-group">
                    <md-input-container md-no-float class="md-block">
-                     <md-radio-button class="md-primary" value="non-paddlers"><p class="radioText">Room for me and non-paddlers</p></md-radio-button>
+                     <md-radio-button class="md-primary" value="Room with non-paddlers"><p class="radioText">Room for me and non-paddlers</p></md-radio-button>
                    </md-input-container>
                  </div>
                </div><!-- Col -->
@@ -41,15 +41,15 @@
             <md-radio-button class="md-primary" value="non-paddlers"><p class="radioText">Room for me and non-paddlers</p></md-radio-button> -->
 
 
-      <md-radio-button class="md-primary" value="one paddler"><p class="radioText">Room with one paddler</p></md-radio-button>
+      <md-radio-button class="md-primary" value="Room with one paddler."><p class="radioText">Room with one paddler</p></md-radio-button>
 
-        <md-radio-button class="md-primary" value="many paddlers"><p class="radioText">Room with as many paddlers as possible</p></md-radio-button>
+        <md-radio-button class="md-primary" value="Room with many paddlers."><p class="radioText">Room with as many paddlers as possible</p></md-radio-button>
       </md-radio-group>
   <!-- End of radio group -->
       <div class="form-group">
-        <label class="control-label"></label>
-        <textarea class="form-control" type= "text" ng-model= "notes_survey_room" value= "" placeholder="notes" rows="6"></textarea>
-      </div>
+        <md-input-container md-no-float class="md-block">
+          <textarea ng-model="notes_survey_room" md-maxlength="150" rows="3" placeholder="Notes"></textarea>
+        </md-input-container>
 
 <!-- Submit button -->
     <md-button class="md-raised surveyButton" ng-click="submitHotel()"> Submit </md-button>

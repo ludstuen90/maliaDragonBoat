@@ -17,6 +17,10 @@
     <script src="/vendors/xeditable.js" charset="utf-8"></script>
     <script type="text/javascript" src="scripts/clientApp.js"></script>
     <script src="/vendors/jquery-2.2.4.min.js" charset="utf-8"></script>
+    <script src="/vendors/pdfmake.min.js"></script>
+ 	  <script src="/vendors/vfs_fonts.js"></script>
+    <script src="/vendors/html2canvas.js"></script>
+    <script src="/vendors/html2canvas.svg.js"></script>
 <!-- Angluar Material -->
     <script src="vendors/angular-animate.min.js" charset="utf-8"></script>
     <script src="vendors/angular-aria.js" charset="utf-8"></script>
@@ -27,6 +31,7 @@
     <script type="text/javascript" src="/scripts/controllers/adminController.js"></script>
     <script type="text/javascript" src="/scripts/controllers/homeController.js"></script>
     <script type="text/javascript" src="/scripts/controllers/viewEvent.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/roomController.js"></script>
 
   </head>
 
@@ -43,8 +48,7 @@
           <li><a href="#adminSurvey">Admin</a></li>
           <li><a href="#viewEvent">Event</a></li>
           <li><a href="#roomAssignment">Room Assignment</a></li>
-          <li><a href="#thanksResponse">Thanks</a></li>
-          <li><a href="#home" role="button" ng-click="logout()">Sign Out</a></li>
+          <li><a href="#home" role="button" ng-click="logout()">Log Out</a></li>
         </ul>
 
       </div>

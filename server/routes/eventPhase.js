@@ -21,8 +21,6 @@ if(process.env.DATABASE_URL !== undefined) {
 router.post('/eventPhase', function(req, res){
             console.log("request to see the event phase received. ");
             console.log('yes, and mango is ', req.body.eventId);
-
-
             getVal = [];
             pg.connect(connectionString, function(err, client, done){
               if(err){
@@ -39,16 +37,28 @@ router.post('/eventPhase', function(req, res){
                 query.on('end', function(){
                   done();
                   pg.end();
-
                   console.log('and the event phase status we are receiving will be: ');
                   console.log(getVal[0]);
                   return res.json(getVal);
                   });
                 }
               });
-
-
 });
+
+router.put( '/updateEvent', function( req, res ) {
+                pg.connect( connectionString, function( err, client, done ) {
+                  if( err ) {
+                    console.log( 'Unable to update table.' );
+                  }else {
+                  client.query( "UPDATE events SET hotel_phase ='" + req.body.phase+ "' WHERE id = " + req.body.id);
+                  console.log( "Hotel phase update query successful." );
+                  res.send( true );
+                  done();
+                }
+                });
+              });
+
+
 
 
 

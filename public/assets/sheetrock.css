@@ -1,8 +1,42 @@
 
 html body {
-  height: 2000px;
+  height: 1300px;
+  font-family: “Helvetica Neue”, Helvetica, Arial, sans-serif;
+
 }
 
+h3 {
+  font-family: “Helvetica Neue”, Helvetica, Arial, sans-serif;
+  font-size: 30px;
+  color: #13647F;
+}
+
+h4 {
+  font-family: “Helvetica Neue”, Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  color: #13647F;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.takeSurvey {
+  color: white;
+  font-size: 30px;
+  /*background-color: #26d7fe;*/
+  padding: 5px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.takeSurvey:hover{
+  color: #459ec1;
+}
+
+hr {
+  border-color: #ff9900;
+}
 .dragonBoats {
   height: 400px;
   width: 100%;
@@ -37,9 +71,8 @@ html body {
 h3 {
   font-family: “Helvetica Neue”, Helvetica, Arial, sans-serif;
   font-size: 30px;
-  color: #13647F;
+  color: #ff9900;
 }
-
 
 .hotelButtons {
   margin: 0px;
@@ -123,15 +156,17 @@ h3 {
 .thankYou {
   font-size: 60px;
   font-weight: bold;
-  width: 1000px;
+  /*width: 1000px;*/
   margin-left: auto;
   margin-right: auto;
+  float: none;
+  /*display: block;*/
 }
 
 .thankYouContainer {
   color: white;
   float: none;
-  display: block;
+  /*display: block;*/
   margin-left: auto;
   margin-right: auto;
   margin-top: 0px;
@@ -142,9 +177,9 @@ h3 {
   text-align: center;
   font-size: 24px;
   font-weight: normal;
-  width: 1000px;
+  /*width: 1000px;*/
   float: none;
-  display: block;
+  /*display: block;*/
   margin-left: auto;
   margin-right: auto;
   margin-top: 0px;
@@ -161,16 +196,19 @@ h3 {
   width: 700px;
 }
 
+.md-button.md-raised:not([disabled]):hover {
+  background-color: #13647F;
+}
+
 .md-button.md-raised {
   color: white;
-  background-color: #13647F;
+  background-color: #3c84a2;
   font-weight: 500;
   margin: 15px;
 }
 
-.md-button.md-raised:hover {
-  color: white;
-  background-color: blue;
+.md-raised:hover {
+  /*background-color: !important blue;*/
   font-weight: 500;
   margin: 15px;
 }
@@ -185,6 +223,14 @@ h3 {
   text-wrap: none;
   background-color: blue;
   color: blue;
+}
+
+.nextStepsHeader2 {
+  color: !important white;
+}
+
+.surveyButton:hover {
+  background-color: red;
 }
 
 .surveyTitle {
@@ -237,11 +283,14 @@ h3 {
 
 .nextStepsHeader {
   margin-top: 0px;
+  color: white;
+  font-weight: bold;
 }
 
 .nextSteps {
   color: white;
   padding: 35px;
+  text-align: center;
   /*background-color: #3c84a2;*/
   background-color: #3c84a2;
   /*border-bottom: 2px;
@@ -259,6 +308,7 @@ h3 {
 
 .nextSteps2 {
   display: flex;
+  text-align: center;
 }
 
 .fa-exclamation{
@@ -267,11 +317,13 @@ h3 {
 }
 
 .hello {
-  display: flex;
+  /*display: flex;*/
 }
 
 .helloAgain {
-  padding-top: 20px;
+  /*padding-top: 20px;*/
+  color: white;
+  font-size: 18px;
 }
 
 .eventDiv {
@@ -311,7 +363,7 @@ h3 {
 /*ADMIN TABS STYLING*/
 
 md-tabs-wrapper {
-  
+
 }
 
 md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
@@ -337,7 +389,7 @@ md-content {
   max-width: 1600px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 md-tabs-canvas {
@@ -396,17 +448,6 @@ md-tabs.md-dynamic-height md-tabs-content-wrapper {
   background: #13647F;
 }
 
-#adminEventTable {
-  background: #13647F;
-  color: white;
-  border: solid;
-  border: 1px, 1px, 1px, 1px;
-  border-color: darkgrey;
-}
-
-#borderIt {
-  border: 0.5px solid #faa723;
-}
 
 #tabs {
   margin-top: 50px;
@@ -426,7 +467,7 @@ md-tabs.md-dynamic-height md-tabs-content-wrapper {
 }
 
 #homeEventDisplay {
-  background-color: lightblue;
+  background-color:
 }
 
 .active {
@@ -513,10 +554,11 @@ nav {
  /*display: inline-flex;*/
  /*background-color: #ff9900;*/
  /*background-color: #faa723;*/
-
-
-
+ /*float: none;*/
+ margin-left: auto;
+ margin-right: auto;
  width: 400px;
+ height: 260px;
  border: 3px solid orange;
  padding: 60px 30px 60px 30px;
  margin: 25px;
@@ -536,22 +578,17 @@ nav {
  /*background-color: #faa723;*/
 
  /*width: 100px;*/
- border: 3px solid orange;
+ border: 3px solid #faa723;
  /*padding: 60px 30px 60px 30px;*/
  /*margin: 25px;*/
  text-align: center;
  opacity: 0.7;
-
 }
 
 .adminEvent:hover {
   background-color: #faa723;
   opacity: 1;
-
 }
-
-
-
 
 .eventHeader {
   font-weight: 200;
@@ -641,10 +678,6 @@ nav {
   padding: 30px;
 }
 
-a:link {
-    text-decoration: none;
-}
-
 .reg{
 	color: #324452;
 	text-align: center;
@@ -690,7 +723,7 @@ a:link {
  /*background-color: #ff9900;*/
  /*background-color: #faa723;*/
  width: 225px;
- border: 3px solid orange;
+ border: 3px solid #faa723;
  padding: 20px 10px;
  margin: 10px;
  text-align: center;
@@ -700,6 +733,10 @@ a:link {
 
 button.md-button.md-raised:not([disabled]) {
   box-shadow: none;
+}
+
+.md-button.md-raised:not([disabled]):hover {
+  background-color: !important blue;
 }
 
 .selectEvent:hover {
@@ -712,14 +749,10 @@ button.md-button.md-raised:not([disabled]) {
 .roomAssigner {
   background: #b5d5e3;
   width: 325px;
-  border: 3px solid orange;
+  border: 3px solid #faa723;
   padding: 3px;
   margin: 10px;
   text-align: left;
-}
-
-.md-button.md-raised{
-  bac
 }
 
 .occupant {
@@ -732,9 +765,47 @@ thead {
 }
 
 .rowline {
-  border-bottom: 3px solid orange;
+  border-bottom: 3px solid #3c84a2;
 }
 
-.orangeButton {
-  background-color: #b5d5e3;
+.dollarsign {
+  margin-top: -93px;
+}
+
+.price {
+  margin: 20px;
+}
+
+.subhead {
+  font: 24px/28px “Helvetica Neue”, Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  color: #13647F;
+}
+
+.subdate {
+  font-size: 16px;
+  text-transform: uppercase;
+  padding-left: 30px;
+}
+
+.bottomspace {
+  margin-bottom: 20px;
+}
+
+.bottomspacesmall {
+  margin-bottom: 10px;
+}
+
+.capitalize {
+  text-transform: capitalize;;
+}
+
+md-input-container:not(.md-input-invalid).md-input-focused label {
+    color: #13647F;
+}
+
+.inSurvey {
+  text-align: right;
+  font-weight: bold;
+  margin-top: 18px;
 }

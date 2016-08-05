@@ -27,8 +27,6 @@ CREATE TABLE events (
  begin_date DATE,
  end_date DATE,
  notes_events TEXT,
- results_url TEXT,
- schedule_url TEXT,
  hotel_id int references hotels(id) ON DELETE CASCADE,
  hotel_phase BOOLEAN,
  active BOOLEAN
@@ -77,7 +75,6 @@ JOIN users ON occupant_room.users_id = users.id
 JOIN rooms ON occupant_room.rooms_id = rooms.id;
 
 --survey and users JOIN XX
-
 
 SELECT attend_status, hotel_status, notes_other_accommodation, roommate_option, num_non_paddlers, notes_survey_room, first_name, last_name, username, event_name
 FROM survey

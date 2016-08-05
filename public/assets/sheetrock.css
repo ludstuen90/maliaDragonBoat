@@ -792,6 +792,10 @@ thead {
   margin-bottom: 20px;
 }
 
+.bottomspacesmall {
+  margin-bottom: 10px;
+}
+
 .capitalize {
   text-transform: capitalize;;
 }

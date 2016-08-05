@@ -1,5 +1,5 @@
 <div ng-include="nav.html"></div>
-<md-content ng-controller="adminController"> <!-- need a ng-init to pass in eventid -->
+<md-content> <!-- need a ng-init to pass in eventid -->
 <div id="exportPDF">
     <h3>Room Assigner for [EVENTNAME]</h3>
     <h4>Hotel: [HOTELNAME]</h4>
@@ -10,11 +10,28 @@
 <button ng-click="getSlots(3)">3</button>
 
 <button ng-click="downloadPDF()">Download PDF of Page</button>
+<!-- <table>
+  <tr ng-repeat "y in grid">
+    <td ng-repeat="x in y"></td>
+    <p ng-repeat="z in x track by $index">{{z.indexOf(1)}}</p>
+  </tr>
+</table> -->
+
+
+
+
+<div>
+<!-- <table>
+<tr ng-repeat="y in slots">
+ <td ng-repeat="x in y track by $index">{{x}} </td>
+ <p ng-repeat="z in x track by $index"></p>
+</tr>
+</table> -->
 
     <p>Event ID Number: </p>
     <input type= "text" ng-model= "events_id" value= ""><button type="button" ng-click= "getRoom2()" >Get Rooms</button>
-    <div class="container">
       <div class="row">
+        <div class="container">
         <div ng-repeat='record in roomToShow'>
           <div class="col-xs-6 col-sm-3 roomAssigner">
 
@@ -25,24 +42,30 @@
               <p>Check Out Date: {{ (record.check_out | date: "MM-dd-yyyy")}}</p>
               <p>Notes: {{ record.notes }}</p>
 
-
-
-              <table class="table table-bordered table-hover table-condensed">
-                  <tr ng-repeat='record in slotsToShow'>  <!-- occupant code -->
-                      <td><span editable-text="record.guest_name" e-form="rowform" e-required class="occupant"> {{guest_name}} </span></td>
-                      <td style="white-space:nowrap">
-                        <form editable-form name="rowform" onaftersave="updateOccupants(record.guest_name, record.users_id, record.rooms_id )"  ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == record">
+              <br>
+              <button class="btn btn-primary" ng-click="seeRoom(record.id)">See Occupants</button>
+              <br><br>
+              <!-- <table class="table table-bordered table-hover table-condensed"> -->
+                  <!-- <tr>   -->
+                    <!-- occupant code -->
+                      <!-- <td><span editable-text="x" e-form="rowform" e-required class="occupant"> {{x}} </span></td>
+                      <td style="white-space:nowrap"> -->
+                        <!-- <form editable-form name="rowform" onaftersave="updateOccupants(record.guest_name, record.users_id, record.rooms_id )"  ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == record">
                           <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">Update</button>
                           <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">Cancel</button>
                         </form>
                         <div class="buttons" ng-show="!rowform.$visible">
                           <button class="btn btn-primary" ng-click="rowform.$show()">Edit</button>
-                        </div>
-                  </tr> <!-- end row-->
-                </table> <!-- end occupant code -->
+                        </div> -->
+                <!--   </tr>       end row-->
+              <!--  </table>  end occupant code -->
               </div>
         	</div> <!-- end room code -->
         </div> <!-- end row -->
+
+
+
+
       </div><!-- end container -->
 </div><!-- end id for export pdf -->
 </md-content>

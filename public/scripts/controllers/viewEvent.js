@@ -64,7 +64,6 @@ $scope.getHotelInformation = function(){
     url: '/eventPhase',
     data: surveyInfoToSend
   }).then(function(response){
-    console.log("in eventPhase response");
     $scope.hotel_phase = response.data[0].hotel_phase;
     console.log($scope.hotel_phase);
       if ($scope.hotel_phase) {

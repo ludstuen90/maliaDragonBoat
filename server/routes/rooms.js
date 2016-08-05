@@ -256,5 +256,24 @@ router.post('/saveSlot/:id', function(req, res) {
     }); //end connection
 }); //end /saveSlot function
 
+router.put( '/guestName/: id', function( req, res ) {
+  console.log(req.body);
+  var id = req.params.id;
+  var name = req.body;
+                pg.connect( connectionString, function( err, client, done ) {
+                  if( err ) {
+                    console.log( 'Unable to update table.' );
+                  }else {
+                  client.query( 'UPDATE occupant_room' +
+                  'SET guest_name = $1' +
+                  'WHERE id = $2',
+                  [name.guest_name, id]
+                );
+                res.send( true );
+                  done();
+                }
+                });
+              });
+
 
 module.exports = router;

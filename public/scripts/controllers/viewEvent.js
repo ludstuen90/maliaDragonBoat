@@ -42,6 +42,7 @@ $scope.userSurveyCompletion = function(){
           $scope.pageMessage = "We haven't yet received any information from you yet.";
           $scope.pageMessage2= "/#surveyStep1";
           $scope.pageMessage3 = "Click here to fill out the survey";
+          console.log($scope.pageMessage);
         }
       }
     };
@@ -63,7 +64,9 @@ $scope.getHotelInformation = function(){
     url: '/eventPhase',
     data: surveyInfoToSend
   }).then(function(response){
+    console.log("in eventPhase response");
     $scope.hotel_phase = response.data[0].hotel_phase;
+    console.log($scope.hotel_phase);
       if ($scope.hotel_phase) {
         $scope.pageMessage = "We're working on assigning hotel rooms. If you'll be staying with the team, you can...";
         $scope.pageMessage2= "/#roomAssignment";

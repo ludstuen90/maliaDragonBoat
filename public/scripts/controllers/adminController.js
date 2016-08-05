@@ -103,6 +103,7 @@ $scope.saveDial = function(){
 
   var updateSend = {
     id : $scope.eventToDisplay.id,
+    phase: $scope.data.cb1
   };
   $http({
     method : 'PUT',
@@ -110,6 +111,7 @@ $scope.saveDial = function(){
     data : updateSend
   }).then(function(response){
     $scope.eventRequest();
+    alert('Update saved!');
     // $scope.data = response.data;
   });
   // console.log(response.data);

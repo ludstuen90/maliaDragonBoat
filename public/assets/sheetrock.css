@@ -476,13 +476,13 @@ md-tabs.md-dynamic-height md-tabs-content-wrapper {
 
 /*FOOTER & NAVIGATION STYLING*/
 footer {
-  background-color: #677077;
+  /*background-color: #677077;
   height: 100px;
   color: white;
   font-size: 20px;
   margin: auto;
   text-align:center;
-  padding:25px;
+  padding:25px;*/
 }
 
 nav {

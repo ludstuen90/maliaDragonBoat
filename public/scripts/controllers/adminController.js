@@ -62,7 +62,6 @@ DRGNBT.controller('adminController', ['$scope', '$http', '$window', '$filter', f
   //clears event fields
        $scope.eventName = '';
        $scope.addressOne = '';
-       $scope.addressTwo = '';
        $scope.event_city = '';
        $scope.event_state_province = '';
        $scope.event_url = '';
@@ -294,7 +293,6 @@ var roomToSend={};
 $scope.addRoom = function() {
   console.log("in addRoom function in adminController");
   roomToSend = {
-    // hotels_id : $scope.hotels_id,
     events_id : $scope.eventToModify.id,
     room_type : $scope.room_type,
     capacity : $scope.capacity,
@@ -312,7 +310,6 @@ $scope.addRoom = function() {
     $scope.getRoomAndCreateSlots();
   });
   // CLEARS Room INPUT FIELDS
-  // $scope.hotels_id = "";
   $scope.events_id = "";
     $scope.room_type = "";
     $scope.capacity = "";

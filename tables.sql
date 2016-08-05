@@ -23,7 +23,6 @@ CREATE TABLE events (
  id serial PRIMARY KEY,
  event_name VARCHAR(50),
  address_one VARCHAR(50),
- address_two VARCHAR(50),
  event_city VARCHAR(20),
  event_state_province TEXT,
  event_url TEXT,
@@ -71,7 +70,7 @@ CREATE TABLE occupant_room (
 );
 
 --events and hotel JOIN  XX
-SELECT events.id, event_name, address_one, address_two, event_state_province, company, begin_date, end_date, notes_events, results_url, schedule_url, hotel_name, event_city, event_url
+SELECT events.id, event_name, address_one, event_state_province, company, begin_date, end_date, notes_events, results_url, schedule_url, hotel_name, event_city, event_url
 FROM events
 JOIN hotels ON events.hotel_id = hotels.id;
 

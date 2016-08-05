@@ -50,7 +50,7 @@ router.put( '/updateEvent', function( req, res ) {
                   if( err ) {
                     console.log( 'Unable to update table.' );
                   }else {
-                  client.query( "UPDATE events SET hotel_phase = TRUE WHERE id = " + req.body.id);
+                  client.query( "UPDATE events SET hotel_phase ='" + req.body.phase+ "' WHERE id = " + req.body.id);
                   console.log( "Hotel phase update query successful." );
                   res.send( true );
                   done();

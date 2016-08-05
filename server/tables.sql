@@ -30,7 +30,7 @@ CREATE TABLE events (
  results_url TEXT,
  schedule_url TEXT,
  hotel_id int references hotels(id) ON DELETE CASCADE,
- hotel_phase BOOLEAN
+ hotel_phase BOOLEAN,
  active BOOLEAN
  );
 CREATE TABLE survey (

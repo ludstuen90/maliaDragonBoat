@@ -20,7 +20,6 @@ CREATE TABLE events (
  id serial PRIMARY KEY,
  event_name VARCHAR(50),
  address_one VARCHAR(50),
- address_two VARCHAR(50),
  events_state_province TEXT,
  company text,
  begin_date DATE,

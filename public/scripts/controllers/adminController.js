@@ -121,8 +121,8 @@ $scope.saveDial = function(){
 };
 
 $scope.subEvent = function(){
-  console.log('coffee is the way, and the life');
-  console.log($scope.eventChosen);
+  // console.log('coffee is the way, and the life');
+  // console.log($scope.eventChosen);
   for (var i = 0; i < $scope.events.length; i++){
     if($scope.events[i].id == $scope.eventChosen) {
       $scope.eventToDisplay = $scope.events[i];

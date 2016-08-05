@@ -25,4 +25,13 @@ $scope.guests = response.data;
 
 $scope.coffee = ['hello', 'it', 'is'];
 
+$scope.userlol = {
+  name: 'coolman'
+};
+
+
+$scope.showMe = function(){
+  console.log($scope.guests);
+};
+
 }]); // end roomController

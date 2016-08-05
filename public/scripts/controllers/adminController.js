@@ -123,6 +123,9 @@ $scope.subEvent = function(){
   var showThisEvent = {
     id: $scope.eventChosen
   };
+
+console.log('see this event ', showThisEvent);
+
   $http({
     method: 'POST',
     url: '/surveyShow',
@@ -130,8 +133,14 @@ $scope.subEvent = function(){
   }).then(function(response){
     console.log('from survey show we have', response.data);
     $scope.surveyList = response.data;
+    console.log('hotel phase', $scope.eventToDisplay.hotel_phase);
+
   });
 console.log( "This was built: ", $scope.eventToModify, ". It contains ", $scope.eventToModify.id, ", and ", $scope.eventToModify.name, "." );
+
+console.log($scope.eventToDisplay);
+$scope.data.cb1 = $scope.eventToDisplay.hotel_phase;
+
 };  //End subEvent()
 
 

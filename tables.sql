@@ -34,7 +34,7 @@ CREATE TABLE events (
  results_url TEXT,
  schedule_url TEXT,
  active BOOLEAN,
- hotel_id int references hotels(id)
+ hotel_id int references hotels(id) ON DELETE CASCADE
  );
 
 CREATE TABLE survey (
@@ -45,16 +45,16 @@ CREATE TABLE survey (
   roommate_option TEXT,
   num_non_paddlers TEXT,
   notes_survey_room TEXT,
-  user_id int references users(id),
-  events_id int references events(id)
+  user_id int references users(id) ON DELETE CASCADE,
+  events_id int references events(id) ON DELETE CASCADE
 );
 
 CREATE TABLE rooms (
   id SERIAL PRIMARY KEY,
   room_type TEXT,
   capacity INT,
-  events_id INT references events(id),
-  hotels_id INT references hotels(id),
+  events_id INT references events(id) ON DELETE CASCADE,
+  hotels_id INT references hotels(id) ON DELETE CASCADE,
   room_number TEXT,
   check_in DATE,
   check_out DATE,
@@ -65,9 +65,9 @@ CREATE TABLE rooms (
 
 CREATE TABLE occupant_room (
   id SERIAL PRIMARY KEY,
-  users_id INT references users(id),
+  users_id INT references users(id) ON DELETE CASCADE,
   guest_name TEXT,
-  rooms_id INT references rooms(id)
+  rooms_id INT references rooms(id) ON DELETE CASCADE
 );
 
 --events and hotel JOIN  XX

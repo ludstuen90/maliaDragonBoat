@@ -239,6 +239,7 @@ $scope.deleteHotel = function(hotelID){
 };
 //GOTTA FINISH BUILDING THIS OUT LATER                   ATTN: NICK!    <---------------------------
 $scope.assignHotel = function(eventChosen){
+  alert('The hotel has been assigned.');
   console.log('in assignHotel');
   console.log($scope.selectHotel);
   console.log($scope.eventChosen);

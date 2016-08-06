@@ -234,10 +234,12 @@ $scope.deleteHotel = function(hotelID){
     headers: {'Content-Type': 'application/json;charset=utf-8'}
   }).then(function(){
     $scope.hotelRequest();
+
   });
 };
 //GOTTA FINISH BUILDING THIS OUT LATER                   ATTN: NICK!    <---------------------------
 $scope.assignHotel = function(eventChosen){
+  alert('The hotel has been assigned.');
   console.log('in assignHotel');
   console.log($scope.selectHotel);
   console.log($scope.eventChosen);
@@ -283,6 +285,8 @@ $scope.assignHotel = function(eventChosen){
      $scope.showEvent = function(){
        console.log(sessionStorage.getItem("eventId"));
      };
+
+     $scope.event = sessionStorage.getItem("eventId");
 
 // ROOM BUILDER FUNCTIONALITY -----------------------------
 

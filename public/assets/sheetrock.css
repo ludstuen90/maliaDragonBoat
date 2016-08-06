@@ -1,10 +1,10 @@
-
 html {
   font-family: “Helvetica Neue”, Helvetica, Arial, sans-serif;
 }
 
 body {
 }
+
 
 h3 {
   font-family: “Helvetica Neue”, Helvetica, Arial, sans-serif;
@@ -47,6 +47,8 @@ h4 {
 a:link {
     text-decoration: none;
 }
+
+
 
 .takeSurvey {
   color: white;
@@ -415,13 +417,14 @@ md-input-container:not(.md-input-invalid).md-input-focused .md-input {
     border-color: #3c84a2;
 }
 
-input.md-input:focus{ border-color: green; }
+/*input.md-input:focus{ border-color: green; }*/
 
 md-content {
   max-width: 1600px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 5px;
+  background-color: white;
 }
 
 md-tabs-canvas {
@@ -432,6 +435,7 @@ md-tabs-canvas {
 md-tabs.md-dynamic-height md-tabs-content-wrapper {
   padding: 0 6em 2em 6em;
 }
+
 
 .adminButtons {
   float: none;
@@ -839,4 +843,23 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
   text-align: right;
   font-weight: bold;
   margin-top: 18px;
+}
+
+/* ROOM ASSIGNER PAGE STYLING */
+
+.roomback {
+      background-color: #13647F;
+      color: white;
+      margin: -3px -3px 10px -3px;
+      padding: 4px 2px 4px 10px;
+      font-weight: bold;
+      font-size: 14px;
+}
+
+.roomnumber {
+  padding-left: 30px;
+}
+
+.roomtext {
+  padding-left: 6px;
 }

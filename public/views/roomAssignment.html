@@ -1,15 +1,11 @@
 <div ng-include="nav.html"></div>
 <md-content> <!-- need a ng-init to pass in eventid -->
-<div id="exportPDF">
+<div id="exportPDF" class="container">
     <h3>Room Assigner for {{  }}</h3>
     <h4>Hotel: [HOTELNAME]</h4>
     <br />
-    <h4>Enter your name and the names of any non-paddlers coming with you into the bed spaces below.</h4>
-<button ng-click="getSlots(1)">1</button>
-<button ng-click="getSlots(2)">2</button>
-<button ng-click="getSlots(3)">3</button>
+    <h4>Click on the See Occupant buttons in the rooms below to enter your name and the names of any non-paddlers coming with you into empty bed spaces.</h4>
 
-<button ng-click="downloadPDF()">Download PDF of Page</button>
 <!-- <table>
   <tr ng-repeat "y in grid">
     <td ng-repeat="x in y"></td>
@@ -35,16 +31,12 @@
         <div ng-repeat='record in roomToShow'>
           <div class="col-xs-6 col-sm-3 roomAssigner">
 
-              <p>Room ID: {{ record.id }}  Room Number: {{ record.room_number }}</p>
-              <p>Room Type: {{ record.room_type }}</p>
-              <p>Price: {{ record.price }}</p>
-              <p>Check In Date: {{ (record.check_in | date: "MM-dd-yyyy") }}</p>
-              <p>Check Out Date: {{ (record.check_out | date: "MM-dd-yyyy")}}</p>
-              <p>Notes: {{ record.notes }}</p>
-
-              <br>
-              <button class="btn btn-primary" ng-click="seeRoom(record.id)">See Occupants</button>
-              <br><br>
+              <p class="roomback">Room ID: {{ record.id }}  <span class=roomnumber>Room Number: {{ record.room_number }}</span></p>
+              <p class=roomtext>Room Type: <b>{{ record.room_type }}</b> <span class=roomnumber>Price: <b>{{ record.price | currency:"$" }}</b></span></p>
+              <p class=roomtext>Check In Date: <b>{{ (record.check_in | date: "MM-dd-yyyy") }}</b></p>
+              <p class=roomtext>Check Out Date: <b>{{ (record.check_out | date: "MM-dd-yyyy")}}</b></p>
+              <p class=roomtext>Notes: <b>{{ record.notes }}</b></p>
+              <div align="center"><button class="createEventButton btn-sm bottomspacesmall" ng-click="seeRoom(record.id)">See Occupants</button></div>
               <!-- <table class="table table-bordered table-hover table-condensed"> -->
                   <!-- <tr>   -->
                     <!-- occupant code -->

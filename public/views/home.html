@@ -1,20 +1,20 @@
-<div ng-app="DRGNBT">
-	<div main ng-init="hello()">
+<div ng-app="DRGNBT" ng-include="'/public/partials/nav.html'"></div>
+				<div main ng-init="hello()">
 
-		<div class="wide">
-			<div class="col-sm-2 "></div>
-			<div class="col-sm-2 line"><hr></div>
-				<h2 class="col-xs-4 homeHeader">UPCOMING EVENTS</h2>
-			<div class="col-sm-2 line"><hr></div>
-			<div class="col-sm-2 "></div>
-		</div>
+					<div class="wide">
+						<div class="col-sm-2 "></div>
+						<div class="col-sm-2 line"><hr></div>
+							<h2 class="col-xs-4 homeHeader">UPCOMING EVENTS</h2>
+						<div class="col-sm-2 line"><hr></div>
+						<div class="col-sm-2 "></div>
+					</div>
 
-	</div>
-
-	<div ng-init="fetchEvents">
-		<div ng-repeat="event in alltheEvents"  role="button" ng-click="assignEvent(  event.id  )" class="col-xs-6 .col-sm-3 homeEvent" id = "homeEventDisplay">
-			<h2> {{ event.event_name }} </h2>
-				<p> {{ event.begin_date | date: "MMMM dd, yyyy" }} - {{ event.end_date | date: "MMMM dd, yyyy" }} </p>
-		</div>
-	</div>
-</div>
+				</div>
+				<md-content>
+					<div ng-init="fetchEvents">
+							<div ng-repeat="event in alltheEvents"  role="button" ng-click="assignEvent(  event.id  )" class="col-xs-6 .col-sm-3 homeEvent" id = "homeEventDisplay">
+								<h2> {{ event.event_name }} </h2>
+									<p> {{ event.begin_date | date: "MMMM dd, yyyy" }} - {{ event.end_date | date: "MMMM dd, yyyy" }} </p>
+							</div>
+					</div>
+				</md-content>

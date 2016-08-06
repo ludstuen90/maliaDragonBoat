@@ -70,6 +70,8 @@ function($scope, $http, $window, $location) {
       });
     };
 
-
+    $scope.isActive = function(viewLocation) {
+        return viewLocation === $location.path();
+    };
 
 }]);

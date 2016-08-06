@@ -33,7 +33,7 @@ $scope.userSurveyCompletion = function(){
           console.log('scope.hello', $scope.hello);
           console.log('surveysCompletedNow checking ', $scope.surveysCompleted[i].events_id);
           console.log('scope.mango is ', $scope.mango);
-          $scope.pageMessage= "Thanks for filling out your survey! You'll receive an email when Hotel room selection is ready.";
+          $scope.pageMessage= "Thanks for filling out your survey! You'll receive an email soon to select your hotel room for this event.";
           $scope.pageMessage2= "";
           $scope.pageMessage3 = "";
           return;
@@ -69,7 +69,7 @@ $scope.getHotelInformation = function(){
       if ($scope.hotel_phase) {
         $scope.pageMessage = "We're working on assigning hotel rooms. If you'll be staying with the team, you can...";
         $scope.pageMessage2= "/#roomAssignment";
-        $scope.pageMessage3 = "See the hotel block assignments here.";      }
+        $scope.pageMessage3 = "Click here to select your hotel room.";      }
       else {
         $http({
           method: 'GET',

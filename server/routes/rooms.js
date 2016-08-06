@@ -256,7 +256,7 @@ router.post('/saveSlot/:id', function(req, res) {
     }); //end connection
 }); //end /saveSlot function
 
-router.put( '/saveGuest', function( req, res ) {
+router.post( '/saveGuest', function( req, res ) {
   console.log(req.body);
   var name = req.body;
                 pg.connect( connectionString, function( err, client, done ) {
@@ -266,7 +266,7 @@ router.put( '/saveGuest', function( req, res ) {
                   client.query( 'UPDATE occupant_room' +
                   'SET guest_name = $1' +
                   'WHERE id = $2',
-                  [name.guest_name, id]
+                  [name.guest_name, name.id]
                 );
                 res.send( true );
                   done();

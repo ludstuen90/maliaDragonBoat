@@ -31,16 +31,7 @@ $scope.userlol = {
 
 
 $scope.showMe = function(){
-  console.log('button clicked');
-  var guest = {
-    room : $scope.guests
-  };
   console.log($scope.guests);
 };
-$http({
-  method : 'PUT',
-  url : '/saveGuest',
-  data : guest
-});
 
 }]); // end roomController

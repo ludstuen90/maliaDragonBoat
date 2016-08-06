@@ -129,7 +129,7 @@
                                 <md-input-container class="md-block" flex-gt-lg>
                                   <label>Choose an Hotel</label>
                                   <md-select ng-model="selectHotel" class="bottomspacesmall">
-                                    <md-option ng-repeat="hotel in hotelSelect" value="{{hotel.id}}">
+                                    <md-option ng-repeat="hotel in hotelSelect | filter: {hotel_name: '!TBA'}" value="{{hotel.id}}">
                                       {{hotel.hotel_name}}
                                     </md-option>
                                   </md-select><button class="createEventButton btn-md" ng-click="assignHotel( eventChosen )">Submit Hotel</button>

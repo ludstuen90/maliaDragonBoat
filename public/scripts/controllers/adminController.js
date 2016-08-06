@@ -109,7 +109,6 @@ $scope.saveDial = function(){
   }).then(function(response){
     $scope.eventRequest();
     alert('Update saved!');
-    // $scope.data = response.data;
   });
   // console.log(response.data);
   console.log('button works');
@@ -127,8 +126,11 @@ $scope.subEvent = function(){
   }
   $scope.eventToModify = {
     id: $scope.eventToDisplay.id,
-    name: $scope.eventToDisplay.event_name
+    name: $scope.eventToDisplay.event_name,
+    hotels_id: $scope.eventToDisplay.hotel_id
   };
+  console.log('eventToModify', $scope.eventToModify);
+  console.log('eventToDisplay', $scope.eventToDisplay);
   // console.log('eventPhase: ', $scope.eventToDisplay.hotel_phase);
 // console.log($scope.data.cb1 = $scope.eventToDisplay.hotel_phase);
   // if($scope.eventDoDisplay.data.cb1)
@@ -155,22 +157,6 @@ $scope.data.cb1 = $scope.eventToDisplay.hotel_phase;
 
 };  //End subEvent()
 
-
-
-                         //ARE WE USING THIS??
-    //  $scope.surveyRequest = function() { // gets survey results for current event for Admin survey page
-    //    $http({   // gets recordset via GET
-    //      method: 'GET',
-    //      url: '/surveyResults',
-    //    }).then(function(response){  // success call - runs function with response parameter
-    //      $scope.surveyList = response.data;  // pulls the data from server and sets to global var surveyList
-    //    }); // end then response
-    //  }; // end surveyRequest function
-// $scope.surveyRequest();
-    //  $scope.eventAndSurveyRequest = function() {  //runs both eventRequest and surveyRequest queries to display event and survey results on adminSurvey.html
-    //    $scope.eventRequest();
-    //    $scope.surveyRequest();
-    //  };
 
      var hotelList=[];
 
@@ -237,7 +223,7 @@ $scope.deleteHotel = function(hotelID){
 
   });
 };
-//GOTTA FINISH BUILDING THIS OUT LATER                   ATTN: NICK!    <---------------------------
+//ASSIGNING OF THE HOTEL
 $scope.assignHotel = function(eventChosen){
   alert('The hotel has been assigned.');
   console.log('in assignHotel');
@@ -249,7 +235,6 @@ $scope.assignHotel = function(eventChosen){
   url: '/assignHotel/' + eventChosen,
   data: sendID
   });
-  console.log('out of js.assignHotel');
 };  //End assignHotel()
 
      var hotelRooms=[];
@@ -293,7 +278,6 @@ $scope.assignHotel = function(eventChosen){
     //ADD A ROOM -------------------
 
 var roomToSend={};
-
 $scope.addRoom = function() {
   console.log("in addRoom function in adminController");
   roomToSend = {
@@ -303,7 +287,8 @@ $scope.addRoom = function() {
     price : $scope.price,
     check_in : $scope.check_in,
     check_out : $scope.check_out,
-    notes : $scope.notes
+    notes : $scope.notes,
+    hotels_id : $scope.eventToModify.hotels_id
   };
   console.log(roomToSend);
   $http({
@@ -453,70 +438,6 @@ $scope.slots = [];
                   console.log('room to show returns' , $scope.roomToShow);
               });
 
-              // .then(function(){
-                // for (i = 0; i < $scope.roomToShow.length; i++) {
-                //   $scope.theObject = $scope.roomToShow[i];
-                //   console.log($scope.theObject.id);
-                //   $scope.sendRoom = $scope.theObject.id;
-                //   $scope.roomIdsToDisplay.push($scope.sendRoom);
-                //   $scope.arrayiffied = [$scope.sendRoom];
-                //   $scope.slots.push($scope.arrayiffied);
-                //     }
-                //     console.log('and finally the array of rooms for which we need slots is', $scope.roomIdsToDisplay);
-                //     console.log('dont forget slots is ', $scope.slots);
-
-                  // $http({
-                  //   method: 'POST',
-                  //   url: '/getSlots',
-                  //   data: roomsToGet
-                  // }).then(function(response){
-                    // Receive all Slots associated with our event (as objects),
-                    // convert each slot (object) into an array, and package
-                    // all of these into an array ($scope.slots), sorted by
-                    // room.
-                    // Also, the $scope.slots array matches the index of
-                    // the order of the rooms displayed on the page, and
-                    // represented in $scope.roomIdsToDisplay
-
-                  //   console.log('and slots returns', response.data);
-                  //   $scope.slotsAvailable = response.data;
-                  //   for (var i = 0; i <($scope.slotsAvailable.length); i++){
-                  //     console.log($scope.slotsAvailable[i].guest_name, 'and ', $scope.slotsAvailable[i].rooms_id);
-                  //     for (var j = 0; j <($scope.roomIdsToDisplay.length); j++){
-                  //       console.log('room is ', $scope.roomIdsToDisplay[j], ' we look at ', $scope.slotsAvailable[i].guest_name);
-                  //       if ($scope.roomIdsToDisplay[j] == $scope.slotsAvailable[i].rooms_id ) {
-                  //         console.log('yes, we have identified ', $scope.slots[j]);
-                  //         console.log($scope.slotsAvailable[i]);
-                  //         $scope.array = $.map($scope.slotsAvailable[i], function(value, index){
-                  //           return [value];
-                  //         });
-                  //         console.log($scope.array[1]);
-                  //         $scope.slots[j].push($scope.array[1]);
-                  //       }
-                  //     }
-                  //     // $scope.thisParticularSlotRoomId = $scope.slotsAvailable[i].rooms_id;
-                  //
-                  //     for (var m = 0; m < $scope.slots.length; m++){
-                  //       console.log('lets take off ', $scope.slots[m]);
-                  //       // $scope.slots[m];
-                  //
-                  //     }
-                  //   }
-                  //   console.log($scope.slots);
-                  //   // console.log($scope.slots[1][2][1]);
-                  // });
-                  // Now, let's separate out the arrays
-
-
-
-
-
-
-
-
-                //   }
-                // ); //end then
-                //
 
 
   }; // end getRoom function

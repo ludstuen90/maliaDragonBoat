@@ -257,7 +257,7 @@ $scope.assignHotel = function(eventChosen){
 
 // TAB FUNCTIONALITY ----------------------------------
      $scope.tabs = [{
-            title: 'Select Event',
+            title: 'Events',
             url: 'one.tpl.html'
         }, {
              title: 'Survey Results',

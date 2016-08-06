@@ -522,10 +522,6 @@ footer {
   padding:25px;*/
 }
 
-nav {
-  /*background: #3c84a2;*/
-}
-
 .navbar-nav>li>a {
   color: #3c84a2;
 }
@@ -707,6 +703,13 @@ nav {
   outline: 0;
   font-family: inherit;
   font-size: 0.95em;
+}
+
+.loginHideNav {
+  width: 600px;
+  height: 200px;
+  background-color: white;
+
 }
 
 .md-whiteframe-1dp {

@@ -175,7 +175,7 @@ console.log('select hotel is ', $scope.selectHotel);
 
 
 };  //End subEvent()
-
+ 
 
 
                          //ARE WE USING THIS??

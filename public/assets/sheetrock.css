@@ -846,18 +846,20 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
 .roomback {
       background-color: #13647F;
       color: white;
-      margin: -3px -3px 10px -3px;
+      margin: -3px -3px 0px -3px;
       padding: 4px 2px 4px 10px;
       font-weight: bold;
-      font-size: 14px;
+      font-size: 18px;
+      align: center;
 }
 
 .roomnumber {
-  padding-left: 30px;
+  margin-bottom: 10px;
 }
 
 .roomtext {
   padding-left: 6px;
+  font-size: 14px;
 }
 
 
@@ -875,8 +877,10 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
 
-  background-color: #fff;
-  box-shadow: 4px 4px 80px #000;
+  background-color: #e9f7fc;
+  border-color: #faa723;
+  border-width: 3px;
+  /*box-shadow: 4px 4px 80px #000;*/
 }
 .ng-modal-dialog-content {
   padding:10px;

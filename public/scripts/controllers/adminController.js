@@ -148,6 +148,20 @@ console.log('see this event ', showThisEvent);
     console.log('from survey show we have', response.data);
     $scope.surveyList = response.data;
     console.log('hotel phase', $scope.eventToDisplay.hotel_phase);
+  }).then(function(){
+    console.log('we have already selected hotel' , $scope.eventToDisplay.hotel_id);
+    for (var i = 0; i < $scope.hotelSelect.length; i++){
+      if ($scope.hotelSelect[i].id == $scope.eventToDisplay.hotel_id){
+        console.log('yes, the winner is ', $scope.hotelSelect[i]);
+        console.log('at index ', i);
+        // still need to add logic to actually APPLY the hotel index to the dropdown
+      }
+
+    }
+
+
+
+
 
   });
 console.log( "This was built: ", $scope.eventToModify, ". It contains ", $scope.eventToModify.id, ", and ", $scope.eventToModify.name, "." );
@@ -235,6 +249,10 @@ $scope.assignHotel = function(eventChosen){
   url: '/assignHotel/' + eventChosen,
   data: sendID
   });
+}).then(function(){
+  alert("Hotel preference saved!");
+});
+  console.log('out of js.assignHotel');
 };  //End assignHotel()
 
      var hotelRooms=[];

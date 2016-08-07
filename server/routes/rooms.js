@@ -275,20 +275,24 @@ router.post( '/saveGuest', function( req, res ) {
               });
 
     router.post( '/getEventName', function( req, res ) {
-      selectedEvent = [];
+      console.log( '/getEventName has received a request.');
+      console.log( req.body );
+      // selectedEvent = [];
       pg.connect( connectionString, function( err, client, done ) {
         if( err ) {
           res.sendStatus( 500 );
           console.log( 'Unable to connect to database.' );
         } else {
-          var eventName = client.query( 'SELECT * FROM events WHERE id = ' + req.body.id + ';' );
-          eventName.on( 'row', function( row ) {
-            selectedEvent.push( eventName );
-            res.sendStatus( 200 );
-            console.log( 'Sending ' + selectedEvent + ' from /getEventName.' );
-            return res.json( selectedEvent );
-          });
-          done();
+          var eventTag = client.query( 'SELECT * FROM events WHERE id = $1;', [req.body.id] );
+          console.log( eventTag );
+          return res.json( eventTag );
+          // eventName.on( 'row', function( row ) {
+          //   selectedEvent.push( eventName );
+          //   console.log( 'Sending ' + selectedEvent + ' from /getEventName.' );
+          //   console.log( selectedEvent );
+          //   return res.json( selectedEvent );
+          // });
+          // done();
         }
       });
     });

@@ -650,8 +650,10 @@ $scope.eventidFunction = function() {
     url: '/getEventName',
     data: eventObject
   }).then( function( response ) {
-    $scope.stuff = response.data;
-    console.log( 'This was received through /getEventName: ' + $scope.stuff.event_name + '.' );
+    console.log( response.data );
+    var jar = response.data;
+    console.log( 'This was received through /getEventName: ' + jar + '.' );
+    console.log( jar );
   });
 };
 

@@ -26,25 +26,52 @@ $scope.hello = sessionStorage.getItem("username");
 $scope.surveysCompleted = "";
 //
 $scope.userSurveyCompletion = function(){
-      for (var i = 0; i < ($scope.surveysCompleted.length); i++){
-        if (($scope.surveysCompleted[i].username == $scope.hello)&&( $scope.surveysCompleted[i].events_id == $scope.mango)) {
-          console.log('surveys completed', $scope.surveysCompleted);
-          console.log("username now checking", $scope.surveysCompleted[i].username);
-          console.log('scope.hello', $scope.hello);
-          console.log('surveysCompletedNow checking ', $scope.surveysCompleted[i].events_id);
-          console.log('scope.mango is ', $scope.mango);
-          $scope.pageMessage= "Thanks for filling out your survey! You'll receive an email soon to select your hotel room for this event.";
-          $scope.pageMessage2= "";
-          $scope.pageMessage3 = "";
-          return;
-        }
-        else {
-          $scope.pageMessage = "We haven't yet received any information from you yet.";
-          $scope.pageMessage2= "/#surveyStep1";
-          $scope.pageMessage3 = "Click here to fill out the survey";
-          console.log($scope.pageMessage);
-        }
-      }
+    console.log('just before the for loop in user survey completion');
+    console.log($scope.surveysCompleted.length);
+
+    //First, checks to see if there is a survey filled out in the database at all.
+    // If empty, prompts user to fill ou a survey
+
+    //Checks to see if the event has been moved to the hotel phase. If yes,
+    // directs user to the page where he/she can request or change a hotel slot
+
+    // else, checks to see if the logged in user has filled out a survey for
+    // the viewed event. If no, prompts survey completion.
+    // If yes, advises to wait for more info in filling out hotel
+    
+
+          if ($scope.surveysCompleted.length === 0) {
+            console.log('theres nothing there!');
+            $scope.pageMessage = "We haven't yet received any information from you yet.";
+            $scope.pageMessage2= "/#surveyStep1";
+            $scope.pageMessage3 = "Click here to fill out the survey";
+          }
+
+          else {
+            for (var i = 0; i < ($scope.surveysCompleted.length); i++){
+              if (($scope.surveysCompleted[i].username == $scope.hello)&&( $scope.surveysCompleted[i].events_id == $scope.mango)) {
+                console.log('surveys completed', $scope.surveysCompleted);
+                console.log("username now checking", $scope.surveysCompleted[i].username);
+                console.log('scope.hello', $scope.hello);
+                console.log('surveysCompletedNow checking ', $scope.surveysCompleted[i].events_id);
+                console.log('scope.mango is ', $scope.mango);
+                $scope.pageMessage= "Thanks for filling out your survey! You'll receive an email soon to select your hotel room for this event.";
+                $scope.pageMessage2= "";
+                $scope.pageMessage3 = "";
+                return;
+              }
+              else {
+                $scope.pageMessage = "We haven't yet received any information from you yet.";
+                $scope.pageMessage2= "/#surveyStep1";
+                $scope.pageMessage3 = "Click here to fill out the survey";
+                console.log($scope.pageMessage);
+              }
+            }
+
+          }
+
+
+
     };
   };
 //this function queries the server to see what phase the event is in -- if it is in the survey
@@ -75,9 +102,11 @@ $scope.getHotelInformation = function(){
           method: 'GET',
           url: '/surveyResults',
         }).then(function(response){
+          console.log('we made it to the after survey results portion');
           $scope.surveysCompleted = response.data;
         }).then(function(){
           $scope.userSurveyCompletion();
+          console.log('we just triggered user survey completion in getHotelInfo');
         });
       }
   });

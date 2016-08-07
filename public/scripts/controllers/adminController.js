@@ -3,8 +3,6 @@ DRGNBT.controller('adminController', ['$scope', '$http', '$window', '$filter', f
     var objectToSend={}; // creates global object to send
     $scope.eventToDisplay= [];
 
-$scope.roomIdNumber ="";
-
     $scope.assignEvent = function(eventId){
         console.log(eventId);
         sessionStorage.setItem("eventId", eventId);
@@ -322,8 +320,7 @@ $scope.addRoom = function() {
     check_in : $scope.check_in,
     check_out : $scope.check_out,
     notes : $scope.notes,
-    hotels_id : $scope.eventToModify.hotels_id
-  };
+    hotels_id : $scope.eventToModify.hotels_id };
   console.log(roomToSend);
   $http({
     method: 'POST',
@@ -471,13 +468,11 @@ $scope.slots = [];
 
                   console.log('room to show returns' , $scope.roomToShow);
               });
-
-  }; // end getRoom2 function
-
+}; // end getRoom function
 
 $scope.seeRoom = function(roomId){
-  console.log('seeRoom function fired with ', roomId);
-  sessionStorage.getItem("roomId", roomId);
+  console.log('fired with ', roomId);
+  sessionStorage.setItem("roomId", roomId);
   $window.location.href = '/#/roomOccupants';
 };
 
@@ -562,8 +557,6 @@ $scope.fetchEvents();
 
 
 }]); // end adminController
-
-
 //MODAL CODE for Room assigner
 DRGNBT.directive('modalDialog', function() { //
   return {
@@ -629,4 +622,3 @@ $scope.roomIdName = sessionStorage.getItem("roomId");
 
   };
 });
-//end Modal Code

@@ -26,7 +26,9 @@ $scope.hello = sessionStorage.getItem("username");
 $scope.surveysCompleted = "";
 //
 $scope.userSurveyCompletion = function(){
+    console.log('just before the for loop in user survey completion');
       for (var i = 0; i < ($scope.surveysCompleted.length); i++){
+        console.log('comparing ', $scope.surveysCompleted[i].username, 'with ', $scope.hello);
         if (($scope.surveysCompleted[i].username == $scope.hello)&&( $scope.surveysCompleted[i].events_id == $scope.mango)) {
           console.log('surveys completed', $scope.surveysCompleted);
           console.log("username now checking", $scope.surveysCompleted[i].username);
@@ -75,9 +77,11 @@ $scope.getHotelInformation = function(){
           method: 'GET',
           url: '/surveyResults',
         }).then(function(response){
+          console.log('we made it to the after survey results portion');
           $scope.surveysCompleted = response.data;
         }).then(function(){
           $scope.userSurveyCompletion();
+          console.log('we just triggered user survey completion in getHotelInfo');
         });
       }
   });

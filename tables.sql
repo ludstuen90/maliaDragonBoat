@@ -62,7 +62,7 @@ CREATE TABLE occupant_room (
   rooms_id INT references rooms(id) ON DELETE CASCADE
 );
 --events and hotel JOIN  XX
-SELECT events.id, event_name, address_one,event_state_province, company, begin_date, end_date, notes_events, hotel_name, event_city, event_url
+SELECT events.id, event_name, address_one, event_state_province, company, begin_date, end_date, notes_events, hotel_name, event_city, event_url
 FROM events
 JOIN hotels ON events.hotel_id = hotels.id;
 

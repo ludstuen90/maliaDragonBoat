@@ -27,8 +27,10 @@ router.post('/addRoom', function(req, res){
       console.log( "/addRoom failed." );
     } else {
     console.log('In addRoom', room);
-    client.query("INSERT INTO rooms ( events_id, room_type, capacity, price, check_in, check_out, notes) values ($1, $2, $3, $4, $5, $6, $7)",
-    [ room.events_id, room.room_type, room.capacity, room.price, room.check_in, room.check_out, room.notes]);
+    client.query("INSERT INTO rooms ( events_id, room_type, capacity, price, check_in, check_out, notes, hotels_id) values ($1, $2, $3, $4, $5, $6, $7, $8)",
+    [room.events_id, room.room_type, room.capacity, room.price, room.check_in, room.check_out, room.notes, room.hotels_id]);
+    // client.query("INSERT INTO rooms ( events_id, room_type, capacity, price, check_in, check_out, notes) values ($1, $2, $3, $4, $5, $6, $7)",
+    // [ room.events_id, room.room_type, room.capacity, room.price, room.check_in, room.check_out, room.notes]);
     res.send(true);
     done();
   }

@@ -3,6 +3,8 @@ DRGNBT.controller('adminController', ['$scope', '$http', '$window', '$filter', f
     var objectToSend={}; // creates global object to send
     $scope.eventToDisplay= [];
 
+$scope.roomIdNumber ="";
+
     $scope.assignEvent = function(eventId){
         console.log(eventId);
         sessionStorage.setItem("eventId", eventId);
@@ -469,11 +471,13 @@ $scope.slots = [];
 
                   console.log('room to show returns' , $scope.roomToShow);
               });
-}; // end getRoom function
+
+  }; // end getRoom2 function
+
 
 $scope.seeRoom = function(roomId){
-  console.log('fired with ', roomId);
-  sessionStorage.setItem("roomId", roomId);
+  console.log('seeRoom function fired with ', roomId);
+  sessionStorage.getItem("roomId", roomId);
   $window.location.href = '/#/roomOccupants';
 };
 
@@ -558,3 +562,71 @@ $scope.fetchEvents();
 
 
 }]); // end adminController
+
+
+//MODAL CODE for Room assigner
+DRGNBT.directive('modalDialog', function() { //
+  return {
+    restrict: 'E',
+    scope: {
+      show: '='
+    },
+    replace: true,
+    transclude: true,
+    link: function(scope, element, attrs) {
+      scope.dialogStyle = {};
+      if (attrs.width)
+        scope.dialogStyle.width = attrs.width;
+      if (attrs.height)
+        scope.dialogStyle.height = attrs.height;
+      scope.hideModal = function() {
+        scope.show = false;
+      };
+    },
+    template: "<div class='ng-modal' ng-show='show'><div class='ng-modal-overlay' ng-click='hideModal()'></div><div class='ng-modal-dialog' ng-style='dialogStyle'><div class='ng-modal-close' ng-click='hideModal()'>X</div><div class='ng-modal-dialog-content' ng-transclude></div></div></div>" // See below
+  };
+}); // end app.directive
+
+DRGNBT.controller('MyCtrl', function($scope, $http) {
+
+
+
+$scope.preToggle = function(roomId){
+  console.log('what is the room id, it is', roomId);
+  sessionStorage.setItem("roomId", roomId);
+$scope.roomIdName = sessionStorage.getItem("roomId");
+
+  var showSlots = {
+    room: $scope.roomIdName
+  };
+
+
+  $http({
+    method: 'POST',
+    url: '/getSlots',
+    data: showSlots
+  }).then(function(response){
+  console.log(response.data);
+  $scope.guests = response.data;
+  }).then(function(){
+    $scope.guestsArray =  $.map($scope.guests, function(value, index){
+        return [value];
+      });
+  });
+
+
+  $scope.toggleModal();
+};
+
+  $scope.modalShown = false;
+  $scope.toggleModal = function() {
+        $scope.modalShown = !$scope.modalShown;
+        console.log("in toggleModal function passing in ");
+        console.log(  sessionStorage.getItem("roomId"));
+        $scope.roomId = sessionStorage.getItem("roomId");
+
+        // $scope.seeRoom();
+
+  };
+});
+//end Modal Code

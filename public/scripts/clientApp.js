@@ -52,6 +52,7 @@ DRGNBT.config(['$routeProvider', function($routeProvider, $locationProvider) {
     // Route for the roomAssignment page
     .when('/roomAssignment', {
       templateUrl : 'views/roomAssignment.html',
+      // controller  : 'roomsController'
       controller  : 'adminController'
     })
     // Route for the surveyStep1 page

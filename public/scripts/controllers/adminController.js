@@ -178,7 +178,7 @@ console.log('select hotel is ', $scope.selectHotel);
 
 
 };  //End subEvent()
- 
+
 
 
 
@@ -608,6 +608,7 @@ $scope.roomIdName = sessionStorage.getItem("roomId");
   }).then(function(response){
   console.log(response.data);
   $scope.guests = response.data;
+  console.log($scope.guests[0].guest_name);
   }).then(function(){
     $scope.guestsArray =  $.map($scope.guests, function(value, index){
         return [value];

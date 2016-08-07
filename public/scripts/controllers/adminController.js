@@ -253,6 +253,7 @@ $scope.deleteHotel = function(hotelID){
 };
 //GOTTA FINISH BUILDING THIS OUT LATER                   ATTN: NICK!    <---------------------------
 $scope.assignHotel = function(eventChosen){
+  alert('The hotel has been assigned.');
   console.log('in assignHotel');
   console.log($scope.selectHotel);
   console.log($scope.eventChosen);
@@ -274,7 +275,7 @@ $scope.assignHotel = function(eventChosen){
 
 // TAB FUNCTIONALITY ----------------------------------
      $scope.tabs = [{
-            title: 'Select Event',
+            title: 'Events',
             url: 'one.tpl.html'
         }, {
              title: 'Survey Results',

@@ -205,6 +205,9 @@ $scope.data.cb1 = $scope.eventToDisplay.hotel_phase;
           $scope.hotel_phone = '';
           $scope.hotel_url = '';
           $scope.hotel_notes = '';
+
+          //Re-loads the list of hotels in the 'events' tab
+          $scope.pageLoad();
      };//end HOTEL creation
 
      $scope.hotelRequest = function() {
@@ -518,6 +521,7 @@ $scope.pageLoad = function(){
 $http.get('loadHotels').then(function(response){
   $scope.hotelSelect = response.data;
   console.log(response.data);
+  console.log('hotel load request received! response of ', response.data);
 });
 
 

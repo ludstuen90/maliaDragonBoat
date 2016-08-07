@@ -230,6 +230,8 @@ $scope.data.cb1 = $scope.eventToDisplay.hotel_phase;
          method: 'GET',
          url: '/hotelRequest',
        }).then( function(response){
+         console.log('hotel request received! slugs');
+         console.log(response.data);
          $scope.hotels = response.data;
        }, function myError(response){
          console.log(response.statusText);
@@ -251,7 +253,6 @@ $scope.deleteHotel = function(hotelID){
     headers: {'Content-Type': 'application/json;charset=utf-8'}
   }).then(function(){
     $scope.hotelRequest();
-
   });
 };
 //GOTTA FINISH BUILDING THIS OUT LATER                   ATTN: NICK!    <---------------------------
@@ -267,6 +268,7 @@ $scope.assignHotel = function(eventChosen){
   data: sendID
 }).then(function(){
   alert("Hotel preference saved!");
+
 });
   console.log('out of js.assignHotel');
 };  //End assignHotel()

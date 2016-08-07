@@ -1,8 +1,10 @@
-
-html body {
-  max-height: 1300px;
+html {
   font-family: “Helvetica Neue”, Helvetica, Arial, sans-serif;
 }
+
+body {
+}
+
 
 h3 {
   font-family: “Helvetica Neue”, Helvetica, Arial, sans-serif;
@@ -16,9 +18,37 @@ h4 {
   color: #13647F;
 }
 
+.eventName {
+  font-size: 50px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.eventDatesHeader {
+  color: #3c84a2;
+  font-size: 24px;
+}
+
+.eventBackground {
+  font-weight: bold;
+  background-image:url("images/water_event_page.jpg");
+  background-size: cover;
+  /*background-color: #3c84a2;*/
+  width: 100%;
+  padding: 40px;
+  color: white;
+}
+
+/*tab slide animation gone*/
+[role="tabpanel"] {
+    transition: none;
+}
+
 a:link {
     text-decoration: none;
 }
+
+
 
 .takeSurvey {
   color: white;
@@ -343,17 +373,22 @@ h3 {
   padding: 10px !important;
 }
 
-
-
-.eventDiv2 {
+.eventDate {
   padding:0.3cm 1cm 0cm 1cm;
 }
 
+.eventDiv2 {
+  text-align: center;
+}
+
 .eventDiv3 {
-  padding:0.3cm 1cm 0cm 1cm;
-  margin: 10px;
-  padding-bottom: 0px;
+  padding:1cm 1cm 1cm 1cm;
+  margin-top: 10px;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-bottom: 50px;
   height: 170px;
+  text-align: center;
   /*border-bottom: 2px;
   border-bottom-color: #ff9900;
   border-bottom-style: solid;*/
@@ -382,13 +417,14 @@ md-input-container:not(.md-input-invalid).md-input-focused .md-input {
     border-color: #3c84a2;
 }
 
-input.md-input:focus{ border-color: green; }
+/*input.md-input:focus{ border-color: green; }*/
 
 md-content {
   max-width: 1600px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 5px;
+  background-color: white;
 }
 
 md-tabs-canvas {
@@ -399,6 +435,7 @@ md-tabs-canvas {
 md-tabs.md-dynamic-height md-tabs-content-wrapper {
   padding: 0 6em 2em 6em;
 }
+
 
 .adminButtons {
   float: none;
@@ -476,17 +513,13 @@ md-tabs.md-dynamic-height md-tabs-content-wrapper {
 
 /*FOOTER & NAVIGATION STYLING*/
 footer {
-  background-color: #677077;
+  /*background-color: #677077;
   height: 100px;
   color: white;
   font-size: 20px;
   margin: auto;
   text-align:center;
-  padding:25px;
-}
-
-nav {
-  /*background: #3c84a2;*/
+  padding:25px;*/
 }
 
 .navbar-nav>li>a {
@@ -497,7 +530,6 @@ nav {
   margin-top: 20px;
 }
 
-
 /*HOME PAGE HEADER STYLING*/
 .wide{
   border-top: 4px;
@@ -507,7 +539,7 @@ nav {
   height:450px;;
   /*height:calc(100% - 1px);*/
   background-image:url("images/team_boat.jpg");
-  /*background-size:cover;*/
+  background-size: cover;
   text-align:center;
   float: none;
   display: block;
@@ -807,4 +839,23 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
   text-align: right;
   font-weight: bold;
   margin-top: 18px;
+}
+
+/* ROOM ASSIGNER PAGE STYLING */
+
+.roomback {
+      background-color: #13647F;
+      color: white;
+      margin: -3px -3px 10px -3px;
+      padding: 4px 2px 4px 10px;
+      font-weight: bold;
+      font-size: 14px;
+}
+
+.roomnumber {
+  padding-left: 30px;
+}
+
+.roomtext {
+  padding-left: 6px;
 }

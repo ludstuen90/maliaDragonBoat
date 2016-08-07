@@ -147,12 +147,33 @@ console.log('see this event ', showThisEvent);
     console.log('from survey show we have', response.data);
     $scope.surveyList = response.data;
     console.log('hotel phase', $scope.eventToDisplay.hotel_phase);
+  }).then(function(){
+    console.log('we have already selected hotel' , $scope.eventToDisplay.hotel_id);
+    for (var i = 0; i < $scope.hotelSelect.length; i++){
+      if ($scope.hotelSelect[i].id == $scope.eventToDisplay.hotel_id){
+        console.log('yes, the winner is ', $scope.hotelSelect[i]);
+        console.log('hotel id is ', $scope.eventToDisplay.hotel_id);
+        $scope.selectHotel = $scope.eventToDisplay.hotel_id;
+
+        console.log('at index ', i);
+        // still need to add logic to actually APPLY the hotel index to the dropdown
+      }
+
+    }
+
+
+
+
 
   });
 console.log( "This was built: ", $scope.eventToModify, ". It contains ", $scope.eventToModify.id, ", and ", $scope.eventToModify.name, "." );
 
 console.log($scope.eventToDisplay);
 $scope.data.cb1 = $scope.eventToDisplay.hotel_phase;
+// $scope.selectHotel = $scope.eventToDisplay.hotel_id;
+console.log($scope.eventToDisplay.hotel_id);
+console.log('select hotel is ', $scope.selectHotel);
+
 
 };  //End subEvent()
 
@@ -179,7 +200,7 @@ $scope.data.cb1 = $scope.eventToDisplay.hotel_phase;
 //CREATE a hotel FUNCTIONALITY
      $scope.newHotel = function(){
        hotelToSend = {
-         hotel_name : $scope.hotel_name,
+         hotel_name : $scope.hotel_name1,
          hotel_address : $scope.hotel_address,
          hotel_city : $scope.hotel_city,
          hotel_state_province : $scope.hotel_state,
@@ -195,6 +216,9 @@ $scope.data.cb1 = $scope.eventToDisplay.hotel_phase;
          data: hotelToSend
        }).then(function(){
          $scope.hotelRequest();
+         $scope.pageLoad();
+       }).then(function(){
+         location.reload();
        });
 
        // CLEARS HOTEL INPUT FIELDS
@@ -206,6 +230,8 @@ $scope.data.cb1 = $scope.eventToDisplay.hotel_phase;
           $scope.hotel_phone = '';
           $scope.hotel_url = '';
           $scope.hotel_notes = '';
+
+          //Re-loads the list of hotels in the 'events' tab
      };//end HOTEL creation
 
      $scope.hotelRequest = function() {
@@ -214,6 +240,8 @@ $scope.data.cb1 = $scope.eventToDisplay.hotel_phase;
          method: 'GET',
          url: '/hotelRequest',
        }).then( function(response){
+         console.log('hotel request received! slugs');
+         console.log(response.data);
          $scope.hotels = response.data;
        }, function myError(response){
          console.log(response.statusText);
@@ -247,7 +275,10 @@ $scope.assignHotel = function(eventChosen){
   method: 'PUT',
   url: '/assignHotel/' + eventChosen,
   data: sendID
-  });
+}).then(function(){
+  alert("Hotel preference saved!");
+
+});
   console.log('out of js.assignHotel');
 };  //End assignHotel()
 
@@ -258,7 +289,7 @@ $scope.assignHotel = function(eventChosen){
 
 // TAB FUNCTIONALITY ----------------------------------
      $scope.tabs = [{
-            title: 'Select Event',
+            title: 'Events',
             url: 'one.tpl.html'
         }, {
              title: 'Survey Results',
@@ -284,6 +315,8 @@ $scope.assignHotel = function(eventChosen){
      $scope.showEvent = function(){
        console.log(sessionStorage.getItem("eventId"));
      };
+
+     $scope.event = sessionStorage.getItem("eventId");
 
 // ROOM BUILDER FUNCTIONALITY -----------------------------
 
@@ -573,9 +606,14 @@ $scope.showMeSlots = function(){
 
 
 $scope.pageLoad = function(){
-$http.get('loadHotels').then(function(response){
+$http({
+  method: 'GET',
+  url: '/loadHotels',
+  headers: {'Content-Type': 'application/json;charset=utf-8'}
+}).then(function(response){
   $scope.hotelSelect = response.data;
   console.log(response.data);
+  console.log('hotel load request received! response of ', response.data);
 });
 
 
@@ -616,5 +654,6 @@ $scope.eventidFunction = function() {
     console.log( 'This was received through /getEventName: ' + $scope.stuff.event_name + '.' );
   });
 };
+
 
 }]); // end adminController

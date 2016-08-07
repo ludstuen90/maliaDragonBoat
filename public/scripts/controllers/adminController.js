@@ -208,6 +208,8 @@ $scope.data.cb1 = $scope.eventToDisplay.hotel_phase;
          data: hotelToSend
        }).then(function(){
          $scope.hotelRequest();
+         $scope.pageLoad();
+
        });
 
        // CLEARS HOTEL INPUT FIELDS
@@ -221,7 +223,6 @@ $scope.data.cb1 = $scope.eventToDisplay.hotel_phase;
           $scope.hotel_notes = '';
 
           //Re-loads the list of hotels in the 'events' tab
-          $scope.pageLoad();
      };//end HOTEL creation
 
      $scope.hotelRequest = function() {
@@ -597,7 +598,11 @@ $scope.showMeSlots = function(){
 
 
 $scope.pageLoad = function(){
-$http.get('loadHotels').then(function(response){
+$http({
+  method: 'GET',
+  url: '/loadHotels',
+  headers: {'Content-Type': 'application/json;charset=utf-8'}
+}).then(function(response){
   $scope.hotelSelect = response.data;
   console.log(response.data);
   console.log('hotel load request received! response of ', response.data);

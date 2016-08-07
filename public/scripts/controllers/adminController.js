@@ -127,7 +127,8 @@ $scope.subEvent = function(){
   }
   $scope.eventToModify = {
     id: $scope.eventToDisplay.id,
-    name: $scope.eventToDisplay.event_name
+    name: $scope.eventToDisplay.event_name,
+    hotel: $scope.eventToDisplay.hotel_id
   };
   // console.log('eventPhase: ', $scope.eventToDisplay.hotel_phase);
 // console.log($scope.data.cb1 = $scope.eventToDisplay.hotel_phase);
@@ -598,5 +599,22 @@ $scope.fetchEvents();
 
 };
 
+$scope.eventidFunction = function() {
+
+  $scope.eventId = sessionStorage.getItem( "eventId" );
+  var eventId = sessionStorage.getItem( "eventId" );
+  var eventObject = {
+    id: eventId
+  };
+
+  $http({
+    method: 'POST',
+    url: '/getEventName',
+    data: eventObject
+  }).then( function( response ) {
+    $scope.stuff = response.data;
+    console.log( 'This was received through /getEventName: ' + $scope.stuff.event_name + '.' );
+  });
+};
 
 }]); // end adminController

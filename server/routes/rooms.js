@@ -275,5 +275,24 @@ router.put( '/guestName/: id', function( req, res ) {
                 });
               });
 
+    router.post( '/getEventName', function( req, res ) {
+      selectedEvent = [];
+      pg.connect( connectionString, function( err, client, done ) {
+        if( err ) {
+          res.sendStatus( 500 );
+          console.log( 'Unable to connect to database.' );
+        } else {
+          var eventName = client.query( 'SELECT * FROM events WHERE id = ' + req.body.id + ';' );
+          eventName.on( 'row', function( row ) {
+            selectedEvent.push( eventName );
+            res.sendStatus( 200 );
+            console.log( 'Sending ' + selectedEvent + ' from /getEventName.' );
+            return res.json( selectedEvent );
+          });
+          done();
+        }
+      });
+    });
+
 
 module.exports = router;

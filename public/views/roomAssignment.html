@@ -1,7 +1,7 @@
 <div ng-include="nav.html"></div>
 <md-content> <!-- need a ng-init to pass in eventid -->
-<div id="exportPDF">
-    <h3>Room Assigner for {{  }}</h3>
+<div id="exportPDF" ng-init = "eventidFunction()">
+    <h3>Room Assigner for {{ stuff.event_name }}</h3>
     <h4>Hotel: [HOTELNAME]</h4>
     <br />
     <h4>Enter your name and the names of any non-paddlers coming with you into the bed spaces below.</h4>

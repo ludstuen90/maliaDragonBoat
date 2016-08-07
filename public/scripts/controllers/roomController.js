@@ -2,10 +2,6 @@ DRGNBT.controller('roomController', [ '$scope', '$http', '$window', function ( $
 $scope.hello = "Hello";
 console.log('roomId is ', sessionStorage.getItem("roomId"));
 
-$scope.eventid = sessionStorage.getItem( "eventId" );
-
-$scope.eventid = 
-
 $scope.roomId = sessionStorage.getItem("roomId");
 var roomId = sessionStorage.getItem("roomId");
 var showSlots = {
@@ -38,4 +34,5 @@ $scope.showMe = function(){
   console.log($scope.guests);
 };
 
+$scope.runOnStart();
 }]); // end roomController

@@ -9,6 +9,7 @@ $scope.hello = sessionStorage.getItem("username");
 //Queries the server for the current event, and then assigns that information to
 // an Angular object (eventData), which appears on the DOM
     $scope.mango = sessionStorage.getItem("eventId");
+
     var objToSend = {
       eventId: $scope.mango
     };
@@ -20,6 +21,11 @@ $scope.hello = sessionStorage.getItem("username");
       $scope.eventData = response.data[0];
       $scope.getHotelInformation();
       console.log(response.data);
+      console.log('hotel id is ', $scope.eventData.hotel_id);
+    sessionStorage.setItem("hotelId", $scope.eventData.hotel_id);
+      $scope.avocado = sessionStorage.getItem("hotelId");
+      console.log($scope.avocado);
+
     });
     //Queries the server to see if a the logged in user has filled out a survey for the current eventData
 
@@ -38,7 +44,7 @@ $scope.userSurveyCompletion = function(){
     // else, checks to see if the logged in user has filled out a survey for
     // the viewed event. If no, prompts survey completion.
     // If yes, advises to wait for more info in filling out hotel
-    
+
 
           if ($scope.surveysCompleted.length === 0) {
             console.log('theres nothing there!');

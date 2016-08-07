@@ -151,6 +151,9 @@ console.log('see this event ', showThisEvent);
     for (var i = 0; i < $scope.hotelSelect.length; i++){
       if ($scope.hotelSelect[i].id == $scope.eventToDisplay.hotel_id){
         console.log('yes, the winner is ', $scope.hotelSelect[i]);
+        console.log('hotel id is ', $scope.eventToDisplay.hotel_id);
+        $scope.selectHotel = $scope.eventToDisplay.hotel_id;
+
         console.log('at index ', i);
         // still need to add logic to actually APPLY the hotel index to the dropdown
       }
@@ -166,6 +169,10 @@ console.log( "This was built: ", $scope.eventToModify, ". It contains ", $scope.
 
 console.log($scope.eventToDisplay);
 $scope.data.cb1 = $scope.eventToDisplay.hotel_phase;
+// $scope.selectHotel = $scope.eventToDisplay.hotel_id;
+console.log($scope.eventToDisplay.hotel_id);
+console.log('select hotel is ', $scope.selectHotel);
+
 
 };  //End subEvent()
 
@@ -192,7 +199,7 @@ $scope.data.cb1 = $scope.eventToDisplay.hotel_phase;
 //CREATE a hotel FUNCTIONALITY
      $scope.newHotel = function(){
        hotelToSend = {
-         hotel_name : $scope.hotel_name,
+         hotel_name : $scope.hotel_name1,
          hotel_address : $scope.hotel_address,
          hotel_city : $scope.hotel_city,
          hotel_state_province : $scope.hotel_state,
@@ -209,7 +216,8 @@ $scope.data.cb1 = $scope.eventToDisplay.hotel_phase;
        }).then(function(){
          $scope.hotelRequest();
          $scope.pageLoad();
-
+       }).then(function(){
+         location.reload();
        });
 
        // CLEARS HOTEL INPUT FIELDS
@@ -258,7 +266,6 @@ $scope.deleteHotel = function(hotelID){
 };
 //GOTTA FINISH BUILDING THIS OUT LATER                   ATTN: NICK!    <---------------------------
 $scope.assignHotel = function(eventChosen){
-  alert('The hotel has been assigned.');
   console.log('in assignHotel');
   console.log($scope.selectHotel);
   console.log($scope.eventChosen);

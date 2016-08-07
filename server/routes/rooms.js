@@ -247,7 +247,7 @@ router.post('/saveSlot/:id', function(req, res) {
       function(err, result){
         done();
         if (err) {
-          console.log("error in rooms.js:");
+          console.log("error in rooms.js");
            console.log(err);
             res.sendStatus(500);
             return;
@@ -263,7 +263,7 @@ router.post( '/saveGuest', function( req, res ) {
                 pg.connect( connectionString, function( err, client, done ) {
                   if( err ) {
                     console.log( 'Unable to update table.' );
-                  }else {
+                  } else {
                   client.query( 'UPDATE occupant_room' +
                   'SET guest_name = $1' +
                   'WHERE id = $2',

@@ -130,7 +130,34 @@ http://stackoverflow.com/questions/23757363/how-to-create-non-blocking-asynchron
 
 Susan's XEditable Code
 
+//NO LONGER IN USE
+router.post('/getSlots9000', function(req, res) { // pulling selected room info from database to display on room picker
+    console.log("in router.post  /getslots");
+    console.log('we are looking for room id ', req.body.room);
+    slotsArray = [];  // resets array to empty
+    pg.connect(connectionString, function(err, client, done) {  // connecting to database
+      if (err) {     // check for errors
+      console.log(err);
+    } else { // start selection criteria
+        //  var search = client.query("SELECT occupant_room.id, first_name, last_name, guest_name, room_type, capacity, room_number, check_in, check_out, price FROM occupant_room JOIN users ON occupant_room.users_id = users.id JOIN rooms ON occupant_room.rooms_id = rooms.id WHERE rooms_id=" + req.body.room);
+         var search = client.query("SELECT * FROM occupant_room WHERE rooms_id=" + req.body.room);
+         search.toString();
+        //  console.log("in /getSlots app: ", slotsInfo);
+          rows = 0;
+          search.on('row', function(row) {  // pushing to array
+            console.log('row is now', row);
+            slotsArray.push(row);
+          });  // end query push
+          search.on('end', function() {  // sending to scripts
+            // console.log("slots info from app.post in app", slotsArray);
+            return res.json(slotsArray);
+          }); // end function
+          done(); // signals done
+          pg.end();
+      } // end else (for success)
+    }); // end pg connect function
 
+}); // end /getSlotsfunction
 
 
 

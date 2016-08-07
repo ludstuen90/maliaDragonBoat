@@ -637,4 +637,5 @@ $scope.fetchEvents();
 };
 
 
+
 }]); // end adminController

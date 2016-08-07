@@ -176,7 +176,7 @@ console.log('select hotel is ', $scope.selectHotel);
 
 
 };  //End subEvent()
- 
+
 
 
 
@@ -620,5 +620,21 @@ $scope.roomIdName = sessionStorage.getItem("roomId");
 
         // $scope.seeRoom();
 
+  };
+
+  $scope.showMe = function(){
+    console.log('button clicked');
+    console.log(guest);
+      var guest = { guest_name : $scope.guests[0].guest_name ,
+        id :$scope.guests[0].id
+      };
+      console.log(guest);
+  $http({
+  method : 'PUT',
+  url : '/saveGuest',
+  data : guest
+  });
+
+    console.log($scope.guests);
   };
 });

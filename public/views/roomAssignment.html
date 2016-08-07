@@ -58,8 +58,8 @@
                                     <td><span editable-text="thing.guest_name" e-form="rowform" e-required>{{ thing.guest_name || "empty" }}</span></td>
                                     <!-- <td><a href="#" editable-text="thing.guest_name">{{ thing.guest_name || "empty" }}</a></td> -->
                                     <td style="white-space:nowrap">
-                                      <form editable-form name="rowform"  ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == record">
-                                        <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary createEventButton">Replace</button>
+                                      <form editable-form name="rowform"  ng-model="saveUser" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == record">
+                                        <button type="submit" ng-disabled="rowform.$waiting" ng-click="showMe()" class="btn btn-primary createEventButton">Save</button>
                                         <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default orangeButton"> Cancel</button>
                                       </form>
                                       <div class="buttons" ng-show="!rowform.$visible">

@@ -255,8 +255,6 @@ $scope.assignHotel = function(eventChosen){
 }).then(function(){
   alert("Hotel preference saved!");
 });
-  console.log('out of js.assignHotel');
-};  //End assignHotel()
 
      var hotelRooms=[];
 

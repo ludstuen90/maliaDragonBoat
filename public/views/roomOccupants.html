@@ -6,8 +6,7 @@
       <div class="col-md-12">
           <div>
               <h4>Room {{roomId}}</h4>
-              <p>currently contains the following occupants. Click on any emptye form below to
-                  make edits to the room sign-up.
+              <p>Click on an empty row below to enter a name into this room.
 
               <table class="table table-bordered table-hover table-condensed">
                 <tr ng-repeat="thing in guests">
@@ -17,7 +16,7 @@
                 </tr>
               </table>
 
-              <button class="btn btn-primary" ng-click="showMe()">Save</button>
+              <button class="createEventButton btn-sm" ng-click="showMe()">Save</button>
 
           </div>
       </div>

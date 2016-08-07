@@ -603,4 +603,5 @@ $scope.fetchEvents();
 };
 
 
+
 }]); // end adminController

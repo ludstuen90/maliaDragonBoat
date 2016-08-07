@@ -176,7 +176,7 @@ console.log('select hotel is ', $scope.selectHotel);
 
 
 };  //End subEvent()
-
+ 
 
 
 

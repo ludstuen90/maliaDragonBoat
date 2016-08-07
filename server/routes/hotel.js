@@ -29,6 +29,9 @@ router.post('/newHotel', function(req, res){
 });
 
 
+
+
+
 router.get('/hotelRequest', function(req, res){
   // console.log('in hotelRequest');
   var hotelGet = [];

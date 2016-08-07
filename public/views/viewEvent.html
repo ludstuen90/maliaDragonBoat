@@ -1,20 +1,21 @@
 
+<md-content>
 <div class="row eventDiv md-whiteframe-1dp surveyContainer">
 
-  <div>
+  <!-- <div>
     <img class="dragonBoats" src="assets/images/dragon_boat_2.jpg" alt="" />
-  </div>
-
-
+  </div> -->
 
     <div class="eventDiv2" ng-init="getInformation()">
-      <div>
-        <h2>{{eventData.event_name}}</h2>
-        <hr>
-        <h4><i>{{ (eventData.begin_date | date: "MMMM dd, yyyy") }} - {{ (eventData.end_date | date: "MMMM dd, yyyy") }}</i></h4>          <h4>{{eventData.company}}</h4>
-      </div>
+        <div class="eventBackground">
+          <div>
+            <h2 class="eventName">{{eventData.event_name}}</h2>
+          </div>
+        </div>
+        <div class="eventDate">
+          <h3 class="eventDatesHeader"><i>{{ (eventData.begin_date | date: "MMMM dd, yyyy") }} - {{ (eventData.end_date | date: "MMMM dd, yyyy") }}</i></h3>          <h4>{{eventData.company}}</h4>
+        </div>
     </div>
-
 
       <div class="eventDiv3">
         <div class="col-xs-6 col-md-4 eventInfo">
@@ -46,11 +47,13 @@
           <h4 class="helloAgain">
           Hello, {{hello | uppercase}}!
 
-          {{pageMessage}} </h4>
+          <!-- {{pageMessage}} </h4> -->
           <hr>
-          <a ng-href="{{pageMessage2}}"><p class="takeSurvey">{{pageMessage3}}</p></a>
+          <!-- <a ng-href="{{pageMessage2}}"><p class="takeSurvey">{{pageMessage3}}</p></a> -->
 
-  <!-- {{pageMessage}} </h4><md-button class="md-raised eventButton"><a ng-href="{{pageMessage2}}">{{pageMessage3}} </a></md-button> -->
+  {{pageMessage}} </h4><md-button class="md-raised eventButton" ng-hide="pageMessage2==''"><a ng-href="{{pageMessage2}}">{{pageMessage3}} </a></md-button>
         </div>
       </div>
+
     </div>
+        </md-content>

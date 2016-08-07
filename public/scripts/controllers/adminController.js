@@ -3,8 +3,6 @@ DRGNBT.controller('adminController', ['$scope', '$http', '$window', '$filter', f
     var objectToSend={}; // creates global object to send
     $scope.eventToDisplay= [];
 
-$scope.sampleText = "This is a string.";
-
     $scope.assignEvent = function(eventId){
         console.log(eventId);
         sessionStorage.setItem("eventId", eventId);
@@ -64,7 +62,6 @@ $scope.sampleText = "This is a string.";
   //clears event fields
        $scope.eventName = '';
        $scope.addressOne = '';
-       $scope.addressTwo = '';
        $scope.event_city = '';
        $scope.event_state_province = '';
        $scope.event_url = '';
@@ -149,6 +146,20 @@ console.log('see this event ', showThisEvent);
     console.log('from survey show we have', response.data);
     $scope.surveyList = response.data;
     console.log('hotel phase', $scope.eventToDisplay.hotel_phase);
+  }).then(function(){
+    console.log('we have already selected hotel' , $scope.eventToDisplay.hotel_id);
+    for (var i = 0; i < $scope.hotelSelect.length; i++){
+      if ($scope.hotelSelect[i].id == $scope.eventToDisplay.hotel_id){
+        console.log('yes, the winner is ', $scope.hotelSelect[i]);
+        console.log('at index ', i);
+        // still need to add logic to actually APPLY the hotel index to the dropdown
+      }
+
+    }
+
+
+
+
 
   });
 console.log( "This was built: ", $scope.eventToModify, ". It contains ", $scope.eventToModify.id, ", and ", $scope.eventToModify.name, "." );
@@ -208,6 +219,9 @@ $scope.data.cb1 = $scope.eventToDisplay.hotel_phase;
           $scope.hotel_phone = '';
           $scope.hotel_url = '';
           $scope.hotel_notes = '';
+
+          //Re-loads the list of hotels in the 'events' tab
+          $scope.pageLoad();
      };//end HOTEL creation
 
      $scope.hotelRequest = function() {
@@ -237,10 +251,12 @@ $scope.deleteHotel = function(hotelID){
     headers: {'Content-Type': 'application/json;charset=utf-8'}
   }).then(function(){
     $scope.hotelRequest();
+
   });
 };
 //GOTTA FINISH BUILDING THIS OUT LATER                   ATTN: NICK!    <---------------------------
 $scope.assignHotel = function(eventChosen){
+  alert('The hotel has been assigned.');
   console.log('in assignHotel');
   console.log($scope.selectHotel);
   console.log($scope.eventChosen);
@@ -249,7 +265,9 @@ $scope.assignHotel = function(eventChosen){
   method: 'PUT',
   url: '/assignHotel/' + eventChosen,
   data: sendID
-  });
+}).then(function(){
+  alert("Hotel preference saved!");
+});
   console.log('out of js.assignHotel');
 };  //End assignHotel()
 
@@ -260,7 +278,7 @@ $scope.assignHotel = function(eventChosen){
 
 // TAB FUNCTIONALITY ----------------------------------
      $scope.tabs = [{
-            title: 'Select Event',
+            title: 'Events',
             url: 'one.tpl.html'
         }, {
              title: 'Survey Results',
@@ -287,6 +305,8 @@ $scope.assignHotel = function(eventChosen){
        console.log(sessionStorage.getItem("eventId"));
      };
 
+     $scope.event = sessionStorage.getItem("eventId");
+
 // ROOM BUILDER FUNCTIONALITY -----------------------------
 
     //ADD A ROOM -------------------
@@ -296,7 +316,6 @@ var roomToSend={};
 $scope.addRoom = function() {
   console.log("in addRoom function in adminController");
   roomToSend = {
-    // hotels_id : $scope.hotels_id,
     events_id : $scope.eventToModify.id,
     room_type : $scope.room_type,
     capacity : $scope.capacity,
@@ -314,7 +333,6 @@ $scope.addRoom = function() {
     $scope.getRoomAndCreateSlots();
   });
   // CLEARS Room INPUT FIELDS
-  // $scope.hotels_id = "";
   $scope.events_id = "";
     $scope.room_type = "";
     $scope.capacity = "";
@@ -580,6 +598,7 @@ $scope.pageLoad = function(){
 $http.get('loadHotels').then(function(response){
   $scope.hotelSelect = response.data;
   console.log(response.data);
+  console.log('hotel load request received! response of ', response.data);
 });
 
 

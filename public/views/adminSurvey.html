@@ -99,11 +99,12 @@
              </md-content>
         </md-tab>
 
-<!-- TAB 2 SELECT EVENT -->
+<!-- TAB 2  EVENTS -->
 
-  <md-tab label="Select Event">
+  <md-tab label="Events">
       <md-content class="md-padding">
-      <div class="container">
+      <div>
+      <!-- <div class="container"> -->
         <h3> Select An Event To View Survey Results</h3>
         </br>
         <div ng-init="pageLoad()"></div>
@@ -115,7 +116,7 @@
                           <label>Choose an Event</label>
                           <md-select ng-model="eventChosen" class="bottomspacesmall">
                             <md-option ng-repeat="thing in alltheEvents" value="{{thing.id}}" class="bottomspace">
-                              <b>{{thing.event_name}}</b>  ({{thing.begin_date | date: "MM-dd-yyyy"}} - {{thing.end_date | date: "MM-dd-yyyy"}})
+                              <b>{{thing.event_name}}</b>  ({{thing.begin_date | date: "MM-dd-yyyy"}})
                             </md-option>
                           </md-select><button class="createEventButton btn-md" ng-click="subEvent()">Submit Event</button>
                         </md-input-container>
@@ -198,14 +199,15 @@
             <md-content class="md-padding">
 
               <div ng-controller="adminController"> <!-- begin hotel information -->
-
+                <h3> Add A Hotel</h3>
+                      <!-- ROW 1-->
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-3">
                                         <md-input-container md-no-float class="md-block">
                                           <input ng-model="hotel_name" placeholder="Hotel Name">
                                         </md-input-container>
                                     </div>
-                                    <div class="col-xs-6 col-sm-3">
+                                    <div class="col-xs-6 col-sm-5">
                                          <md-input-container md-no-float class="md-block">
                                            <input ng-model="hotel_address" placeholder="Address">
                                          </md-input-container>
@@ -214,47 +216,44 @@
                                          <md-input-container md-no-float class="md-block">
                                            <input ng-model="hotel_city" placeholder="City">
                                          </md-input-container>
-                                      </div>
-                                    <div class="col-xs-6 col-sm-2">
+                                    </div>
+                                    <div class="col-xs-6 col-sm-1">
                                           <md-input-container md-no-float class="md-block">
                                             <input ng-model="hotel_state" placeholder="State">
                                           </md-input-container>
                                     </div>
-                                    <div class="col-xs-6 col-sm-2">
+                                    <div class="col-xs-6 col-sm-1">
                                       <md-input-container md-no-float class="md-block">
                                         <input ng-model="hotel_zip" placeholder="Zip">
                                       </md-input-container>
                                     </div>
-                                  </div>
-
-                                <div>
-
-                                      <div class="col-xs-6 col-sm-3">
+                                  </div><!-- end row 1-->
+                        <!-- ROW 2-->
+                                  <div class="row">
+                                      <div class="col-xs-6 col-sm-2">
                                           <md-input-container md-no-float class="md-block">
-                                            <input ng-model="hotel_phone" placeholder="Phone">
+                                            <input ng-model="hotel_phone"  placeholder="Phone">
                                           </md-input-container>
                                         </div>
-                                        <div class="col-xs-6 col-sm-3">
+                                      <div class="col-xs-6 col-sm-3">
                                            <md-input-container md-no-float class="md-block">
                                              <input ng-model="hotel_url" placeholder="Website">
                                            </md-input-container>
-                                         </div>
-
-                                          <!-- Notes -->
-                                          <div class="col-xs-6">
+                                      </div>
+                                      <div class="col-xs-5">
                                             <md-input-container md-no-float class="md-block">
                                               <textarea ng-model="hotel_notes" md-maxlength="150" rows="1" placeholder="Hotel Notes"></textarea>
                                             </md-input-container>
-                                          </div>
-
-                                          <button class="createEventButton btn-lg btn-block" type="button" name="createHotelButton" ng-click= "newHotel()" >Add Hotel</button>
-
-                                        </div>
+                                      </div>
+                                      <div class="col-xs-2">
+                                            <button class="createEventButton btn-lg btn-block" type="button" name="createHotelButton" ng-click= "newHotel()" >Add Hotel</button>
+                                      </div>
+                                  </div><!-- end row 2-->
 
               <div>
                 <p ng-show="hotel.length==0">No hotels available.</p>
                   <table class="table table-striped">
-                    <thead class"rowline">
+                    <thead class="rowline">
                       <th>Hotel Name</th>
                       <th>Address</th>
                       <th>City</th>
@@ -267,7 +266,7 @@
                     </thead>
                     <br>
 
-                     <tr ng-repeat="hotel in hotels | orderBy:hotel_name | filter: {hotel_name: '!TBA'}" >
+                     <tr ng-repeat="hotel in hotels | orderBy:hotel_name }" >
                        <td>{{hotel.hotel_name}}</td>
                        <td>{{hotel.hotel_address}}</td>
                        <td>{{hotel.hotel_city}}</td>
@@ -291,12 +290,11 @@
   <!-- TAB 4 // HOTEL BUILDER -->
     <md-tab label="Hotel Room Builder">
         <md-content class="md-padding">
-          <div class="row" ng-controller="adminController"> <!-- begin Tab 4 hotel information -->
+          <div ng-controller="adminController"> <!-- begin Tab 4 hotel information -->
 
     <!-- ADD ROOM -->
     <h3>Add Hotel Room</h3>
     <h4>{{ eventToModify.name }}</h4>
-
 
             <!-- First Row -->
                   <div class="row">
@@ -325,19 +323,20 @@
                            </div>
                          </div><!-- Col -->
                   </div><!-- Row -->
-            <!-- Second Row -->
-                  <div class="row">
-                          <div class="col-sm-2">
-                            <div class="form-group">
-                                <md-datepicker ng-model="check_in" md-placeholder="Check In Date"></md-datepicker>
-                            </div>
-                          </div><!-- Col -->
 
-                            <div class="col-sm-2">
-                              <div class="form-group">
-                                <md-datepicker ng-model="check_out" md-placeholder="Check Out Date"></md-datepicker>
-                              </div>
-                            </div><!-- Col -->
+        <!-- Second Row -->
+              <div class="row">
+                      <div class="col-sm-2">
+                        <div class="form-group">
+                            <md-datepicker ng-model="check_in" md-placeholder="Check In Date"></md-datepicker>
+                        </div>
+                      </div><!-- Col -->
+
+                        <div class="col-sm-2">
+                          <div class="form-group">
+                            <md-datepicker ng-model="check_out" md-placeholder="Check Out Date"></md-datepicker>
+                          </div>
+                        </div><!-- Col -->
 
                           <div class="col-sm-6">
                             <div class="form-group">

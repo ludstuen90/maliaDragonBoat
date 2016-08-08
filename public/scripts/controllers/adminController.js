@@ -68,8 +68,6 @@ $scope.roomIdNumber ="";
        $scope.event_state_province = '';
        $scope.event_url = '';
        $scope.company = '';
-       $scope.results_url = '';
-       $scope.schedule_url = '';
        $scope.begin_date = '';
        $scope.end_date = '';
        $scope.notes_events = '';
@@ -178,8 +176,13 @@ console.log('select hotel is ', $scope.selectHotel);
 
 
 };  //End subEvent()
- 
 
+
+
+$scope.goToRoomAssigner = function(eventid) {
+       $window.location.href = "/#roomAssignment";
+       $scope.getRooms2(eventid);
+};
 
 
      var hotelList=[];

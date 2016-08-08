@@ -27,8 +27,10 @@ router.post('/addRoom', function(req, res){
       console.log( "/addRoom failed." );
     } else {
     console.log('In addRoom', room);
-    client.query("INSERT INTO rooms ( events_id, room_type, capacity, price, check_in, check_out, notes) values ($1, $2, $3, $4, $5, $6, $7)",
-    [ room.events_id, room.room_type, room.capacity, room.price, room.check_in, room.check_out, room.notes]);
+    client.query("INSERT INTO rooms ( events_id, room_type, capacity, price, check_in, check_out, notes, hotels_id) values ($1, $2, $3, $4, $5, $6, $7, $8)",
+    [room.events_id, room.room_type, room.capacity, room.price, room.check_in, room.check_out, room.notes, room.hotels_id]);
+    // client.query("INSERT INTO rooms ( events_id, room_type, capacity, price, check_in, check_out, notes) values ($1, $2, $3, $4, $5, $6, $7)",
+    // [ room.events_id, room.room_type, room.capacity, room.price, room.check_in, room.check_out, room.notes]);
     res.send(true);
     done();
   }
@@ -125,7 +127,7 @@ router.delete( '/deleteRoom', function( req, res ){   //DELETE ROOMS
 });
 
 
-router.post('/createSlots', function(req, res){
+router.post('/createSlots', function(req, res){  //NEEDS ERROR HANDLING
   var slots = req.body;
   console.log('In createSlot', slots);
   pg.connect(connectionString, function(err, client, done){
@@ -143,7 +145,7 @@ router.post('/createSlots', function(req, res){
 
 var slotsArray;
 
-router.post('/getSlots', function(req, res){
+router.post('/getSlots', function(req, res){  //NEEDS ERROR HANDLING
   console.log("Get client request received!");
   var client = {
     id: req.body.room

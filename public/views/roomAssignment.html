@@ -1,8 +1,9 @@
-<div ng-include="nav.html"></div>
+<div ng-include="nav.html" ng-init="roomAssign()"></div>
 <md-content> <!-- need a ng-init to pass in eventid -->
-<div id="exportPDF" class="container">
-    <h3>Room Assigner for {{  }}</h3>
-    <h4>Hotel: [HOTELNAME]</h4>
+
+<div id="exportPDF" class="container" >
+    <h3>Room Assigner for {{thisEventName}} </h3>
+    <h4>Hotel: {{thisHotelName}}</h4>
     <br />
     <h4>Click on the See Occupant buttons in the rooms below to enter your name and the names of any non-paddlers coming with you into empty bed spaces.</h4>
 
@@ -24,8 +25,6 @@
 </tr>
 </table> -->
 
-    <p>Event ID Number: </p>
-    <input type= "text" ng-model= "events_id" value= ""><button type="button" ng-click= "getRoom2()" >Get Rooms</button>
       <div class="row">
         <div class="container">
         <div ng-repeat='record in roomToShow'>

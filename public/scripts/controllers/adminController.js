@@ -601,6 +601,7 @@ $scope.roomIdName = sessionStorage.getItem("roomId");
   }).then(function(response){
   console.log(response.data);
   $scope.guests = response.data;
+  console.log($scope.guests[0].guest_name);
   }).then(function(){
     $scope.guestsArray =  $.map($scope.guests, function(value, index){
         return [value];
@@ -624,9 +625,13 @@ $scope.roomIdName = sessionStorage.getItem("roomId");
 
   $scope.showMe = function(){
     console.log('button clicked');
-    console.log(guest);
-      var guest = { guest_name : $scope.guests[0].guest_name ,
-        id :$scope.guests[0].id
+    // console.log(guest);
+    for (var i = 0; i < $scope.guests.length; i++){
+      // if($scope.guests[i].id == $scope.guests.guest_name) {
+      //   $scope.eventToDisplay = $scope.events[i];
+      // }
+      var guest = { guest_name : $scope.guests[i].guest_name ,
+        id : $scope.guests[i].id
       };
       console.log(guest);
   $http({
@@ -636,5 +641,8 @@ $scope.roomIdName = sessionStorage.getItem("roomId");
   });
 
     console.log($scope.guests);
-  };
+
+
+  }
+};
 });

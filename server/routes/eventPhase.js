@@ -54,7 +54,7 @@ router.put( '/updateEvent', function( req, res ) {
                   console.log( "Hotel phase update query successful." );
                   res.send( true );
                   done();
-                  res.sendStatus(200);
+                  // res.sendStatus(200);
                 }
                 });
               });

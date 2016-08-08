@@ -320,15 +320,7 @@ h3 {
   color: white;
   padding: 35px;
   text-align: center;
-  /*background-color: #3c84a2;*/
   background-color: #3c84a2;
-  /*border-bottom: 2px;
-  border-bottom-color: #ff9900;
-  border-bottom-style: solid;  */
-  /*margin-top: 0px;*/
-  /*width: 500px;*/
-  /*height: 250px;*/
-  /*margin-left: 80px;*/
 }
 
 .eventHeaders {
@@ -343,10 +335,6 @@ h3 {
 .fa-exclamation{
   font-size: 40px;
   margin-right: 15px;
-}
-
-.hello {
-  /*display: flex;*/
 }
 
 .helloAgain {
@@ -364,13 +352,6 @@ h3 {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 150px;
-}
-
-.eventButton {
-  margin-left: 20px !important;
-  background-color: white !important;
-  height: 60px !important;
-  padding: 10px !important;
 }
 
 .eventDate {
@@ -393,6 +374,28 @@ h3 {
   border-bottom-color: #ff9900;
   border-bottom-style: solid;*/
 }
+
+.eventButton {
+  margin-left: 20px !important;
+  background-color: #ff9900 !important;
+  height: 60px !important;
+  padding: 10px !important;
+}
+
+.eventButton a {
+  color: white;
+}
+
+.eventButton:hover {
+  background-color: white !important;
+    color: #ff9900;
+}
+
+
+.eventButton a:hover {
+  color: #ff9900;
+}
+
 
 /*ADMIN TABS STYLING*/
 

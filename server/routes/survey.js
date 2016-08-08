@@ -81,25 +81,30 @@ router.get( '/surveyResults', function( req, res ) {
   });
 });
 
-
 router.post( '/surveyShow', function( req, res ) {
   var surveyResults = [];
+  if( req.body.id === undefined ){
+    console.log( "No event selected." );
+    res.sendStatus( 200 );
+  } else {
   pg.connect( connectionString, function( err, client, done ) {
     var surveyData = client.query( "SELECT attend_status, hotel_status, notes_other_accommodation, roommate_option, num_non_paddlers, notes_survey_room, first_name, last_name, event_name, username, events_id FROM survey JOIN users ON survey.user_id = users.id JOIN events ON survey.events_id = events.id WHERE events_id=" + req.body.id );
     surveyData.on( 'row', function( row ) {
       surveyResults.push( row );
       // console.log( "/surveyResults returned with: " + surveyResults + ',' + ' which consists of: ' + surveyResults.first_name + ', ' + surveyResults.last_name + '.' );
     });
-    // console.log( "/surveyResults returned with: " + surveyResults + '.' );
     if( err ) {
-      console.log( 'Unable to retrieve survey data.' );
+      console.log( 'ERROR in /surveyShow' );
+      res.sendStatus( 200 );
     } else {
+    // console.log( "/surveyResults returned with: " + surveyResults + '.' );
     surveyData.on( 'end', function() {
       return res.json( surveyResults );
     });
     done();
-    }
+  }
   });
+}
 });
 
 

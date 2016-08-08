@@ -47,14 +47,10 @@ router.put( '/tableUpdate', function( req, res ) {
   });
 });
 
-
-
-
-
 router.post('/createEvent', function (req, res){
   var events = req.body;
   pg.connect(connectionString, function(err, client, done){
-    if (err ){
+    if ( err ){
       console.log(err);
     } else {
       console.log('in pg connect', events);

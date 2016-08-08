@@ -141,8 +141,6 @@ $scope.subEvent = function(){
     id: $scope.eventChosen
   };
 
-console.log('see this event ', showThisEvent);
-
   $http({
     method: 'POST',
     url: '/surveyShow',
@@ -162,9 +160,7 @@ console.log('see this event ', showThisEvent);
         console.log('at index ', i);
         // still need to add logic to actually APPLY the hotel index to the dropdown
       }
-
     }
-
   });
 console.log( "This was built: ", $scope.eventToModify, ". It contains ", $scope.eventToModify.id, ", and ", $scope.eventToModify.name, "." );
 
@@ -173,7 +169,6 @@ $scope.data.cb1 = $scope.eventToDisplay.hotel_phase;
 // $scope.selectHotel = $scope.eventToDisplay.hotel_id;
 console.log($scope.eventToDisplay.hotel_id);
 console.log('select hotel is ', $scope.selectHotel);
-
 };  //End subEvent()
 
 $scope.goToRoomAssigner = function(eventid) {
@@ -251,7 +246,7 @@ $scope.deleteHotel = function(hotelID){
     $scope.hotelRequest();
   });
 };
-//GOTTA FINISH BUILDING THIS OUT LATER      
+//GOTTA FINISH BUILDING THIS OUT LATER
 $scope.assignHotel = function(eventChosen){
   console.log('in assignHotel');
   console.log($scope.selectHotel);

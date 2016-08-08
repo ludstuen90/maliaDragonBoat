@@ -59,9 +59,11 @@
                                     <td><span editable-text="thing.guest_name" e-form="rowform" e-required>{{ thing.guest_name || "empty" }}</span></td>
                                     <!-- <td><a href="#" editable-text="thing.guest_name">{{ thing.guest_name || "empty" }}</a></td> -->
                                     <td style="white-space:nowrap">
-                                      <form editable-form name="rowform"  ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == record">
-                                        <button type="submit" ng-disabled="rowform.$waiting" class="createEventButton btn-sm">Replace</button>
-                                        <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="orangeButton btn-sm"> Cancel</button>
+
+                                      <form editable-form name="rowform"  ng-model="saveUser" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == record">
+                                        <button type="submit" ng-disabled="rowform.$waiting" ng-click="showMe()" class="btn btn-primary createEventButton">Save</button>
+                                        <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default orangeButton"> Cancel</button>
+
                                       </form>
                                       <div class="buttons" ng-show="!rowform.$visible">
                                         <button class="createEventButton btn-sm" ng-click="rowform.$show()">Edit</button>
@@ -69,9 +71,9 @@
                                     </td>
                                 </tr> <!-- end row repeat -->
                               </table>
-                              <div align="center">
-                              <button class="createEventButton btn-sm" ng-click="showMe()">Save</button>
-                            </div>
+                              <!-- <div align="center"> -->
+                              <!-- <button class="createEventButton btn-sm" ng-click="showMe()">Save</button> -->
+                            <!-- </div> -->
                           </div>
                       </div>
                     </div>

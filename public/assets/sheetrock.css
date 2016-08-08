@@ -653,6 +653,8 @@ footer {
 
 .createEventButton:hover {
     background: #13647F;
+    color:white;
+    text-decoration: none;
 }
 
 /*LOGIN STYLING*/

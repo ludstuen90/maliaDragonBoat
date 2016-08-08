@@ -28,7 +28,7 @@ DRGNBT.controller('roomController', [ '$scope', '$http', '$window', function ( $
 
       $scope.showMe = function(){
         console.log($scope.guests);
-      };
+};
 
   $scope.seeRoom = function(roomId){
     console.log('fired with ', roomId);

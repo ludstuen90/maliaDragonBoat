@@ -1,9 +1,13 @@
 DRGNBT.controller('adminController', ['$scope', '$http', '$window', '$filter', function($scope, $http, $window, $filter){
 // console.log('in adminController');
+
+
+
+
+
+
     var objectToSend={}; // creates global object to send
     $scope.eventToDisplay= [];
-
-$scope.roomIdNumber ="";
 
     $scope.assignEvent = function(eventId){
         console.log(eventId);
@@ -68,8 +72,6 @@ $scope.roomIdNumber ="";
        $scope.event_state_province = '';
        $scope.event_url = '';
        $scope.company = '';
-       $scope.results_url = '';
-       $scope.schedule_url = '';
        $scope.begin_date = '';
        $scope.end_date = '';
        $scope.notes_events = '';
@@ -163,10 +165,6 @@ console.log('see this event ', showThisEvent);
 
     }
 
-
-
-
-
   });
 console.log( "This was built: ", $scope.eventToModify, ". It contains ", $scope.eventToModify.id, ", and ", $scope.eventToModify.name, "." );
 
@@ -176,14 +174,14 @@ $scope.data.cb1 = $scope.eventToDisplay.hotel_phase;
 console.log($scope.eventToDisplay.hotel_id);
 console.log('select hotel is ', $scope.selectHotel);
 
-
 };  //End subEvent()
 
-
-
+$scope.goToRoomAssigner = function(eventid) {
+       $window.location.href = "/#roomAssignment";
+       $scope.getRooms2(eventid);
+};
 
      var hotelList=[];
-
 
 //CREATE a hotel FUNCTIONALITY
      $scope.newHotel = function(){
@@ -253,7 +251,7 @@ $scope.deleteHotel = function(hotelID){
     $scope.hotelRequest();
   });
 };
-//GOTTA FINISH BUILDING THIS OUT LATER                   ATTN: NICK!    <---------------------------
+//GOTTA FINISH BUILDING THIS OUT LATER      
 $scope.assignHotel = function(eventChosen){
   console.log('in assignHotel');
   console.log($scope.selectHotel);
@@ -322,8 +320,7 @@ $scope.addRoom = function() {
     check_in : $scope.check_in,
     check_out : $scope.check_out,
     notes : $scope.notes,
-    hotels_id : $scope.eventToModify.hotels_id
-  };
+    hotels_id : $scope.eventToModify.hotels_id };
   console.log(roomToSend);
   $http({
     method: 'POST',
@@ -471,27 +468,94 @@ $scope.slots = [];
 
                   console.log('room to show returns' , $scope.roomToShow);
               });
+}; // end getRoom function
 
-  }; // end getRoom2 function
 
 
-$scope.seeRoom = function(roomId){
-  console.log('seeRoom function fired with ', roomId);
-  sessionStorage.getItem("roomId", roomId);
-  $window.location.href = '/#/roomOccupants';
+
+
+$scope.roomAssign = function() {
+          console.log('hello from room assign');
+        console.log('hotel id is ', sessionStorage.getItem("hotelId"), 'and event id is ', sessionStorage.getItem("eventId") );
+          $scope.localEventId = sessionStorage.getItem("eventId");
+          $scope.localHotelId = sessionStorage.getItem("hotelId");
+          $scope.events_id = $scope.localEventsId;
+
+          $http({
+            method: 'GET',
+            url: '/eventPopulate'
+          }).then( function( response ) {
+            $scope.alltheEvents = response.data;
+            console.log('and the response data is: ', $scope.alltheEvents);
+            console.log('events is ', $scope.events);
+
+            for (var i = 0; i <= $scope.localEventId.length; i++){
+              if ($scope.localEventId == $scope.alltheEvents[i].id) {
+                console.log($scope.localEventId, 'and ', $scope.alltheEvents[i].id);
+                console.log('bling');
+                $scope.thisEventName = $scope.alltheEvents[i].event_name;
+              }
+              else {
+                console.log('nope');
+              }
+            }
+            console.log('we will compare', $scope.localEventId,' with ', $scope.alltheEvents[2].id );
+
+          });
+
+          $http({
+            method: 'GET',
+            url: '/loadHotels'
+          }).then(function(response){
+            console.log('hotels response is: ', response.data);
+            $scope.allTheHotels = response.data;
+            console.log($scope.localHotelId);
+
+
+            for (var j = 0; j < $scope.allTheHotels.length; j++){
+              if ($scope.localHotelId == $scope.allTheHotels[j].id ) {
+                console.log('bling');
+                $scope.thisHotelName = $scope.allTheHotels[j].hotel_name;
+              } else {
+                console.log('nope');
+                }
+            }
+          });
+
+          var showMeRooms = {
+          events_id :   $scope.localEventId
+        };
+
+
+          $http({   // gets recordset via POST
+            method: 'POST',
+            url: '/getRoom2',
+            data: showMeRooms
+          }).then(function(response) {
+            // $scope.showRoom2();
+            $scope.roomToShow = response.data;
+
+              console.log('room to show returns' , $scope.roomToShow);
+          });
+
+
+
+
 };
 
-
+$scope.seeRoom = function(roomId){
+  console.log('fired with ', roomId);
+  sessionStorage.setItem("roomId", roomId);
+  $window.location.href = '/#/roomOccupants';
+};
 
 $scope.showMeSlots = function(){
   console.log('slots to show are ', $scope.slotsToShow);
   console.log('and rooms to show is ', $scope.roomToShow);
 
-
 };
 
   // var slotsToGet;
-
 
     $scope.updateOccupants=function(recordguest_name, recordusers_id, recordrooms_id, recordid) {
     console.log('in updateOccupants');
@@ -538,10 +602,6 @@ $http({
   console.log('hotel load request received! response of ', response.data);
 });
 
-
-
-
-
 $scope.fetchEvents = function(){
   $http({
     method: 'GET',
@@ -581,8 +641,6 @@ console.log( eventObject );
 
 
 }]); // end adminController
-
-
 //MODAL CODE for Room assigner
 DRGNBT.directive('modalDialog', function() { //
   return {
@@ -608,8 +666,6 @@ DRGNBT.directive('modalDialog', function() { //
 
 DRGNBT.controller('MyCtrl', function($scope, $http) {
 
-
-
 $scope.preToggle = function(roomId){
   console.log('what is the room id, it is', roomId);
   sessionStorage.setItem("roomId", roomId);
@@ -619,7 +675,6 @@ $scope.roomIdName = sessionStorage.getItem("roomId");
     room: $scope.roomIdName
   };
 
-
   $http({
     method: 'POST',
     url: '/getSlots',
@@ -627,12 +682,12 @@ $scope.roomIdName = sessionStorage.getItem("roomId");
   }).then(function(response){
   console.log(response.data);
   $scope.guests = response.data;
+  console.log($scope.guests[0].guest_name);
   }).then(function(){
     $scope.guestsArray =  $.map($scope.guests, function(value, index){
         return [value];
       });
   });
-
 
   $scope.toggleModal();
 };
@@ -647,5 +702,27 @@ $scope.roomIdName = sessionStorage.getItem("roomId");
         // $scope.seeRoom();
 
   };
+
+  $scope.showMe = function(){
+    console.log('button clicked');
+    // console.log(guest);
+    for (var i = 0; i < $scope.guests.length; i++){
+      // if($scope.guests[i].id == $scope.guests.guest_name) {
+      //   $scope.eventToDisplay = $scope.events[i];
+      // }
+      var guest = { guest_name : $scope.guests[i].guest_name ,
+        id : $scope.guests[i].id
+      };
+      console.log(guest);
+  $http({
+  method : 'PUT',
+  url : '/saveGuest',
+  data : guest
+  });
+
+    console.log($scope.guests);
+
+
+  }
+};
 });
-//end Modal Code

@@ -34,19 +34,18 @@
           <h3 class="eventHeaders">Hotel Information</h3>
 
           <p><b>Hotel Name:</b> {{eventData.hotel_name}}</p>
-          <p><b>Hotel:</b> <a href="{{eventData.hotel_url}}" target="_blank">{{eventData.hotel_url}}</a></p>
+
+          <a href="{{eventData.hotel_url}}" target="_blank">Hotel Website</a>
 
         </div>
       </div>
 
       <div class="nextSteps">
           <h4 class="nextStepsHeader">Next Steps</h4>
-        <div class="hello">
-          <h4 class="helloAgain">
-          Hello, {{hello | uppercase}}!
+          <h4 class="helloAgain">Hello, {{hello | uppercase}}!
           <hr>
-  {{pageMessage}} </h4><md-button class="md-raised eventButton" ng-hide="pageMessage2==''"><a ng-href="{{pageMessage2}}">{{pageMessage3}} </a></md-button>
-        </div>
+  {{pageMessage}} </h4>
+        <md-button class="md-raised eventButton" ng-hide="pageMessage2==''"><a ng-href="{{pageMessage2}}">{{pageMessage3}} </a></md-button>
       </div>
     </div>
         </md-content>

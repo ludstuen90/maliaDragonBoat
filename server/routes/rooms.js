@@ -258,23 +258,33 @@ router.post('/saveSlot/:id', function(req, res) {
     }); //end connection
 }); //end /saveSlot function
 
-router.post( '/saveGuest', function( req, res ) {
-  console.log(req.body);
-  var name = req.body;
+router.put( '/saveGuest', function( req, res ) {
+      console.log(req.body);
+      // var id = req.params.id;
+      var name = req.body;
+  // if (err) {  //connection error
+  //   console.log(err);
+  //   res.sendStatus(500);
+  //   } // end connection error
                 pg.connect( connectionString, function( err, client, done ) {
                   if( err ) {
                     console.log( 'Unable to update table.' );
-                  }else {
-                  client.query( 'UPDATE occupant_room' +
-                  'SET guest_name = $1' +
-                  'WHERE id = $2',
-                  [name.guest_name, name.id]
-                );
-                res.send( true );
-                  done();
-                }
-                });
-              });
+                  } else {
+                  client.query( 'UPDATE occupant_room SET guest_name = $1 WHERE id = $2',
+                  [name.guest_name, name.id],
+                  function(err, result){
+                    done();
+                    if (err) {
+                      console.log("error in rooms.js:");
+                       console.log(err);
+                        res.sendStatus(500);
+                        return;
+                    }
+                    res.sendStatus(204);  // success
+                  });
+                } //end connection
+            }); //end /saveSlounction
+          });
 
     router.post( '/getEventName', function( req, res ) {
       console.log( '/getEventName has received a request.');

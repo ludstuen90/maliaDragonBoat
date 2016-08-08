@@ -138,8 +138,6 @@
                               </div>
                             </form>
 
-
-
                             <hr>
                             <div class="row">
                                 <div class="col-xs-5">
@@ -156,6 +154,10 @@
                               <button class="createEventButton btn-md" ng-click="saveDial( data.cb1, eventToDisplay.id )">Save Event Phase</button>
                             </div>
                               <hr>
+
+                              <button class="createEventButton btn-md" ng-click="goToRoomAssigner(eventToDisplay.id)">Review Room Assignments</button>
+
+                              <a href="/#roomAssignment" class="button btn">Review Room Assignments</a>
 
               </div> <!-- End col 1 -->
               <div class="col-md-8"> <!-- Start col 2 -->
@@ -232,7 +234,7 @@
                                   <div class="row">
                                       <div class="col-xs-6 col-sm-2">
                                           <md-input-container md-no-float class="md-block">
-                                            <input ng-model="hotel_phone" ui-mask="(999) 999-9999"  ui-mask-placeholder ui-mask-placeholder-char="_"/>
+                                            <input ng-model="hotel_phone" ui-mask="(999) 999-9999"  ui-mask-placeholder ui-mask-placeholder-char="_" placeholder="Phone Number"/>
                                           </md-input-container>
                                         </div>
                                       <div class="col-xs-6 col-sm-3">

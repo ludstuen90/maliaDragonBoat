@@ -1,35 +1,24 @@
 <div ng-include="nav.html" ng-init="roomAssign()"></div>
 <md-content> <!-- need a ng-init to pass in eventid -->
 
-<div id="exportPDF" class="container" >
+  <div id="exportPDF" class="container" >
     <h3>Room Assigner for {{thisEventName}} </h3>
     <h4>Hotel: {{thisHotelName}}</h4>
     <br />
-    <h4>Click on the See Occupant buttons in the rooms below to enter your name and the names of any non-paddlers coming with you into empty bed spaces.</h4>
+    <div class="row">
+        <div class="col-sm-9">
+                <h4>Click on the Room Occupant buttons in the rooms below to enter your name <br />
+                  and the names of any non-paddlers coming with you into empty bed spaces.</h4>
+        </div>
+        <div class="col-sm-2">
+          <br />
+            <a ng-click="downloadPDF()" class="createEventButton btn-lg bottomspacesmall">Download PDF</a>
+        </div>
+      </div> <!-- end row -->
 
-<!-- <table>
-  <tr ng-repeat "y in grid">
-    <td ng-repeat="x in y"></td>
-    <p ng-repeat="z in x track by $index">{{z.indexOf(1)}}</p>
-  </tr>
-</table> -->
-
-
-
-
-<div>
-<!-- <table>
-<tr ng-repeat="y in slots">
- <td ng-repeat="x in y track by $index">{{x}} </td>
- <p ng-repeat="z in x track by $index"></p>
-</tr>
-</table> -->
-
-      <div class="row">
-        <div class="container">
         <div ng-repeat='record in roomToShow'>
-          <!-- <div class="roomAssigner"> -->
-          <div class="col-xs-6 col-sm-3 roomAssigner">
+          <div class="row">
+            <div class="roomAssigner">  <!-- col-xs-6 col-sm-3-->
 
               <p class="roomback">Room ID: {{ record.id }}  </p>
               <p class="roomback roomnumber">Room Number: {{ record.room_number }}</span></p>
@@ -37,19 +26,21 @@
               <p class="roomtext">Check In Date: <b>{{ (record.check_in | date: "MM-dd-yyyy") }}</b></p>
               <p class="roomtext">Check Out Date: <b>{{ (record.check_out | date: "MM-dd-yyyy")}}</b></p>
               <p class="roomtext">Notes: <b>{{ record.notes }}</b></p>
-
+              <br />
               <div ng-controller="MyCtrl">
                 <div align="center">
-                  <a class="createEventButton btn-sm bottomspacesmall" ng-click="preToggle(record.id)">Room Occupants</a>
+                  <a class="createEventButton btn-sm bottomspacesmall" ng-click="preToggle(record.id)">Toggle Room Occupants</a>
                   <br />
                 </div>
-                <modal-dialog show='modalShown' width='330px' height='330px'>
+                <modal-dialog show='modalShown'>
 
                   <div class="row">
                     <div class="container">
                       <div class="col-md-3">
-                          <div>
-                              <h4>Room {{roomId}}</h4>
+                          <!-- <div> -->
+                              <!-- <h4>Room {{roomId}}</h4> -->
+                              <p class="roomback2">x</p>
+                              <p class="roomback2">x</p>
                               <table class="table table-bordered table-hover table-condensed">
                                 <thead class="rowline">
                                   <th>Occupant</th>
@@ -57,12 +48,11 @@
                                 </thead>
                                 <tr ng-repeat="thing in guests">
                                     <td><span editable-text="thing.guest_name" e-form="rowform" e-required>{{ thing.guest_name || "empty" }}</span></td>
-                                    <!-- <td><a href="#" editable-text="thing.guest_name">{{ thing.guest_name || "empty" }}</a></td> -->
                                     <td style="white-space:nowrap">
 
-                                      <form editable-form name="rowform"  ng-model="saveUser" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == record">
-                                        <button type="submit" ng-disabled="rowform.$waiting" ng-click="showMe()" class="btn btn-primary createEventButton">Save</button>
-                                        <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default orangeButton"> Cancel</button>
+                                      <form editable-form name="rowform"  ng-model="saveUser" ng-show="rowform.$visible"  shown="inserted == record">
+                                        <button type="submit" ng-disabled="rowform.$waiting" ng-click="showMe()" class="createEventButton btn-sm">Save</button>
+                                        <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="createEventButton btn-sm"> Cancel</button>
 
                                       </form>
                                       <div class="buttons" ng-show="!rowform.$visible">
@@ -71,24 +61,16 @@
                                     </td>
                                 </tr> <!-- end row repeat -->
                               </table>
-                              <!-- <div align="center"> -->
-                              <!-- <button class="createEventButton btn-sm" ng-click="showMe()">Save</button> -->
-                            <!-- </div> -->
-                          </div>
-                      </div>
-                    </div>
-                  </div>
+                          </div> <!-- end class col-md-3 -->
+                      </div> <!-- end container -->
+                    </div> <!-- end row -->
+
                     </modal-dialog>
                   </div> <!--end MyCtrl modal controller  -->
                   <br />
 
-              </div>
-        	</div> <!-- end room code -->
-        </div> <!-- end row -->
-
-
-
-
-      </div><!-- end container -->
+              </div><!-- end class Roomassigner -->
+      	</div> <!-- end room code -->
+    </div> <!-- end ng-repeat -->
 </div><!-- end id for export pdf -->
 </md-content>

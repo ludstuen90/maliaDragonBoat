@@ -534,8 +534,6 @@ $scope.roomAssign = function() {
           var showMeRooms = {
           events_id :   $scope.localEventId
         };
-
-
           $http({   // gets recordset via POST
             method: 'POST',
             url: '/getRoom2',
@@ -543,23 +541,9 @@ $scope.roomAssign = function() {
           }).then(function(response) {
             // $scope.showRoom2();
             $scope.roomToShow = response.data;
-
               console.log('room to show returns' , $scope.roomToShow);
           });
-
-
-
-
 };
-
-
-
-
-
-
-
-
-
 
 
 $scope.seeRoom = function(roomId){
@@ -605,7 +589,7 @@ $scope.showMeSlots = function(){
             var docDef={
               content: [{
                 image: data,
-                width: 500,
+                width: 400,
               }]
             };
             pdfMake.createPdf(docDef).download('HotelRoomAssignments.pdf');  // download the PDF
@@ -624,10 +608,6 @@ $http({
   console.log(response.data);
   console.log('hotel load request received! response of ', response.data);
 });
-
-
-
-
 
 $scope.fetchEvents = function(){
   $http({

@@ -514,16 +514,8 @@ md-tabs.md-dynamic-height md-tabs-content-wrapper {
   color: white;
 }
 
-/*FOOTER & NAVIGATION STYLING*/
-footer {
-  /*background-color: #677077;
-  height: 100px;
-  color: white;
-  font-size: 20px;
-  margin: auto;
-  text-align:center;
-  padding:25px;*/
-}
+/* NAVIGATION STYLING*/
+
 
 .navbar-nav>li>a {
   color: #3c84a2;
@@ -653,6 +645,8 @@ footer {
 
 .createEventButton:hover {
     background: #13647F;
+      color: white;
+      text-decoration: none;
 }
 
 /*LOGIN STYLING*/
@@ -783,7 +777,8 @@ button.md-button.md-raised:not([disabled]) {
 .roomAssigner {
   background: #b5d5e3;
   width: 325px;
-  border: 3px solid #faa723;
+  height: 283px;
+  /*border: 3px solid #faa723;*/
   padding: 3px;
   margin: 10px;
   text-align: left;
@@ -856,6 +851,17 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
       align: center;
 }
 
+
+.roomback2 {
+      background-color: #13647F;
+      color: #13647F;
+      margin: -4px -21px 1px -35px;
+      padding: 4px 2px 4px 10px;
+      font-weight: bold;
+      font-size: 18px;
+      align: center;
+}
+
 .roomnumber {
   margin-bottom: 10px;
 }
@@ -865,37 +871,37 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
   font-size: 14px;
 }
 
-
 /*Modal Styling:*/
 .ng-modal-dialog {
-  /* A centered div above the overlay with a box shadow. */
   z-index:10000;
-  position: absolute;
-  width: 50%; /* Default */
-
-  /* Center the dialog */
-  top: 50%;
-  left: 50%;
+  position: relative;
+  width: 330px;
+  /*height: 300px;*/
+  /*vertical-align: top;*/
+  top: -95px;
+  height: 283px;
+  left: 484px;
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
-
-  background-color: #e9f7fc;
-  border-color: #faa723;
-  border-width: 3px;
-  /*box-shadow: 4px 4px 80px #000;*/
+  background-color: #b5d5e3;
+  /*border-color: #faa723;*/
+  /*border-width: 3px;*/
 }
+/*#e9f7fc*/
 .ng-modal-dialog-content {
-  padding:10px;
+  padding: 4px 15px 6px 20px;
+  margin-top: 4px;
   text-align: left;
 }
+
 .ng-modal-close {
   position: absolute;
   top: 3px;
   right: 5px;
   padding: 5px;
   cursor: pointer;
-  font-size: 120%;
+  font-size: 200%;
   display: inline-block;
   font-weight: bold;
   font-family: 'arial', 'sans-serif';

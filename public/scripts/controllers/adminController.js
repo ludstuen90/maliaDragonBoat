@@ -184,8 +184,9 @@ console.log('select hotel is ', $scope.selectHotel);
 
 
 $scope.goToRoomAssigner = function(eventid) {
-       $window.location.href = "/#roomAssignment";
-       $scope.getRooms2(eventid);
+    sessionStorage.setItem("eventId", eventid);
+       $window.location.href = "/#/roomAssignment";
+      //  $scope.getRooms2(eventid);
 };
 
 

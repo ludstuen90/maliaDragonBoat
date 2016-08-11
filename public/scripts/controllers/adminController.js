@@ -144,6 +144,8 @@ $scope.subEvent = function(){
 console.log('see this event ', showThisEvent);
 console.log(showThisEvent.id);
 sessionStorage.setItem("eventId", showThisEvent.id);
+console.log('we are about to look for the event ', showThisEvent.id);
+
 
   $http({
     method: 'POST',
@@ -159,7 +161,7 @@ sessionStorage.setItem("eventId", showThisEvent.id);
       if ($scope.hotelSelect[i].id == $scope.eventToDisplay.hotel_id){
         console.log('yes, the winner is ', $scope.hotelSelect[i]);
         console.log('hotel id is ', $scope.eventToDisplay.hotel_id);
-        sessionStorage.setItem("hotelId",$scope.eventToDisplay.hotel_id );
+        sessionStorage.setItem("hotelId", $scope.eventToDisplay.hotel_id );
         $scope.selectHotel = $scope.eventToDisplay.hotel_id;
 
         console.log('at index ', i);
@@ -179,7 +181,6 @@ console.log($scope.eventToDisplay);
 $scope.data.cb1 = $scope.eventToDisplay.hotel_phase;
 // $scope.selectHotel = $scope.eventToDisplay.hotel_id;
 console.log($scope.eventToDisplay.hotel_id);
-console.log('select hotel is ', $scope.selectHotel);
 
 
 };  //End subEvent()
@@ -488,6 +489,7 @@ $scope.slots = [];
 
 
 $scope.roomAssign = function() {
+
           console.log('hello from room assign');
         console.log('hotel id is ', sessionStorage.getItem("hotelId"), 'and event id is ', sessionStorage.getItem("eventId") );
           $scope.localEventId = sessionStorage.getItem("eventId");
@@ -500,15 +502,29 @@ $scope.roomAssign = function() {
           }).then( function( response ) {
             $scope.alltheEvents = response.data;
             console.log('and the response data is: ', $scope.alltheEvents);
-            console.log('events is ', $scope.events);
+            console.log('events is ', $scope.localEventId);
 
-            for (var i = 0; i <= $scope.localEventId.length; i++){
+            for (var i = 0; i <= $scope.alltheEvents.length; i++){
               if ($scope.localEventId == $scope.alltheEvents[i].id) {
                 console.log($scope.localEventId, 'and ', $scope.alltheEvents[i].id);
                 console.log('bling');
+                console.log('we are about to assign the event name of ', $scope.alltheEvents[i].event_name);
                 $scope.thisEventName = $scope.alltheEvents[i].event_name;
+
+                console.log($scope.alltheEvents[i].hotel_phase);
+                if($scope.alltheEvents[i].hotel_phase === false){
+                  console.log('The hotel phase on this event is false');
+                  $scope.specialMessage = "Alert! The hotel phase on this event is false, so users cannot access this page.";
+                }
+
+
+
+
+                return;
               }
               else {
+                console.log($scope.localEventId, 'and ', $scope.alltheEvents[i].id);
+
                 console.log('nope');
               }
             }
@@ -529,6 +545,8 @@ $scope.roomAssign = function() {
               if ($scope.localHotelId == $scope.allTheHotels[j].id ) {
                 console.log('bling');
                 $scope.thisHotelName = $scope.allTheHotels[j].hotel_name;
+
+                return;
               } else {
                 console.log('nope');
                 }

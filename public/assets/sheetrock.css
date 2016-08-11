@@ -906,3 +906,9 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
   font-weight: bold;
   font-family: 'arial', 'sans-serif';
 }
+
+
+#specialAlert {
+  font-size:32px;
+  color:red;
+}

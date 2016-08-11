@@ -142,6 +142,8 @@ $scope.subEvent = function(){
   };
 
 console.log('see this event ', showThisEvent);
+console.log(showThisEvent.id);
+sessionStorage.setItem("eventId", showThisEvent.id);
 
   $http({
     method: 'POST',
@@ -157,6 +159,7 @@ console.log('see this event ', showThisEvent);
       if ($scope.hotelSelect[i].id == $scope.eventToDisplay.hotel_id){
         console.log('yes, the winner is ', $scope.hotelSelect[i]);
         console.log('hotel id is ', $scope.eventToDisplay.hotel_id);
+        sessionStorage.setItem("hotelId",$scope.eventToDisplay.hotel_id );
         $scope.selectHotel = $scope.eventToDisplay.hotel_id;
 
         console.log('at index ', i);

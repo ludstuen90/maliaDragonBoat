@@ -3,22 +3,9 @@ console.log('hotel id is ', $scope.eventData.hotel_id);
 sessionStorage.setItem("hotelId", $scope.eventData.hotel_id);
 
 
-
-
-
-
 $scope.assignEvent = function(eventId){
     console.log(eventId);
     sessionStorage.setItem("eventId", eventId);
-
-
-
-
-
-
-
-
-
 
 async.parallel([
     function(callback){

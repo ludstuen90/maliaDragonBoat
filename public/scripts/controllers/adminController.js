@@ -723,8 +723,11 @@ $scope.roomIdName = sessionStorage.getItem("roomId");
 
   };
 
-  $scope.showMe = function(){
+  $scope.showMe = function(banana){
+    console.log(banana);
     console.log('button clicked');
+    console.log('lets see the ', $scope.guests);
+    console.log($scope.guests[1]);
     // console.log(guest);
     for (var i = 0; i < $scope.guests.length; i++){
       // if($scope.guests[i].id == $scope.guests.guest_name) {
@@ -739,10 +742,7 @@ $scope.roomIdName = sessionStorage.getItem("roomId");
   url : '/saveGuest',
   data : guest
   });
-
-    console.log($scope.guests);
-
-
   }
+  console.log($scope.guests);
 };
 });

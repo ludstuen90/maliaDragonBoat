@@ -48,11 +48,11 @@
                                   <th>Actions</th>
                                 </thead>
                                 <tr ng-repeat="thing in guests">
-                                    <td><span editable-text="thing.guest_name" e-form="rowform" e-required>{{ thing.guest_name || "empty" }}</span></td>
+                                    <td><span editable-text="thing.guest_name" e-form="rowform" e-required>{{ thing.guest_name }}</span></td>
                                     <td style="white-space:nowrap">
 
                                       <form editable-form name="rowform"  ng-model="saveUser" ng-show="rowform.$visible"  shown="inserted == record">
-                                        <button type="submit" ng-disabled="rowform.$waiting" ng-click="showMe()" class="createEventButton btn-sm">Save</button>
+                                        <button type="submit" ng-disabled="rowform.$waiting" ng-click="showMe(thing.guest_name)" class="createEventButton btn-sm">Save</button>
                                         <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="createEventButton btn-sm"> Cancel</button>
 
                                       </form>

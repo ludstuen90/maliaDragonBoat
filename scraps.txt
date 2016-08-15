@@ -11,8 +11,6 @@ async.parallel([
     function(callback){
       console.log('say hello!');
 
-
-
               getVal = [];
               pg.connect(connectionString, function(err, client, done){
                 if(err){
@@ -74,26 +72,11 @@ async.parallel([
     //
     //
 
-
-
 http://stackoverflow.com/questions/23757363/how-to-create-non-blocking-asynchronous-function-in-node-js-and-express-js
-
-
-
-
-
-
 
 
   }
 );
-
-
-
-
-
-
-
 
 
       <select name="singleSelect" id="singleSelect" ng-model="data.singleSelect">

@@ -5,7 +5,6 @@ DRGNBT.controller('adminController', ['$scope', '$http', '$window', '$filter', f
 
 
 
-
     var objectToSend={}; // creates global object to send
     $scope.eventToDisplay= [];
 
@@ -656,6 +655,7 @@ $scope.fetchEvents();
 
 
 
+
 }]); // end adminController
 //MODAL CODE for Room assigner
 DRGNBT.directive('modalDialog', function() { //
@@ -709,6 +709,8 @@ $scope.roomIdName = sessionStorage.getItem("roomId");
   });
 
 
+
+
   $scope.toggleModal();
 };
 
@@ -754,5 +756,8 @@ $scope.showMe();
 
 };
 
-
+$scope.seeTheGuestArray = function(){
+  console.log('made it');
+  console.log($scope.guests);
+};
 });

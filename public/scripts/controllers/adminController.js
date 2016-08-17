@@ -723,6 +723,8 @@ $scope.roomIdName = sessionStorage.getItem("roomId");
 
   };
 
+
+
   $scope.showMe = function(banana){
     console.log(banana);
     console.log('button clicked');
@@ -745,4 +747,12 @@ $scope.roomIdName = sessionStorage.getItem("roomId");
   }
   console.log($scope.guests);
 };
+
+$scope.updateMe = function(){
+  // $scope.$apply();
+$scope.showMe();
+
+};
+
+
 });

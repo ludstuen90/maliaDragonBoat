@@ -40,7 +40,7 @@ function($scope, $http, $window, $location) {
             $location.path('/home');
           } else {
             console.log('failure: ', response);
-            $scope.message = "Wrong!!";
+            $scope.message = "Incorrect Password";
           }
         });
       }
